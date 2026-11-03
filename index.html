@@ -1,229 +1,203 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DCC Suite v10.0 | Enterprise</title>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DCC Toolbox v10.0</title>
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
 <style>
-:root { --bg: #F8F9FA; --card: #FFFFFF; --text: #1A202C; --muted: #718096; --border: #E2E8F0; --primary: #1E3A8A; --accent: #3B82F6; --success: #10B981; --radius: 10px; font-family: 'Inter', system-ui, sans-serif; }
-body.dark { --bg: #1E1E24; --card: #2D2D35; --text: #F8FAFC; --muted: #94A3B8; --border: #3F3F46; --primary: #60A5FA; }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--bg); color: var(--text); font-size: 14px; transition: 0.3s; }
-header { background: var(--card); border-bottom: 1px solid var(--border); padding: 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; flex-wrap: wrap; gap: 10px; }
-.logo { font-weight: 800; font-size: 18px; color: var(--primary); }
-button { cursor: pointer; border-radius: 6px; font-weight: 600; padding: 8px 12px; border: 1px solid var(--border); background: var(--card); color: var(--text); transition: 0.2s; }
-button:hover { border-color: var(--primary); color: var(--primary); }
-.btn-primary { background: var(--primary); color: white; border: none; width: 100%; padding: 12px; font-size: 15px; }
-.btn-primary:hover { opacity: 0.9; color: white; }
-.btn-accent { background: var(--accent); color: white; border: none; }
-.btn-copy { padding: 6px 10px; font-size: 12px; }
-.container { max-width: 1200px; margin: 20px auto; padding: 0 15px; }
-.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; }
-.card-title { font-size: 16px; font-weight: 700; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; }
-.row { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 15px; }
-.col { flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 5px; }
-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; }
-input, select, textarea { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); font-size: 13px; }
-.input-group { display: flex; gap: 8px; }
-.tabs { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
-.tab-btn { background: transparent; border: none; padding: 10px 15px; color: var(--muted); border-radius: 6px; white-space: nowrap; }
-.tab-btn.active { background: var(--bg); color: var(--primary); font-weight: 700; }
-.tab-content { display: none; }
-.tab-content.active { display: block; animation: fade 0.3s; }
-.help-text { display: none; font-size: 11px; color: var(--muted); padding: 10px; background: rgba(59,130,246,0.05); border-left: 3px solid var(--accent); margin-bottom: 15px; }
-body.beginner .help-text { display: block; }
-.result-box { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed var(--border); align-items: center; }
-.total-highlight { color: var(--success); font-size: 18px; font-weight: 700; }
-.seat-map { display: flex; justify-content: center; overflow-x: auto; padding: 20px; background: var(--bg); border-radius: var(--radius); }
-.plane { display: flex; flex-direction: column; gap: 5px; padding: 30px; background: var(--card); border: 2px solid var(--border); border-radius: 50px 50px 10px 10px; }
-.row-seats { display: flex; gap: 5px; align-items: center; }
-.aisle { width: 20px; }
-.seat { width: 30px; height: 30px; font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); border-radius: 4px; cursor: pointer; }
-.seat.selected { background: var(--success); color: white; border-color: var(--success); }
-.seat.extra { background: rgba(234, 179, 8, 0.2); border-color: #EAB308; }
-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 10px; }
-th, td { padding: 8px; border-bottom: 1px solid var(--border); text-align: left; }
-footer { text-align: center; padding: 30px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--border); line-height: 1.6; }
-.toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--primary); color: white; padding: 10px 20px; border-radius: 20px; opacity: 0; transition: 0.3s; pointer-events: none; }
-.toast.show { opacity: 1; }
-@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
-</style>
-</head>
-<body>
+*{box-sizing:border-box;font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+body{background:#f4f6f9;color:#1e293b;margin:0;padding:12px;font-size:13px}
+.hd{background:linear-gradient(135deg,#7b0062,#00529b);color:#fff;padding:12px 16px;border-radius:10px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:12px}
+.hd input{background:#fff;border:1px solid #cbd5e1;border-radius:4px;padding:3px 6px;font-size:11px;width:100px}
+.box{display:flex;gap:6px;align-items:center;font-size:11px;background:rgba(255,255,255,.15);border-radius:8px;padding:5px 8px;flex-wrap:wrap}
+.tabs{display:flex;gap:6px;margin-bottom:12px;overflow-x:auto}
+.tb{background:#fff;border:1px solid #cbd5e1;color:#475569;padding:8px 12px;border-radius:6px;font-weight:700;font-size:12px;cursor:pointer;white-space:nowrap}
+.tb.on{background:#7b0062;color:#fff;border-color:#7b0062}
+.tc{display:none}.tc.on{display:block}
+.card{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:14px;margin-bottom:12px}
+.ct{font-size:14px;font-weight:800;color:#7b0062;margin-bottom:10px;border-bottom:2px solid #f1f5f9;padding-bottom:6px}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.fg{display:flex;flex-direction:column;gap:4px;flex:1;min-width:200px}
+label{font-weight:700;font-size:11px;color:#475569}
+input,select,textarea{border:1px solid #cbd5e1;border-radius:6px;padding:8px;font-size:12px;width:100%;background:#fff;color:#0f172a}
+textarea{resize:none;overflow:hidden;min-height:42px}
+.ib{display:flex;gap:6px;align-items:flex-start}
+.b{background:#7b0062;color:#fff;border:0;border-radius:6px;padding:9px 14px;font-weight:700;font-size:12px;cursor:pointer}
+.s{background:#00529b;color:#fff;border:0;border-radius:4px;padding:6px 10px;font-weight:700;font-size:11px;cursor:pointer;white-space:nowrap}
+.g{background:#059669}.gr{background:#64748b}
+.drop{border:2px dashed #00529b;border-radius:8px;padding:12px;text-align:center;color:#00529b;font-weight:700;margin-bottom:10px;background:#f8fafc}
+.cap{display:flex;gap:8px;border:1px solid #e2e8f0;border-radius:8px;padding:6px;margin-bottom:6px;align-items:flex-start}
+.cap img{height:56px;border-radius:4px;border:1px solid #cbd5e1}
+.cap textarea{height:56px;font-family:monospace;font-size:10px;overflow:auto}
+.chip{display:inline-block;background:#f3e8ff;color:#7b0062;border:1px solid #e9d5ff;border-radius:12px;padding:3px 9px;margin:2px;font-size:11px;font-weight:700;cursor:pointer}
+.chip:hover{background:#7b0062;color:#fff}
+.cnt{display:flex;gap:10px;margin-bottom:10px}
+.cnt div{flex:1;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:8px;text-align:center;font-size:10px;font-weight:700;color:#64748b}
+.cnt b{display:block;font-size:18px;color:#7b0062}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{padding:7px;text-align:left;border-bottom:1px solid #e2e8f0}th{background:#f8fafc}
+.rr{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed #cbd5e1}
+.pre{background:#f1f5f9;border:1px solid #cbd5e1;border-radius:16px;padding:6px 12px;font-size:11px;font-weight:700;cursor:pointer;margin:2px}
+.pre.on{background:#7b0062;color:#fff}
+.note{background:#f0f9ff;border-left:4px solid #0284c7;color:#075985;border-radius:8px;padding:10px;font-size:11.5px;margin-bottom:10px}
+.warn{background:#fffbe3;border-left-color:#eab308;color:#854d0e}
+#toast{display:none;position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;padding:8px 16px;border-radius:20px;font-size:12px;z-index:9}
+.ft{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:12px;font-size:11px;color:#475569;line-height:1.5}
+</style></head><body>
+<div class="hd"><b style="font-size:16px">🛠️ DCC Toolbox v10.0</b>
+<div class="box">🔑 SkySpeed:
+<input id="su" type="password" autocomplete="new-password" placeholder="Usuario"><button class="s" onclick="cp($('su').value,'Usuario',1)">📋</button>
+<input id="sp" type="password" autocomplete="new-password" placeholder="Contraseña"><button class="s" onclick="cp($('sp').value,'Contraseña',1)">📋</button>
+<button class="s gr" onclick="$('su').value=$('sp').value='';toast('Credenciales borradas')">🧹</button></div>
+<!-- MEJORA 1: Credenciales Concentrix -->
+<div class="box">📧 Concentrix:
+<input id="cu" type="password" autocomplete="new-password" placeholder="Correo"><button class="s" onclick="cp($('cu').value,'Correo',1)">📋</button>
+<input id="cx" type="password" autocomplete="new-password" placeholder="Contraseña"><button class="s" onclick="cp($('cx').value,'Contraseña',1)">📋</button>
+<button class="s gr" onclick="$('cu').value=$('cx').value='';toast('Credenciales borradas')">🧹</button></div>
+<div class="box">Agente:<input id="ag" style="width:170px" placeholder="Tu nombre completo" oninput="saveAg();saludo()"></div></div>
+<div class="tabs" id="tabs"></div>
 
-<header>
-  <div class="logo">🛡️ DCC Suite v10.0</div>
-  <div>
-    <button onclick="toggleMode()" id="btnMode">Principiante</button>
-    <button onclick="toggleDark()">🌗 Tema</button>
-  </div>
-</header>
+<div id="t-msra" class="tc on"><div class="card"><div class="ct">📞 Llamada y captura OCR</div>
+<div class="note warn"><b>Saludo:</b> <span id="sal"></span><br><button class="s" style="margin-top:6px" onclick="cp($('sal').textContent,'Saludo')">📋 Copiar saludo</button></div>
+<div class="drop">📸 Pega capturas de SkySpeed con Ctrl+V (todas las que quieras), arrástralas o <button class="s" onclick="$('fi').click()">elige archivos</button><input type="file" id="fi" accept="image/*" multiple style="display:none"><div id="ost" style="font-weight:400;font-size:11px;margin-top:4px">Win+Shift+S para capturar; luego Ctrl+V aquí.</div></div>
+<div id="caps"></div><div id="dat"></div>
+<div class="cnt"><div><b id="c1">0</b>Llamadas hoy</div><div><b id="c2">0</b>Transferencias a ventas</div></div>
+<div id="form"></div>
+<div style="display:flex;gap:10px"><button class="b" style="flex:1" onclick="genNota()">⚡ Generar nota M-S-R-A y registrar</button><button class="b gr" onclick="limpiar()">🔄 Nueva llamada</button></div>
+<div class="fg" style="margin-top:10px"><label>Nota para SkySpeed (datos reales, no se guardan)</label><textarea id="out" readonly style="height:120px;font-family:monospace;font-size:11px"></textarea></div>
+<button class="b g" style="margin-top:6px;width:100%" onclick="cp($('out').value,'Nota')">📋 Copiar nota</button></div></div>
 
-<div class="container">
-  <div class="card">
-    <div class="card-title">🔐 Credenciales</div>
-    <div class="help-text">Tus contraseñas están seguras. Solo se borran al cerrar la pestaña.</div>
-    <div class="row">
-      <div class="col"><label>Usuario SkySpeed</label><div class="input-group"><input type="password" id="su"><button class="btn-copy" onclick="copy('su')">📋</button></div></div>
-      <div class="col"><label>Pass SkySpeed</label><div class="input-group"><input type="password" id="sp"><button class="btn-copy" onclick="copy('sp')">📋</button></div></div>
-      <div class="col"><label>Correo Concentrix</label><div class="input-group"><input type="email" id="cc"><button class="btn-copy" onclick="copy('cc')">📋</button></div></div>
-      <div class="col"><label>Pass Concentrix</label><div class="input-group"><input type="password" id="cp"><button class="btn-copy" onclick="copy('cp')">📋</button></div></div>
-    </div>
-  </div>
+<div id="t-rop" class="tc"><div class="card"><div class="ct">📊 Calculadora ROP</div>
+<div id="pres"></div><div class="note" id="ph" style="margin-top:8px"></div>
+<div class="fg" style="margin-bottom:10px"><label>Porcentaje: <b id="pl" style="color:#7b0062"></b></label><input type="range" id="rg" min="5" max="400" step="5" oninput="setP(+this.value)"></div>
+<div class="row"><div class="fg"><label>👥 Pasajeros</label><input type="number" id="rp" value="1" min="1" oninput="rop()"></div><div class="fg"><label>💵 Tarifa base</label><input type="number" id="rb" value="2000" min="0" oninput="rop()"></div><div class="fg"><label>💱 Moneda</label><button class="b" onclick="cur=cur=='MXN'?'USD':'MXN';$('cu2').textContent=cur;rop()"><span id="cu2">MXN</span> 🔄</button></div></div>
+<!-- MEJORA 2: Dividir ROP -->
+<div class="row"><div class="fg"><label>🔢 Dividir voucher entre ___ personas</label><input type="number" id="rd" value="1" min="1" oninput="rop()"></div></div>
+<div class="rr"><span>Código de voucher</span><b id="r1"></b></div><div class="rr"><span>Por pasajero</span><b id="r2"></b></div><div class="rr"><span>Pasajeros</span><b id="r3"></b></div><div class="rr"><span>Base total</span><b id="r4"></b></div><div class="rr"><span>Voucher total</span><b id="r5" style="color:#7b0062"></b></div><div class="rr"><span><b>Gran total</b></span><b id="r6" style="color:#15803d;font-size:16px"></b></div>
+<div class="rr"><span style="color:#00529b"><b>↳ Voucher por persona (÷ <span id="rd2">1</span>)</b></span><b id="r7" style="color:#00529b;font-size:15px"></b></div>
+</div></div>
 
-  <div class="tabs">
-    <button class="tab-btn active" onclick="tab('llamada', this)">📞 Llamada</button>
-    <button class="tab-btn" onclick="tab('rop', this)">📊 Calculadora ROP</button>
-    <button class="tab-btn" onclick="tab('asientos', this)">✈️ Asientos</button>
-    <button class="tab-btn" onclick="tab('bitacora', this)">📓 Bitácora</button>
-  </div>
+<div id="t-dir" class="tc"><div class="card"><div class="ct">📱 Directorio</div><input placeholder="Buscar departamento o extensión..." oninput="dirR(this.value)" style="margin-bottom:8px"><table><tbody id="dt"></tbody></table></div></div>
 
-  <!-- LLAMADA -->
-  <div id="t-llamada" class="tab-content active">
-    <div class="card">
-      <div class="card-title">Datos de la Llamada</div>
-      <div class="help-text">Llena esto para generar la nota. Todo tiene botón de copiar.</div>
-      <div class="row">
-        <div class="col"><label>PNR</label><div class="input-group"><input id="pnr"><button class="btn-copy" onclick="copy('pnr')">📋</button></div></div>
-        <div class="col"><label>Titular</label><div class="input-group"><input id="tit"><button class="btn-copy" onclick="copy('tit')">📋</button></div></div>
-        <div class="col"><label>Teléfono</label><div class="input-group"><input id="tel"><button class="btn-copy" onclick="copy('tel')">📋</button></div></div>
-        <div class="col"><label>Correo</label><div class="input-group"><input id="mail"><button class="btn-copy" onclick="copy('mail')">📋</button></div></div>
-      </div>
-      <div class="row">
-        <div class="col"><label>Pasajeros (1 por línea)</label><textarea id="pax" rows="3"></textarea></div>
-        <div class="col"><label>Motivo</label><textarea id="mot" rows="3"></textarea></div>
-      </div>
-      <button class="btn-primary" onclick="genNota()">⚡ Generar Nota</button>
-      <div style="margin-top:15px;"><label>Nota Final</label><div class="input-group"><textarea id="out" rows="5" readonly></textarea><button class="btn-copy" onclick="copy('out')">📋</button></div></div>
-    </div>
-  </div>
+<div id="t-spl" class="tc"><div class="card"><div class="ct">✂️ Split de PNR multipasajero</div>
+<div class="row"><div class="fg"><label>Monto total PNR</label><input type="number" id="s1" value="4000" oninput="spl()"></div><div class="fg"><label>Pasajeros totales</label><input type="number" id="s2" value="5" oninput="spl()"></div><div class="fg"><label>Pasajeros a separar</label><input type="number" id="s3" value="1" oninput="spl()"></div></div>
+<div class="rr"><span>Costo por pasajero</span><b id="q1"></b></div><div class="rr"><span>Monto separado</span><b id="q2"></b></div><div class="rr"><span><b>Permanece en PNR original (<span id="q4"></span> PAX)</b></span><b id="q3" style="color:#15803d"></b></div></div></div>
 
-  <!-- ROP -->
-  <div id="t-rop" class="tab-content">
-    <div class="card">
-      <div class="card-title">Calculadora ROP</div>
-      <div class="help-text">Calcula el voucher y divídelo entre los pasajeros.</div>
-      <div class="row">
-        <div class="col"><label>Monto Total</label><input type="number" id="rTotal" value="5000" oninput="calcROP()"></div>
-        <div class="col"><label>Porcentaje</label><select id="rPct" onchange="calcROP()"><option value="30">30% IROP</option><option value="25">25% OS</option><option value="100">100% Crisis</option></select></div>
-        <div class="col"><label>Dividir entre</label><input type="number" id="rDiv" value="1" min="1" oninput="calcROP()"></div>
-      </div>
-      <div class="result-box"><span>Voucher Total:</span> <div><span id="rV1" class="total-highlight">$0</span> <button class="btn-copy" onclick="copy('rV1')">📋</button></div></div>
-      <div class="result-box"><span>Voucher x Persona:</span> <div><span id="rV2" class="total-highlight">$0</span> <button class="btn-copy" onclick="copy('rV2')">📋</button></div></div>
-    </div>
-  </div>
+<div id="t-esc" class="tc"><div class="card"><div class="ct">🚨 Escalamientos</div>
+<div class="note">Usa los datos de la pestaña Llamada (PNR, titular, pasajeros, motivo). Placeholders: {PNR} {TIT} {N} {PAX} {MOT} {AG}. El mensaje lleva nombres reales, pero <b>no se guarda</b>: en la bitácora solo queda el tipo y el PNR.</div>
+<div class="row"><div class="fg"><label>Tipo de escalamiento</label><select id="tsel" onchange="tSel()"></select></div></div>
+<div class="fg" style="margin-bottom:10px"><label>Plantilla (editable)</label><textarea id="ttxt" oninput="escGen()"></textarea></div>
+<div class="row"><div class="fg"><label>Guardar como (nombre nuevo o el mismo)</label><div class="ib"><input id="tnm" placeholder="Ej. Cambio de nombre"><button class="s" onclick="tSave()">💾 Guardar plantilla</button></div></div></div>
+<div class="fg"><label>Mensaje listo para el chat</label><textarea id="eout" readonly style="height:110px;font-family:monospace"></textarea></div>
+<div style="display:flex;gap:10px;margin-top:8px"><button class="b g" style="flex:1" onclick="cp($('eout').value,'Escalamiento')">📋 Copiar mensaje</button><button class="b" onclick="escLog()">📓 Registrar en bitácora</button></div></div></div>
 
-  <!-- ASIENTOS -->
-  <div id="t-asientos" class="tab-content">
-    <div class="card">
-      <div class="card-title">Escalamientos y Asientos</div>
-      <div class="help-text">Selecciona los asientos haciendo clic. Se agregarán al texto automáticamente.</div>
-      <div class="row">
-        <div class="col"><label>Tipo de Escalamiento</label><select id="escType" onchange="genEsc()"><option value="MOVE">Cambio de Asientos (MOVE)</option><option value="HOT">Hot Card</option></select></div>
-        <div class="col" style="justify-content:flex-end;"><button class="btn-accent" onclick="showSeats()">✈️ Abrir Mapa</button></div>
-      </div>
-      <div id="mapa" style="display:none;">
-        <div class="row" style="align-items:center;"><label>Modelo:</label><select id="model" onchange="drawSeats()" style="width:auto;"><option value="A320">A320</option><option value="A321">A321</option></select></div>
-        <div class="seat-map"><div class="plane" id="plane"></div></div>
-      </div>
-      <div style="margin-top:15px;"><label>Texto del Escalamiento</label><div class="input-group"><textarea id="escTxt" rows="6"></textarea><button class="btn-copy" onclick="copy('escTxt')">📋</button></div></div>
-      <button class="btn-primary" onclick="copy('escTxt')" style="margin-top:10px;">📋 Copiar Escalamiento</button>
-    </div>
-  </div>
+<div id="t-bit" class="tc"><div class="card"><div class="ct">📓 Bitácora del turno (enmascarada)</div>
+<div style="overflow-x:auto"><table><thead><tr><th>Hora</th><th>PNR</th><th>Titular / Contacto</th><th>Email</th><th>Tel</th><th>Motivo</th><th>Acción</th></tr></thead><tbody id="lb"></tbody></table></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0"><button class="b" onclick="saveLog()">💾 Guardar en sesión</button><button class="b g" onclick="csv()">📥 CSV</button><button class="b g" onclick="cp($('prev').value,'Bitácora')">📋 Copiar texto</button><button class="b" onclick="window.print()">🖨️ Imprimir</button><button class="b gr" onclick="if(confirm('¿Borrar la bitácora?')){log=[];tr=0;renderLog()}">🗑️ Borrar</button></div>
+<textarea id="prev" readonly style="height:140px;font-family:monospace"></textarea></div></div>
 
-  <!-- BITACORA -->
-  <div id="t-bitacora" class="tab-content">
-    <div class="card">
-      <div class="card-title">Bitácora (Enmascarada)</div>
-      <table><thead><tr><th>Hora</th><th>PNR</th><th>Titular</th></tr></thead><tbody id="logBody"><tr><td colspan="3">Sin registros</td></tr></tbody></table>
-      <button class="btn-primary" style="margin-top:15px; background:var(--accent);" onclick="downloadCSV()">📥 Descargar CSV</button>
-    </div>
-  </div>
-</div>
-
-<footer>
-  <strong>DCC Suite v10.0</strong><br>
-  Zero-Trust Client-Side Architecture. Designed by Diseño Web.<br>
-  Lead Architect: Juan Carlos Pérez Martínez | Support: 446 404 45 21
-</footer>
-<div id="toast" class="toast">Copiado</div>
+<div class="ft"><b>DCC Toolbox v10.0</b> · Desarrollo: Juan Carlos Pérez Martínez · <a href="https://wa.me/524464044521" target="_blank">Soporte: 446 404 4521</a><br>
+Todo corre en tu navegador: no hay servidor propio ni base de datos. Las capturas no se guardan. Usuario y contraseña viven solo en memoria y se pierden al cerrar o recargar. La bitácora guarda nombres, correo y teléfono enmascarados (el PNR no).</div>
+<div id="toast"></div>
 
 <script>
-// Seguridad
-document.addEventListener('contextmenu', e => e.preventDefault());
-document.onkeydown = e => { if(e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) { e.preventDefault(); toast('Seguridad DCC'); } };
-
-// UI
-function toast(m) { const t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 2000); }
-function toggleDark() { document.body.classList.toggle('dark'); }
-function toggleMode() { document.body.classList.toggle('beginner'); document.getElementById('btnMode').textContent = document.body.classList.contains('beginner') ? 'Experto' : 'Principiante'; }
-function tab(id, btn) {
-  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('t-'+id).classList.add('active'); btn.classList.add('active');
-}
-function copy(id) { const el = document.getElementById(id); const txt = el.value || el.textContent; navigator.clipboard.writeText(txt).then(()=>toast('Copiado ✔')); }
-
-// ROP
-function calcROP() {
-  const t = parseFloat(document.getElementById('rTotal').value)||0, p = parseFloat(document.getElementById('rPct').value)||0, d = parseInt(document.getElementById('rDiv').value)||1;
-  const v1 = t*(p/100), v2 = v1/d, f = n => '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
-  document.getElementById('rV1').textContent = f(v1); document.getElementById('rV2').textContent = f(v2);
-}
-
-// Nota
-let logData = [];
-function genNota() {
-  const v = id => document.getElementById(id).value;
-  const txt = `[SECURITY]: OK con ${v('tit')} | [PAX]: ${v('pax').replace(/\n/g,'; ')} | [MOTIVO]: ${v('mot')} | [FIRMA]: Juan Carlos Pérez Martínez | DCC`;
-  document.getElementById('out').value = txt;
-  const mName = s => s.split(' ').map(w=>w[0]+'***').join(' ');
-  logData.push({h: new Date().toLocaleTimeString(), p: v('pnr')||'N/A', t: mName(v('tit')||'N/A')});
-  renderLog(); toast('Nota y Bitácora listas');
-}
-function renderLog() {
-  document.getElementById('logBody').innerHTML = logData.map(x=>`<tr><td>${x.h}</td><td>${x.p}</td><td>${x.t}</td></tr>`).join('');
-}
-function downloadCSV() {
-  if(!logData.length) return toast('Sin datos');
-  const rows = ['Hora,PNR,Titular'].concat(logData.map(x=>`${x.h},${x.p},${x.t}`));
-  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([rows.join('\n')],{type:'text/csv'})); a.download='Bitacora.csv'; a.click();
-}
-
-// Asientos
-let seats = [];
-function showSeats() { document.getElementById('mapa').style.display='block'; drawSeats(); genEsc(); }
-function drawSeats() {
-  const model = document.getElementById('model').value, rows = model === 'A320' ? 30 : 38, letters = ['A','B','C','D','E','F'];
-  let html = '';
-  for(let i=1; i<=rows; i++) {
-    html += `<div class="row-seats"><div style="width:20px;font-size:10px;text-align:center">${i}</div>`;
-    letters.forEach((l, idx) => {
-      if(idx === 3) html += `<div class="aisle"></div>`;
-      const code = i+l;
-      html += `<div class="seat ${seats.includes(code)?'selected':''} ${i===1||i===12?'extra':''}" onclick="tog('${code}')">${code}</div>`;
-    });
-    html += `</div>`;
-  }
-  document.getElementById('plane').innerHTML = html;
-}
-function tog(code) {
-  if(seats.includes(code)) seats = seats.filter(s => s !== code);
-  else seats.push(code);
-  drawSeats(); genEsc();
-}
-function genEsc() {
-  const type = document.getElementById('escType').value;
-  const pnr = document.getElementById('pnr').value || '[PNR]', tit = document.getElementById('tit').value || '[TITULAR]';
-  let txt = '';
-  if(type === 'MOVE') txt = `ESCALAMIENTO: MOVE\nPNR: ${pnr}\nTitular: ${tit}\nAsientos: ${seats.length?seats.join(', '):'[NINGUNO]'}\nFirma: Juan Carlos Pérez Martínez | DCC`;
-  else txt = `ESCALAMIENTO: HOT CARD\nPNR: ${pnr}\nTitular: ${tit}\nFirma: Juan Carlos Pérez Martínez | DCC`;
-  document.getElementById('escTxt').value = txt;
-}
-
-// Init
-calcROP();
-</script>
-</body>
-</html>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let log=[],tr=0,caps=[],queue=[],busy=false,worker=null,cur='MXN',pct=25,lastPax='',clr;
+function toast(m){const t=$('toast');t.textContent=m;t.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>t.style.display='none',2200)}
+function cp(txt,label,secret){
+ if(!txt){toast('Vacío: '+label);return}
+ const ok=()=>{toast('Copiado: '+label+' ✔');if(secret){clearTimeout(clr);clr=setTimeout(()=>{try{navigator.clipboard.writeText(' ')}catch(e){}},30000)}};
+ if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(txt).then(ok).catch(()=>fb(txt,ok));else fb(txt,ok)}
+function fb(t,ok){const a=document.createElement('textarea');a.value=t;a.style.cssText='position:fixed;left:-9999px';document.body.appendChild(a);a.select();let r=false;try{r=document.execCommand('copy')}catch(e){}a.remove();r?ok():toast('No se pudo copiar')}
+const mName=s=>(s||'').split(/\s+/).filter(Boolean).map(w=>w[0]+'***').join(' ');
+const mMail=s=>(s||'').replace(/([\w.+-])[\w.+-]*@([\w-])[\w.-]*(\.[a-z]{2,})/gi,'$1***@$2***$3');
+const mNum=s=>(s||'').replace(/\d{7,}/g,m=>'****'+m.slice(-4));
+const mText=s=>mNum(mMail(s));
+const TABS=[['msra','📞 Llamada y OCR'],['rop','📊 ROP'],['dir','📱 Directorio'],['spl','✂️ Split'],['esc','🚨 Escalamientos'],['bit','📓 Bitácora']];
+$('tabs').innerHTML=TABS.map((t,i)=>`<button class="tb${i?'':' on'}" onclick="tab('${t[0]}',this)">${t[1]}</button>`).join('');
+function tab(id,b){document.querySelectorAll('.tb,.tc').forEach(x=>x.classList.remove('on'));b.classList.add('on');$('t-'+id).classList.add('on');if(id=='esc')escGen()}
+const fld=(id,l,ph,c,ta)=>`<div class="fg"><label>${l}</label><div class="ib">${ta?`<textarea id="${id}" placeholder="${ph}"></textarea>`:`<input id="${id}" placeholder="${ph}">`}${c?`<button class="s" onclick="cp($('${id}').value,'${l}')">📋</button>`:''}</div></div>`;
+$('form').innerHTML='<div class="row">'+fld('pnr','PNR','RGUCRW',1)+fld('mail','📧 Correo (FDS)','correo@dominio.com',1)+fld('tel','📱 Teléfono (FDS)','52…',1)+'</div><div class="row">'+fld('hold','👤 Titular de la reservación','Nombre completo',1)+fld('call','📞 Quien llama','Nombre o familiar')+'</div><div class="row">'+fld('pax','👥 Pasajeros (uno por línea)','APELLIDO/NOMBRE',1,1)+'</div><div class="row">'+fld('mot','📝 Motivo','¿Qué ocurrió?',0,1)+'</div><div class="row">'+fld('sta','✈️ Status del vuelo','HK ON-TIME / Shift+F7')+fld('act','🔀 Acción / extensión','Transferido a Ventas 7004763')+'</div><div class="row">'+fld('res','⚖️ Resolución / política','Política aplicada',0,1)+'</div>';
+$('pnr').oninput=function(){this.value=this.value.toUpperCase()};
+document.addEventListener('input',e=>{const t=e.target;
+ if(t.tagName=='TEXTAREA'&&!t.closest('.cap')&&!t.readOnly){t.style.height='auto';t.style.height=t.scrollHeight+'px'}
+ if(t.dataset&&t.dataset.i!==undefined){caps[+t.dataset.i].text=t.value;renderDat();autofill()}});
+document.addEventListener('click',e=>{const c=e.target.closest('.chip');if(c)cp(c.dataset.v,'Dato')});
+function saveAg(){try{sessionStorage.setItem('dcc_ag',$('ag').value)}catch(e){}}
+function saludo(){$('sal').textContent='"¡Hola! Bienvenido a Volaris, te atiende '+($('ag').value||'[tu nombre]')+'. ¿Con quién tengo el gusto y en qué te puedo apoyar el día de hoy? Me compartes tu clave de reservación (PNR) para validar tus datos, por favor..."'}
+function genNota(){
+ const v=id=>$(id).value.trim(),h=v('hold')||'Titular',c=v('call')||h,a=v('act')||'Llamada concluida',px=v('pax').split('\n').filter(Boolean).join('; ');
+ $('out').value=`[SECURITY / FDS VALIDATION]: OK - Validado con ${c} (Email: ${v('mail')||'N/A'} | Tel: ${v('tel')||'N/A'}) para el pasajero titular ${h}.\n`+(px?`[PASSENGERS]: ${px}\n`:'')+`[CALL MOTIVE]: ${v('mot')||'Atención telefónica'}\n[SYSTEM STATUS DIAGNOSIS]: SkySpeed status: ${v('sta')||'HK ON-TIME'}\n[POLICY / RESOLUTION]: ${v('res')||'Información brindada'}\n[ACTION / DISPOSITION]: ${a}\n[AGENT SIGNATURE]: ${v('ag')||'Agente'} | DCC Concentrix Volaris.`;
+ log.push({t:now(),pnr:v('pnr')||'N/A',h:mName(h),c:mName(c),e:mMail(v('mail'))||'N/A',p:mNum(v('tel'))||'N/A',m:mText(v('mot'))||'Atención',a:mText(a)});
+ if(/ventas|7004763/i.test(a))tr++;
+ renderLog();toast('Nota generada; bitácora guardada enmascarada')}
+const now=()=>new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+function renderLog(){
+ $('c1').textContent=log.length;$('c2').textContent=tr;
+ $('lb').innerHTML=log.length?log.map(r=>`<tr><td>${esc(r.t)}</td><td><b>${esc(r.pnr)}</b></td><td>${esc(r.h)} / ${esc(r.c)}</td><td>${esc(r.e)}</td><td>${esc(r.p)}</td><td>${esc(r.m)}</td><td>${esc(r.a)}</td></tr>`).join(''):'<tr><td colspan="7" style="text-align:center;color:#94a3b8">Sin registros.</td></tr>';
+ $('prev').value='BITÁCORA DEL TURNO - Agente: '+($('ag').value||'N/A')+'\n'+log.map(r=>`[${r.t}] PNR ${r.pnr} | ${r.h} / ${r.c} | ${r.e} | ${r.p} | ${r.m} | ${r.a}`).join('\n')}
+function saveLog(){try{sessionStorage.setItem('dcc_log',JSON.stringify({log,tr}));toast('Guardada en esta sesión')}catch(e){toast('El navegador bloqueó el guardado')}}
+function csv(){if(!log.length)return toast('Sin registros');
+ const q=s=>'"'+(/^[=+\-@]/.test(s)?"'":'')+String(s).replace(/"/g,'""')+'"';
+ const r=['Hora,PNR,Titular,Contacto,Email,Telefono,Motivo,Accion'].concat(log.map(x=>[x.t,x.pnr,x.h,x.c,x.e,x.p,x.m,x.a].map(q).join(',')));
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+r.join('\n')],{type:'text/csv;charset=utf-8'}));a.download='Bitacora_'+new Date().toISOString().slice(0,10)+'.csv';document.body.appendChild(a);a.click();a.remove()}
+function limpiar(){['pnr','mail','tel','hold','call','pax','mot','sta','act','res','out'].forEach(i=>{$(i).value='';$(i).style.height=''});caps.forEach(c=>URL.revokeObjectURL(c.url));caps=[];queue=[];lastPax='';renderCaps();$('ost').textContent='Win+Shift+S para capturar; luego Ctrl+V aquí.'}
+async function getW(){if(!worker){worker=await Tesseract.createWorker('spa+eng');try{await worker.setParameters({tessedit_pageseg_mode:'11'})}catch(e){}}return worker}
+function prep(blob){return new Promise((res,rej)=>{const img=new Image();img.onerror=rej;img.onload=()=>{
+ const k=Math.min(3,Math.max(1,2200/img.width)),c=document.createElement('canvas');c.width=img.width*k;c.height=img.height*k;
+ const x=c.getContext('2d');x.imageSmoothingQuality='high';x.drawImage(img,0,0,c.width,c.height);
+ const d=x.getImageData(0,0,c.width,c.height),p=d.data;let sum=0;
+ for(let i=0;i<p.length;i+=4)sum+=.3*p[i]+.59*p[i+1]+.11*p[i+2];
+ const inv=sum/(p.length/4)<110;
+ for(let i=0;i<p.length;i+=4){let g=.3*p[i]+.59*p[i+1]+.11*p[i+2];if(inv)g=255-g;g=g<140?Math.max(0,g-40):Math.min(255,g+60);p[i]=p[i+1]=p[i+2]=g}
+ x.putImageData(d,0,0);res(c)};img.src=URL.createObjectURL(blob)})}
+function addCap(b){const c={blob:b,url:URL.createObjectURL(b),text:'',st:'⏳'};caps.push(c);queue.push(c);renderCaps();run()}
+async function run(){if(busy)return;busy=true;
+ while(queue.length){const c=queue.shift();if(!caps.includes(c))continue;
+  $('ost').textContent='⏳ Leyendo capturas localmente… quedan '+(queue.length+1);
+  try{const w=await getW(),r=await w.recognize(await prep(c.blob));c.text=r.data.text;c.st='✅'}
+  catch(e){c.st='❌';$('ost').textContent='❌ No se pudo leer. Revisa que cdn.jsdelivr.net esté permitido o escribe los datos a mano.'}
+  renderCaps();autofill()}
+ busy=false;if(!caps.some(c=>c.st=='❌'))$('ost').textContent='✅ Listo: '+caps.length+' captura(s). Corrige el texto si algo salió mal.'}
+function delCap(i){URL.revokeObjectURL(caps[i].url);caps.splice(i,1);renderCaps()}
+function renderCaps(){
+ $('caps').innerHTML=caps.map((c,i)=>`<div class="cap"><img src="${c.url}"><div style="flex:1"><div style="font-size:10px;font-weight:700">Captura ${i+1} ${c.st}</div><textarea data-i="${i}" placeholder="Texto leído (editable)">${esc(c.text)}</textarea></div><div><button class="s" onclick="cp(caps[${i}].text,'Texto')">📋</button><br><button class="s gr" style="margin-top:4px" onclick="delCap(${i})">✖</button></div></div>`).join('');renderDat()}
+function ext(t){
+ t=t.replace(/\s*@\s*/g,'@').replace(/(\w)\s+\.\s*(com|mx|net|org)/gi,'$1.$2');
+ const u=a=>[...new Set(a)],m=r=>t.match(r)||[],L='A-ZÁÉÍÓÚÑ';
+ return{mail:u(m(/[\w.+-]+@[\w-]+(\.[\w-]+)+/g)),
+  tel:u(m(/\+?\d[\d\s-]{8,15}\d/g).map(s=>s.replace(/[\s-]/g,'')).filter(s=>s.length>=10&&s.length<=13)),
+  pnr:u(m(/\b[A-Z0-9]{6}\b/g).filter(s=>/[A-Z]/.test(s))),
+  cod:u(m(/\b[A-Z0-9]{8,20}\b/g).filter(s=>/\d/.test(s)&&/[A-Z]/.test(s))),
+  pax:u(m(new RegExp(`[${L}]{2,}(?: [${L}]{2,})*\\/[${L}]{2,}(?: [${L}]{2,})*`,'g')))}}
+function renderDat(){
+ const d=ext(caps.map(c=>c.text).join('\n')),L={mail:'📧 Correos',tel:'📱 Teléfonos',pnr:'🔑 Posibles PNR',cod:'🎟️ Códigos / vouchers',pax:'👥 Pasajeros'};
+ $('dat').innerHTML=caps.length?'<div class="note"><b>Datos detectados</b> (clic en uno para copiarlo)'+Object.keys(L).map(k=>d[k].length?`<div style="margin-top:6px"><b>${L[k]}:</b> `+d[k].map(x=>`<span class="chip" data-v="${esc(x)}">${esc(x)}</span>`).join('')+'</div>':'').join('')+'</div>':''}
+function autofill(){
+ const d=ext(caps.map(c=>c.text).join('\n')),set=(id,v)=>{if(v&&!$(id).value)$(id).value=v};
+ set('pnr',d.pnr[0]);set('mail',d.mail[0]);set('tel',d.tel[0]);
+ if(d.pax.length&&(!$('pax').value||$('pax').value===lastPax)){$('pax').value=lastPax=d.pax.join('\n');$('pax').dispatchEvent(new Event('input',{bubbles:true}))}
+ if(d.pax[0]&&!$('hold').value){const[a,n]=d.pax[0].split('/');$('hold').value=(n+' '+a).toLowerCase().replace(/(^|\s)\S/g,s=>s.toUpperCase())}}
+document.addEventListener('paste',e=>{const it=[...((e.clipboardData||{}).items||[])].filter(i=>i.type.startsWith('image/'));if(!it.length)return;e.preventDefault();it.forEach(i=>addCap(i.getAsFile()))});
+document.addEventListener('dragover',e=>e.preventDefault());
+document.addEventListener('drop',e=>{e.preventDefault();[...e.dataTransfer.files].filter(f=>f.type.startsWith('image/')).forEach(addCap)});
+$('fi').onchange=e=>{[...e.target.files].forEach(addCap);e.target.value=''};
+const DEF={'Quitar check-in':'ESCALAMIENTO: QUITAR CHECK-IN\nPNR: {PNR}\nTitular: {TIT}\nPasajeros ({N}): {PAX}\nMotivo: {MOT}\nAgente: {AG}','Hot card (tarjeta fraudulenta)':'HOT CARD\nPNR: {PNR}\nNombre completo: {TIT}\nAgente: {AG}','Plantilla libre':'PNR: {PNR}\nTitular: {TIT}\nPasajeros ({N}): {PAX}\nMotivo: {MOT}\nAgente: {AG}'};
+let TPL=DEF;try{TPL=Object.assign({},DEF,JSON.parse(localStorage.getItem('dcc_tpl')||'{}'))}catch(e){}
+function tOpts(sel){$('tsel').innerHTML=Object.keys(TPL).map(k=>`<option>${esc(k)}</option>`).join('');if(sel)$('tsel').value=sel;tSel()}
+function tSel(){$('ttxt').value=TPL[$('tsel').value];$('tnm').value=$('tsel').value;escGen()}
+function tSave(){const n=$('tnm').value.trim();if(!n)return toast('Escribe un nombre');TPL[n]=$('ttxt').value;try{localStorage.setItem('dcc_tpl',JSON.stringify(TPL))}catch(e){toast('Guardada solo mientras esta página esté abierta')}tOpts(n);toast('Plantilla guardada')}
+function escGen(){const v=id=>$(id).value.trim(),px=v('pax').split('\n').filter(Boolean),M={PNR:v('pnr'),TIT:v('hold'),N:px.length||'?',PAX:px.join(', '),MOT:v('mot'),AG:v('ag')};
+ $('eout').value=$('ttxt').value.replace(/\{(\w+)\}/g,(m,k)=>M[k]!==undefined?M[k]:m);
+ $('ttxt').style.height='auto';$('ttxt').style.height=$('ttxt').scrollHeight+'px'}
+function escLog(){log.push({t:now(),pnr:$('pnr').value.trim()||'N/A',h:'—',c:'—',e:'—',p:'—',m:'Escalamiento',a:$('tsel').value});renderLog();toast('Registrado sin datos personales')}
+const PR=[[10,'10% Demora','Demora de 2 a 4 h (CCCPMX/CCCPUS).'],[25,'25% OS','Sobreventa con MOVE en MX/CAM/SAM. Tope $6,000 MXN / $600 USD por PAX.'],[30,'30% IROP','Cancelación o demora ≥ 4 h.'],[100,'100% Crisis ATO','Cierres de ATO o emergencias no imputables.'],[125,'125% OS voluntaria','Voucher voluntario por sobreventa.'],[130,'130% USA/DOT','ADOTMX/ADOTUS, vigencia 5 años.'],[200,'200% DOT 1-4h','Sobreventa DOT con retraso de 1 a 4 h (máx $1,075 USD).'],[400,'400% DOT >4h','Sobreventa DOT con retraso > 4 h (máx $2,150 USD).']];
+$('pres').innerHTML=PR.map(p=>`<button class="pre" data-p="${p[0]}" onclick="setP(${p[0]})">${p[1]}</button>`).join('');
+function setP(p){pct=p;$('rg').value=p;$('pl').textContent=p+'%';document.querySelectorAll('.pre').forEach(b=>b.classList.toggle('on',+b.dataset.p===p));const x=PR.find(a=>a[0]===p);$('ph').innerHTML=x?`<b>${x[1]}:</b> ${x[2]}`:'<b>Personalizado:</b> porcentaje sobre la tarifa base.';rop()}
+function rop(){const n=+$('rp').value||1,b=+$('rb').value||0,d=+$('rd').value||1,per=b*pct/100,tv=per*n,bt=b*n,f=x=>'$'+x.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+' '+cur;
+ $('r1').textContent=pct===130?(cur=='USD'?'ADOTUS':'ADOTMX')+' (5 años)':(cur=='USD'?'CCCPUS':'CCCPMX')+' (180 días)';$('r2').textContent=f(per);$('r3').textContent='x '+n+' PAX';$('r4').textContent=f(bt);$('r5').textContent=f(tv);$('r6').textContent=f(bt+tv);
+ $('rd2').textContent=d;$('r7').textContent=f(tv/d)}
+const DIR=[['⭐ Ventas Español','7004763'],['Protex Español (IROP)','7004767'],['Grupos Español','7004756'],['Asistencia Supervisor Ventas','7004757'],['Asistencia Supervisor Protex','7004764'],['Ventas Inglés','7004777'],['Protex Inglés','7004781'],['Invex Volaris (Monedero)','01 55 4000 6566'],['WhatsApp Oficial Volaris','+52 55 6114 5083']];
+function dirR(q){q=(q||'').toLowerCase();$('dt').innerHTML=DIR.filter(r=>(r[0]+r[1]).toLowerCase().includes(q)).map(r=>`<tr><td>${esc(r[0])}</td><td><b>${esc(r[1])}</b></td><td><button class="s" onclick="cp('${r[1]}','Extensión')">📋</button></td></tr>`).join('')}
+function spl(){const t=+$('s1').value||0,n=+$('s2').value||1,s=+$('s3').value||1,u=t/n,f=x=>'$'+x.toFixed(2)+' MXN';$('q1').textContent=f(u);$('q2').textContent=f(u*s);$('q3').textContent=f(t-u*s);$('q4').textContent=Math.max(0,n-s)}
+try{$('ag').value=sessionStorage.getItem('dcc_ag')||'';const s=JSON.parse(sessionStorage.getItem('dcc_log')||'null');if(s){log=s.log;tr=s.tr}}catch(e){}
+saludo();tOpts();setP(25);dirR();spl();renderLog();
+</script></body></html>
