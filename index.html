@@ -1,57 +1,62 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DCC Toolbox v10.0</title>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DCC Toolbox v5.0.1</title>
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
 <style>
 *{box-sizing:border-box;font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
-body{background:#f4f6f9;color:#1e293b;margin:0;padding:12px;font-size:13px}
-.hd{background:linear-gradient(135deg,#7b0062,#00529b);color:#fff;padding:12px 16px;border-radius:10px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:12px}
+body{background:#F8F9FA;color:#1e293b;margin:0;padding:12px;font-size:13px}
+.hd{background:linear-gradient(135deg,#1E3A8A,#2B4FB5);color:#fff;padding:12px 16px;border-radius:10px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:12px}
 .hd input{background:#fff;border:1px solid #cbd5e1;border-radius:4px;padding:3px 6px;font-size:11px;width:100px}
 .box{display:flex;gap:6px;align-items:center;font-size:11px;background:rgba(255,255,255,.15);border-radius:8px;padding:5px 8px;flex-wrap:wrap}
 .tabs{display:flex;gap:6px;margin-bottom:12px;overflow-x:auto}
 .tb{background:#fff;border:1px solid #cbd5e1;color:#475569;padding:8px 12px;border-radius:6px;font-weight:700;font-size:12px;cursor:pointer;white-space:nowrap}
-.tb.on{background:#7b0062;color:#fff;border-color:#7b0062}
+.tb.on{background:#1E3A8A;color:#fff;border-color:#1E3A8A}
 .tc{display:none}.tc.on{display:block}
 .card{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:14px;margin-bottom:12px}
-.ct{font-size:14px;font-weight:800;color:#7b0062;margin-bottom:10px;border-bottom:2px solid #f1f5f9;padding-bottom:6px}
+.ct{font-size:14px;font-weight:800;color:#1E3A8A;margin-bottom:10px;border-bottom:2px solid #f1f5f9;padding-bottom:6px}
 .row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:10px}
 .fg{display:flex;flex-direction:column;gap:4px;flex:1;min-width:200px}
 label{font-weight:700;font-size:11px;color:#475569}
 input,select,textarea{border:1px solid #cbd5e1;border-radius:6px;padding:8px;font-size:12px;width:100%;background:#fff;color:#0f172a}
 textarea{resize:none;overflow:hidden;min-height:42px}
 .ib{display:flex;gap:6px;align-items:flex-start}
-.b{background:#7b0062;color:#fff;border:0;border-radius:6px;padding:9px 14px;font-weight:700;font-size:12px;cursor:pointer}
-.s{background:#00529b;color:#fff;border:0;border-radius:4px;padding:6px 10px;font-weight:700;font-size:11px;cursor:pointer;white-space:nowrap}
+.b{background:#1E3A8A;color:#fff;border:0;border-radius:6px;padding:9px 14px;font-weight:700;font-size:12px;cursor:pointer}
+.s{background:#2B4FB5;color:#fff;border:0;border-radius:4px;padding:6px 10px;font-weight:700;font-size:11px;cursor:pointer;white-space:nowrap}
 .g{background:#059669}.gr{background:#64748b}
-.drop{border:2px dashed #00529b;border-radius:8px;padding:12px;text-align:center;color:#00529b;font-weight:700;margin-bottom:10px;background:#f8fafc}
+.drop{border:2px dashed #2B4FB5;border-radius:8px;padding:12px;text-align:center;color:#2B4FB5;font-weight:700;margin-bottom:10px;background:#f8fafc}
 .cap{display:flex;gap:8px;border:1px solid #e2e8f0;border-radius:8px;padding:6px;margin-bottom:6px;align-items:flex-start}
 .cap img{height:56px;border-radius:4px;border:1px solid #cbd5e1}
 .cap textarea{height:56px;font-family:monospace;font-size:10px;overflow:auto}
-.chip{display:inline-block;background:#f3e8ff;color:#7b0062;border:1px solid #e9d5ff;border-radius:12px;padding:3px 9px;margin:2px;font-size:11px;font-weight:700;cursor:pointer}
-.chip:hover{background:#7b0062;color:#fff}
+.chip{display:inline-block;background:#e0e7ff;color:#1E3A8A;border:1px solid #c7d2fe;border-radius:12px;padding:3px 9px;margin:2px;font-size:11px;font-weight:700;cursor:pointer}
+.chip:hover{background:#1E3A8A;color:#fff}
 .cnt{display:flex;gap:10px;margin-bottom:10px}
 .cnt div{flex:1;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:8px;text-align:center;font-size:10px;font-weight:700;color:#64748b}
-.cnt b{display:block;font-size:18px;color:#7b0062}
+.cnt b{display:block;font-size:18px;color:#1E3A8A}
 table{width:100%;border-collapse:collapse;font-size:12px}
 th,td{padding:7px;text-align:left;border-bottom:1px solid #e2e8f0}th{background:#f8fafc}
 .rr{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed #cbd5e1}
 .pre{background:#f1f5f9;border:1px solid #cbd5e1;border-radius:16px;padding:6px 12px;font-size:11px;font-weight:700;cursor:pointer;margin:2px}
-.pre.on{background:#7b0062;color:#fff}
+.pre.on{background:#1E3A8A;color:#fff}
 .note{background:#f0f9ff;border-left:4px solid #0284c7;color:#075985;border-radius:8px;padding:10px;font-size:11.5px;margin-bottom:10px}
 .warn{background:#fffbe3;border-left-color:#eab308;color:#854d0e}
 #toast{display:none;position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;padding:8px 16px;border-radius:20px;font-size:12px;z-index:9}
 .ft{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:12px;font-size:11px;color:#475569;line-height:1.5}
+body.dark{--b:#1E1E24;--c:#26262e;background:var(--b);color:#e5e7eb}
+body.dark .card,body.dark .ft,body.dark .tb,body.dark input,body.dark select,body.dark textarea,body.dark .cap,body.dark .cnt div,body.dark .drop,body.dark th,body.dark .pre{background:var(--c);color:#e5e7eb;border-color:#3a3a46}
+body.dark .tb.on,body.dark .pre.on{background:#2B4FB5;color:#fff}
+body.dark .ct{color:#9db4ff;border-color:#3a3a46}
+body.dark label,body.dark .cnt div{color:#aab0bd}
+body.dark td,body.dark .rr{border-color:#3a3a46}
+body.dark .note{background:#232a40;color:#c7d2fe}body.dark .warn{background:#3a3320;color:#fde68a}
+body.dark .chip{background:#2b3358;color:#c7d2fe;border-color:#3a4478}
+body.dark .hd input{background:#fff;color:#0f172a}
+.hl td{background:#bbf7d0;font-weight:700}.hl td:first-child{border-left:4px solid #16a34a}
+.ft p{text-align:justify;margin:6px 0}.ft h4{margin:12px 0 4px;color:#1E3A8A;font-size:12px}.fb{font-size:18px;font-weight:800;color:#1E3A8A;margin-bottom:2px}
+body.dark .hl td{background:#14532d;color:#dcfce7}body.dark .ft h4,body.dark .fb{color:#9db4ff}
 </style></head><body>
-<div class="hd"><b style="font-size:16px">🛠️ DCC Toolbox v10.0</b>
-<div class="box">🔑 SkySpeed:
-<input id="su" type="password" autocomplete="new-password" placeholder="Usuario"><button class="s" onclick="cp($('su').value,'Usuario',1)">📋</button>
-<input id="sp" type="password" autocomplete="new-password" placeholder="Contraseña"><button class="s" onclick="cp($('sp').value,'Contraseña',1)">📋</button>
-<button class="s gr" onclick="$('su').value=$('sp').value='';toast('Credenciales borradas')">🧹</button></div>
-<!-- MEJORA 1: Credenciales Concentrix -->
-<div class="box">📧 Concentrix:
-<input id="cu" type="password" autocomplete="new-password" placeholder="Correo"><button class="s" onclick="cp($('cu').value,'Correo',1)">📋</button>
-<input id="cx" type="password" autocomplete="new-password" placeholder="Contraseña"><button class="s" onclick="cp($('cx').value,'Contraseña',1)">📋</button>
-<button class="s gr" onclick="$('cu').value=$('cx').value='';toast('Credenciales borradas')">🧹</button></div>
-<div class="box">Agente:<input id="ag" style="width:170px" placeholder="Tu nombre completo" oninput="saveAg();saludo()"></div></div>
+<div class="hd"><b style="font-size:16px">🛠️ DCC Toolbox v5.0.1</b>
+<div class="box">🔑 SkySpeed:<input id="su" type="password" autocomplete="new-password" placeholder="Usuario"><button class="s" onclick="cp($('su').value,'Usuario',1)">📋</button><input id="sp" type="password" autocomplete="new-password" placeholder="Contraseña"><button class="s" onclick="cp($('sp').value,'Contraseña',1)">📋</button><button class="s gr" onclick="clrC('su','sp')">🧹</button></div>
+<div class="box">🏢 Concentrix:<input id="cx1" type="email" autocomplete="off" placeholder="Correo"><button class="s" onclick="cp($('cx1').value,'Correo Concentrix')">📋</button><input id="cx2" type="password" autocomplete="new-password" placeholder="Contraseña"><button class="s" onclick="cp($('cx2').value,'Contraseña Concentrix',1)">📋</button><button class="s gr" onclick="clrC('cx1','cx2')">🧹</button></div>
+<div class="box">Agente:<input id="ag" style="width:170px" placeholder="Tu nombre completo" oninput="saveAg();saludo()"></div><div class="box"><button class="s" onclick="dark()">🌙 Oscuro</button><button class="s" onclick="tono()">Tono</button><input id="tn" type="range" min="8" max="24" value="13" style="display:none;width:90px" oninput="setTone(this.value);tono()"></div></div>
 <div class="tabs" id="tabs"></div>
 
 <div id="t-msra" class="tc on"><div class="card"><div class="ct">📞 Llamada y captura OCR</div>
@@ -62,23 +67,25 @@ th,td{padding:7px;text-align:left;border-bottom:1px solid #e2e8f0}th{background:
 <div id="form"></div>
 <div style="display:flex;gap:10px"><button class="b" style="flex:1" onclick="genNota()">⚡ Generar nota M-S-R-A y registrar</button><button class="b gr" onclick="limpiar()">🔄 Nueva llamada</button></div>
 <div class="fg" style="margin-top:10px"><label>Nota para SkySpeed (datos reales, no se guardan)</label><textarea id="out" readonly style="height:120px;font-family:monospace;font-size:11px"></textarea></div>
-<button class="b g" style="margin-top:6px;width:100%" onclick="cp($('out').value,'Nota')">📋 Copiar nota</button></div></div>
+<button class="b g" style="margin-top:6px;width:100%" onclick="cp($('out').value,'Nota')">📋 Copiar nota</button>
+<div style="margin-top:16px;padding-top:12px;border-top:2px solid #cbd5e1"><label>🚨 Escalamiento (se genera con los datos ya capturados)</label><div class="ib" style="flex-wrap:wrap;margin:6px 0"><button class="s qb" data-k="Hot Card / Fraude">🔥 Hot Card / Fraude</button><button class="s qb" data-k="Split de Pasajeros">✂️ Split de Pasajeros</button><button class="s qb" data-k="MOVE / Asientos">💺 MOVE / Asientos</button></div><textarea id="qout" placeholder="Elige un tipo y aquí aparece el escalamiento con los datos llenos…"></textarea><button class="b g" id="qcp" style="margin-top:6px;width:100%">📋 Copiar escalamiento</button></div></div></div>
 
 <div id="t-rop" class="tc"><div class="card"><div class="ct">📊 Calculadora ROP</div>
 <div id="pres"></div><div class="note" id="ph" style="margin-top:8px"></div>
-<div class="fg" style="margin-bottom:10px"><label>Porcentaje: <b id="pl" style="color:#7b0062"></b></label><input type="range" id="rg" min="5" max="400" step="5" oninput="setP(+this.value)"></div>
-<div class="row"><div class="fg"><label>👥 Pasajeros</label><input type="number" id="rp" value="1" min="1" oninput="rop()"></div><div class="fg"><label>💵 Tarifa base</label><input type="number" id="rb" value="2000" min="0" oninput="rop()"></div><div class="fg"><label>💱 Moneda</label><button class="b" onclick="cur=cur=='MXN'?'USD':'MXN';$('cu2').textContent=cur;rop()"><span id="cu2">MXN</span> 🔄</button></div></div>
-<!-- MEJORA 2: Dividir ROP -->
-<div class="row"><div class="fg"><label>🔢 Dividir voucher entre ___ personas</label><input type="number" id="rd" value="1" min="1" oninput="rop()"></div></div>
-<div class="rr"><span>Código de voucher</span><b id="r1"></b></div><div class="rr"><span>Por pasajero</span><b id="r2"></b></div><div class="rr"><span>Pasajeros</span><b id="r3"></b></div><div class="rr"><span>Base total</span><b id="r4"></b></div><div class="rr"><span>Voucher total</span><b id="r5" style="color:#7b0062"></b></div><div class="rr"><span><b>Gran total</b></span><b id="r6" style="color:#15803d;font-size:16px"></b></div>
-<div class="rr"><span style="color:#00529b"><b>↳ Voucher por persona (÷ <span id="rd2">1</span>)</b></span><b id="r7" style="color:#00529b;font-size:15px"></b></div>
-</div></div>
+<div class="fg" style="margin-bottom:10px"><label>Porcentaje: <b id="pl" style="color:#1E3A8A"></b></label><input type="range" id="rg" min="5" max="400" step="5" oninput="setP(+this.value)"></div>
+<div class="row"><div class="fg"><label>💵 Monto total del boleto</label><div class="ib"><input type="number" id="rb" value="4000" min="0" oninput="rop()"><button class="s" onclick="cp($('rb').value,'Monto')">📋</button></div></div><div class="fg"><label>👥 Pasajeros</label><input type="number" id="rp" value="4" min="1" oninput="paxCh()"></div><div class="fg"><label>💱 Moneda</label><button class="b" onclick="cur=cur=='MXN'?'USD':'MXN';$('cu').textContent=cur;rop()"><span id="cu">MXN</span> 🔄</button></div></div>
+<div class="rr"><span>Código de voucher</span><b id="r1"></b></div>
+<div class="rr"><span>Costo por pasajero (monto ÷ pasajeros)</span><span><b id="r2"></b> <button class="s" onclick="cp(rv.ind,'Costo por pasajero')">📋</button></span></div>
+<div class="rr"><span>Voucher total (<span id="r3"></span> del monto)</span><span><b id="r4"></b> <button class="s" onclick="cp(rv.tot,'Voucher total')">📋</button></span></div>
+<div class="fg" style="margin:10px 0"><label>Dividir este voucher entre:</label><div class="ib"><button class="s" onclick="dvStep(-1)">−</button><input type="number" id="dv" value="4" min="1" oninput="dvTouched=true;rop()" style="text-align:center"><button class="s" onclick="dvStep(1)">+</button></div></div>
+<div class="rr"><span><b>Voucher por pasajero</b></span><span><b id="r6" style="color:#15803d;font-size:16px"></b> <button class="s" onclick="cp(rv.per,'Voucher por pasajero')">📋</button></span></div>
+<div class="note warn" id="cap" style="display:none;margin-top:8px"></div></div></div>
 
-<div id="t-dir" class="tc"><div class="card"><div class="ct">📱 Directorio</div><input placeholder="Buscar departamento o extensión..." oninput="dirR(this.value)" style="margin-bottom:8px"><table><tbody id="dt"></tbody></table></div></div>
+<div id="t-dir" class="tc"><div class="card"><div class="ct">📱 Directorio</div><div style="max-width:650px;margin:0 auto"><input placeholder="Buscar departamento o extensión..." oninput="dirR(this.value)" style="margin-bottom:8px"><table><tbody id="dt"></tbody></table></div></div></div>
 
 <div id="t-spl" class="tc"><div class="card"><div class="ct">✂️ Split de PNR multipasajero</div>
 <div class="row"><div class="fg"><label>Monto total PNR</label><input type="number" id="s1" value="4000" oninput="spl()"></div><div class="fg"><label>Pasajeros totales</label><input type="number" id="s2" value="5" oninput="spl()"></div><div class="fg"><label>Pasajeros a separar</label><input type="number" id="s3" value="1" oninput="spl()"></div></div>
-<div class="rr"><span>Costo por pasajero</span><b id="q1"></b></div><div class="rr"><span>Monto separado</span><b id="q2"></b></div><div class="rr"><span><b>Permanece en PNR original (<span id="q4"></span> PAX)</b></span><b id="q3" style="color:#15803d"></b></div></div></div>
+<div class="rr"><span>Costo por pasajero</span><span><button class="s" onclick="cp($('q1').textContent,'Costo')">📋</button> <b id="q1"></b></span></div><div class="rr"><span>Monto separado</span><span><button class="s" onclick="cp($('q2').textContent,'Monto separado')">📋</button> <b id="q2"></b></span></div><div class="rr"><span><b>Permanece en PNR original (<span id="q4"></span> PAX)</b></span><span><button class="s" onclick="cp($('q3').textContent,'Monto restante')">📋</button> <b id="q3" style="color:#15803d"></b></span></div></div></div>
 
 <div id="t-esc" class="tc"><div class="card"><div class="ct">🚨 Escalamientos</div>
 <div class="note">Usa los datos de la pestaña Llamada (PNR, titular, pasajeros, motivo). Placeholders: {PNR} {TIT} {N} {PAX} {MOT} {AG}. El mensaje lleva nombres reales, pero <b>no se guarda</b>: en la bitácora solo queda el tipo y el PNR.</div>
@@ -93,8 +100,14 @@ th,td{padding:7px;text-align:left;border-bottom:1px solid #e2e8f0}th{background:
 <div style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0"><button class="b" onclick="saveLog()">💾 Guardar en sesión</button><button class="b g" onclick="csv()">📥 CSV</button><button class="b g" onclick="cp($('prev').value,'Bitácora')">📋 Copiar texto</button><button class="b" onclick="window.print()">🖨️ Imprimir</button><button class="b gr" onclick="if(confirm('¿Borrar la bitácora?')){log=[];tr=0;renderLog()}">🗑️ Borrar</button></div>
 <textarea id="prev" readonly style="height:140px;font-family:monospace"></textarea></div></div>
 
-<div class="ft"><b>DCC Toolbox v10.0</b> · Desarrollo: Juan Carlos Pérez Martínez · <a href="https://wa.me/524464044521" target="_blank">Soporte: 446 404 4521</a><br>
-Todo corre en tu navegador: no hay servidor propio ni base de datos. Las capturas no se guardan. Usuario y contraseña viven solo en memoria y se pierden al cerrar o recargar. La bitácora guarda nombres, correo y teléfono enmascarados (el PNR no).</div>
+<div class="ft"><div class="fb">Diseño Web</div>
+<div><b>DCC Toolbox v5.0.1</b> · Digital Customer Care · Desarrollado por <b>Juan Carlos Pérez Martínez</b> · Soporte técnico y mejoras: <a href="https://wa.me/524464044521" target="_blank">📱 446 404 4521</a></div>
+<h4>🔒 Tecnología y privacidad de la información</h4>
+<p>DCC Toolbox es una aplicación web de ejecución local (client-side). Todo su código, escrito en HTML, CSS y JavaScript, se ejecuta únicamente dentro del navegador del agente. La aplicación no cuenta con servidor propio, base de datos, cuentas de usuario, herramientas de analítica ni servicios en la nube, y no envía información de llamadas, pasajeros, reservaciones ni credenciales a ningún destino externo. Los datos que se capturan viven en la memoria temporal de la página: al cerrarla o recargarla desaparecen.</p>
+<p><b>Lectura de capturas (OCR).</b> Las imágenes que se pegan se procesan en el propio equipo con la librería Tesseract.js y no se suben a ningún servicio. Para funcionar, el navegador descarga el motor de lectura y sus datos de idioma desde una red pública de distribución de código (jsDelivr); esa descarga solo trae archivos hacia el equipo y no envía ninguna captura ni dato del cliente. Las capturas no se almacenan.</p>
+<p><b>Credenciales.</b> El usuario y la contraseña de SkySpeed y de Concentrix se mantienen únicamente en memoria, se ocultan con asteriscos, no se muestran en los avisos y se pueden borrar con el botón 🧹. El portapapeles se limpia automáticamente 30 segundos después de copiar una contraseña.</p>
+<p><b>Bitácora.</b> El registro del turno guarda nombres, correos y teléfonos enmascarados; el PNR se conserva para dar seguimiento. En los campos de texto libre solo se enmascaran correos y teléfonos, por lo que se recomienda no escribir nombres completos ni datos bancarios en ellos. La aplicación no solicita ni guarda datos de tarjetas.</p>
+<p><b>Alcance.</b> Por parte de la aplicación no existe ninguna vía de salida de información. La única fuga posible es la humana: cuando el propio agente copia un dato y lo pega en un bloc de notas, un correo o un mensaje. El manejo posterior de la información copiada es responsabilidad de quien la copia. La página se muestra dentro de Google Sites, cuyo alojamiento se rige por las políticas de Google y de la empresa.</p></div>
 <div id="toast"></div>
 
 <script>
@@ -107,15 +120,18 @@ function cp(txt,label,secret){
  const ok=()=>{toast('Copiado: '+label+' ✔');if(secret){clearTimeout(clr);clr=setTimeout(()=>{try{navigator.clipboard.writeText(' ')}catch(e){}},30000)}};
  if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(txt).then(ok).catch(()=>fb(txt,ok));else fb(txt,ok)}
 function fb(t,ok){const a=document.createElement('textarea');a.value=t;a.style.cssText='position:fixed;left:-9999px';document.body.appendChild(a);a.select();let r=false;try{r=document.execCommand('copy')}catch(e){}a.remove();r?ok():toast('No se pudo copiar')}
+/* Enmascarado: nombre, correo, números largos */
 const mName=s=>(s||'').split(/\s+/).filter(Boolean).map(w=>w[0]+'***').join(' ');
 const mMail=s=>(s||'').replace(/([\w.+-])[\w.+-]*@([\w-])[\w.-]*(\.[a-z]{2,})/gi,'$1***@$2***$3');
 const mNum=s=>(s||'').replace(/\d{7,}/g,m=>'****'+m.slice(-4));
 const mText=s=>mNum(mMail(s));
+/* Pestañas */
 const TABS=[['msra','📞 Llamada y OCR'],['rop','📊 ROP'],['dir','📱 Directorio'],['spl','✂️ Split'],['esc','🚨 Escalamientos'],['bit','📓 Bitácora']];
 $('tabs').innerHTML=TABS.map((t,i)=>`<button class="tb${i?'':' on'}" onclick="tab('${t[0]}',this)">${t[1]}</button>`).join('');
 function tab(id,b){document.querySelectorAll('.tb,.tc').forEach(x=>x.classList.remove('on'));b.classList.add('on');$('t-'+id).classList.add('on');if(id=='esc')escGen()}
+/* Formulario de llamada */
 const fld=(id,l,ph,c,ta)=>`<div class="fg"><label>${l}</label><div class="ib">${ta?`<textarea id="${id}" placeholder="${ph}"></textarea>`:`<input id="${id}" placeholder="${ph}">`}${c?`<button class="s" onclick="cp($('${id}').value,'${l}')">📋</button>`:''}</div></div>`;
-$('form').innerHTML='<div class="row">'+fld('pnr','PNR','RGUCRW',1)+fld('mail','📧 Correo (FDS)','correo@dominio.com',1)+fld('tel','📱 Teléfono (FDS)','52…',1)+'</div><div class="row">'+fld('hold','👤 Titular de la reservación','Nombre completo',1)+fld('call','📞 Quien llama','Nombre o familiar')+'</div><div class="row">'+fld('pax','👥 Pasajeros (uno por línea)','APELLIDO/NOMBRE',1,1)+'</div><div class="row">'+fld('mot','📝 Motivo','¿Qué ocurrió?',0,1)+'</div><div class="row">'+fld('sta','✈️ Status del vuelo','HK ON-TIME / Shift+F7')+fld('act','🔀 Acción / extensión','Transferido a Ventas 7004763')+'</div><div class="row">'+fld('res','⚖️ Resolución / política','Política aplicada',0,1)+'</div>';
+$('form').innerHTML='<div class="row">'+fld('pnr','PNR','RGUCRW',1)+fld('mail','📧 Correo (FDS)','correo@dominio.com',1)+fld('tel','📱 Teléfono (FDS)','52…',1)+'</div><div class="row">'+fld('hold','👤 Titular de la reservación','Nombre completo',1)+fld('call','📞 Quien llama','Nombre o familiar',1)+'</div><div class="row">'+fld('ape','🧾 Apellidos','Apellidos',1)+fld('nom','🧾 Nombres','Nombres',1)+'</div><div class="row">'+fld('pax','👥 Pasajeros (uno por línea)','APELLIDO/NOMBRE',1,1)+'</div><div class="row">'+fld('mot','📝 Motivo','¿Qué ocurrió?',1,1)+'</div><div class="row">'+fld('sta','✈️ Status del vuelo','HK ON-TIME / Shift+F7',1)+fld('act','🔀 Acción / extensión','Transferido a Ventas 7004763',1)+'</div><div class="row">'+fld('res','⚖️ Resolución / política','Política aplicada',1,1)+'</div>';
 $('pnr').oninput=function(){this.value=this.value.toUpperCase()};
 document.addEventListener('input',e=>{const t=e.target;
  if(t.tagName=='TEXTAREA'&&!t.closest('.cap')&&!t.readOnly){t.style.height='auto';t.style.height=t.scrollHeight+'px'}
@@ -123,6 +139,7 @@ document.addEventListener('input',e=>{const t=e.target;
 document.addEventListener('click',e=>{const c=e.target.closest('.chip');if(c)cp(c.dataset.v,'Dato')});
 function saveAg(){try{sessionStorage.setItem('dcc_ag',$('ag').value)}catch(e){}}
 function saludo(){$('sal').textContent='"¡Hola! Bienvenido a Volaris, te atiende '+($('ag').value||'[tu nombre]')+'. ¿Con quién tengo el gusto y en qué te puedo apoyar el día de hoy? Me compartes tu clave de reservación (PNR) para validar tus datos, por favor..."'}
+/* Nota + bitácora (solo se guarda enmascarado) */
 function genNota(){
  const v=id=>$(id).value.trim(),h=v('hold')||'Titular',c=v('call')||h,a=v('act')||'Llamada concluida',px=v('pax').split('\n').filter(Boolean).join('; ');
  $('out').value=`[SECURITY / FDS VALIDATION]: OK - Validado con ${c} (Email: ${v('mail')||'N/A'} | Tel: ${v('tel')||'N/A'}) para el pasajero titular ${h}.\n`+(px?`[PASSENGERS]: ${px}\n`:'')+`[CALL MOTIVE]: ${v('mot')||'Atención telefónica'}\n[SYSTEM STATUS DIAGNOSIS]: SkySpeed status: ${v('sta')||'HK ON-TIME'}\n[POLICY / RESOLUTION]: ${v('res')||'Información brindada'}\n[ACTION / DISPOSITION]: ${a}\n[AGENT SIGNATURE]: ${v('ag')||'Agente'} | DCC Concentrix Volaris.`;
@@ -139,7 +156,8 @@ function csv(){if(!log.length)return toast('Sin registros');
  const q=s=>'"'+(/^[=+\-@]/.test(s)?"'":'')+String(s).replace(/"/g,'""')+'"';
  const r=['Hora,PNR,Titular,Contacto,Email,Telefono,Motivo,Accion'].concat(log.map(x=>[x.t,x.pnr,x.h,x.c,x.e,x.p,x.m,x.a].map(q).join(',')));
  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+r.join('\n')],{type:'text/csv;charset=utf-8'}));a.download='Bitacora_'+new Date().toISOString().slice(0,10)+'.csv';document.body.appendChild(a);a.click();a.remove()}
-function limpiar(){['pnr','mail','tel','hold','call','pax','mot','sta','act','res','out'].forEach(i=>{$(i).value='';$(i).style.height=''});caps.forEach(c=>URL.revokeObjectURL(c.url));caps=[];queue=[];lastPax='';renderCaps();$('ost').textContent='Win+Shift+S para capturar; luego Ctrl+V aquí.'}
+function limpiar(){['pnr','mail','tel','hold','ape','nom','call','pax','mot','sta','act','res','out','qout'].forEach(i=>{$(i).value='';$(i).style.height=''});caps.forEach(c=>URL.revokeObjectURL(c.url));caps=[];queue=[];lastPax='';renderCaps();$('ost').textContent='Win+Shift+S para capturar; luego Ctrl+V aquí.'}
+/* OCR multicaptura */
 async function getW(){if(!worker){worker=await Tesseract.createWorker('spa+eng');try{await worker.setParameters({tessedit_pageseg_mode:'11'})}catch(e){}}return worker}
 function prep(blob){return new Promise((res,rej)=>{const img=new Image();img.onerror=rej;img.onload=()=>{
  const k=Math.min(3,Math.max(1,2200/img.width)),c=document.createElement('canvas');c.width=img.width*k;c.height=img.height*k;
@@ -175,29 +193,49 @@ function autofill(){
  const d=ext(caps.map(c=>c.text).join('\n')),set=(id,v)=>{if(v&&!$(id).value)$(id).value=v};
  set('pnr',d.pnr[0]);set('mail',d.mail[0]);set('tel',d.tel[0]);
  if(d.pax.length&&(!$('pax').value||$('pax').value===lastPax)){$('pax').value=lastPax=d.pax.join('\n');$('pax').dispatchEvent(new Event('input',{bubbles:true}))}
- if(d.pax[0]&&!$('hold').value){const[a,n]=d.pax[0].split('/');$('hold').value=(n+' '+a).toLowerCase().replace(/(^|\s)\S/g,s=>s.toUpperCase())}}
+ if(d.pax[0]){const[a,n]=d.pax[0].split('/'),T=x=>(x||'').toLowerCase().replace(/(^|\s)\S/g,c=>c.toUpperCase());set('ape',T(a));set('nom',T(n));if(!$('hold').value)$('hold').value=T(n)+' '+T(a)}}
 document.addEventListener('paste',e=>{const it=[...((e.clipboardData||{}).items||[])].filter(i=>i.type.startsWith('image/'));if(!it.length)return;e.preventDefault();it.forEach(i=>addCap(i.getAsFile()))});
 document.addEventListener('dragover',e=>e.preventDefault());
 document.addEventListener('drop',e=>{e.preventDefault();[...e.dataTransfer.files].filter(f=>f.type.startsWith('image/')).forEach(addCap)});
 $('fi').onchange=e=>{[...e.target.files].forEach(addCap);e.target.value=''};
-const DEF={'Quitar check-in':'ESCALAMIENTO: QUITAR CHECK-IN\nPNR: {PNR}\nTitular: {TIT}\nPasajeros ({N}): {PAX}\nMotivo: {MOT}\nAgente: {AG}','Hot card (tarjeta fraudulenta)':'HOT CARD\nPNR: {PNR}\nNombre completo: {TIT}\nAgente: {AG}','Plantilla libre':'PNR: {PNR}\nTitular: {TIT}\nPasajeros ({N}): {PAX}\nMotivo: {MOT}\nAgente: {AG}'};
+/* Escalamientos */
+const DEF={'Hot Card / Fraude':'HOT CARD / FRAUDE\nPNR: {PNR}\nNombre completo: {TIT}\nCorreo: {MAIL}\nMotivo: {MOT}\nFirma: {AG} | DCC','Split de Pasajeros':'SPLIT DE PASAJEROS\nPNR: {PNR}\nTitular: {TIT}\nPasajeros ({N}): {PAX}\nMotivo: {MOT}\nFirma: {AG} | DCC','MOVE / Asientos':'MOVE / ASIENTOS\nPNR: {PNR}\nTitular: {TIT}\nPasajeros ({N}): {PAX}\nAsientos solicitados: \nMotivo: {MOT}\nFirma: {AG} | DCC','Quitar check-in':'ESCALAMIENTO: QUITAR CHECK-IN\nPNR: {PNR}\nTitular: {TIT}\nPasajeros ({N}): {PAX}\nMotivo: {MOT}\nFirma: {AG} | DCC','Plantilla libre':'PNR: {PNR}\nTitular: {TIT}\nPasajeros ({N}): {PAX}\nMotivo: {MOT}\nFirma: {AG} | DCC'};
 let TPL=DEF;try{TPL=Object.assign({},DEF,JSON.parse(localStorage.getItem('dcc_tpl')||'{}'))}catch(e){}
 function tOpts(sel){$('tsel').innerHTML=Object.keys(TPL).map(k=>`<option>${esc(k)}</option>`).join('');if(sel)$('tsel').value=sel;tSel()}
 function tSel(){$('ttxt').value=TPL[$('tsel').value];$('tnm').value=$('tsel').value;escGen()}
 function tSave(){const n=$('tnm').value.trim();if(!n)return toast('Escribe un nombre');TPL[n]=$('ttxt').value;try{localStorage.setItem('dcc_tpl',JSON.stringify(TPL))}catch(e){toast('Guardada solo mientras esta página esté abierta')}tOpts(n);toast('Plantilla guardada')}
-function escGen(){const v=id=>$(id).value.trim(),px=v('pax').split('\n').filter(Boolean),M={PNR:v('pnr'),TIT:v('hold'),N:px.length||'?',PAX:px.join(', '),MOT:v('mot'),AG:v('ag')};
- $('eout').value=$('ttxt').value.replace(/\{(\w+)\}/g,(m,k)=>M[k]!==undefined?M[k]:m);
+function fill(t){const v=id=>$(id).value.trim(),px=v('pax').split('\n').filter(Boolean),M={PNR:v('pnr').toUpperCase(),TIT:v('hold'),N:px.length||'?',PAX:px.join(', '),MOT:v('mot'),AG:v('ag')||'Agente',MAIL:v('mail'),TEL:v('tel'),APE:v('ape'),NOM:v('nom')};return t.replace(/\{(\w+)\}/g,(m,k)=>M[k]!==undefined?M[k]:m)}
+function quick(k){const q=$('qout');q.value=fill(TPL[k]||'');q.style.height='auto';q.style.height=q.scrollHeight+'px'}
+function escGen(){
+ $('eout').value=fill($('ttxt').value);
  $('ttxt').style.height='auto';$('ttxt').style.height=$('ttxt').scrollHeight+'px'}
 function escLog(){log.push({t:now(),pnr:$('pnr').value.trim()||'N/A',h:'—',c:'—',e:'—',p:'—',m:'Escalamiento',a:$('tsel').value});renderLog();toast('Registrado sin datos personales')}
+/* ROP */
 const PR=[[10,'10% Demora','Demora de 2 a 4 h (CCCPMX/CCCPUS).'],[25,'25% OS','Sobreventa con MOVE en MX/CAM/SAM. Tope $6,000 MXN / $600 USD por PAX.'],[30,'30% IROP','Cancelación o demora ≥ 4 h.'],[100,'100% Crisis ATO','Cierres de ATO o emergencias no imputables.'],[125,'125% OS voluntaria','Voucher voluntario por sobreventa.'],[130,'130% USA/DOT','ADOTMX/ADOTUS, vigencia 5 años.'],[200,'200% DOT 1-4h','Sobreventa DOT con retraso de 1 a 4 h (máx $1,075 USD).'],[400,'400% DOT >4h','Sobreventa DOT con retraso > 4 h (máx $2,150 USD).']];
 $('pres').innerHTML=PR.map(p=>`<button class="pre" data-p="${p[0]}" onclick="setP(${p[0]})">${p[1]}</button>`).join('');
 function setP(p){pct=p;$('rg').value=p;$('pl').textContent=p+'%';document.querySelectorAll('.pre').forEach(b=>b.classList.toggle('on',+b.dataset.p===p));const x=PR.find(a=>a[0]===p);$('ph').innerHTML=x?`<b>${x[1]}:</b> ${x[2]}`:'<b>Personalizado:</b> porcentaje sobre la tarifa base.';rop()}
-function rop(){const n=+$('rp').value||1,b=+$('rb').value||0,d=+$('rd').value||1,per=b*pct/100,tv=per*n,bt=b*n,f=x=>'$'+x.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+' '+cur;
- $('r1').textContent=pct===130?(cur=='USD'?'ADOTUS':'ADOTMX')+' (5 años)':(cur=='USD'?'CCCPUS':'CCCPMX')+' (180 días)';$('r2').textContent=f(per);$('r3').textContent='x '+n+' PAX';$('r4').textContent=f(bt);$('r5').textContent=f(tv);$('r6').textContent=f(bt+tv);
- $('rd2').textContent=d;$('r7').textContent=f(tv/d)}
+let dvTouched=false,rv={};
+function paxCh(){if(!dvTouched)$('dv').value=+$('rp').value||1;rop()}
+function dvStep(n){dvTouched=true;$('dv').value=Math.max(1,(+$('dv').value||1)+n);rop()}
+const CAPS={25:{MXN:6000,USD:600},200:{USD:1075},400:{USD:2150}};
+function rop(){const n=+$('rp').value||1,b=+$('rb').value||0,d=Math.max(1,+$('dv').value||1),tv=b*pct/100,ind=b/n,per=tv/d,f=x=>'$'+x.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+' '+cur;
+ rv={ind:ind.toFixed(2),tot:tv.toFixed(2),per:per.toFixed(2)};
+ $('r1').textContent=pct===130?(cur=='USD'?'ADOTUS':'ADOTMX')+' (5 años)':(cur=='USD'?'CCCPUS':'CCCPMX')+' (180 días)';
+ $('r2').textContent=f(ind);$('r3').textContent=pct+'%';$('r4').textContent=f(tv);$('r6').textContent=f(per);
+ const cap=(CAPS[pct]||{})[cur],w=$('cap');
+ if(cap&&per>cap){w.style.display='block';w.textContent='⚠️ Ojo: el voucher por pasajero ('+f(per)+') pasa el tope de $'+cap.toLocaleString('en-US')+' '+cur+'. Confirma la política antes de ofrecerlo.'}else w.style.display='none'}
+/* Directorio */
 const DIR=[['⭐ Ventas Español','7004763'],['Protex Español (IROP)','7004767'],['Grupos Español','7004756'],['Asistencia Supervisor Ventas','7004757'],['Asistencia Supervisor Protex','7004764'],['Ventas Inglés','7004777'],['Protex Inglés','7004781'],['Invex Volaris (Monedero)','01 55 4000 6566'],['WhatsApp Oficial Volaris','+52 55 6114 5083']];
-function dirR(q){q=(q||'').toLowerCase();$('dt').innerHTML=DIR.filter(r=>(r[0]+r[1]).toLowerCase().includes(q)).map(r=>`<tr><td>${esc(r[0])}</td><td><b>${esc(r[1])}</b></td><td><button class="s" onclick="cp('${r[1]}','Extensión')">📋</button></td></tr>`).join('')}
+function dirR(q){q=(q||'').toLowerCase();$('dt').innerHTML=DIR.filter(r=>(r[0]+r[1]).toLowerCase().includes(q)).map(r=>`<tr${/Ventas Español/.test(r[0])?' class="hl"':''}><td>${esc(r[0])}</td><td><b>${esc(r[1])}</b></td><td><button class="s" onclick="cp('${r[1]}','Extensión')">📋</button></td></tr>`).join('')}
+/* Split */
 function spl(){const t=+$('s1').value||0,n=+$('s2').value||1,s=+$('s3').value||1,u=t/n,f=x=>'$'+x.toFixed(2)+' MXN';$('q1').textContent=f(u);$('q2').textContent=f(u*s);$('q3').textContent=f(t-u*s);$('q4').textContent=Math.max(0,n-s)}
+function dark(){document.body.classList.toggle('dark')}
+function tono(){const t=$('tn');t.style.display='inline-block';clearTimeout(tono.t);tono.t=setTimeout(()=>t.style.display='none',3000)}
+function setTone(v){const b=document.body.style;b.setProperty('--b','hsl(240,9%,'+v+'%)');b.setProperty('--c','hsl(240,8%,'+(+v+4)+'%)')}
+function clrC(a,b){$(a).value=$(b).value='';toast('Credenciales borradas')}
+document.addEventListener('click',e=>{const q=e.target.closest('.qb');if(q)quick(q.dataset.k)});
+$('qcp').onclick=()=>cp($('qout').value,'Escalamiento');
+/* Inicio */
 try{$('ag').value=sessionStorage.getItem('dcc_ag')||'';const s=JSON.parse(sessionStorage.getItem('dcc_log')||'null');if(s){log=s.log;tr=s.tr}}catch(e){}
 saludo();tOpts();setP(25);dirR();spl();renderLog();
 </script></body></html>
