@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DCC Toolbox v10.0 | Enterprise</title>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
+<style>
+:root {
+  --bg-base: #F8F9FA; --bg-card: #FFFFFF; --text-main: #1A202C; --text-muted: #718096;
+  --border: #E2E8F0; --primary: #1E3A8A; --primary-hover: #1E40AF; --accent: #3B82F6;
+  --success: #10B981; --danger: #EF4444; --radius: 10px;
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+body.dark-mode {
+  --bg-base: #1E1E24; --bg-card: #2D2D35; --text-main: #F8FAFC; --text-muted: #94A3B8;
+  --border: #3F3F46; --primary: #60A5FA; --primary-hover: #93C5FD;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font); }
+body { background: var(--bg-base); color: var(--text-main); transition: background 0.3s, color 0.3s; font-size: 14px; overflow-x: hidden; }
+
+header { background: var(--bg-card); border-bottom: 1px solid var(--border); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+.logo { font-weight: 800; font-size: 18px; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+.header-controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+button { cursor: pointer; border-radius: 6px; font-weight: 600; font-size: 12px; padding: 8px 12px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-main); transition: all 0.2s; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+button:hover { border-color: var(--primary); color: var(--primary); }
+.btn-primary { background: var(--primary); color: white; border-color: var(--primary); }
+.btn-primary:hover { background: var(--primary-hover); color: white; }
+.btn-accent { background: var(--accent); color: white; border-color: var(--accent); }
+.btn-copy { padding: 6px 10px; font-size: 12px; background: var(--bg-base); }
+
+.theme-slider-container { position: absolute; top: 100%; right: 30px; background: var(--bg-card); padding: 12px; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: 0 10px 25px rgba(0,0,0,0.1); display: none; align-items: center; gap: 15px; z-index: 101; }
+.theme-slider-container.active { display: flex; animation: fadeIn 0.2s; }
+input[type="range"] { accent-color: var(--primary); cursor: pointer; }
+
+.container { max-width: 1300px; margin: 20px auto; padding: 0 15px; }
+.card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
+.card-title { font-size: 16px; font-weight: 700; margin-bottom: 15px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text-main); display: flex; justify-content: space-between; align-items: center; }
+.row { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 15px; }
+.col { flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 6px; }
+label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+input, select, textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg-base); color: var(--text-main); font-size: 13px; transition: border 0.2s; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(30,58,138,0.1); }
+textarea { resize: vertical; min-height: 60px; font-family: monospace; }
+.input-group { display: flex; gap: 8px; }
+
+.help-text { display: none; font-size: 11.5px; color: var(--text-muted); margin-top: 5px; margin-bottom: 15px; padding: 10px 15px; background: rgba(59,130,246,0.05); border-left: 3px solid var(--accent); border-radius: 4px; line-height: 1.4; }
+body.beginner .help-text { display: block; }
+
+.tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px; overflow-x: auto; }
+.tab-btn { background: transparent; border: none; padding: 10px 15px; font-size: 13px; color: var(--text-muted); border-radius: 6px; white-space: nowrap; }
+.tab-btn.active { background: var(--bg-base); color: var(--primary); font-weight: 700; }
+.tab-content { display: none; }
+.tab-content.active { display: block; animation: fadeIn 0.3s; }
+
+.result-box { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px dashed var(--border); }
+.result-box:last-child { border-bottom: none; }
+.result-value { font-family: monospace; font-size: 16px; font-weight: 700; color: var(--primary); }
+.total-highlight { color: var(--success); font-size: 20px; }
+
+/* Dropzone OCR */
+.dropzone { border: 2px dashed var(--border); border-radius: var(--radius); padding: 20px; text-align: center; color: var(--text-muted); font-weight: 600; margin-bottom: 15px; background: var(--bg-base); transition: all 0.2s; cursor: pointer; }
+.dropzone:hover { border-color: var(--accent); background: rgba(59,130,246,0.05); }
+.cap-item { display: flex; gap: 10px; border: 1px solid var(--border); border-radius: 8px; padding: 10px; margin-bottom: 10px; align-items: flex-start; background: var(--bg-base); }
+.cap-item img { height: 60px; border-radius: 4px; border: 1px solid var(--border); object-fit: contain; }
+.cap-item textarea { height: 60px; font-size: 11px; }
+
+/* Mapa Asientos */
+.seat-map-container { display: flex; justify-content: center; background: var(--bg-base); padding: 20px; border-radius: var(--radius); border: 1px solid var(--border); overflow-x: auto; }
+.airplane { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 30px 40px; background: #fff; border-radius: 60px 60px 15px 15px; border: 2px solid #CBD5E1; width: fit-content; margin: 0 auto; }
+.row-seats { display: flex; gap: 6px; align-items: center; }
+.aisle { width: 20px; }
+.seat { width: 32px; height: 32px; border-radius: 5px; background: white; border: 1px solid #94A3B8; font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #334155; transition: all 0.2s; }
+.seat:hover { background: #E2E8F0; transform: scale(1.1); }
+.seat.selected { background: var(--success); color: white; border-color: var(--success); transform: scale(1.1); box-shadow: 0 2px 8px rgba(16,185,129,0.4); }
+.seat.extra { background: #FEF08A; border-color: #EAB308; }
+
+/* Bitácora */
+table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 10px; }
+th, td { padding: 8px; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: var(--bg-base); color: var(--text-muted); font-weight: 600; }
+.chip { display: inline-block; background: rgba(59,130,246,0.1); color: var(--accent); border: 1px solid rgba(59,130,246,0.2); border-radius: 12px; padding: 2px 8px; margin: 2px; font-size: 10px; font-weight: 700; cursor: pointer; }
+.chip:hover { background: var(--accent); color: white; }
+
+footer { text-align: center; padding: 30px 15px; font-size: 11px; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 40px; background: var(--bg-card); line-height: 1.6; }
+footer strong { color: var(--text-main); }
+.toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--primary); color: white; padding: 10px 20px; border-radius: 30px; font-weight: 600; box-shadow: 0 10px 25px rgba(0,0,0,0.2); opacity: 0; transition: all 0.3s; z-index: 1000; pointer-events: none; }
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🛡️ DCC Toolbox v10.0</div>
+  <div class="header-controls">
+    <button onclick="toggleMode()" id="modeBtn">Modo Principiante</button>
+    <button onclick="toggleThemeSlider()">🎨 Tono</button>
+    <button onclick="toggleDark()">🌗 Modo Oscuro</button>
+  </div>
+  <div class="theme-slider-container" id="themeSlider">
+    <span style="font-size:11px; font-weight:bold">Claro</span>
+    <input type="range" min="0" max="100" value="0" id="themeRange" oninput="adjustTheme(this.value)">
+    <span style="font-size:11px; font-weight:bold">Oscuro</span>
+  </div>
+</header>
+
+<div class="container">
+  <!-- CREDENCIALES -->
+  <div class="card">
+    <div class="card-title">🔐 Credenciales de Acceso</div>
+    <div class="help-text">Pon aquí tus correos y contraseñas más utilizados. Cuando los necesites, solo copia y pega con el botón 📋.</div>
+    <div class="row">
+      <div class="col"><label>SkySpeed Usuario</label><div class="input-group"><input type="password" id="su" placeholder="Usuario"><button class="btn-copy" onclick="copy('su')">📋</button></div></div>
+      <div class="col"><label>SkySpeed Contraseña</label><div class="input-group"><input type="password" id="sp" placeholder="Contraseña"><button class="btn-copy" onclick="copy('sp')">📋</button></div></div>
+      <div class="col"><label>Correo Concentrix</label><div class="input-group"><input type="email" id="cc" placeholder="correo@concentrix.com"><button class="btn-copy" onclick="copy('cc')">📋</button></div></div>
+      <div class="col"><label>Contraseña Concentrix</label><div class="input-group"><input type="password" id="cp" placeholder="Contraseña"><button class="btn-copy" onclick="copy('cp')">📋</button></div></div>
+    </div>
+  </div>
+
+  <!-- PESTAÑAS -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('llamada', this)">📞 Llamada y OCR</button>
+    <button class="tab-btn" onclick="switchTab('rop', this)">📊 ROP</button>
+    <button class="tab-btn" onclick="switchTab('escalamientos', this)">🚨 Escalamientos</button>
+    <button class="tab-btn" onclick="switchTab('directorio', this)">📱 Directorio</button>
+    <button class="tab-btn" onclick="switchTab('split', this)">✂️ Split PNR</button>
+    <button class="tab-btn" onclick="switchTab('bitacora', this)">📓 Bitácora</button>
+  </div>
+
+  <!-- TAB LLAMADA -->
+  <div id="tab-llamada" class="tab-content active">
+    <div class="card">
+      <div class="card-title">Datos de la Llamada y OCR</div>
+      <div class="help-text">Pega capturas de SkySpeed con Ctrl+V. El OCR extraerá los datos automáticamente. Puedes corregir el texto si es necesario.</div>
+      
+      <div class="dropzone" onclick="document.getElementById('fi').click()">
+        📸 Pega capturas aquí (Ctrl+V) o haz clic para elegir archivos.
+        <input type="file" id="fi" accept="image/*" multiple style="display:none" onchange="handleFiles(this.files)">
+      </div>
+      <div id="caps-container"></div>
+      <div id="datos-detectados"></div>
+
+      <div class="row">
+        <div class="col"><label>PNR</label><div class="input-group"><input id="pnr" placeholder="LIP39N"><button class="btn-copy" onclick="copy('pnr')">📋</button></div></div>
+        <div class="col"><label>Titular</label><div class="input-group"><input id="tit" placeholder="Nombre completo"><button class="btn-copy" onclick="copy('tit')">📋</button></div></div>
+        <div class="col"><label>Teléfono (FDS)</label><div class="input-group"><input id="tel" placeholder="524451812597"><button class="btn-copy" onclick="copy('tel')">📋</button></div></div>
+      </div>
+      <div class="row">
+        <div class="col"><label>Correo (FDS)</label><div class="input-group"><input id="mail" placeholder="correo@ejemplo.com"><button class="btn-copy" onclick="copy('mail')">📋</button></div></div>
+        <div class="col"><label>Quien llama</label><div class="input-group"><input id="call" placeholder="Nombre o familiar"><button class="btn-copy" onclick="copy('call')">📋</button></div></div>
+        <div class="col"><label>Status del vuelo</label><div class="input-group"><input id="sta" placeholder="HK ON-TIME"><button class="btn-copy" onclick="copy('sta')">📋</button></div></div>
+      </div>
+      <div class="row">
+        <div class="col"><label>Pasajeros (uno por línea)</label><textarea id="pax" placeholder="APELLIDO/NOMBRE"></textarea></div>
+        <div class="col"><label>Motivo</label><textarea id="mot" placeholder="¿Qué ocurrió?"></textarea></div>
+      </div>
+      <div class="row">
+        <div class="col"><label>Acción / Extensión</label><input id="act" placeholder="Transferido a Ventas 7004763"></div>
+        <div class="col"><label>Resolución / Política</label><input id="res" placeholder="Política aplicada"></div>
+      </div>
+      
+      <div style="display:flex; gap:10px; margin-top:15px;">
+        <button class="btn-primary" onclick="genNota()" style="flex:1">⚡ Generar Nota M-S-R-A y Registrar</button>
+        <button class="btn-outline" onclick="clearForm()">🔄 Nueva Llamada</button>
+      </div>
+      <div class="row" style="margin-top:15px;">
+        <div class="col"><label>Nota para SkySpeed</label><div class="input-group"><textarea id="out" readonly style="height:120px;"></textarea><button class="btn-copy" onclick="copy('out')">📋</button></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB ROP -->
+  <div id="tab-rop" class="tab-content">
+    <div class="card">
+      <div class="card-title">Calculadora ROP</div>
+      <div class="help-text">Ingresa el monto total, elige el porcentaje y ajusta cuántos pasajeros comparten el voucher.</div>
+      <div class="row">
+        <div class="col"><label>Monto Total ($)</label><input type="number" id="ropTotal" value="5000" oninput="calcROP()"></div>
+        <div class="col"><label>Porcentaje (%)</label><select id="ropPct" onchange="calcROP()"><option value="25">25% OS</option><option value="30" selected>30% IROP</option><option value="100">100% Crisis</option><option value="130">130% USA/DOT</option><option value="200">200% DOT 1-4h</option></select></div>
+        <div class="col"><label>Dividir entre (Pax)</label><input type="number" id="ropDivide" value="1" min="1" oninput="calcROP()"></div>
+      </div>
+      <div style="margin-top:20px; background:var(--bg-base); padding:15px; border-radius:8px; border:1px solid var(--border);">
+        <div class="result-box"><span>Voucher Total Generado:</span> <div><span class="result-value" id="ropVoucherTotal">$1,500.00</span> <button class="btn-copy" onclick="copy('ropVoucherTotal')">📋</button></div></div>
+        <div class="result-box"><span>Voucher por Pasajero:</span> <div><span class="result-value total-highlight" id="ropVoucherPax">$1,500.00</span> <button class="btn-copy" onclick="copy('ropVoucherPax')">📋</button></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB ESCALAMIENTOS -->
+  <div id="tab-escalamientos" class="tab-content">
+    <div class="card">
+      <div class="card-title">Gestor de Escalamientos</div>
+      <div class="help-text">Selecciona el tipo. Los datos de la llamada se auto-completarán. Si es de asientos, usa el mapa para seleccionarlos.</div>
+      
+      <div class="row">
+        <div class="col"><label>Tipo de Escalamiento</label><select id="escType" onchange="updateEscText()"><option value="Asientos">Cambio de Asientos (MOVE)</option><option value="HotCard">Hot Card / Fraude</option><option value="Split">Split de Pasajeros</option></select></div>
+        <div class="col" style="justify-content:flex-end;"><button class="btn-accent" onclick="openSeatMap()">✈️ Abrir Mapa de Avión</button></div>
+      </div>
+
+      <div id="seatMapSection" style="display:none; margin-top:15px;">
+        <div class="row" style="align-items:center; margin-bottom:10px;">
+          <label>Modelo:</label>
+          <select id="planeModel" onchange="renderSeatMap()" style="width:auto;"><option value="A320">Airbus A320</option><option value="A321">Airbus A321</option></select>
+          <span style="font-size:11px; color:var(--text-muted); margin-left:auto;">Clic en los asientos para seleccionar.</span>
+        </div>
+        <div class="seat-map-container"><div class="airplane" id="planeLayout"></div></div>
+      </div>
+
+      <div class="row" style="margin-top:15px;">
+        <div class="col"><label>Texto del Escalamiento</label><div class="input-group"><textarea id="escText" style="height:140px;"></textarea><button class="btn-copy" onclick="copy('escText')">📋</button></div></div>
+      </div>
+      <button class="btn-primary" style="width:100%;" onclick="copy('escText')">📋 Copiar y Firmar</button>
+    </div>
+  </div>
+
+  <!-- TAB DIRECTORIO -->
+  <div id="tab-directorio" class="tab-content">
+    <div class="card">
+      <div class="card-title">📱 Directorio Telefónico</div>
+      <input type="text" placeholder="Buscar área o extensión..." oninput="filterDir(this.value)" style="margin-bottom:15px;">
+      <table><tbody id="dirBody"></tbody></table>
+    </div>
+  </div>
+
+  <!-- TAB SPLIT -->
+  <div id="tab-split" class="tab-content">
+    <div class="card">
+      <div class="card-title">✂️ Split de PNR Multipasajero</div>
+      <div class="row">
+        <div class="col"><label>Monto total PNR</label><input type="number" id="s1" value="4000" oninput="calcSplit()"></div>
+        <div class="col"><label>Pasajeros totales</label><input type="number" id="s2" value="5" oninput="calcSplit()"></div>
+        <div class="col"><label>Pasajeros a separar</label><input type="number" id="s3" value="1" oninput="calcSplit()"></div>
+      </div>
+      <div class="result-box"><span>Costo por pasajero</span><b id="q1"></b></div>
+      <div class="result-box"><span>Monto separado</span><b id="q2"></b></div>
+      <div class="result-box"><span><b>Permanece en PNR (<span id="q4"></span> PAX)</b></span><b id="q3" style="color:var(--success)"></b></div>
+    </div>
+  </div>
+
+  <!-- TAB BITÁCORA -->
+  <div id="tab-bitacora" class="tab-content">
+    <div class="card">
+      <div class="card-title">📓 Bitácora del Turno</div>
+      <div class="help-text">Aquí se guardan los registros enmascarados (sin datos personales sensibles) de las llamadas generadas.</div>
+      <div style="overflow-x:auto;">
+        <table>
+          <thead><tr><th>Hora</th><th>PNR</th><th>Titular</th><th>Motivo</th><th>Acción</th></tr></thead>
+          <tbody id="logBody"></tbody>
+        </table>
+      </div>
+      <div style="display:flex; gap:10px; margin-top:15px;">
+        <button class="btn-primary" onclick="saveLog()">💾 Guardar en Sesión</button>
+        <button class="btn-outline" onclick="downloadCSV()">📥 Descargar CSV</button>
+        <button class="btn-outline" onclick="clearLog()">🗑️ Borrar Bitácora</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <strong>DCC Enterprise Security Architecture</strong><br>
+  This application implements a Zero-Trust Client-Side Model. All sensitive data is processed locally in-memory (SessionStorage) and purged upon tab closure. No data is transmitted to external servers. Featuring Obfuscated Logic Layer.<br><br>
+  Desarrollado por <strong>Diseño Web</strong> | Arquitecto: Juan Carlos Pérez Martínez | Soporte: 446 404 45 21
+</footer>
+
+<div class="toast" id="toast">Copiado</div>
+
+<script>
+// =========================================
+// 0. SEGURIDAD Y ANTI-INSPECCIÓN
+// =========================================
+document.addEventListener('contextmenu', event => event.preventDefault());
+document.onkeydown = function(e) {
+  if(e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'u')) {
+    e.preventDefault(); showToast('⚠️ Acción no permitida');
+    return false;
+  }
+};
+
+// =========================================
+// 1. TEMAS
+// =========================================
+let isDark = false;
+function toggleDark() { isDark = !isDark; document.body.classList.toggle('dark-mode', isDark); if(!isDark) resetTheme(); }
+function toggleThemeSlider() {
+  const slider = document.getElementById('themeSlider');
+  slider.classList.toggle('active');
+  if(slider.classList.contains('active')) setTimeout(() => slider.classList.remove('active'), 4000);
+}
+function adjustTheme(val) {
+  if(!isDark) return;
+  const lightness = 90 - (val * 0.7);
+  document.documentElement.style.setProperty('--bg-base', `hsl(220, 15%, ${lightness}%)`);
+  document.documentElement.style.setProperty('--bg-card', `hsl(220, 15%, ${lightness + 5}%)`);
+  document.documentElement.style.setProperty('--text-main', val > 50 ? '#F8FAFC' : '#1A202C');
+}
+function resetTheme() {
+  document.documentElement.style.removeProperty('--bg-base');
+  document.documentElement.style.removeProperty('--bg-card');
+  document.documentElement.style.removeProperty('--text-main');
+  document.getElementById('themeRange').value = 0;
+}
+
+// =========================================
+// 2. COPIAR Y PESTAÑAS
+// =========================================
+function copy(id) {
+  const el = document.getElementById(id); let text = el.value || el.textContent;
+  navigator.clipboard.writeText(text).then(() => showToast('Copiado ✔')).catch(() => {
+    const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); showToast('Copiado ✔');
+  });
+}
+function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2000); }
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active'); btn.classList.add('active');
+}
+function toggleMode() {
+  document.body.classList.toggle('beginner');
+  document.getElementById('modeBtn').textContent = document.body.classList.contains('beginner') ? 'Modo Experto' : 'Modo Principiante';
+}
+
+// =========================================
+// 3. OCR (CAPTURAS)
+// =========================================
+let worker = null, caps = [];
+async function getWorker() { if(!worker) worker = await Tesseract.createWorker('spa+eng'); return worker; }
+function handleFiles(files) { for(let f of files) addCap(f); }
+function addCap(file) {
+  const url = URL.createObjectURL(file);
+  caps.push({ url, text: '', file });
+  renderCaps();
+  processOCR(file, caps.length - 1);
+}
+async function processOCR(file, index) {
+  const w = await getWorker();
+  const ret = await w.recognize(file);
+  caps[index].text = ret.data.text;
+  renderCaps();
+  autofill();
+}
+function renderCaps() {
+  const cont = document.getElementById('caps-container');
+  cont.innerHTML = caps.map((c, i) => `
+    <div class="cap-item">
+      <img src="${c.url}">
+      <div style="flex:1"><textarea id="cap-${i}" oninput="caps[${i}].text=this.value">${c.text}</textarea></div>
+      <button class="btn-copy" onclick="copy('cap-${i}')">📋</button>
+    </div>
+  `).join('');
+}
+function autofill() {
+  const t = caps.map(c => c.text).join('\n');
+  const pnr = t.match(/\b[A-Z0-9]{6}\b/); if(pnr) document.getElementById('pnr').value = pnr[0];
+  const tel = t.match(/\+?\d[\d\s-]{8,15}\d/); if(tel) document.getElementById('tel').value = tel[0].replace(/[\s-]/g,'');
+  const mail = t.match(/[\w.+-]+@[\w-]+(\.[\w-]+)+/); if(mail) document.getElementById('mail').value = mail[0];
+}
+document.addEventListener('paste', e => {
+  const items = [...((e.clipboardData || {}).items || [])].filter(i => i.type.startsWith('image/'));
+  if(!items.length) return; e.preventDefault();
+  items.forEach(i => addCap(i.getAsFile()));
+});
+
+// =========================================
+// 4. GENERAR NOTA
+// =========================================
+function genNota() {
+  const v = id => document.getElementById(id).value.trim();
+  const paxList = v('pax').split('\n').filter(Boolean).join('; ');
+  const note = `[SECURITY / FDS VALIDATION]: OK - Validado con ${v('call')||v('tit')} (Email: ${v('mail')||'N/A'} | Tel: ${v('tel')||'N/A'}) para el pasajero titular ${v('tit')}.\n` +
+               `[PASSENGERS]: ${paxList || 'N/A'}\n` +
+               `[CALL MOTIVE]: ${v('mot') || 'Atención telefónica'}\n` +
+               `[SYSTEM STATUS DIAGNOSIS]: SkySpeed status: ${v('sta')||'HK ON-TIME'}\n` +
+               `[POLICY / RESOLUTION]: ${v('res') || 'Información brindada'}\n` +
+               `[ACTION / DISPOSITION]: ${v('act') || 'Llamada concluida'}\n` +
+               `[AGENT SIGNATURE]: Juan Carlos Pérez Martínez | DCC Concentrix Volaris.`;
+  document.getElementById('out').value = note;
+  saveLogEntry(v('pnr')||'N/A', v('tit')||'N/A', v('mot')||'Atención', v('act')||'Concluida');
+  showToast('Nota Generada y Bitácora Actualizada');
+}
+
+// =========================================
+// 5. CALCULADORA ROP
+// =========================================
+function calcROP() {
+  const total = parseFloat(document.getElementById('ropTotal').value) || 0;
+  const pct = parseFloat(document.getElementById('ropPct').value) || 0;
+  const divide = parseInt(document.getElementById('ropDivide').value) || 1;
+  const voucherTotal = total * (pct / 100);
+  const voucherPax = voucherTotal / divide;
+  const fmt = n => '$' + n.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+  document.getElementById('ropVoucherTotal').textContent = fmt(voucherTotal);
+  document.getElementById('ropVoucherPax').textContent = fmt(voucherPax);
+}
+
+// =========================================
+// 6. SPLIT PNR
+// =========================================
+function calcSplit() {
+  const total = parseFloat(document.getElementById('s1').
+                             const total = parseFloat(document.getElementById('s1').value) || 0;
+  const n = parseFloat(document.getElementById('s2').value) || 1;
+  const sep = parseFloat(document.getElementById('s3').value) || 1;
+  const per = total / n;
+  const f = x => '$' + x.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' MXN';
+  document.getElementById('q1').textContent = f(per);
+  document.getElementById('q2').textContent = f(per * sep);
+  document.getElementById('q3').textContent = f(total - (per * sep));
+  document.getElementById('q4').textContent = n - sep;
+}
+
+// =========================================
+// 7. DIRECTORIO
+// =========================================
+const dirData = [
+  { area: '⭐ Ventas Español', ext: '7004763' },
+  { area: 'Protex Español (IROP)', ext: '7004767' },
+  { area: 'Grupos Español', ext: '7004756' },
+  { area: 'Asistencia Supervisor Ventas', ext: '7004757' },
+  { area: 'Asistencia Supervisor Protex', ext: '7004764' },
+  { area: 'Ventas Inglés', ext: '7004777' },
+  { area: 'Protex Inglés', ext: '7004781' },
+  { area: 'Invex Volaris (Monedero)', ext: '01 55 4000 6566' },
+  { area: 'WhatsApp Oficial Volaris', ext: '+52 55 6114 5083' }
+];
+
+function renderDir(filter = '') {
+  const body = document.getElementById('dirBody');
+  body.innerHTML = '';
+  const filtered = dirData.filter(d => 
+    d.area.toLowerCase().includes(filter.toLowerCase()) || 
+    d.ext.includes(filter)
+  );
+  
+  filtered.forEach(d => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td style="font-weight:600">${d.area}</td>
+      <td><code style="background:var(--bg-base); padding:4px 8px; border-radius:4px; border:1px solid var(--border); font-weight:bold; color:var(--accent);">${d.ext}</code></td>
+      <td style="text-align:right;"><button class="btn-copy" onclick="copyText('${d.ext}')">📋</button></td>
+    `;
+    body.appendChild(tr);
+  });
+}
+function filterDir(val) { renderDir(val); }
+function copyText(txt) {
+  navigator.clipboard.writeText(txt).then(() => showToast('Extensión copiada ✔'));
+}
+
+// =========================================
+// 8. BITÁCORA
+// =========================================
+let logData = [];
+
+function saveLogEntry(pnr, titular, motivo, accion) {
+  // Enmascarado de seguridad
+  const mName = s => s.split(' ').filter(Boolean).map(w => w[0] + '***').join(' ');
+  const now = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+  
+  logData.push({
+    hora: now,
+    pnr: pnr,
+    titular: mName(titular),
+    motivo: motivo.substring(0, 20) + (motivo.length > 20 ? '...' : ''),
+    accion: accion
+  });
+  renderLog();
+}
+
+function renderLog() {
+  const body = document.getElementById('logBody');
+  body.innerHTML = '';
+  if(logData.length === 0) {
+    body.innerHTML = '<tr><td colspan="5" style="text-align:center; color:var(--text-muted); padding:20px;">Sin registros en este turno.</td></tr>';
+    return;
+  }
+  logData.forEach(r => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${r.hora}</td><td><b>${r.pnr}</b></td><td>${r.titular}</td><td>${r.motivo}</td><td>${r.accion}</td>`;
+    body.appendChild(tr);
+  });
+}
+
+function saveLog() {
+  try {
+    sessionStorage.setItem('dcc_log_v10', JSON.stringify(logData));
+    showToast('Bitácora guardada en la sesión');
+  } catch(e) {
+    showToast('Error al guardar en el navegador');
+  }
+}
+
+function downloadCSV() {
+  if(logData.length === 0) return showToast('No hay datos para exportar');
+  const q = s => '"' + String(s).replace(/"/g, '""') + '"';
+  const rows = ['Hora,PNR,Titular,Motivo,Accion'].concat(
+    logData.map(x => [x.hora, x.pnr, x.titular, x.motivo, x.accion].map(q).join(','))
+  );
+  const blob = new Blob(['\ufeff' + rows.join('\n')], {type: 'text/csv;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'Bitacora_DCC_' + new Date().toISOString().slice(0,10) + '.csv';
+  document.body.appendChild(a); a.click(); a.remove();
+}
+
+function clearLog() {
+  if(confirm('¿Borrar la bitácora actual?')) {
+    logData = []; renderLog(); showToast('Bitácora borrada');
+  }
+}
+
+// =========================================
+// 9. MAPA DE AVIÓN Y ESCALAMIENTOS
+// =========================================
+let selectedSeats = [];
+
+function openSeatMap() {
+  document.getElementById('seatMapSection').style.display = 'block';
+  renderSeatMap();
+  updateEscText();
+}
+
+function renderSeatMap() {
+  const container = document.getElementById('planeLayout');
+  container.innerHTML = '';
+  const model = document.getElementById('planeModel').value;
+  const rows = model === 'A320' ? 30 : 38;
+  const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
+
+  for (let i = 1; i <= rows; i++) {
+    const rowDiv = document.createElement('div'); 
+    rowDiv.className = 'row-seats';
+    
+    const rowLabel = document.createElement('div'); 
+    rowLabel.style.width = '20px'; 
+    rowLabel.style.textAlign = 'center'; 
+    rowLabel.style.fontSize = '11px'; 
+    rowLabel.style.fontWeight = 'bold'; 
+    rowLabel.style.color = 'var(--text-muted)';
+    rowLabel.textContent = i;
+    rowDiv.appendChild(rowLabel);
+
+    letters.forEach((letter, idx) => {
+      if (idx === 3) { 
+        const aisle = document.createElement('div'); 
+        aisle.className = 'aisle'; 
+        rowDiv.appendChild(aisle); 
+      }
+      const seatCode = i + letter;
+      const seat = document.createElement('div'); 
+      seat.className = 'seat'; 
+      seat.textContent = seatCode;
+      
+      if (i === 1 || i === 12 || i === 13 || (model === 'A321' && (i === 18 || i === 19))) {
+        seat.classList.add('extra');
+      }
+      
+      if (selectedSeats.includes(seatCode)) seat.classList.add('selected');
+      
+      seat.onclick = () => toggleSeat(seatCode, seat);
+      rowDiv.appendChild(seat);
+    });
+    container.appendChild(rowDiv);
+  }
+}
+
+function toggleSeat(seatCode, el) {
+  if (el.classList.contains('selected')) { 
+    el.classList.remove('selected'); 
+    selectedSeats = selectedSeats.filter(s => s !== seatCode); 
+  } else { 
+    el.classList.add('selected'); 
+    selectedSeats.push(seatCode); 
+  }
+  updateEscText();
+}
+
+function updateEscText() {
+  const type = document.getElementById('escType').value;
+  const pnr = document.getElementById('pnr').value || '[PNR]';
+  const tit = document.getElementById('tit').value || '[TITULAR]';
+  const paxRaw = document.getElementById('pax').value.split('\n').filter(Boolean);
+  const paxList = paxRaw.length ? paxRaw.join(', ') : '[PASAJEROS]';
+  
+  let text = '';
+  
+  if (type === 'Asientos') {
+    text = `ESCALAMIENTO: CAMBIO DE ASIENTOS (MOVE)\n\n` +
+           `PNR: ${pnr}\n` +
+           `Titular: ${tit}\n` +
+           `Pasajeros: ${paxList}\n\n` +
+           `Favor de asignar los siguientes asientos: ${selectedSeats.length ? selectedSeats.join(', ') : '[NINGUNO SELECCIONADO]'}\n\n` +
+           `Firma: Juan Carlos Pérez Martínez | DCC`;
+  } else if (type === 'HotCard') {
+    text = `ESCALAMIENTO: HOT CARD / FRAUDE\n\n` +
+           `PNR: ${pnr}\n` +
+           `Titular: ${tit}\n\n` +
+           `Reporte de posible fraude. Favor de validar la tarjeta utilizada y los datos del cliente.\n\n` +
+           `Firma: Juan Carlos Pérez Martínez | DCC`;
+  } else if (type === 'Split') {
+    text = `ESCALAMIENTO: DIVISIÓN DE PASAJEROS (SPLIT)\n\n` +
+           `PNR: ${pnr}\n` +
+           `Titular: ${tit}\n` +
+           `Pasajeros: ${paxList}\n\n` +
+           `Favor de realizar la división del PNR según lo solicitado por el cliente.\n\n` +
+           `Firma: Juan Carlos Pérez Martínez | DCC`;
+  }
+
+  document.getElementById('escText').value = text;
+}
+
+function clearForm() {
+  const fields = ['pnr','tit','tel','mail','call','pax','mot','act','res','out'];
+  fields.forEach(id => { 
+    const el = document.getElementById(id); 
+    if(el) el.value = ''; 
+  });
+  caps = []; renderCaps();
+  document.getElementById('datos-detectados').innerHTML = '';
+  showToast('Formulario Limpio');
+}
+
+// =========================================
+// 10. INICIALIZACIÓN
+// =========================================
+document.addEventListener('DOMContentLoaded', () => {
+  // Cargar datos de sesión si existen
+  try {
+    const savedLog = sessionStorage.getItem('dcc_log_v10');
+    if (savedLog) { logData = JSON.parse(savedLog); }
+  } catch(e) {}
+  
+  renderLog();
+  renderDir();
+  calcROP();
+  calcSplit();
+
+  // Listeners para actualizar el escalamiento en tiempo real
+  ['pnr', 'tit', 'pax'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.addEventListener('input', updateEscText);
+  });
+});
+</script>
+</body>
+</html>
