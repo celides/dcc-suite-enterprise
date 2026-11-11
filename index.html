@@ -50,31 +50,34 @@ body.dark .note{background:#232a40;color:#c7d2fe}body.dark .warn{background:#3a3
 body.dark .chip{background:#2b3358;color:#c7d2fe;border-color:#3a4478}
 .bar{display:flex;gap:6px;align-items:center;justify-content:flex-end;flex-wrap:wrap;margin-bottom:6px;font-size:11px}
 .md{background:#fff;border:1px solid #cbd5e1;color:#475569;border-radius:14px;padding:4px 10px;font-weight:700;cursor:pointer}.md.on{background:#1E3A8A;color:#fff;border-color:#1E3A8A}
-.rb{width:32px;height:32px;border-radius:50%;border:0;background:linear-gradient(135deg,#3B6FE0,#1E3A8A);color:#fff;font-size:20px;font-weight:800;line-height:1;cursor:pointer;flex:0 0 auto;padding:0}
-.ag{flex:none;min-width:0}input[type=color]{height:36px;padding:2px}
-.hl td{background:#bbf7d0;font-weight:700}.hl td:first-child{border-left:4px solid #16a34a}
-.ft p{text-align:justify;margin:6px 0}.ft h4{margin:12px 0 4px;color:#1E3A8A;font-size:12px}.fb{font-size:18px;font-weight:800;color:#1E3A8A;margin-bottom:2px}
-body.dark .hl td{background:#14532d;color:#dcfce7}body.dark .ft h4,body.dark .fb{color:#9db4ff}
 .help{display:none;background:#eef2ff;color:#1E3A8A;border-radius:6px;padding:6px 8px;font-size:11px;margin:4px 0}body.cop .help{display:block}
 
-/* ESTILOS ESPECÍFICOS DE RETRO ZONE */
+/* ESTILOS DE RETRO ZONE Y MANDOS VIRTUALES D-PAD */
 .retro-container{background:#050814;color:#00f0ff;border-radius:12px;padding:16px;border:2px solid #ff007f;box-shadow:0 0 20px rgba(255,0,127,0.3);font-family:monospace;text-align:center}
 .retro-nav{display:flex;justify-content:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
 .retro-btn{background:#11162b;color:#00f0ff;border:1px solid #00f0ff;padding:6px 14px;border-radius:6px;font-weight:700;cursor:pointer;font-family:monospace}
 .retro-btn.active,.retro-btn:hover{background:#ff007f;color:#fff;border-color:#ff007f;box-shadow:0 0 10px #ff007f}
 .game-viewport{position:relative;display:inline-block;max-width:100%;margin:0 auto}
 #arcadeCanvas{background:#000;border:2px solid #00f0ff;border-radius:6px;max-width:100%;height:auto;display:block;margin:0 auto;box-shadow:0 0 15px rgba(0,240,255,0.4);touch-action:none}
-.arcade-controls{display:flex;justify-content:space-between;align-items:center;margin-top:12px;background:#0d1326;padding:10px;border-radius:8px;border:1px solid #1f294d;flex-wrap:wrap;gap:10px}
-.dpad{display:grid;grid-template-columns:repeat(3,44px);grid-template-rows:repeat(3,44px);gap:4px;margin:0 auto}
-.dbtn{background:#1b2447;color:#00f0ff;border:1px solid #00f0ff;border-radius:6px;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;user-select:none;cursor:pointer;touch-action:manipulation}
-.dbtn:active{background:#ff007f;color:#fff;transform:scale(0.95)}
+.arcade-controls{display:flex;justify-content:space-around;align-items:center;margin-top:14px;background:#0d1326;padding:12px;border-radius:10px;border:1px solid #1f294d;flex-wrap:wrap;gap:12px}
+
+/* D-PAD DIGITAL VISUALMENTE REPARADO */
+.dpad{display:grid;grid-template-columns:repeat(3,46px);grid-template-rows:repeat(3,46px);gap:5px;margin:0 auto}
+.dbtn{background:#1b2447;color:#00f0ff;border:1.5px solid #00f0ff;border-radius:8px;font-size:16px;font-weight:900;display:flex;flex-direction:column;align-items:center;justify-content:center;user-select:none;cursor:pointer;touch-action:manipulation;box-shadow:0 2px 6px rgba(0,0,0,0.5)}
+.dbtn:active{background:#ff007f;color:#fff;border-color:#ff007f;transform:scale(0.92)}
 .dbtn-up{grid-column:2;grid-row:1}
 .dbtn-left{grid-column:1;grid-row:2}
 .dbtn-right{grid-column:3;grid-row:2}
 .dbtn-down{grid-column:2;grid-row:3}
-.action-btn{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#ff0055,#b3003b);border:2px solid #fff;color:#fff;font-size:18px;font-weight:900;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 10px #ff0055;user-select:none;margin:0 auto;touch-action:manipulation}
-.action-btn:active{transform:scale(0.9)}
-.audio-ctrl{display:flex;align-items:center;gap:8px;font-size:12px;color:#00f0ff}
+.dbtn-sub{font-size:8px;margin-top:-2px;opacity:0.8}
+
+.action-group{display:flex;gap:10px;align-items:center;margin:0 auto}
+.btn-act{width:54px;height:54px;border-radius:50%;border:2px solid #fff;color:#fff;font-size:18px;font-weight:900;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;user-select:none;touch-action:manipulation;box-shadow:0 0 10px rgba(255,255,255,0.3)}
+.btn-act:active{transform:scale(0.9)}
+.btn-rot{background:linear-gradient(135deg,#00aaff,#0055ff);box-shadow:0 0 10px #00aaff}
+.btn-fire{background:linear-gradient(135deg,#ff0055,#b3003b);box-shadow:0 0 10px #ff0055}
+
+.audio-ctrl{display:flex;align-items:center;gap:8px;font-size:11px;color:#00f0ff;background:#11162b;padding:6px 10px;border-radius:6px;border:1px solid #1f294d}
 </style></head><body>
 
 <div class="bar"><span id="mP" class="md" onclick="setMode(0)">✈️ Piloto</span><span id="mC" class="md" onclick="setMode(1)">🧑‍✈️ Copiloto</span><button class="s" onclick="setLang()">🌐 ES/EN</button><button class="s" onclick="dark()">🌙 Oscuro</button><button class="s" onclick="sz(-10)">A−</button><button class="s" onclick="sz(10)">A+</button></div>
@@ -84,7 +87,7 @@ body.dark .hl td{background:#14532d;color:#dcfce7}body.dark .ft h4,body.dark .fb
 
 <div class="tabs" id="tabs"></div>
 
-<!-- SECCIONES TOOLBOX INTACAS -->
+<!-- SECCIONES DE TRABAJO -->
 <div id="t-msra" class="tc on"><div class="card"><div class="ct">📞 Llamada y captura OCR</div><div class="help">Atención telefónica, captura OCR e historial M-S-R-A.</div>
 <div class="note warn"><b>Saludo:</b> <span id="sal"></span><br><button class="s" style="margin-top:6px" onclick="cp($('sal').textContent,'Saludo')">📋 Copiar saludo</button></div>
 <div class="drop">📸 Pega capturas con Ctrl+V o <button class="s" onclick="$('fi').click()">selecciona archivos</button><input type="file" id="fi" accept="image/*" multiple style="display:none"><div id="ost" style="font-weight:400;font-size:11px;margin-top:4px">Win+Shift+S para capturar; Ctrl+V aquí.</div></div>
@@ -104,7 +107,7 @@ body.dark .hl td{background:#14532d;color:#dcfce7}body.dark .ft h4,body.dark .fb
 <div id="t-key" class="tc"><div class="card"><div class="ct">⌨️ Teclas rápidas SkySpeed</div><p>Shift+F7: Historial | F12: Finalizar PNR</p></div></div>
 <div id="t-sig" class="tc"><div class="card"><div class="ct">🔤 Siglas y Códigos</div><p>CCCPMX: Voucher Compensación | MOVE: Cambio por afectación</p></div></div>
 
-<!-- PESTAÑA RETRO ZONE ACTUALIZADA -->
+<!-- PESTAÑA RETRO ZONE CON D-PAD Y BOTONES DE ROTACIÓN Y DISPARO -->
 <div id="t-retro" class="tc">
   <div class="card retro-container">
     <div class="ct" style="color:#00f0ff;border-color:#ff007f">🕹️ RETRO ZONE - ARCADE CENTER</div>
@@ -120,17 +123,21 @@ body.dark .hl td{background:#14532d;color:#dcfce7}body.dark .ft h4,body.dark .fb
     </div>
 
     <div class="arcade-controls">
-      <button class="b g" style="font-size:13px" onclick="startGame()">▶ INICIAR JUEGO</button>
+      <button class="b g" style="font-size:13px;padding:10px 14px" onclick="startGame()">▶ INICIAR JUEGO</button>
       
-      <!-- D-Pad Digital Táctil -->
+      <!-- CONTROLES RETRO DIGITALES COMPLETOS -->
       <div class="dpad">
-        <button class="dbtn dbtn-up" onpointerdown="triggerInput('ArrowUp', event)">▲</button>
-        <button class="dbtn dbtn-left" onpointerdown="triggerInput('ArrowLeft', event)">◄</button>
-        <button class="dbtn dbtn-right" onpointerdown="triggerInput('ArrowRight', event)">►</button>
-        <button class="dbtn dbtn-down" onpointerdown="triggerInput('ArrowDown', event)" onpointerup="releaseInput('ArrowDown')" onpointerleave="releaseInput('ArrowDown')">▼</button>
+        <button class="dbtn dbtn-up" onpointerdown="triggerInput('ArrowUp', event)">▲<span class="dbtn-sub">ROTA</span></button>
+        <button class="dbtn dbtn-left" onpointerdown="triggerInput('ArrowLeft', event)">◄<span class="dbtn-sub">IZQ</span></button>
+        <button class="dbtn dbtn-right" onpointerdown="triggerInput('ArrowRight', event)">►<span class="dbtn-sub">DER</span></button>
+        <button class="dbtn dbtn-down" onpointerdown="triggerInput('ArrowDown', event)" onpointerup="releaseInput('ArrowDown')" onpointerleave="releaseInput('ArrowDown')">▼<span class="dbtn-sub">CAER</span></button>
       </div>
 
-      <div class="action-btn" onpointerdown="triggerInput('Space', event)">🔴</div>
+      <!-- BOTONES DE ACCIÓN: ROTACIÓN (AZUL) Y DISPARO (ROJO) -->
+      <div class="action-group">
+        <button class="btn-act btn-rot" onpointerdown="triggerInput('ArrowUp', event)">↻<span style="font-size:8px">ROTA</span></button>
+        <button class="btn-act btn-fire" onpointerdown="triggerInput('Space', event)">🔴<span style="font-size:8px">DISPARO</span></button>
+      </div>
 
       <div class="audio-ctrl">
         <button class="s" id="btnMute" onclick="toggleMute()">🔊 Audio: ON</button>
@@ -170,7 +177,7 @@ function dirR(q){const D=[['Ventas Español','7004763'],['Protex Español','7004
 dirR();
 
 /* ====================================================================== */
-/* 🕹️ MOTOR DE RETRO ZONE & REPARACIÓN COMPLETA DE TETRIS                 */
+/* 🕹️ MOTOR DE RETRO ZONE CON CONTROLES RETRO COMPROBADOS                 */
 /* ====================================================================== */
 let audioCtx = null, masterGain = null, musicInterval = null, isMuted = false, currentVol = 0.3;
 let activeGame = 'tetris', gameAnimFrame = null, tetrisGravityInterval = null;
@@ -236,14 +243,13 @@ function startMusic(gameKey) {
   }
 }
 
-/* ---------------- MATRICES CUADRADAS Y MOTOR TETRIS ---------------- */
+/* ---------------- TETRIS MOTOR Y MATRICES ---------------- */
 const T_ROWS = 20, T_COLS = 10, T_SIZE = 20;
-const T_OFFSET_X = 100, T_OFFSET_Y = 0; // Tablero centrado (200x400) en Canvas (400x400)
+const T_OFFSET_X = 100, T_OFFSET_Y = 0;
 let gridTetris = [], pieceTetris = null;
 let gameState = 'STOP', score = 0, lives = 3;
 let gravitySpeed = 500;
 
-// Definición estricta en matrices cuadradas fijas (I=4x4, T/L/J/S/Z=3x3, O=2x2)
 const TETROMINOS = {
   I: { m: [[0,0,0,0],[1,1,1,1],[0,0,0,0],[0,0,0,0]], color: '#00f0ff' },
   J: { m: [[1,0,0],[1,1,1],[0,0,0]], color: '#0000ff' },
@@ -268,10 +274,9 @@ function spawnTetrisPiece() {
     matrix: t.m.map(r => [...r]),
     color: t.color,
     r: 0,
-    c: 3 // Posición inicial r=0, c=3
+    c: 3
   };
 
-  // Si colisiona al nacer -> GAME OVER inmediato
   if (checkCollision(pieceTetris.matrix, pieceTetris.r, pieceTetris.c)) {
     triggerGameOver();
   }
@@ -291,7 +296,6 @@ function checkCollision(mat, rOff, cOff) {
   return false;
 }
 
-// Rotación matricial simétrica (transposición + inversión de columnas)
 function rotateMatrix(mat) {
   const N = mat.length;
   let res = Array.from({length: N}, () => Array(N).fill(0));
@@ -303,7 +307,6 @@ function rotateMatrix(mat) {
   return res;
 }
 
-// Movimiento discreto por eventos directos
 function moveTetrisDiscreet(dir) {
   if (gameState !== 'PLAY' || activeGame !== 'tetris' || !pieceTetris) return;
   
@@ -341,7 +344,6 @@ function lockTetrisPiece() {
     }
   }
   
-  // Limpieza de filas completas (+100 pts)
   let lines = 0;
   for (let r = T_ROWS - 1; r >= 0; r--) {
     if (gridTetris[r].every(cell => cell !== 0)) {
@@ -365,7 +367,7 @@ function startTetrisGravityTimer(ms) {
   }, ms);
 }
 
-/* ---------------- OTROS JUEGOS RETRO ---------------- */
+/* ---------------- OTROS JUEGOS ---------------- */
 let spacePlayer = { x: 180, y: 360, w: 40, h: 15 }, spaceBullets = [], alienBullets = [], aliens = [];
 function resetSpace() {
   spacePlayer.x = 180; spaceBullets = []; alienBullets = []; aliens = [];
@@ -387,7 +389,7 @@ function resetBreakout() {
   }
 }
 
-/* ---------------- CONTROL DE BUCLE Y ESTADOS ---------------- */
+/* ---------------- LOOP Y ESTADOS ---------------- */
 function stopGameLoop() {
   if (gameAnimFrame) cancelAnimationFrame(gameAnimFrame);
   if (tetrisGravityInterval) clearInterval(tetrisGravityInterval);
@@ -441,7 +443,6 @@ function renderOverlay(title, color) {
   ctx.fillText("Presiona INICIAR para volver a jugar", 200, 250);
 }
 
-// Renderizado continuo a 60 FPS
 function gameLoop() {
   if (gameState !== 'PLAY') return;
   ctx.fillStyle = '#000'; ctx.fillRect(0, 0, 400, 400);
@@ -455,11 +456,9 @@ function gameLoop() {
 }
 
 function drawTetris() {
-  // Marco del tablero (10x20 celdas de 20px -> 200x400)
   ctx.strokeStyle = '#00f0ff';
   ctx.strokeRect(T_OFFSET_X - 1, T_OFFSET_Y, T_COLS * T_SIZE + 2, T_ROWS * T_SIZE);
 
-  // Cuadrícula global
   for (let r = 0; r < T_ROWS; r++) {
     for (let c = 0; c < T_COLS; c++) {
       if (gridTetris[r][c]) {
@@ -468,7 +467,6 @@ function drawTetris() {
       }
     }
   }
-  // Pieza activa
   if (pieceTetris) {
     ctx.fillStyle = pieceTetris.color;
     for (let r = 0; r < pieceTetris.matrix.length; r++) {
@@ -483,7 +481,6 @@ function drawTetris() {
       }
     }
   }
-  // Interfaz de puntaje
   ctx.fillStyle = '#fff'; ctx.font = '14px monospace'; ctx.textAlign = 'left';
   ctx.fillText("Score: " + score, 15, 30);
 }
@@ -589,7 +586,7 @@ function updateDrawBreakout() {
   ctx.fillText(`Score: ${score}  Vidas: ${lives}`, 15, 25);
 }
 
-/* ---------------- MANEJO DE EVENTOS TÁCTILES Y TECLADO ---------------- */
+/* ---------------- MANEJO DE EVENTOS DE TECLADO Y BOTONES ---------------- */
 const keysPressed = {};
 
 window.addEventListener('keydown', e => {
@@ -604,7 +601,7 @@ window.addEventListener('keydown', e => {
     if (e.code === 'ArrowUp') moveTetrisDiscreet('rotate');
     if (e.code === 'ArrowDown') {
       moveTetrisDiscreet('down');
-      startTetrisGravityTimer(80); // Soft drop acelerado
+      startTetrisGravityTimer(80);
     }
   }
 
@@ -617,7 +614,7 @@ window.addEventListener('keydown', e => {
 window.addEventListener('keyup', e => {
   keysPressed[e.code] = false;
   if (activeGame === 'tetris' && e.code === 'ArrowDown') {
-    startTetrisGravityTimer(gravitySpeed); // Restaurar velocidad regular
+    startTetrisGravityTimer(gravitySpeed);
   }
 });
 
@@ -651,34 +648,6 @@ function releaseInput(code) {
     startTetrisGravityTimer(gravitySpeed);
   }
 }
-
-// Interacción directa por Tap / Arrastre en el Canvas
-let isDraggingCanvas = false;
-canvas.addEventListener('pointerdown', e => {
-  if (gameState !== 'PLAY') return;
-  const rect = canvas.getBoundingClientRect();
-  const clickX = e.clientX - rect.left;
-  isDraggingCanvas = true;
-
-  if (activeGame === 'tetris') {
-    if (clickX < 150) moveTetrisDiscreet('left');
-    else if (clickX > 250) moveTetrisDiscreet('right');
-    else moveTetrisDiscreet('rotate');
-  } else if (activeGame === 'space') {
-    spaceBullets.push({ x: spacePlayer.x + 18, y: spacePlayer.y });
-    playSFX('shoot');
-  }
-});
-
-canvas.addEventListener('pointermove', e => {
-  if (!isDraggingCanvas || gameState !== 'PLAY') return;
-  const rect = canvas.getBoundingClientRect();
-  const relX = (e.clientX - rect.left) * (400 / rect.width);
-  if (activeGame === 'space') spacePlayer.x = Math.max(0, Math.min(360, relX - 20));
-  if (activeGame === 'breakout') bPaddle.x = Math.max(0, Math.min(320, relX - 40));
-});
-
-window.addEventListener('pointerup', () => { isDraggingCanvas = false; });
 
 switchGame('tetris', null);
 </script></body></html>
