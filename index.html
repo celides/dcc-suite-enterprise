@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DCC Toolbox v5.7</title>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DCC Toolbox v5.7 - Retro Zone Fixed</title>
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
 <style>
 *{box-sizing:border-box;font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
@@ -24,10 +24,9 @@ textarea{resize:none;overflow:hidden;min-height:42px}
 .g{background:#059669}.gr{background:#64748b}
 .drop{border:2px dashed #2B4FB5;border-radius:8px;padding:12px;text-align:center;color:#2B4FB5;font-weight:700;margin-bottom:10px;background:#f8fafc}
 .cap{display:flex;gap:8px;border:1px solid #e2e8f0;border-radius:8px;padding:6px;margin-bottom:6px;align-items:flex-start}
-.cap img{height:56px;border-radius:4px;border:1px solid #cbd5e1}
-.cap textarea{height:56px;font-family:monospace;font-size:10px;overflow:auto}
+.cap img{height:42px}
+.cap textarea{height:auto;min-height:90px;font-family:monospace;font-size:11px;line-height:1.45;white-space:pre-wrap;overflow:hidden;user-select:text}
 .chip{display:inline-block;background:#e0e7ff;color:#1E3A8A;border:1px solid #c7d2fe;border-radius:12px;padding:3px 9px;margin:2px;font-size:11px;font-weight:700;cursor:pointer}
-.chip:hover{background:#1E3A8A;color:#fff}
 .cnt{display:flex;gap:10px;margin-bottom:10px}
 .cnt div{flex:1;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:8px;text-align:center;font-size:10px;font-weight:700;color:#64748b}
 .cnt b{display:block;font-size:18px;color:#1E3A8A}
@@ -38,7 +37,7 @@ th,td{padding:7px;text-align:left;border-bottom:1px solid #e2e8f0}th{background:
 .pre.on{background:#1E3A8A;color:#fff}
 .note{background:#f0f9ff;border-left:4px solid #0284c7;color:#075985;border-radius:8px;padding:10px;font-size:11.5px;margin-bottom:10px}
 .warn{background:#fffbe3;border-left-color:#eab308;color:#854d0e}
-#toast{display:none;position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;padding:8px 16px;border-radius:20px;font-size:12px;z-index:9}
+#toast{display:none;position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;padding:8px 16px;border-radius:20px;font-size:12px;z-index:99}
 .ft{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:12px;font-size:11px;color:#475569;line-height:1.5}
 body.dark{--b:#1E1E24;--c:#26262e;--f:#33333d;--t:#e5e7eb;--ft:#e5e7eb;--bd:#5a5a6a;background:var(--b);color:var(--t)}
 body.dark .card,body.dark .ft,body.dark .tb,body.dark .cap,body.dark .cnt div,body.dark .drop,body.dark th,body.dark .pre{background:var(--c);color:var(--t);border-color:var(--bd)}
@@ -49,976 +48,637 @@ body.dark label,body.dark .cnt div{color:var(--t)}
 body.dark td,body.dark .rr{border-color:var(--bd)}
 body.dark .note{background:#232a40;color:#c7d2fe}body.dark .warn{background:#3a3320;color:#fde68a}
 body.dark .chip{background:#2b3358;color:#c7d2fe;border-color:#3a4478}
-body.dark .hd input{background:#fff;color:#0f172a}
+.bar{display:flex;gap:6px;align-items:center;justify-content:flex-end;flex-wrap:wrap;margin-bottom:6px;font-size:11px}
+.md{background:#fff;border:1px solid #cbd5e1;color:#475569;border-radius:14px;padding:4px 10px;font-weight:700;cursor:pointer}.md.on{background:#1E3A8A;color:#fff;border-color:#1E3A8A}
+.rb{width:32px;height:32px;border-radius:50%;border:0;background:linear-gradient(135deg,#3B6FE0,#1E3A8A);color:#fff;font-size:20px;font-weight:800;line-height:1;cursor:pointer;flex:0 0 auto;padding:0}
+.ag{flex:none;min-width:0}input[type=color]{height:36px;padding:2px}
 .hl td{background:#bbf7d0;font-weight:700}.hl td:first-child{border-left:4px solid #16a34a}
 .ft p{text-align:justify;margin:6px 0}.ft h4{margin:12px 0 4px;color:#1E3A8A;font-size:12px}.fb{font-size:18px;font-weight:800;color:#1E3A8A;margin-bottom:2px}
 body.dark .hl td{background:#14532d;color:#dcfce7}body.dark .ft h4,body.dark .fb{color:#9db4ff}
-.bar{display:flex;gap:6px;align-items:center;justify-content:flex-end;flex-wrap:wrap;margin-bottom:6px;font-size:11px}
-.md{background:#fff;border:1px solid #cbd5e1;color:#475569;border-radius:14px;padding:4px 10px;font-weight:700;cursor:pointer}.md.on{background:#1E3A8A;color:#fff;border-color:#1E3A8A}
-.rb{width:32px;height:32px;border-radius:50%;border:0;background:linear-gradient(135deg,#3B6FE0,#1E3A8A);color:#fff;font-size:20px;font-weight:800;line-height:1;cursor:pointer;box-shadow:0 2px 5px rgba(30,58,138,.35);flex:0 0 auto;padding:0}
-.ib input[type=number]{text-align:center}
 .help{display:none;background:#eef2ff;color:#1E3A8A;border-radius:6px;padding:6px 8px;font-size:11px;margin:4px 0}body.cop .help{display:block}
-body.dark .help{background:#232a40;color:#c7d2fe}body.dark .md{background:var(--c);color:var(--t);border-color:var(--bd)}body.dark .md.on{background:#2B4FB5;color:#fff}
-.cap img{height:42px}.cap textarea{height:auto;min-height:90px;font-family:monospace;font-size:11px;line-height:1.45;white-space:pre-wrap;overflow:hidden;user-select:text}
-.ag{flex:none;min-width:0}input[type=color]{height:36px;padding:2px}
-#form{display:flex;flex-direction:column}#qa{order:20}body.en #qa{order:-1}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:20;overflow:auto}
-.aura{animation:aura 1.8s infinite}@keyframes aura{0%{box-shadow:0 0 0 0 rgba(30,58,138,.55)}70%{box-shadow:0 0 0 10px rgba(30,58,138,0)}100%{box-shadow:0 0 0 0 rgba(30,58,138,0)}}
-body.sky::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 140px 38px at 20% 18%,rgba(255,255,255,.95),transparent 70%),radial-gradient(ellipse 200px 50px at 70% 35%,rgba(255,255,255,.9),transparent 70%),radial-gradient(ellipse 160px 40px at 40% 75%,rgba(255,255,255,.9),transparent 70%);background-size:200% 100%;animation:cl 70s linear infinite}
-@keyframes cl{to{background-position:200% 0}}@media (prefers-reduced-motion:reduce){body.sky::before{animation:none}.aura{animation:none}}
-input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}input[type=number]{-moz-appearance:textfield}
-.emb{display:none;width:26px;height:26px}body[class*=sk-car] .ec{display:inline-block}body.sk-car2 .ec{display:none}body.sk-car2 .ec2{display:inline-block}body.sk-jet .ej{display:inline-block;animation:fly 5s ease-in-out infinite}@keyframes fly{50%{transform:translate(14px,-4px)}}
-body.noefx *,body.noefx::before,body.noefx::after{animation:none!important}
-body.sk-xp{background:linear-gradient(#4a90e8,#bcd8f8 55%,#5aa83a)fixed!important}body.sk-xp *{font-family:Tahoma,Verdana,sans-serif}
-body.sk-xp .card{border:3px solid #0a3fb8;border-radius:9px 9px 4px 4px;overflow:hidden}body.sk-xp .ct{background:linear-gradient(#0a58d6,#3c8cf0);color:#fff;margin:-14px -14px 12px;padding:7px 12px;border:0;text-shadow:1px 1px #0a3fb8}
-body.sk-xp .b,body.sk-xp .s{background:linear-gradient(#fff,#d6d2c2);color:#000;border:1px solid #003c74;border-radius:6px}body.sk-xp .hd{border:3px solid #0a3fb8;border-radius:9px}
-body.sk-80{background:linear-gradient(#14062f,#6e1978 36%,#0c031c 36%)fixed!important}
-body.sk-80::before{content:"";position:fixed;left:-50%;right:-50%;bottom:0;height:64%;z-index:-1;pointer-events:none;background:linear-gradient(rgba(255,60,200,.6)1px,transparent 1px)0 0/100% 42px,linear-gradient(90deg,rgba(255,60,200,.6)1px,transparent 1px)0 0/64px 100%;transform:perspective(320px)rotateX(58deg);transform-origin:center top;animation:gr 1.6s linear infinite}@keyframes gr{to{background-position:0 42px,0 0}}
-body.sk-80::after{content:"";position:fixed;right:9%;top:12%;width:200px;height:200px;border-radius:50%;z-index:-1;pointer-events:none;background:linear-gradient(#ffe150,#ff3a8c);-webkit-mask-image:linear-gradient(#000 0 55%,transparent 55% 59%,#000 59% 67%,transparent 67% 72%,#000 72% 80%,transparent 80% 86%,#000 86% 93%,transparent 93%);mask-image:linear-gradient(#000 0 55%,transparent 55% 59%,#000 59% 67%,transparent 67% 72%,#000 72% 80%,transparent 80% 86%,#000 86% 93%,transparent 93%)}
-body.sk-80 .card,body.sk-80 .hd{border:2px solid #00f0ff;box-shadow:0 0 14px rgba(0,240,255,.6),inset 0 0 8px rgba(0,240,255,.2)}body.sk-80 .hd b{text-shadow:0 0 8px #ff3cc8,0 0 18px #ff3cc8;letter-spacing:2px}
-body[class*=sk-car]::before{content:"";position:fixed;left:0;right:0;top:0;height:14px;z-index:9;pointer-events:none;background:repeating-conic-gradient(#111 0 25%,#eee 0 50%)0 0/28px 28px}
-body[class*=sk-car]::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:repeating-linear-gradient(100deg,transparent 0 46px,rgba(212,0,0,.3)46px 50px,transparent 50px 110px);animation:sp 1.1s linear infinite}@keyframes sp{to{background-position:-220px 0}}
-body[class*=sk-car] .card{border-left:10px solid #d40000;border-radius:6px}body[class*=sk-car] .hd{clip-path:polygon(0 0,100% 0,98% 100%,0 100%)}body[class*=sk-car] .b,body[class*=sk-car] .s{border-radius:0;clip-path:polygon(6% 0,100% 0,94% 100%,0 100%)}
-body.sk-jet{background:linear-gradient(var(--pb),#fff)fixed!important}body.sk-jetn{background:var(--pb)fixed!important}body.sk-jetn .ej{display:inline-block;animation:fly 5s ease-in-out infinite}body.sk-jet .card{border:2px solid #3c78be;border-radius:18px}body.sk-jet .b,body.sk-jet .s{border-radius:20px}
-body.sk-w10 .card{border:0;border-top:4px solid var(--ac);border-radius:0;box-shadow:0 1px 4px rgba(0,0,0,.18)}body.sk-w10 .b,body.sk-w10 .s,body.sk-w10 .tb,body.sk-w10 input,body.sk-w10 textarea,body.sk-w10 .hd{border-radius:0}
-body.sk-w11{background:linear-gradient(135deg,var(--pb),color-mix(in srgb,var(--ac) 12%,var(--pb)))fixed!important}body.sk-w11 .card,body.sk-w11 .hd{border-radius:18px;border:1px solid rgba(0,0,0,.08);box-shadow:0 8px 28px rgba(0,0,0,.12)}body.sk-w11 .b,body.sk-w11 .s{border-radius:20px}
-body.sk-neb{background:radial-gradient(ellipse at 70% 20%,color-mix(in srgb,var(--ac) 35%,transparent),transparent 55%),var(--pb)fixed!important}body.sk-neb .card{box-shadow:0 0 20px color-mix(in srgb,var(--ac) 55%,transparent)}
-body.sk-neb::before,body.sk-jetn::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(1.5px 1.5px at 12% 18%,#fff,transparent),radial-gradient(2px 2px at 68% 38%,#fff,transparent),radial-gradient(1.5px 1.5px at 40% 70%,#fff,transparent),radial-gradient(2px 2px at 86% 80%,#fff,transparent),radial-gradient(1px 1px at 25% 52%,#fff,transparent),radial-gradient(1.5px 1.5px at 92% 12%,#fff,transparent);animation:tw 3s ease-in-out infinite alternate}@keyframes tw{from{opacity:.35}to{opacity:1}}
-body.sk-px *{font-family:"Courier New",monospace}body.sk-px .card,body.sk-px .hd,body.sk-px .b,body.sk-px .s,body.sk-px input,body.sk-px textarea,body.sk-px .tb{border-radius:0!important;border:3px solid #000;box-shadow:4px 4px 0 rgba(0,0,0,.35)}
-body.sk-px::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:conic-gradient(rgba(0,0,0,.07)25%,transparent 0 50%,rgba(0,0,0,.07)0 75%,transparent 0)0 0/32px 32px}
-body.sk-tac *{font-family:"Courier New",monospace}body.sk-tac .card,body.sk-tac .hd{border:2px solid var(--ac);border-radius:0;clip-path:polygon(0 14px,14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%)}body.sk-tac .b,body.sk-tac .s{border-radius:0}
-body.sk-tac::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:repeating-linear-gradient(45deg,rgba(255,255,255,.03)0 14px,transparent 14px 28px),radial-gradient(circle at 20% 30%,rgba(120,140,70,.25),transparent 30%),radial-gradient(circle at 75% 60%,rgba(90,110,50,.25),transparent 32%)}
-body.sk-hero .card,body.sk-hero .hd{border:3px solid #111;border-radius:4px;box-shadow:6px 6px 0 var(--ac)}body.sk-hero .ct,body.sk-hero .hd b{font-family:Impact,"Arial Black",sans-serif;letter-spacing:1px;text-transform:uppercase}body.sk-hero .b,body.sk-hero .s{border:2px solid #111;border-radius:3px;box-shadow:3px 3px 0 #111}
-body.sk-hero::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(circle,var(--ac)1.6px,transparent 2px)0 0/16px 16px;opacity:.18;animation:ht 9s linear infinite}@keyframes ht{to{background-position:16px 16px}}
-body.sk-her .card,body.sk-her .hd{border-radius:22px;border:2px solid var(--ac);box-shadow:0 0 0 4px rgba(255,255,255,.55),0 6px 18px rgba(0,0,0,.12)}body.sk-her .b,body.sk-her .s{border-radius:20px}
-body.sk-wave::before{content:"";position:fixed;left:-10%;right:-10%;bottom:0;height:60px;z-index:-1;pointer-events:none;background:radial-gradient(60px 24px at 60px 24px,var(--ac)98%,transparent)0 0/120px 48px repeat-x;opacity:.35;animation:wv 5s linear infinite}@keyframes wv{to{background-position:120px 0}}body.sk-wave .card{border-radius:16px}
-body.sk-food{background:repeating-linear-gradient(0deg,color-mix(in srgb,var(--ac)13%,transparent)0 24px,transparent 24px 48px),repeating-linear-gradient(90deg,color-mix(in srgb,var(--ac)13%,transparent)0 24px,transparent 24px 48px),var(--pb)fixed!important}body.sk-food .card,body.sk-food .hd{border:2px dashed var(--ac);border-radius:14px}body.sk-food .b,body.sk-food .s{border-radius:18px}
-body.sk-fest::before{content:"";position:fixed;left:0;right:0;top:0;height:30px;z-index:9;pointer-events:none;background:linear-gradient(135deg,var(--ac)25%,transparent 25%)-17px 0/34px 34px,linear-gradient(225deg,color-mix(in srgb,var(--ac)60%,#fff)25%,transparent 25%)-17px 0/34px 34px}
-body.sk-sport{background:repeating-linear-gradient(90deg,var(--pb)0 70px,color-mix(in srgb,var(--ac)14%,var(--pb))70px 140px)fixed!important}body.sk-sport::before{content:"";position:fixed;right:6%;bottom:6%;width:170px;height:170px;border:4px solid color-mix(in srgb,var(--ac)55%,transparent);border-radius:50%;z-index:-1;pointer-events:none}body.sk-sport .card{border:3px solid #fff;outline:3px solid var(--ac)}
-body.sk-film::before{content:"";position:fixed;left:0;right:0;top:0;height:22px;z-index:9;pointer-events:none;background:repeating-linear-gradient(90deg,#000 0 14px,var(--ac)14px 22px);animation:fl 3s linear infinite}@keyframes fl{to{background-position:44px 0}}body.sk-film .card{border:2px solid var(--ac)}
-body.sk-dune{background:repeating-linear-gradient(172deg,var(--pb)0 90px,color-mix(in srgb,var(--ac)12%,var(--pb))90px 180px)fixed!important}body.sk-dune .card{border-radius:16px}
-body[class*=fx-]::after{position:fixed;left:0;right:0;top:-40px;white-space:pre;overflow:hidden;font-size:26px;line-height:1.2;color:var(--ac);opacity:.4;pointer-events:none;z-index:-1;animation:fall 15s linear infinite}@keyframes fall{from{transform:translateY(-10vh)}to{transform:translateY(115vh)}}@keyframes rise{from{transform:translateY(115vh)}to{transform:translateY(-10vh)}}body.fx-ember::after{animation-name:rise}
-body.fx-heart::after{content:"♥       ♥                 ♥    ♥          ♥    ♥             ♥             ♥             ♥             ♥       ♥    ♥             ♥    ♥             ♥             ♥                 ♥    ♥             ♥          ♥       ♥                 ♥    ♥          ♥    ♥    ♥    ♥                 ♥    ♥             ♥       ♥             ♥    ♥                 ♥       ♥             ♥             ♥                 ♥       ♥          ♥       ♥       ♥             ♥          ♥    ♥             ♥                 "}
-body.fx-star::after{content:"✦    ✦    ✦    ✦          ✦       ✦          ✦          ✦                 ✦       ✦                 ✦    ✦                 ✦       ✦             ✦             ✦                 ✦          ✦                 ✦             ✦                 ✦          ✦    ✦    ✦          ✦             ✦          ✦             ✦             ✦                 ✦       ✦                 ✦       ✦       ✦       ✦    ✦       ✦          ✦       ✦       ✦                 ✦                 ✦          ✦                 ✦                 ✦       ✦             "}
-body.fx-snow::after{content:"❄       ❄                 ❄                 ❄       ❄          ❄                 ❄             ❄                 ❄    ❄                 ❄    ❄             ❄          ❄                 ❄       ❄       ❄             ❄                 ❄                 ❄             ❄             ❄       ❄       ❄       ❄                 ❄             ❄    ❄    ❄       ❄                 ❄    ❄          ❄    ❄          ❄             ❄                 ❄             ❄             ❄             ❄                 ❄             ❄       ❄          ❄    ❄    ❄       "}
-body.fx-flower::after{content:"✿       ✿          ✿    ✿             ✿             ✿       ✿    ✿    ✿    ✿             ✿                 ✿          ✿    ✿       ✿                 ✿                 ✿          ✿          ✿       ✿    ✿          ✿       ✿    ✿          ✿          ✿       ✿       ✿          ✿          ✿          ✿    ✿                 ✿          ✿             ✿                 ✿       ✿       ✿       ✿             ✿          ✿    ✿                 ✿          ✿    ✿          ✿                 "}
-body.fx-ember::after{content:"•                 •          •          •                 •    •             •       •    •       •    •          •             •       •             •                 •    •                 •       •    •       •             •          •       •             •       •    •       •                 •                 •             •       •       •    •    •       •       •       •       •          •          •       •                 •       •       •       •             "}
-body.fx-confetti::after{content:"■                 ■    ■             ■          ■    ■    ■       ■                 ■             ■          ■          ■    ■          ■             ■       ■             ■                 ■                 ■    ■       ■                 ■                 ■          ■                 ■    ■             ■          ■    ■          ■             ■          ■             ■    ■       ■          ■    ■    ■                 ■       ■          ■             ■       ■                 ■                 ■                 ■    "}
-@media (prefers-reduced-motion:reduce){body[class*=sk-]::before,body[class*=fx-]::after{animation:none}}
-#scn{display:none;position:relative;height:120px;border-radius:12px;overflow:hidden;margin:0 0 8px;opacity:var(--sc,1)}#gnd{display:none;height:64px;border-radius:12px;overflow:hidden;margin-top:8px;opacity:var(--gd,1);position:relative}
-body[class*=sk-] #scn,body[class*=sk-] #gnd{display:block}#scn.off,#gnd.off{display:none!important}
-.ly{position:absolute;left:-30px;right:-30px;top:0;bottom:0;will-change:transform}#l2{top:38%}#l3{top:78%}#g1{top:0}
-.a2{animation:m2 26s linear infinite}.a3{animation:m2 8s linear infinite}@keyframes m2{to{background-position-x:-720px}}
-#wk{position:absolute;left:10px;bottom:8px;width:92px;height:auto}#wk.walk{animation:wlk 20s linear infinite}@keyframes wlk{from{transform:translateX(0)}to{transform:translateX(calc(100vw - 150px))}}
-.k1{animation:kp .5s steps(2) infinite}.k2{animation:kp .5s .25s steps(2) infinite}@keyframes kp{50%{opacity:.3}}
-body[class*=sk-] .card{position:relative}body[class*=sk-] .card::before{content:"";position:absolute;inset:0;border-radius:inherit;background:var(--tex,none);opacity:var(--txo,.35);pointer-events:none}body[class*=sk-] .card>*{position:relative}
-body[class*=sk-] .card label,body[class*=sk-] .card .ct,body[class*=sk-] .card .rr>span,body[class*=sk-] .card .help{text-shadow:0 0 3px var(--cb,#fff),0 0 7px var(--cb,#fff)}
-body.sk-soc{--tex:repeating-linear-gradient(90deg,#2e7d32 0 60px,#3a9440 60px 120px),radial-gradient(circle,transparent 70px,#fff 72px,transparent 75px)}
-body.sk-bkb{--tex:repeating-linear-gradient(90deg,#c58f45 0 38px,#a9722c 38px 40px),radial-gradient(circle at 50% 0,transparent 130px,#fff 132px,transparent 136px)}
-body.sk-bsb{--tex:radial-gradient(circle at 50% 115%,#a1662f 0 42%,transparent 43%),repeating-linear-gradient(45deg,#2e7d32 0 24px,#379a3c 24px 48px)}
-body[class*=sk-car]{--tex:repeating-linear-gradient(45deg,rgba(0,0,0,.55)0 2px,transparent 2px 6px),repeating-linear-gradient(-45deg,rgba(0,0,0,.55)0 2px,transparent 2px 6px)}
-body.sk-px{--tex:repeating-linear-gradient(0deg,#6b2d0a 0 2px,transparent 2px 22px),repeating-linear-gradient(90deg,#6b2d0a 0 2px,transparent 2px 44px),#c0662a}
-body.sk-80{--tex:linear-gradient(rgba(255,60,200,.8)1px,transparent 1px)0 0/100% 28px,linear-gradient(90deg,rgba(0,240,255,.8)1px,transparent 1px)0 0/28px 100%}
-body.sk-neb,body.sk-jetn{--tex:radial-gradient(2px 2px at 20px 30px,#fff,transparent),radial-gradient(1.5px 1.5px at 90px 70px,#fff,transparent),radial-gradient(2px 2px at 150px 20px,#fff,transparent)0 0/180px 100%}
-body.sk-hero{--tex:radial-gradient(circle,var(--ac)2px,transparent 2.5px)0 0/14px 14px}body.sk-her{--tex:radial-gradient(circle,var(--ac)2px,transparent 3px)0 0/20px 20px,radial-gradient(circle,#fff 1.5px,transparent 2px)10px 10px/20px 20px}
-body.sk-tac{--tex:radial-gradient(circle at 20% 30%,#5a6b32 0 18%,transparent 19%),radial-gradient(circle at 70% 60%,#3b4a22 0 20%,transparent 21%),radial-gradient(circle at 45% 85%,#7a8a4a 0 14%,transparent 15%),#4b5a2a}
-body.sk-food{--tex:repeating-linear-gradient(0deg,var(--ac)0 20px,transparent 20px 40px),repeating-linear-gradient(90deg,var(--ac)0 20px,transparent 20px 40px)}
-body.sk-fest{--tex:radial-gradient(circle,var(--ac)3px,transparent 3.5px)0 0/34px 34px,radial-gradient(circle,#fff 2px,transparent 2.5px)17px 17px/34px 34px}
-body.sk-film{--tex:repeating-linear-gradient(0deg,rgba(255,255,255,.5)0 1px,transparent 1px 3px)}body.sk-dune{--tex:repeating-linear-gradient(172deg,transparent 0 60px,rgba(0,0,0,.35)60px 120px)}
-body.sk-wave{--tex:radial-gradient(40px 14px at 40px 14px,var(--ac)98%,transparent)0 0/80px 28px}body.sk-jet{--tex:radial-gradient(30px 12px at 30px 20px,#fff 98%,transparent),radial-gradient(40px 14px at 100px 50px,#fff 98%,transparent)0 0/160px 80px}
-body.sk-mac,body.sk-mac *{font-family:-apple-system,"SF Pro Text",BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif}body.sk-mac{background:linear-gradient(135deg,var(--pb),color-mix(in srgb,var(--ac)10%,var(--pb)))fixed!important}
-body.sk-mac .card{background:color-mix(in srgb,var(--cb)78%,transparent);-webkit-backdrop-filter:blur(18px)saturate(1.4);backdrop-filter:blur(18px)saturate(1.4);border:1px solid rgba(128,128,128,.25);border-radius:14px}
-body.sk-mac .hd{position:relative;padding-top:34px;border-radius:14px}body.sk-mac .hd::after{content:"";position:absolute;left:12px;top:10px;width:70px;height:14px;background:radial-gradient(circle 6px at 7px 7px,#ff5f57 98%,transparent),radial-gradient(circle 6px at 27px 7px,#febc2e 98%,transparent),radial-gradient(circle 6px at 47px 7px,#28c840 98%,transparent)}
-body.sk-mac .b,body.sk-mac .s{border-radius:8px}body.sk-mac:not(.dark) .hd{color:#1d1d1f}
-body[class*=sk-] .card,body[class*=sk-] .hd,body[class*=sk-] .b,body[class*=sk-] .s{box-shadow:none!important}
-body.sk-px .card,body.sk-px .hd,body.sk-px .b,body.sk-px .s{box-shadow:4px 4px 0 rgba(0,0,0,.35)!important}body.sk-80 .card,body.sk-80 .hd{box-shadow:0 0 14px rgba(0,240,255,.6)!important}body.sk-neb .card{box-shadow:0 0 20px color-mix(in srgb,var(--ac)55%,transparent)!important}
-body.sky{background:linear-gradient(#6ebefa,#ecf8ff)fixed!important}
 
-/* ESTILOS RETRO ZONE */
-#t-games{background:#0a0a0c;color:#fff;border-radius:10px;padding:15px;font-family:'Courier New',Courier,monospace;border:1px solid #333;text-align:center}
-.game-header{display:flex;justify-content:space-between;align-items:center;border-bottom:2px dashed #ff00ff;padding-bottom:10px;margin-bottom:15px}
-.game-title{color:#00ffcc;text-shadow:0 0 10px #00ffcc;font-size:20px}
-.game-tabs{display:flex;gap:10px;margin-bottom:15px;justify-content:center;flex-wrap:wrap}
-.g-tab{background:#222;border:2px solid #555;color:#aaa;padding:6px 12px;cursor:pointer;border-radius:4px;font-weight:bold}
-.g-tab.on{border-color:#00ffcc;color:#00ffcc;box-shadow:0 0 10px #00ffcc}
-.game-area{display:flex;flex-direction:column;align-items:center;gap:10px}
-#gameCanvas{background:#000;border:4px solid #333;border-radius:8px;box-shadow:0 0 20px rgba(0,255,204,0.2);max-width:100%;height:auto;touch-action:none}
-.game-info{background:#1a1a1a;border:2px solid #444;padding:10px;border-radius:8px;min-width:250px;color:#fff;display:flex;justify-content:space-between;align-items:center}
-#g-score{font-size:16px;color:#00ffcc}
-.game-btn{background:#ff00ff;color:#fff;border:none;padding:8px 15px;border-radius:4px;cursor:pointer;font-weight:bold;text-transform:uppercase}
-.game-btn:hover{background:#ff44ff;box-shadow:0 0 10px #ff00ff}
-.mobile-controls{display:none;gap:10px;margin-top:10px;justify-content:center;align-items:center;flex-wrap:wrap}
-.btn-dpad{background:#333;color:#fff;border:2px solid #555;border-radius:8px;font-size:20px;width:50px;height:50px;display:flex;align-items:center;justify-content:center;user-select:none;-webkit-user-select:none;cursor:pointer}
-.btn-dpad:active{background:#555}
-.btn-action{background:#ff00ff;color:#fff;border:2px solid #ff44ff;border-radius:50%;font-size:12px;width:70px;height:70px;font-weight:bold}
-.overlay-msg{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:flex;flex-direction:column;justify-content:center;align-items:center;color:#fff;font-size:24px;font-weight:bold;text-shadow:0 0 10px red;border-radius:4px}
-@media(max-width:600px){.mobile-controls{display:flex}.game-info{flex-direction:column;gap:10px}}
-/* Audio Control Flotante */
-.audio-ctrl{position:fixed;bottom:10px;right:10px;background:#222;border:2px solid #ff00ff;border-radius:8px;padding:8px;display:flex;align-items:center;gap:8px;z-index:1000;color:#fff;font-family:sans-serif}
-.audio-ctrl input[type=range]{width:80px;accent-color:#00ffcc}
-.audio-ctrl button{background:none;border:none;color:#fff;font-size:20px;cursor:pointer}
+/* ESTILOS ESPECÍFICOS DE RETRO ZONE */
+.retro-container{background:#050814;color:#00f0ff;border-radius:12px;padding:16px;border:2px solid #ff007f;box-shadow:0 0 20px rgba(255,0,127,0.3);font-family:monospace;text-align:center}
+.retro-nav{display:flex;justify-content:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.retro-btn{background:#11162b;color:#00f0ff;border:1px solid #00f0ff;padding:6px 14px;border-radius:6px;font-weight:700;cursor:pointer;font-family:monospace}
+.retro-btn.active,.retro-btn:hover{background:#ff007f;color:#fff;border-color:#ff007f;box-shadow:0 0 10px #ff007f}
+.game-viewport{position:relative;display:inline-block;max-width:100%;margin:0 auto}
+#arcadeCanvas{background:#000;border:2px solid #00f0ff;border-radius:6px;max-width:100%;height:auto;display:block;margin:0 auto;box-shadow:0 0 15px rgba(0,240,255,0.4);touch-action:none}
+.arcade-controls{display:flex;justify-content:space-between;align-items:center;margin-top:12px;background:#0d1326;padding:10px;border-radius:8px;border:1px solid #1f294d;flex-wrap:wrap;gap:10px}
+.dpad{display:grid;grid-template-columns:repeat(3,44px);grid-template-rows:repeat(3,44px);gap:4px;margin:0 auto}
+.dbtn{background:#1b2447;color:#00f0ff;border:1px solid #00f0ff;border-radius:6px;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;user-select:none;cursor:pointer;touch-action:manipulation}
+.dbtn:active{background:#ff007f;color:#fff;transform:scale(0.95)}
+.dbtn-up{grid-column:2;grid-row:1}
+.dbtn-left{grid-column:1;grid-row:2}
+.dbtn-right{grid-column:3;grid-row:2}
+.dbtn-down{grid-column:2;grid-row:3}
+.action-btn{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#ff0055,#b3003b);border:2px solid #fff;color:#fff;font-size:18px;font-weight:900;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 10px #ff0055;user-select:none;margin:0 auto;touch-action:manipulation}
+.action-btn:active{transform:scale(0.9)}
+.audio-ctrl{display:flex;align-items:center;gap:8px;font-size:12px;color:#00f0ff}
 </style></head><body>
-<div class="bar"><span id="mP" class="md" onclick="setMode(0)">✈️ Piloto</span><span id="mC" class="md" onclick="setMode(1)">🧑‍✈️ Copiloto</span><button class="s" onclick="setLang()">🌐 ES/EN</button><button class="s" onclick="dark()">🌙 Oscuro</button><button class="s" onclick="ajustes()">🎚️ Ajustes</button><button class="s" onclick="sz(-10)">A−</button><button class="s" onclick="sz(10)">A+</button></div>
-<div class="hd"><b style="font-size:16px;display:flex;align-items:center;gap:6px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2.5" y="13" width="4" height="6" rx="1.5"/><rect x="17.5" y="13" width="4" height="6" rx="1.5"/><path d="M19.5 19c0 2-2 3-5 3h-2"/></svg>DCC Toolbox v5.7<svg class="emb ec" viewBox="0 0 24 24"><path d="M3 2h18v11l-9 9-9-9z" fill="#111" stroke="#ffcc00" stroke-width="1.6"/><path d="M6 7l6-3 6 3v3l-6-3-6 3z" fill="#ffcc00"/></svg><svg class="emb ec2" viewBox="0 0 24 24"><path d="M3 3l9 4 9-4-2 10-7 9-7-9z" fill="#111" stroke="#ffcc00" stroke-width="1.5"/><path d="M8 9l4 3 4-3-1 4-3 3-3-3z" fill="#ffcc00"/></svg><svg class="emb ej" viewBox="0 0 24 24"><path d="M2 12l8-2 4-8 2 1-2 7 7 1 1 2-8 1-2 7-2-1 1-6-8-1z" fill="#fff"/></svg></b>
-<div class="box">🔑 SkySpeed:<input id="su" type="password" autocomplete="new-password" placeholder="Usuario"><button class="s" onclick="cp($('su').value,'Usuario',1)">📋</button><input id="sp" type="password" autocomplete="new-password" placeholder="Contraseña"><button class="s" onclick="cp($('sp').value,'Contraseña',1)">📋</button><button class="s gr" onclick="clrC('su','sp')">🧹</button></div>
-<div class="box">🏢 Concentrix:<input id="cx1" type="email" autocomplete="off" placeholder="Correo"><button class="s" onclick="cp($('cx1').value,'Correo Concentrix')">📋</button><input id="cx2" type="password" autocomplete="new-password" placeholder="Contraseña"><button class="s" onclick="cp($('cx2').value,'Contraseña Concentrix',1)">📋</button><button class="s gr" onclick="clrC('cx1','cx2')">🧹</button></div>
-<div class="box">Agente:<input id="ag" style="width:170px" placeholder="Tu nombre completo (firma tus notas)" oninput="saveAg();saludo()"></div></div>
-<div id="pnl" class="card" style="display:none"><div class="row"><div class="fg"><label>Temas</label><div class="ib" id="thm" style="flex-wrap:wrap"></div></div></div><div class="row"><div class="fg"><label>Fondo (tono)</label><input type="range" id="sb" min="8" max="100" value="97" oninput="S1();tono()"></div><div class="fg"><label>Cuadros de escritura</label><input type="range" id="sf" min="10" max="100" value="100" oninput="S1();tono()"></div><div class="fg"><label>Texto</label><input type="range" id="st" min="0" max="100" value="15" oninput="S1();tono()"></div><div class="fg"><label>Tamaño de letra: <b id="szv">100%</b></label><input type="range" id="szr" min="90" max="180" value="100" step="5" oninput="setSize(this.value);tono()"></div></div><div class="row"><div class="fg"><label>Escena (arriba)</label><input type="range" id="scs" min="0" max="100" value="100"></div><div class="fg"><label>Franja (abajo)</label><input type="range" id="gds" min="0" max="100" value="100"></div><div class="fg"><label>Textura de las ventanas</label><input type="range" id="txs" min="0" max="100" value="35"></div></div><div class="row"><div class="fg"><label>Color de fondo</label><input type="color" id="pc3" value="#f8f9fa" oninput="setCol()"></div><div class="fg"><label>Color de tarjetas y cuadros (el blanco)</label><input type="color" id="pc1" value="#ffffff" oninput="setCol()"></div><div class="fg"><label>Color del texto</label><input type="color" id="pc2" value="#1e293b" oninput="setCol()"></div><div class="fg"><button class="s gr" onclick="rst()">↺ Restablecer colores</button></div></div>
-<div style="font-size:11px">Si el color del texto no contrasta con el fondo, se cambia solo. Las barras funcionan en modo claro y oscuro. Este panel se oculta solo unos segundos después de moverlo.</div></div>
-<div id="scn"><div class="ly" id="l1"></div><div class="ly a2" id="l2"></div><div class="ly a3" id="l3"></div><svg id="wk" viewBox="0 0 120 84"><rect x="62" y="14" width="46" height="32" rx="3" fill="#1b2433" stroke="#cfd8e3" stroke-width="2"/><rect x="66" y="18" width="38" height="24" fill="#6ec6ff"/><rect x="80" y="46" width="10" height="8" fill="#9aa7b5"/><rect x="48" y="62" width="68" height="10" rx="2" fill="#2b3445"/><g fill="#e8eef5"><rect class="k1" x="52" y="64" width="6" height="4"/><rect class="k2" x="62" y="64" width="6" height="4"/><rect class="k1" x="72" y="64" width="6" height="4"/><rect class="k2" x="82" y="64" width="6" height="4"/><rect class="k1" x="92" y="64" width="6" height="4"/></g><circle cx="30" cy="22" r="11" fill="#ffd2a8"/><path d="M18 22a12 12 0 0 1 24 0" fill="none" stroke="#222" stroke-width="3"/><rect x="14" y="20" width="6" height="10" rx="3" fill="#222"/><path d="M16 30q-2 8 8 8" fill="none" stroke="#222" stroke-width="2"/><rect x="16" y="34" width="28" height="30" rx="8" fill="#e53935"/><path d="M40 44l22 16" stroke="#ffd2a8" stroke-width="6" stroke-linecap="round" class="k2"/></svg></div>
+
+<div class="bar"><span id="mP" class="md" onclick="setMode(0)">✈️ Piloto</span><span id="mC" class="md" onclick="setMode(1)">🧑‍✈️ Copiloto</span><button class="s" onclick="setLang()">🌐 ES/EN</button><button class="s" onclick="dark()">🌙 Oscuro</button><button class="s" onclick="sz(-10)">A−</button><button class="s" onclick="sz(10)">A+</button></div>
+<div class="hd"><b style="font-size:16px;display:flex;align-items:center;gap:6px">DCC Toolbox v5.7</b>
+<div class="box">🔑 SkySpeed:<input id="su" type="password" placeholder="Usuario"><button class="s" onclick="cp($('su').value,'Usuario',1)">📋</button><input id="sp" type="password" placeholder="Contraseña"><button class="s" onclick="cp($('sp').value,'Contraseña',1)">📋</button><button class="s gr" onclick="clrC('su','sp')">🧹</button></div>
+<div class="box">Agente:<input id="ag" style="width:170px" placeholder="Tu nombre completo" oninput="saveAg();saludo()"></div></div>
+
 <div class="tabs" id="tabs"></div>
 
-<div id="t-msra" class="tc on"><div class="card"><div class="ct">📞 Llamada y captura OCR</div><div class="help">Aquí atiendes la llamada: pega capturas de SkySpeed para autollenar, captura los datos del cliente y genera tu comentario.</div>
+<!-- SECCIONES TOOLBOX INTACAS -->
+<div id="t-msra" class="tc on"><div class="card"><div class="ct">📞 Llamada y captura OCR</div><div class="help">Atención telefónica, captura OCR e historial M-S-R-A.</div>
 <div class="note warn"><b>Saludo:</b> <span id="sal"></span><br><button class="s" style="margin-top:6px" onclick="cp($('sal').textContent,'Saludo')">📋 Copiar saludo</button></div>
-<div class="drop">📸 Pega capturas de SkySpeed con Ctrl+V (todas las que quieras), arrástralas o <button class="s" onclick="$('fi').click()">elige archivos</button> <button class="s" onclick="cp(caps.map(c=>c.text).join('\n\n'),'Todo el texto')">📋 Copiar todo el texto</button><input type="file" id="fi" accept="image/*" multiple style="display:none"><div id="ost" style="font-weight:400;font-size:11px;margin-top:4px">Win+Shift+S para capturar; luego Ctrl+V aquí.</div></div>
+<div class="drop">📸 Pega capturas con Ctrl+V o <button class="s" onclick="$('fi').click()">selecciona archivos</button><input type="file" id="fi" accept="image/*" multiple style="display:none"><div id="ost" style="font-weight:400;font-size:11px;margin-top:4px">Win+Shift+S para capturar; Ctrl+V aquí.</div></div>
 <div id="caps"></div><div id="dat"></div>
-<div class="cnt"><div><b id="c1">0</b>Llamadas hoy</div><div><b id="c2">0</b>Transferencias a ventas</div></div>
+<div class="cnt"><div><b id="c1">0</b>Llamadas hoy</div><div><b id="c2">0</b>Transferencias</div></div>
 <div id="form"></div>
-<div style="display:flex;gap:10px"><button class="b" style="flex:1" onclick="genNota()">⚡ Generar nota M-S-R-A y registrar</button></div>
-<div class="fg" style="margin-top:10px"><label>Comentario para SkySpeed (datos reales, no se guardan)</label><div id="cc" style="font-size:11px;text-align:right"></div><textarea id="out" style="height:120px;font-family:monospace;font-size:11px"></textarea></div>
-<button class="b g" style="margin-top:6px;width:100%" onclick="cp($('out').value,'Nota')">📋 Copiar nota</button>
-<div style="margin-top:16px;padding-top:12px;border-top:2px solid #cbd5e1"><label>🚨 Escalamiento (se genera con los datos ya capturados)</label><div class="note warn" style="margin:6px 0">⚠️ Las solicitudes deben estar documentadas en SKY o serán rebotadas.</div><div class="ib" id="eb" style="flex-wrap:wrap;margin:6px 0"></div><textarea id="qout" placeholder="Elige un tipo y aquí aparece el escalamiento con los datos llenos…"></textarea><button class="b g" id="qcp" style="margin-top:6px;width:100%">📋 Copiar escalamiento</button><div class="note" id="etip" style="display:none;margin-top:8px"></div></div></div></div>
+<button class="b" style="width:100%" onclick="genNota()">⚡ Generar nota M-S-R-A</button>
+<div class="fg" style="margin-top:10px"><label>Comentario SkySpeed</label><textarea id="out" style="height:100px;font-family:monospace;font-size:11px"></textarea></div>
+<button class="b g" style="margin-top:6px;width:100%" onclick="cp($('out').value,'Nota')">📋 Copiar nota</button></div></div>
 
-<div id="t-rop" class="tc"><div class="card"><div class="ct">📊 Calculadora</div><div class="help">Calcula el voucher: pon el monto total del boleto, los pasajeros y el porcentaje; luego divide el voucher entre quienes lo recibirán.</div>
-<div id="pres"></div><div class="note" id="ph" style="margin-top:8px"></div>
-<div class="fg" style="margin-bottom:10px"><label>Porcentaje: <b id="pl" style="color:#1E3A8A"></b></label><input type="range" id="rg" min="5" max="400" step="5" oninput="setP(+this.value)"></div>
-<div class="row"><div class="fg"><label>💵 Monto total del boleto</label><div class="ib"><button class="rb" onclick="stp('rb',-100)">−</button><input class="ag" data-m="6" type="number" id="rb" value="4000" min="0" oninput="rop()"><button class="rb" onclick="stp('rb',100)">+</button><button class="s" onclick="cp($('rb').value,'Monto')">📋</button></div></div><div class="fg"><label>👥 Pasajeros</label><div class="ib"><button class="rb" onclick="stp('rp',-1)">−</button><input class="ag" data-m="3" type="number" id="rp" value="4" min="1" oninput="paxCh()"><button class="rb" onclick="stp('rp',1)">+</button></div></div><div class="fg"><label>💱 Moneda</label><button class="b" onclick="cur=cur=='MXN'?'USD':'MXN';$('cu').textContent=cur;rop()"><span id="cu">MXN</span> 🔄</button></div></div>
-<div class="rr"><span>Código de voucher</span><b id="r1"></b></div>
-<div class="rr"><span>Costo por pasajero (monto ÷ pasajeros)</span><span><b id="r2"></b> <button class="s" onclick="cp(rv.ind,'Costo por pasajero')">📋</button></span></div>
-<div class="rr"><span>Voucher total (<span id="r3"></span> del monto)</span><span><b id="r4"></b> <button class="s" onclick="cp(rv.tot,'Voucher total')">📋</button></span></div>
-<div class="fg" style="margin:10px 0"><label>Dividir este voucher entre:</label><div class="ib"><button class="rb" onclick="dvStep(-1)">−</button><input class="ag" data-m="3" type="number" id="dv" value="4" min="1" oninput="dvTouched=true;rop()" style="text-align:center"><button class="rb" onclick="dvStep(1)">+</button></div></div>
-<div class="rr"><span><b>Voucher por pasajero</b></span><span><b id="r6" style="color:#15803d;font-size:16px"></b> <button class="s" onclick="cp(rv.per,'Voucher por pasajero')">📋</button></span></div>
-<div class="rr"><span>Costo de boleto + voucher</span><span><b id="r7"></b> <button class="s" onclick="cp(rv.sum,'Boleto + voucher')">📋</button></span></div>
-<div class="note warn" id="cap" style="display:none;margin-top:8px"></div></div></div>
+<div id="t-rop" class="tc"><div class="card"><div class="ct">📊 Calculadora ROP / Vouchers</div><div class="row"><div class="fg"><label>Monto total boleto</label><input type="number" id="rb" value="4000" oninput="rop()"></div><div class="fg"><label>Pasajeros</label><input type="number" id="rp" value="4" min="1" oninput="paxCh()"></div></div><div class="rr"><span>Voucher total</span><b id="r4"></b></div><div class="rr"><span>Voucher por pasajero</span><b id="r6" style="color:#15803d;font-size:16px"></b></div></div></div>
+<div id="t-dir" class="tc"><div class="card"><div class="ct">📱 Directorio</div><input placeholder="Buscar extensión..." oninput="dirR(this.value)"><table style="margin-top:8px"><tbody id="dt"></tbody></table></div></div>
+<div id="t-spl" class="tc"><div class="card"><div class="ct">✂️ Split de PNR</div><div class="row"><div class="fg"><label>Monto Total PNR</label><input type="number" id="s1" value="4000" oninput="spl()"></div><div class="fg"><label>PAX Totales</label><input type="number" id="s2" value="4" oninput="spl()"></div><div class="fg"><label>PAX a separar</label><input type="number" id="s3" value="1" oninput="spl()"></div></div><div class="rr"><span>Monto separado</span><b id="q2"></b></div><div class="rr"><span>Monto restante</span><b id="q3" style="color:#15803d"></b></div></div></div>
+<div id="t-esc" class="tc"><div class="card"><div class="ct">🚨 Escalamientos</div><textarea id="eout" style="height:100px;font-family:monospace"></textarea></div></div>
+<div id="t-bit" class="tc"><div class="card"><div class="ct">📓 Bitácora del turno</div><textarea id="prev" readonly style="height:120px;font-family:monospace"></textarea></div></div>
+<div id="t-pro" class="tc"><div class="card"><div class="ct">💡 Protocolos</div><p>Módulo de consulta de procedimientos operativos.</p></div></div>
+<div id="t-key" class="tc"><div class="card"><div class="ct">⌨️ Teclas rápidas SkySpeed</div><p>Shift+F7: Historial | F12: Finalizar PNR</p></div></div>
+<div id="t-sig" class="tc"><div class="card"><div class="ct">🔤 Siglas y Códigos</div><p>CCCPMX: Voucher Compensación | MOVE: Cambio por afectación</p></div></div>
 
-<div id="t-dir" class="tc"><div class="card"><div class="ct">📱 Directorio</div><div class="help">Extensiones y números. Toca 📋 para copiar. La fila verde es la más usada.</div><div style="max-width:650px;margin:0 auto"><input placeholder="Buscar departamento o extensión..." oninput="dirR(this.value)" style="margin-bottom:8px"><table><tbody id="dt"></tbody></table></div></div></div>
-
-<div id="t-spl" class="tc"><div class="card"><div class="ct">✂️ Split de PNR multipasajero</div><div class="help">Calcula cuánto corresponde a cada pasajero al separarlo de un PNR.</div>
-<div class="row"><div class="fg"><label>Monto total PNR</label><div class="ib"><button class="rb" onclick="stp('s1',-100)">−</button><input class="ag" data-m="6" type="number" id="s1" value="4000" min="0" oninput="spl()"><button class="rb" onclick="stp('s1',100)">+</button></div></div><div class="fg"><label>Pasajeros totales</label><div class="ib"><button class="rb" onclick="stp('s2',-1)">−</button><input class="ag" data-m="3" type="number" id="s2" value="5" min="1" oninput="spl()"><button class="rb" onclick="stp('s2',1)">+</button></div></div><div class="fg"><label>Pasajeros a separar</label><div class="ib"><button class="rb" onclick="stp('s3',-1)">−</button><input class="ag" data-m="3" type="number" id="s3" value="1" min="1" oninput="spl()"><button class="rb" onclick="stp('s3',1)">+</button></div></div></div>
-<div class="rr"><span>Costo por pasajero</span><span><button class="s" onclick="cp($('q1').textContent,'Costo')">📋</button> <b id="q1"></b></span></div><div class="rr"><span>Monto separado</span><span><button class="s" onclick="cp($('q2').textContent,'Monto separado')">📋</button> <b id="q2"></b></span></div><div class="rr"><span><b>Permanece en PNR original (<span id="q4"></span> PAX)</b></span><span><button class="s" onclick="cp($('q3').textContent,'Monto restante')">📋</button> <b id="q3" style="color:#15803d"></b></span></div></div></div>
-
-<div id="t-esc" class="tc"><div class="card"><div class="ct">🚨 Escalamientos</div><div class="help">Edita o crea plantillas de escalamiento. Se llenan con los datos de la llamada y se firman con tu nombre.</div>
-<div class="note">Usa los datos de la pestaña Llamada (PNR, titular, pasajeros, motivo). Placeholders: {PNR} {TIT} {N} {PAX} {MOT} {AG}. El mensaje lleva nombres reales, pero <b>no se guarda</b>: en la bitácora solo queda el tipo y el PNR.</div>
-<div class="ib" id="eb2" style="flex-wrap:wrap;margin:6px 0 10px"></div><div class="row"><div class="fg"><label>Tipo de escalamiento</label><select id="tsel" onchange="tSel()"></select></div></div>
-<div class="fg" style="margin-bottom:10px"><label>Plantilla (editable)</label><textarea id="ttxt" oninput="escGen()"></textarea></div>
-<div class="row"><div class="fg"><label>Guardar como (nombre nuevo o el mismo)</label><div class="ib"><input id="tnm" placeholder="Ej. Cambio de nombre"><button class="s" onclick="tSave()">💾 Guardar plantilla</button></div></div></div>
-<div class="fg"><label>Mensaje listo para el chat</label><textarea id="eout" readonly style="height:110px;font-family:monospace"></textarea></div>
-<div style="display:flex;gap:10px;margin-top:8px"><button class="b g" style="flex:1" onclick="cp($('eout').value,'Escalamiento')">📋 Copiar mensaje</button><button class="b" onclick="escLog()">📓 Registrar en bitácora</button></div></div></div>
-
-<div id="t-bit" class="tc"><div class="card"><div class="ct">📓 Bitácora del turno (enmascarada)</div><div class="help">Registro de tus clientes del turno, enmascarado. El contador de arriba te dice cuántos llevas.</div>
-<div class="cnt"><div><b id="c3">0</b>Clientes atendidos hoy</div></div><div style="overflow-x:auto"><table><thead><tr><th>#</th><th>Hora</th><th>PNR</th><th>Titular / Contacto</th><th>Email</th><th>Tel</th><th>Motivo</th><th>Acción</th></tr></thead><tbody id="lb"></tbody></table></div>
-<div style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0"><button class="b" onclick="saveLog()">💾 Guardar en sesión</button><button class="b g" onclick="csv()">📥 CSV</button><button class="b g" onclick="cp($('prev').value,'Bitácora')">📋 Copiar texto</button><button class="b" onclick="window.print()">🖨️ Imprimir</button><button class="b gr" onclick="if(confirm('¿Borrar la bitácora?')){log=[];tr=0;renderLog()}">🗑️ Borrar</button></div>
-<textarea id="prev" readonly style="height:140px;font-family:monospace"></textarea></div></div>
-
-<div id="t-pro" class="tc"><div class="card"><div class="ct">💡 Protocolos (propuesta)</div>
-<div class="note warn"><b>Esto es una idea en construcción.</b> Todavía no hay protocolos cargados.</div>
-<p style="line-height:1.6">Se propone reunir aquí los <b>protocolos de movimientos</b>: los caminos o guías paso a paso para las acciones más comunes (por ejemplo, una cancelación o un voucher para cinco pasajeros) y también para las menos frecuentes, que casi nadie recuerda cómo hacer.</p>
-<p style="line-height:1.6">Un protocolo es una guía: una vez aprendida, el agente no necesita molestar tanto al runner. <b>La finalidad de esta sección es que Digital Customer Care sea autosuficiente</b>, y que el runner solo verifique que todo esté bien.</p>
-<p style="line-height:1.6">Si tienes protocolos que puedas compartir, con la autorización correspondiente, mándalos al <a href="https://wa.me/524464044521" target="_blank">📱 446 404 4521</a> para evaluarlos y agregarlos.</p></div></div>
-<div id="t-key" class="tc"><div class="card"><div class="ct">⌨️ Teclas de SkySpeed</div><div class="note warn">Referencia general: confírmala en SkySpeed o con tu coach antes de depender de ella.</div><input placeholder="Buscar tecla o función..." oninput="rK(this.value)" style="margin-bottom:8px"><div style="overflow-x:auto"><table id="kt"></table></div></div></div>
-<div id="t-sig" class="tc"><div class="card"><div class="ct">🔤 Siglas y códigos</div><div class="note warn">Referencia general: confirma los códigos con tu coach antes de usarlos en un caso.</div><input placeholder="Buscar sigla o significado..." oninput="rS(this.value)" style="margin-bottom:8px"><div id="sg"></div></div></div>
-
-<!-- RETRO ZONE -->
-<div id="t-games" class="tc">
-  <div class="game-header">
-    <div class="game-title">🕹️ RETRO ZONE</div>
-    <div style="color:#00ffcc;font-size:12px;">Presiona ESC para pausar/salir</div>
-  </div>
-  <div class="game-tabs">
-    <button class="g-tab on" onclick="loadGame('pong')">PONG</button>
-    <button class="g-tab" onclick="loadGame('breakout')">BREAKOUT</button>
-    <button class="g-tab" onclick="loadGame('tetris')">TETRIS</button>
-    <button class="g-tab" onclick="loadGame('invaders')">INVADERS</button>
-  </div>
-  <div class="game-area">
-    <div style="position:relative">
-      <canvas id="gameCanvas" width="400" height="400"></canvas>
-      <div id="gameOverlay" class="overlay-msg" style="display:none"></div>
+<!-- PESTAÑA RETRO ZONE ACTUALIZADA -->
+<div id="t-retro" class="tc">
+  <div class="card retro-container">
+    <div class="ct" style="color:#00f0ff;border-color:#ff007f">🕹️ RETRO ZONE - ARCADE CENTER</div>
+    <div class="retro-nav">
+      <button class="retro-btn active" onclick="switchGame('tetris',this)">🧩 Tetris Clásico</button>
+      <button class="retro-btn" onclick="switchGame('space',this)">👾 Space Invaders</button>
+      <button class="retro-btn" onclick="switchGame('pong',this)">🏓 Pong</button>
+      <button class="retro-btn" onclick="switchGame('breakout',this)">🧱 Breakout</button>
     </div>
-    <div class="game-info">
-      <div><span style="color:#888">SCORE</span> <span id="g-score">0</span></div>
-      <div><span style="color:#888">HIGH</span> <span id="g-high">0</span></div>
-      <button class="game-btn" id="g-start" onclick="startGame()">▶ INICIAR</button>
+    
+    <div class="game-viewport">
+      <canvas id="arcadeCanvas" width="400" height="400"></canvas>
     </div>
-    <div class="mobile-controls">
-      <div class="btn-dpad" ontouchstart="handleTouch('ArrowLeft', true)" ontouchend="handleTouch('ArrowLeft', false)">←</div>
-      <div style="display:flex;flex-direction:column;gap:5px">
-        <div class="btn-dpad" ontouchstart="handleTouch('ArrowUp', true)" ontouchend="handleTouch('ArrowUp', false)">↑</div>
-        <div class="btn-dpad" ontouchstart="handleTouch('ArrowDown', true)" ontouchend="handleTouch('ArrowDown', false)">↓</div>
+
+    <div class="arcade-controls">
+      <button class="b g" style="font-size:13px" onclick="startGame()">▶ INICIAR JUEGO</button>
+      
+      <!-- D-Pad Digital Táctil -->
+      <div class="dpad">
+        <button class="dbtn dbtn-up" onpointerdown="triggerInput('ArrowUp', event)">▲</button>
+        <button class="dbtn dbtn-left" onpointerdown="triggerInput('ArrowLeft', event)">◄</button>
+        <button class="dbtn dbtn-right" onpointerdown="triggerInput('ArrowRight', event)">►</button>
+        <button class="dbtn dbtn-down" onpointerdown="triggerInput('ArrowDown', event)" onpointerup="releaseInput('ArrowDown')" onpointerleave="releaseInput('ArrowDown')">▼</button>
       </div>
-      <div class="btn-dpad" ontouchstart="handleTouch('ArrowRight', true)" ontouchend="handleTouch('ArrowRight', false)">→</div>
-      <button class="btn-action" ontouchstart="handleTouch(' ', true)" ontouchend="handleTouch(' ', false)">🔴</button>
+
+      <div class="action-btn" onpointerdown="triggerInput('Space', event)">🔴</div>
+
+      <div class="audio-ctrl">
+        <button class="s" id="btnMute" onclick="toggleMute()">🔊 Audio: ON</button>
+        <input type="range" id="volSlider" min="0" max="1" step="0.05" value="0.3" oninput="setVolume(this.value)" style="width:65px">
+      </div>
     </div>
   </div>
 </div>
 
-<div class="audio-ctrl" id="audioPanel" style="display:none">
-  <button onclick="toggleMute()" id="btnMute">🔊</button>
-  <input type="range" id="volSlider" min="0" max="100" value="30" oninput="setVol(this.value)">
-</div>
-
-<div id="gnd"><div class="ly a3" id="g1"></div></div>
-<div class="ft"><div class="fb">Diseño Web</div>
-<div><b>DCC Toolbox v5.7</b> · Digital Customer Care · Desarrollado por <b>Juan Carlos Pérez Martínez</b> · Soporte técnico y mejoras: <a href="https://wa.me/524464044521" target="_blank">📱 446 404 4521</a></div>
-<h4>🔒 Tecnología y privacidad de la información</h4>
-<p>DCC Toolbox es una aplicación web de ejecución local (client-side). Todo su código, escrito en HTML, CSS y JavaScript, se ejecuta únicamente dentro del navegador del agente. La aplicación no cuenta con servidor propio, base de datos, cuentas de usuario, herramientas de analítica ni servicios en la nube, y no envía información de llamadas, pasajeros, reservaciones ni credenciales a ningún destino externo. Los datos que se capturan viven en la memoria temporal de la página: al cerrarla o recargarla desaparecen. Lo único que se recuerda en tu navegador es el tema de colores que elijas.</p>
-<p><b>Lectura de capturas (OCR).</b> Las imágenes que se pegan se procesan en el propio equipo con la librería Tesseract.js y no se suben a ningún servicio. Para funcionar, el navegador descarga el motor de lectura y sus datos de idioma desde una red pública de distribución de código (jsDelivr); esa descarga solo trae archivos hacia el equipo y no envía ninguna captura ni dato del cliente. Las capturas no se almacenan.</p>
-<p><b>Credenciales.</b> El usuario y la contraseña de SkySpeed y de Concentrix se mantienen únicamente en memoria, se ocultan con asteriscos, no se muestran en los avisos y se pueden borrar con el botón 🧹. El portapapeles se limpia automáticamente 30 segundos después de copiar una contraseña.</p>
-<p><b>Bitácora.</b> El registro del turno guarda nombres, correos y teléfonos enmascarados; el PNR se conserva para dar seguimiento. En los campos de texto libre solo se enmascaran correos y teléfonos, por lo que se recomienda no escribir nombres completos ni datos bancarios en ellos. La aplicación no solicita ni guarda datos de tarjetas.</p>
-<p><b>Alcance.</b> Por parte de la aplicación no existe ninguna vía de salida de información. La única fuga posible es la humana: cuando el propio agente copia un dato y lo pega en un bloc de notas, un correo o un mensaje. El manejo posterior de la información copiada es responsabilidad de quien la copia. La página se muestra dentro de Google Sites, cuyo alojamiento se rige por las políticas de Google y de la empresa.</p></div>
+<div class="ft"><div class="fb">DCC Toolbox v5.7</div>Desarrollado por <b>Juan Carlos Pérez Martínez</b>. Mapeo local client-side seguro sin backend.</div>
 <div id="toast"></div>
 
 <script>
 const $=id=>document.getElementById(id);
-const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let log=[],tr=0,caps=[],queue=[],busy=false,worker=null,cur='MXN',pct=25,lastPax='',clr;
 function toast(m){const t=$('toast');t.textContent=m;t.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>t.style.display='none',2200)}
-function cp(txt,label,secret){
- if(!txt){toast('Vacío: '+label);return}
- const ok=()=>{toast('Copiado: '+label+' ✔');if(secret){clearTimeout(clr);clr=setTimeout(()=>{try{navigator.clipboard.writeText(' ')}catch(e){}},30000)}};
- if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(txt).then(ok).catch(()=>fb(txt,ok));else fb(txt,ok)}
-function fb(t,ok){const a=document.createElement('textarea');a.value=t;a.style.cssText='position:fixed;left:-9999px';document.body.appendChild(a);a.select();let r=false;try{r=document.execCommand('copy')}catch(e){}a.remove();r?ok():toast('No se pudo copiar')}
-const mName=s=>(s||'').split(/\s+/).filter(Boolean).map(w=>w[0]+'***').join(' ');
-const mMail=s=>(s||'').replace(/([\w.+-])[\w.+-]*@([\w-])[\w.-]*(\.[a-z]{2,})/gi,'$1***@$2***$3');
-const mNum=s=>(s||'').replace(/\d{7,}/g,m=>'****'+m.slice(-4));
-const mText=s=>mNum(mMail(s));
-const TABS=[['msra','📞 Llamada y OCR'],['rop','📊 Calculadora'],['dir','📱 Directorio'],['spl','✂️ Split'],['esc','🚨 Escalamientos'],['bit','📓 Bitácora'],['pro','💡 Protocolos'],['key','⌨️ Teclas'],['sig','🔤 Siglas'],['games','🕹️ Retro Zone']];
+function cp(txt,l){if(!txt)return toast('Vacío');navigator.clipboard.writeText(txt).then(()=>toast('Copiado: '+l+' ✔')).catch(()=>toast('Error al copiar'))}
+
+const TABS=[['msra','📞 Llamada'],['rop','📊 Calculadora'],['dir','📱 Directorio'],['spl','✂️ Split'],['esc','🚨 Escalamientos'],['bit','📓 Bitácora'],['pro','💡 Protocolos'],['key','⌨️ Teclas'],['sig','🔤 Siglas'],['retro','🕹️ Retro Zone']];
 $('tabs').innerHTML=TABS.map((t,i)=>`<button class="tb${i?'':' on'}" onclick="tab('${t[0]}',this)">${t[1]}</button>`).join('');
-function tab(id,b){document.querySelectorAll('.tb,.tc').forEach(x=>x.classList.remove('on'));b.classList.add('on');$('t-'+id).classList.add('on');if(id=='esc')escGen();if(id=='games'){if(!currentGame)loadGame('pong');}else{stopAudio();}}
-const AGM={pnr:6,ape:10,nom:10,mail:18,tel:13,hv:10,vd:12,call:16};
-const HELP={pnr:'Clave de reservación de 6 letras. Pídesela al cliente para validar sus datos.',ape:'Los dos apellidos del titular, como están en la reservación.',nom:'Los nombres del titular. Cada campo tiene su botón para copiarlo en SkySpeed.',mail:'Correo de contacto de la reservación (FDS). Confírmalo con el cliente.',tel:'Teléfono de contacto de la reservación (FDS).',mot:'Lo que el cliente dice que pasó, en pocas palabras.',call:'Quién habla contigo si no es el titular (familiar, agencia…).',pax:'Apellidos y nombres de cada pasajero, como en la reservación. Usa + para agregar otro.',sta:'Estado del vuelo en SkySpeed (Shift+F7 para el historial).',act:'Qué hiciste: transferencia, cambio, voucher… Usa los botones rápidos.',res:'Política o solución que aplicaste.'};
-const fld=(id,l,ph,c,ta)=>`<div class="fg"><label>${l}</label>${HELP[id]?`<div class="help">${HELP[id]}</div>`:''}<div class="ib">${ta?`<textarea id="${id}" placeholder="${ph}"></textarea>`:`<input id="${id}" placeholder="${ph}"${AGM[id]?` class="ag" data-m="${AGM[id]}"`:""}>`}${c?`<button class="s" onclick="cp($('${id}').value,'${l}')">📋</button>`:''}</div></div>`;
-$('form').innerHTML='<input type="hidden" id="hold"><div class="row">'+fld('pnr','PNR','RGUCRW',1)+'<div class="fg" style="flex:0 0 auto;min-width:0"><label>&nbsp;</label><button class="b gr" onclick="nueva()">🔄 Nueva llamada</button></div></div><div class="row">'+fld('ape','🧾 Apellidos','Apellidos',1)+fld('nom','🧾 Nombres','Nombres',1)+fld('hv','🎟️ Voucher','Voucher',1)+'</div><div class="row">'+fld('mail','📧 Correo (FDS)','correo@dominio.com',1)+fld('tel','📱 Teléfono (FDS)','52…',1)+'</div><div class="row">'+fld('mot','📝 Comentario / motivo','¿Qué ocurrió?',1,1)+'</div><div class="row"><div class="fg"><button class="s" id="frb" style="align-self:flex-start">💬 Frases rápidas</button><div id="frp" style="display:none;margin-top:6px"></div></div></div><div class="row">'+fld('call','📞 Quien llama','Nombre o familiar',1)+'<div class="fg"><label>Rellenar con</label><div class="ib"><button class="s" onclick="callAs(0)">= Titular</button><button class="s" onclick="callAs(1)">= Pasajero</button></div></div></div><div class="row">'+pxBox()+'</div><div class="row">'+fld('vd','📅 Fecha de los vouchers','20 noviembre',1)+'</div><div id="qa"></div>';
-$('pnr').oninput=function(){this.value=this.value.toUpperCase()};
-document.addEventListener('input',e=>{const t=e.target;if(t.classList&&t.classList.contains('ag'))agw(t);if(t.dataset&&t.dataset.v!==undefined)vch[+t.dataset.v]=t.value;if(t.dataset&&t.dataset.px!==undefined){pxs[+t.dataset.px][t.dataset.f]=t.value;pxs.auto=false;pxSync()}if(t.id==='ape'||t.id==='nom')$('hold').value=($('nom').value+' '+$('ape').value).trim();
- if(t.tagName=='TEXTAREA'&&!t.readOnly){t.style.height='auto';t.style.height=t.scrollHeight+'px'}
- if(t.dataset&&t.dataset.i!==undefined){caps[+t.dataset.i].text=t.value;renderDat();autofill()}});
-document.addEventListener('click',e=>{const c=e.target.closest('.chip');if(c)cp(c.dataset.v,'Dato')});
-function saveAg(){try{sessionStorage.setItem('dcc_ag',$('ag').value)}catch(e){}}
-function saludo(){const n=$('ag').value||(lang=='en'?'[your name]':'[tu nombre]');$('sal').textContent=lang=='en'?'"Hello! Welcome to Volaris, this is '+n+' speaking. May I have your name and how can I help you today? Please share your booking reference (PNR) so I can verify your details..."':'"¡Hola! Bienvenido a Volaris, te atiende '+n+'. ¿Con quién tengo el gusto y en qué te puedo apoyar el día de hoy? Me compartes tu clave de reservación (PNR) para validar tus datos, por favor..."'}
-function genNota(){
- const v=id=>$(id).value.trim(),nm=(v('ape')+' '+v('nom')).trim(),d=v('vd'),L=[];
- if(v('mot'))L.push(v('mot'));
- if(v('hv'))L.push((nm+' '+v('hv')+' '+d).trim());
- pxs.forEach(p=>{if(p.v)L.push(((p.a+' '+p.n).trim()+' '+p.v+' '+d).trim())});
- L.push((v('ag')||'Agente')+' | DCC');
- $('out').value=L.join('\n');$('cc').textContent=$('out').value.length+' caracteres';
- const o=$('out');o.style.height='auto';o.style.height=o.scrollHeight+'px';
- toast('Comentario generado; se cuenta al apretar Nueva llamada')}
-const now=()=>new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
-function renderLog(){let k=0;const R=log.map(r=>Object.assign({},r,{n:r.m==='Escalamiento'?'—':++k}));
- $('c1').textContent=k;$('c3').textContent=k;$('c2').textContent=tr;
- $('lb').innerHTML=R.length?R.map(r=>`<tr><td><b>${r.n}</b></td><td>${esc(r.t)}</td><td><b>${esc(r.pnr)}</b></td><td>${esc(r.h)} / ${esc(r.c)}</td><td>${esc(r.e)}</td><td>${esc(r.p)}</td><td>${esc(r.m)}</td><td>${esc(r.a)}</td></tr>`).join(''):'<tr><td colspan="8" style="text-align:center;color:#94a3b8">Sin registros.</td></tr>';
- $('prev').value='BITÁCORA DEL TURNO - Agente: '+($('ag').value||'N/A')+'\n'+R.map(r=>`${r.n}. [${r.t}] PNR ${r.pnr} | ${r.h} / ${r.c} | ${r.e} | ${r.p} | ${r.m} | ${r.a}`).join('\n')}
-function saveLog(){try{sessionStorage.setItem('dcc_log',JSON.stringify({log,tr}));toast('Guardada en esta sesión')}catch(e){toast('El navegador bloqueó el guardado')}}
-function csv(){if(!log.length)return toast('Sin registros');
- const q=s=>'"'+(/^[=+\-@]/.test(s)?"'":'')+String(s).replace(/"/g,'""')+'"';
- const r=['Hora,PNR,Titular,Contacto,Email,Telefono,Motivo,Accion'].concat(log.map(x=>[x.t,x.pnr,x.h,x.c,x.e,x.p,x.m,x.a].map(q).join(',')));
- const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+r.join('\n')],{type:'text/csv;charset=utf-8'}));a.download='Bitacora_'+new Date().toISOString().slice(0,10)+'.csv';document.body.appendChild(a);a.click();a.remove()}
-function limpiar(){['pnr','mail','tel','hold','ape','nom','hv','vd','call','pax','mot','out','qout'].forEach(i=>{$(i).value='';$(i).style.height=''});caps.forEach(c=>URL.revokeObjectURL(c.url));caps=[];queue=[];lastPax='';transf='';pxs=[{a:'',n:''}];renderPx();renderCaps();$('ost').textContent='Win+Shift+S para capturar; luego Ctrl+V aquí.'}
-async function getW(){if(!worker){worker=await Tesseract.createWorker('spa+eng');try{await worker.setParameters({tessedit_pageseg_mode:'11'})}catch(e){}}return worker}
-function prep(blob){return new Promise((res,rej)=>{const img=new Image();img.onerror=rej;img.onload=()=>{
- const k=Math.min(3,Math.max(1,2200/img.width)),c=document.createElement('canvas');c.width=img.width*k;c.height=img.height*k;
- const x=c.getContext('2d');x.imageSmoothingQuality='high';x.drawImage(img,0,0,c.width,c.height);
- const d=x.getImageData(0,0,c.width,c.height),p=d.data;let sum=0;
- for(let i=0;i<p.length;i+=4)sum+=.3*p[i]+.59*p[i+1]+.11*p[i+2];
- const inv=sum/(p.length/4)<110;
- for(let i=0;i<p.length;i+=4){let g=.3*p[i]+.59*p[i+1]+.11*p[i+2];if(inv)g=255-g;g=g<140?Math.max(0,g-40):Math.min(255,g+60);p[i]=p[i+1]=p[i+2]=g}
- x.putImageData(d,0,0);res(c)};img.src=URL.createObjectURL(blob)})}
-function addCap(b){const c={blob:b,url:URL.createObjectURL(b),text:'',st:'⏳'};caps.push(c);queue.push(c);renderCaps();run()}
-async function run(){if(busy)return;busy=true;
- while(queue.length){const c=queue.shift();if(!caps.includes(c))continue;
-  $('ost').textContent='⏳ Leyendo capturas localmente… quedan '+(queue.length+1);
-  try{const w=await getW(),r=await w.recognize(await prep(c.blob));c.text=r.data.text;c.st='✅'}
-  catch(e){c.st='❌';$('ost').textContent='❌ No se pudo leer. Revisa que cdn.jsdelivr.net esté permitido o escribe los datos a mano.'}
-  renderCaps();autofill()}
- busy=false;if(!caps.some(c=>c.st=='❌'))$('ost').textContent='✅ Listo: '+caps.length+' captura(s). Corrige el texto si algo salió mal.'}
-function delCap(i){URL.revokeObjectURL(caps[i].url);caps.splice(i,1);renderCaps()}
-function renderCaps(){
- $('caps').innerHTML=caps.map((c,i)=>`<div class="cap"><img src="${c.url}"><div style="flex:1"><div style="font-size:10px;font-weight:700">Captura ${i+1} ${c.st}</div><textarea data-i="${i}" placeholder="Texto leído (editable)">${esc(c.text)}</textarea></div><div><button class="s" onclick="cp(caps[${i}].text,'Texto')">📋</button><br><button class="s" style="margin-top:4px" onclick="this.closest('.cap').querySelector('textarea').select()">Sel. todo</button><br><button class="s gr" style="margin-top:4px" onclick="delCap(${i})">✖</button></div></div>`).join('');document.querySelectorAll('.cap textarea').forEach(a=>{a.style.height='auto';a.style.height=a.scrollHeight+'px'});renderDat()}
-function ext(t){
- t=t.replace(/\s*@\s*/g,'@').replace(/(\w)\s+\.\s*(com|mx|net|org)/gi,'$1.$2');
- const u=a=>[...new Set(a)],m=r=>t.match(r)||[],L='A-ZÁÉÍÓÚÑ';
- return{mail:u(m(/[\w.+-]+@[\w-]+(\.[\w-]+)+/g)),
-  tel:u(m(/\+?\d[\d\s-]{8,15}\d/g).map(s=>s.replace(/[\s-]/g,'')).filter(s=>s.length>=10&&s.length<=13)),
-  pnr:u(m(/\b[A-Z0-9]{6}\b/g).filter(s=>/[A-Z]/.test(s))),
-  cod:u(m(/\b[A-Z0-9]{8,20}\b/g).filter(s=>/\d/.test(s)&&/[A-Z]/.test(s))),
-  pax:u(m(new RegExp(`[${L}]{2,}(?: [${L}]{2,})*\\/[${L}]{2,}(?: [${L}]{2,})*`,'g')))}}
-function renderDat(){
- const d=ext(caps.map(c=>c.text).join('\n')),L={mail:'📧 Correos',tel:'📱 Teléfonos',pnr:'🔑 Posibles PNR',cod:'🎟️ Códigos / vouchers',pax:'👥 Pasajeros'};
- $('dat').innerHTML=caps.length?'<div class="note"><b>Datos detectados</b> (clic en uno para copiarlo)'+Object.keys(L).map(k=>d[k].length?`<div style="margin-top:6px"><b>${L[k]}:</b> `+d[k].map(x=>`<span class="chip" data-v="${esc(x)}">${esc(x)}</span>`).join('')+'</div>':'').join('')+'</div>':''}
-function autofill(){
- const d=ext(caps.map(c=>c.text).join('\n')),set=(id,v)=>{if(v&&!$(id).value){$(id).value=v;agAll()}};
- set('pnr',d.pnr[0]);set('mail',d.mail[0]);set('tel',d.tel[0]);
- const TT=x=>(x||'').toLowerCase().replace(/(^|\s)\S/g,c=>c.toUpperCase());if(d.pax.length&&(!pxs.some(p=>p.a||p.n)||pxs.auto)){pxs=d.pax.map(x=>{const[a,n]=x.split('/');return{a:TT(a),n:TT(n)}});pxs.auto=true;renderPx()}
- if(d.pax[0]){const[a,n]=d.pax[0].split('/'),T=x=>(x||'').toLowerCase().replace(/(^|\s)\S/g,c=>c.toUpperCase());set('ape',T(a));set('nom',T(n));if(!$('hold').value)$('hold').value=T(n)+' '+T(a)}}
-document.addEventListener('paste',e=>{const it=[...((e.clipboardData||{}).items||[])].filter(i=>i.type.startsWith('image/'));if(!it.length)return;e.preventDefault();it.forEach(i=>addCap(i.getAsFile()))});
-document.addEventListener('dragover',e=>e.preventDefault());
-document.addEventListener('drop',e=>{e.preventDefault();[...e.dataTransfer.files].filter(f=>f.type.startsWith('image/')).forEach(addCap)});
-$('fi').onchange=e=>{[...e.target.files].forEach(addCap);e.target.value=''};
-const DEF={};let TPL=DEF;try{TPL=Object.assign({},DEF,JSON.parse(localStorage.getItem('dcc_tpl')||'{}'))}catch(e){}
-function tOpts(sel){$('tsel').innerHTML=Object.keys(TPL).map(k=>`<option>${esc(k)}</option>`).join('');if(sel)$('tsel').value=sel;tSel()}
-function tSel(){$('ttxt').value=TPL[$('tsel').value];$('tnm').value=$('tsel').value;escGen()}
-function tSave(){const n=$('tnm').value.trim();if(!n)return toast('Escribe un nombre');TPL[n]=$('ttxt').value;try{localStorage.setItem('dcc_tpl',JSON.stringify(TPL))}catch(e){toast('Guardada solo mientras esta página esté abierta')}tOpts(n);toast('Plantilla guardada')}
-function fill(t){const v=id=>$(id).value.trim(),px=v('pax').split('\n').filter(Boolean),M={PNR:v('pnr').toUpperCase(),TIT:v('hold'),N:px.length||'?',PAX:px.join(', '),MOT:v('mot'),AG:v('ag')||'Agente',MAIL:v('mail'),TEL:v('tel'),APE:v('ape'),NOM:v('nom')};return t.replace(/\{(\w+)\}/g,(m,k)=>M[k]!==undefined?M[k]:m)}
-function quick(k){const q=$('qout');q.value=fill(TPL[k]||'');q.style.height='auto';q.style.height=q.scrollHeight+'px';const e=$('etip');e.style.display=TIPS[k]?'block':'none';e.textContent=TIPS[k]?'🔹 '+TIPS[k]:''}
-function escGen(){$('eout').value=fill($('ttxt').value);$('ttxt').style.height='auto';$('ttxt').style.height=$('ttxt').scrollHeight+'px'}
-function escLog(){log.push({t:now(),pnr:$('pnr').value.trim()||'N/A',h:'—',c:'—',e:'—',p:'—',m:'Escalamiento',a:$('tsel').value});renderLog();toast('Registrado sin datos personales')}
-const PR=[[10,'10% Demora','Demora de 2 a 4 h (CCCPMX/CCCPUS).'],[25,'25% OS','Sobreventa con MOVE en MX/CAM/SAM. Tope $6,000 MXN / $600 USD por PAX.'],[30,'30% IROP','Cancelación o demora ≥ 4 h.'],[100,'100% Crisis ATO','Cierres de ATO o emergencias no imputables.'],[125,'125% OS voluntaria','Voucher voluntario por sobreventa.'],[130,'130% USA/DOT','ADOTMX/ADOTUS, vigencia 5 años.'],[200,'200% DOT 1-4h','Sobreventa DOT con retraso de 1 a 4 h (máx $1,075 USD).'],[400,'400% DOT >4h','Sobreventa DOT con retraso > 4 h (máx $2,150 USD).']];
-$('pres').innerHTML=PR.map(p=>`<button class="pre" data-p="${p[0]}" onclick="setP(${p[0]})">${p[1]}</button>`).join('');
-function setP(p){pct=p;$('rg').value=p;$('pl').textContent=p+'%';document.querySelectorAll('.pre').forEach(b=>b.classList.toggle('on',+b.dataset.p===p));const x=PR.find(a=>a[0]===p);$('ph').innerHTML=x?`<b>${x[1]}:</b> ${x[2]}`:'<b>Personalizado:</b> porcentaje sobre la tarifa base.';rop()}
-let dvTouched=false,rv={};
-function paxCh(){if(!dvTouched)$('dv').value=+$('rp').value||1;rop()}
-function dvStep(n){dvTouched=true;$('dv').value=Math.max(1,(+$('dv').value||1)+n);rop()}
-const CAPS={25:{MXN:6000,USD:600},200:{USD:1075},400:{USD:2150}};
-function rop(){const n=+$('rp').value||1,b=+$('rb').value||0,d=Math.max(1,+$('dv').value||1),tv=b*pct/100,ind=b/n,per=tv/d,f=x=>'$'+x.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+' '+cur;
- rv={ind:ind.toFixed(2),tot:tv.toFixed(2),per:per.toFixed(2),sum:(b+tv).toFixed(2)};
- $('r1').textContent=pct===130?(cur=='USD'?'ADOTUS':'ADOTMX')+' (5 años)':(cur=='USD'?'CCCPUS':'CCCPMX')+' (180 días)';
- $('r2').textContent=f(ind);$('r3').textContent=pct+'%';$('r4').textContent=f(tv);$('r6').textContent=f(per);$('r7').textContent=f(b+tv);
- const cap=(CAPS[pct]||{})[cur],w=$('cap');
- if(cap&&per>cap){w.style.display='block';w.textContent='⚠️ Ojo: el voucher por pasajero ('+f(per)+') pasa el tope de $'+cap.toLocaleString('en-US')+' '+cur+'. Confirma la política antes de ofrecerlo.'}else w.style.display='none';agAll()}
-const DIR=[['⭐ Ventas Español','7004763'],['Protex Español (IROP)','7004767'],['Grupos Español','7004756'],['Asistencia Supervisor Ventas','7004757'],['Asistencia Supervisor Protex','7004764'],['Ventas Inglés','7004777'],['Protex Inglés','7004781'],['Invex Volaris (Monedero)','01 55 4000 6566'],['WhatsApp Oficial Volaris','+52 55 6114 5083']];
-function dirR(q){q=(q||'').toLowerCase();$('dt').innerHTML=dirList().filter(r=>(r[0]+r[1]).toLowerCase().includes(q)).map(r=>`<tr${(lang==='en'?/Ventas Inglés/:/Ventas Español/).test(r[0])?' class="hl"':''}><td>${esc(r[0])}</td><td><b>${esc(r[1])}</b></td><td><button class="s" onclick="cp('${r[1]}','Extensión')">📋</button></td></tr>`).join('')}
-function spl(){const t=+$('s1').value||0,n=+$('s2').value||1,s=+$('s3').value||1,u=t/n,f=x=>'$'+x.toFixed(2)+' MXN';$('q1').textContent=f(u);$('q2').textContent=f(u*s);$('q3').textContent=f(t-u*s);$('q4').textContent=Math.max(0,n-s)}
-function dark(){const d=document.body.classList.toggle('dark');rst();$('sb').value=d?13:97;$('sf').value=d?20:100;$('st').value=d?90:15}
-function tono(){const t=$('pnl');t.style.display='block';clearTimeout(tono.t);tono.t=setTimeout(()=>t.style.display='none',12000)}
-function ajustes(){const t=$('pnl');if(t.style.display==='block'){t.style.display='none';return}tono()}
-function setFld(v){const b=document.body.style;b.setProperty('--f','hsl(240,8%,'+v+'%)');b.setProperty('--ft',v>55?'#111827':'var(--t)')}
-function setTxt(v){document.body.style.setProperty('--t','hsl(0,0%,'+v+'%)')}
-function setSize(v){document.body.style.zoom=v/100;$('szv').textContent=v+'%'}
-function sz(d){const r=$('szr'),v=Math.min(180,Math.max(90,+r.value+d));r.value=v;setSize(v)}
-function setTone(v){const b=document.body.style;b.setProperty('--b','hsl(240,9%,'+v+'%)');b.setProperty('--c','hsl(240,8%,'+(+v+4)+'%)');b.setProperty('--bd','hsl(240,8%,'+Math.min(85,+v+32)+'%)')}
+function tab(id,b){
+  document.querySelectorAll('.tb,.tc').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');$('t-'+id).classList.add('on');
+  if(id!=='retro'){ stopMusic(); stopGameLoop(); }
+}
+
+function dark(){document.body.classList.toggle('dark')}
+function sz(d){document.body.style.zoom=(parseFloat(document.body.style.zoom||1)+d/100)}
+function setMode(m){document.body.classList.toggle('cop',!!m)}
+function saveAg(){sessionStorage.setItem('ag',$('ag').value)}
+function saludo(){$('sal').textContent='"¡Hola! Te atiende ' + ($('ag').value||'[Nombre]') + ' de Volaris. ¿Con quién tengo el gusto y en qué te apoyo?"'}
 function clrC(a,b){$(a).value=$(b).value='';toast('Credenciales borradas')}
-document.addEventListener('click',e=>{const q=e.target.closest('.qb');if(q)quick(q.dataset.k)});
-$('qcp').onclick=()=>cp($('qout').value,'Escalamiento');
-function stp(id,d){const e=$(id);e.value=Math.max(+e.min||0,(+e.value||0)+d);e.dispatchEvent(new Event('input',{bubbles:true}))}
-document.addEventListener('click',e=>{const a=e.target.closest('.ta');if(a){cp(a.dataset.n,'Extensión');transf=a.dataset.t}});
-function setMode(m){document.body.classList.toggle('cop',!!m);$('mP').classList.toggle('on',!m);$('mC').classList.toggle('on',!!m);try{sessionStorage.setItem('dcc_m',m)}catch(e){}}
-let pxs=[{a:'',n:''}];
-function pxBox(){return `<div class="fg"><label>👥 Pasajeros</label><div class="help">${HELP.pax}</div><div id="pxr"></div><div class="ib"><button class="s" onclick="addPx()">+ Adherir pasajero</button><button class="s" onclick="cp(pxs.filter(p=>p.a||p.n).map(p=>p.a+' '+p.n+(p.v?' - '+p.v:'')).join('\\n'),'Pasajeros')">📋 Copiar todos</button></div><textarea id="pax" style="display:none"></textarea></div>`}
-function pxSync(){$('pax').value=pxs.filter(p=>p.a||p.n).map(p=>(p.a+'/'+p.n).toUpperCase()).join('\n')}
-function renderPx(){$('pxr').innerHTML=pxs.map((p,i)=>`<div class="ib" style="margin-bottom:4px"><input class="ag" data-m="10" data-px="${i}" data-f="a" value="${esc(p.a)}" placeholder="Apellidos"><button class="s" onclick="cp(pxs[${i}].a,'Apellidos')">📋</button><input class="ag" data-m="10" data-px="${i}" data-f="n" value="${esc(p.n)}" placeholder="Nombres"><button class="s" onclick="cp(pxs[${i}].n,'Nombres')">📋</button>${(p.v||p.sv)?`<input class="ag" data-m="10" data-px="${i}" data-f="v" value="${esc(p.v||'')}" placeholder="Voucher"><button class="s" onclick="cp(pxs[${i}].v,'Voucher')">📋</button>`:`<button class="s" onclick="togV(${i})">🎟️ Voucher</button>`}<button class="s gr" onclick="delPx(${i})">${p.cf?"¿Seguro?":"✖"}</button></div>`).join('');pxSync();agAll()}
-function addPx(){pxs.push({a:'',n:''});renderPx()}
-function delPx(i){const p=pxs[i];if((p.a||p.n||p.v)&&!p.cf){p.cf=1;renderPx();setTimeout(()=>{if(pxs[i]===p){p.cf=0;renderPx()}},3000);return}pxs.splice(i,1);if(!pxs.length)pxs=[{a:'',n:''}];renderPx()}
-function callAs(k){$('call').value=k?((pxs[0].n+' '+pxs[0].a).trim()):$('hold').value}
-document.addEventListener('dblclick',e=>{const t=e.target;if(t.classList&&t.classList.contains('ag'))agw(t);if(t.dataset&&t.dataset.v!==undefined)vch[+t.dataset.v]=t.value;if((t.tagName=='INPUT'&&/^(text|email)$/.test(t.type)||t.tagName=='TEXTAREA')&&t.value&&!t.closest('.cap')&&!t.dataset.px)cp(t.value,'Texto')});
-let lang='es',vch=[''];
-function agw(t){t.style.width=(Math.max(+t.dataset.m||10,t.value.length)+6)+'ch'}
-function agAll(){document.querySelectorAll('input.ag').forEach(agw)}
-function dirList(){return lang==='en'?DIR.slice().sort((a,b)=>/Inglés/.test(b[0])-/Inglés/.test(a[0])):DIR}
-function qa(){const E=[['Ventas Inglés','7004777'],['Protex Inglés','7004781']],S=[['Ventas Español','7004763'],['Protex Español','7004767'],['Sup. Protex','7004764']],L=lang=='en'?E.concat(S):S;
- $('qa').innerHTML='<div class="fg" style="margin:6px 0 22px"><label>⚡ Transferir (copia solo el número)</label><div class="ib" style="flex-wrap:wrap">'+L.map((x,i)=>`<button class="s ta${i?'':' aura'}" data-n="${x[1]}" data-t="${x[0]}">${x[0]} ${x[1]}</button>`).join('')+'</div></div>'}
-function openV(){renderV();$('vm').style.display='block'}
-function renderV(){$('vl').innerHTML=vch.map((v,i)=>`<div class="ib" style="margin-bottom:4px"><input class="ag" data-m="12" data-v="${i}" value="${esc(v)}" placeholder="Número de voucher"><button class="s" onclick="cp(vch[${i}],'Voucher')">📋</button><button class="s gr" onclick="delV(${i})">✖</button></div>`).join('');agAll()}
-function addV(){vch.push('');renderV()}
-function delV(i){vch.splice(i,1);if(!vch.length)vch=[''];renderV()}
-function togV(i){pxs[i].sv=1;renderPx()}
-function lum(h){const c=[1,3,5].map(i=>{const v=parseInt(h.substr(i,2),16)/255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*c[0]+.7152*c[1]+.0722*c[2]}
-function ratio(a,b){const x=lum(a),y=lum(b);return(Math.max(x,y)+.05)/(Math.min(x,y)+.05)}
-function setCol(){const a=$('pc1').value,p=$('pc3').value;let t=$('pc2').value;
- if(Math.min(ratio(a,t),ratio(p,t))<4.5){const w='#ffffff',k='#111111';t=Math.min(ratio(a,w),ratio(p,w))>=Math.min(ratio(a,k),ratio(p,k))?w:k;$('pc2').value=t;toast('Cambié el color del texto para que se lea')}
- const b=document.body.style;['--cb','--fb','--c','--f'].forEach(k=>b.setProperty(k,a));['--pb','--b'].forEach(k=>b.setProperty(k,p));['--tc','--fc','--t','--ft'].forEach(k=>b.setProperty(k,t))}
-function rst(){['--cb','--fb','--c','--f','--pb','--b','--tc','--fc','--t','--ft','--bd','--ac','--ac2','--hd'].forEach(k=>document.body.style.removeProperty(k));$('pc1').value='#ffffff';$('pc2').value='#1e293b';$('pc3').value='#f8f9fa';try{localStorage.removeItem('dcc_th')}catch(e){}}
-const EN=[['Llamada y OCR','Call & OCR'],['Calculadora','Calculator'],['Directorio','Directory'],['Escalamientos','Escalations'],['Bitácora','Log'],['Protocolos','Protocols'],['Apellidos','Last name'],['Nombres','First name'],['Correo (FDS)','Email (FDS)'],['Teléfono (FDS)','Phone (FDS)'],['Correo','Email'],['Motivo','Reason'],['Quien llama','Caller'],['Pasajeros','Passengers'],['Status del vuelo','Flight status'],['Acción / extensión','Action / extension'],['Acciones rápidas (copian la extensión)','Quick actions (copy the extension)'],['Rellenar con','Fill with'],['= Titular','= Holder'],['= Pasajero','= Passenger'],['+ Adherir pasajero','+ Add passenger'],['Copiar todos','Copy all'],['Copiar todo el texto','Copy all text'],['Sel. todo','Select all'],['Añadir voucher','Add voucher'],['+ Otro voucher','+ Another voucher'],['Cerrar','Close'],['Número de voucher','Voucher number'],['Generar nota M-S-R-A y registrar','Generate note & log'],['Nueva llamada','New call'],['Copiar nota','Copy note'],['Copiar escalamiento','Copy escalation'],['Comentario para SkySpeed (datos reales, no se guardan)','SkySpeed note (real data, not saved)'],['Llamadas hoy','Calls today'],['Transferencias a ventas','Sales transfers'],['Clientes atendidos hoy','Customers served today'],['Titular / Contacto','Holder / Contact'],['Hora','Time'],['Acción','Action'],['Guardar en sesión','Save to session'],['Imprimir','Print'],['Borrar','Delete'],['Sin registros.','No records.'],['Monto total del boleto','Total ticket amount'],['Moneda','Currency'],['Código de voucher','Voucher code'],['Costo por pasajero (monto ÷ pasajeros)','Cost per passenger (amount ÷ passengers)'],['Voucher total','Total voucher'],['del monto','of the amount'],['Dividir este voucher entre:','Split this voucher by:'],['Voucher por pasajero','Voucher per passenger'],['Costo de boleto + voucher','Ticket cost + voucher'],['Porcentaje','Percentage'],['Buscar departamento o extensión...','Search department or extension...'],['Oscuro','Dark'],['Ajustes','Settings'],['Piloto','Pilot'],['Copiloto','Copilot'],['Tamaño de letra','Font size'],['Cuadros de escritura','Writing boxes'],['Fondo (tono)','Background (tone)'],['Color de fondo','Background color'],['Color de tarjetas y cuadros (el blanco)','Card and box color (the white)'],['Color del texto','Text color'],['Restablecer colores','Reset colors'],['Pega capturas de SkySpeed con Ctrl+V (todas las que quieras), arrástralas o','Paste SkySpeed screenshots with Ctrl+V (as many as you want), drag them or'],['elige archivos','choose files'],['Datos detectados','Detected data'],['(clic en uno para copiarlo)','(click one to copy it)'],['Correos','Emails'],['Teléfonos','Phones'],['Posibles PNR','Possible PNRs'],['Códigos / vouchers','Codes / vouchers'],['Texto leído (editable)','Text read (editable)'],['Ventas Español','Sales Spanish'],['Ventas Inglés','Sales English'],['Protex Español','Protex Spanish'],['Protex Inglés','Protex English'],['Grupos Español','Groups Spanish'],['Asistencia Supervisor Ventas','Sales Supervisor Assistance'],['Asistencia Supervisor Protex','Protex Supervisor Assistance'],['Sup. Protex','Protex Sup.'],['Invex Volaris (Monedero)','Invex Volaris (Wallet)'],['WhatsApp Oficial Volaris','Volaris Official WhatsApp'],['Soporte técnico y mejoras','Technical support and improvements'],['Desarrollado por','Developed by'],['Tu nombre completo (firma tus notas)','Your full name (signs your notes)'],['Usuario','User'],['Contraseña','Password'],['Agente:','Agent:'],['Copiar saludo','Copy greeting'],['Frases rápidas','Quick phrases'],['Fecha de los vouchers','Voucher date'],['Transferir (copia solo el número)','Transfer (copies the number only)'],['Comentario / motivo','Comment / reason'],['Comentario para SkySpeed (datos reales, no se guardan)','SkySpeed comment (real data, not saved)'],['Temas','Themes'],['Predeterminado','Default'],['Fondo fondo','']].sort((a,b)=>b[0].length-a[0].length);
-function trS(t){let r=t;for(const[e,n]of EN)r=r.split(e).join(n);return r}
-function trN(n){if(n.nodeType===3){if(n._o===undefined)n._o=n.nodeValue;const v=lang=='en'?trS(n._o):n._o;if(n.nodeValue!==v)n.nodeValue=v}else if(n.nodeType===1){if(n.hasAttribute('placeholder')){if(n._p===undefined)n._p=n.getAttribute('placeholder');n.setAttribute('placeholder',lang=='en'?trS(n._p):n._p)}if(n.tagName!='SCRIPT'&&n.tagName!='STYLE')n.childNodes.forEach(trN)}}
-function setLang(){lang=lang=='es'?'en':'es';document.body.classList.toggle('en',lang=='en');trN(document.body);saludo();qa();dirR();agAll()}
-new MutationObserver(m=>{if(lang=='en')m.forEach(r=>r.addedNodes.forEach(trN))}).observe(document.body,{childList:true,subtree:true});
-let transf='';
-const TIPS={};
-const ESC=[['Check Out','PNR|Motivo|Ruta del retiro|Indicar si es para un cte (su nombre) o para TODOS',''],
-['Beneficios Invex','PNR|Tipo de Invex|Check in: SI cuenta o NO con el check in','INV0 es autogestión; no aplica con reservas pagadas con VO ni vuelos con código compartido. Dile al cliente que lo verá reflejado en el transcurso del día.'],
-['Call Back','Nombre del cliente|Correo electrónico de la membresía|Tipo de membresía|Números de teléfono (hasta 2)|Enlace de la conversación','Solo para VPASS o PASE ANUAL por cambio de método de pago. Dile al cliente que nos comunicamos en 24 a 72 horas.'],
-['Comprobante de reembolso','Nombre del cliente|PNR|Ticket|Método de pago|Moneda utilizada|Fecha de aplicación del reembolso','Dile al cliente que nos comunicamos en 24 a 72 horas.'],
-['Ticket de reembolso pendiente','PNR|Correo electrónico|Nombre completo|Ticket de Salesforce|Fecha en la que se inició el reembolso','Aplica cuando superó 7 a 21 días hábiles. Dile al cliente que se le dará prioridad.'],
-['Caso Profeco','PNR|Correo electrónico|Nombre completo|Motivo|Enlace conversación|Ticket de caso','Si no hay ticket, genera uno para seguimiento.'],
-['Pago duplicado','PNR|Correo electrónico|Nombre completo|Monto',''],
-['Black List / Hotcard','Opción (indicar cuál de las 2)|PNR','Dile al cliente que intente pagar en el transcurso del día; si el problema sigue, que se comunique de nuevo.'],
-['IROP','PNR|Núm. de vuelo original (anterior)|Fecha / Ruta / Horario|Persona titular que viaja|Motivo|Vuelo solicitado (Fecha / Ruta / Horario)','Dile al cliente que nos comunicamos en 24 a 72 horas.'],
-['Asignación de asientos','PNR|Ruta|Nombre persona 1 - asiento|Nombre persona 2 - asiento','Los asientos con costo deben estar adquiridos y retirados por Sistema o ATO.'],
-['Validación pago a terceros','PNR|Imagen VISIBLE del comprobante','Verifica que el número de referencia coincida con SkySpeed. Espera de 72 horas mínimo.'],
-['Validar seguidores / Casos alerta','Motivo (VALIDAR SEGUIDORES / VALIDAR POSIBLE CASO ALERTA)|Red Social|Número de mensajería|Usuario|Link|Captura del último mensaje',''],
-['Solicitud de Loyalty','Motivo y tipo de membresía (COBRO DE VPASS / CANCELACION VCLUB / NO PUEDE INGRESAR A SU CUENTA)|Correo de la membresía|Nombre del titular de la membresía|Fecha de Nacimiento|Evidencia del cte (capturas)|¿1ra vez que se comunica?','Valida en SKY (CTRL-F5) que el correo sea correcto en WEB USER ID y tenga membresía.'],
-['Posible error de agente','PNR|Correo electrónico|Nombre completo|Motivo|Enlace conversación|Número de teléfono (hasta 2)','Se manda por privado a SUP/RUNNER en turno. Dile al cliente que nos comunicamos con él.'],
-['Equipaje: demora / switch / pérdida','PNR|PIR|Bagtag (núm. etiqueta)|Nombre del cliente|Info de contacto del cte','Valida info en WT. Si el reporte se acaba de levantar, dile al cliente que se comunique en 4 días.'],
-['Equipaje: daño / saqueo','PNR|PIR|Bagtag (núm. etiqueta)|Fotos del daño / artículos saqueados','Brinda alternativas de la caja de XQ.'],
-['Objeto perdido / olvidado','Artículo perdido|Fecha de vuelo / Ruta / Núm. vuelo|PIR|Asiento|Foto del artículo','']];
-const PHS=[[/^PNR/,'{PNR}'],[/^Correo/,'{MAIL}'],[/^(Nombre completo|Nombre del cliente|Nombre del titular|Persona titular)/,'{TIT}'],[/^(Número de teléfono|Números de teléfono|Info de contacto)/,'{TEL}'],[/^Motivo$/,'{MOT}']];
-ESC.forEach(([t,f,tip])=>{DEF[t]=t.toUpperCase()+'\n'+f.split('|').map(l=>{const m=PHS.find(x=>x[0].test(l));return l+': '+(m?m[1]:'')}).join('\n');TIPS[t]=tip});
-try{TPL=Object.assign({},DEF,JSON.parse(localStorage.getItem('dcc_tpl')||'{}'))}catch(e){TPL=DEF}
-$('eb').innerHTML=ESC.map(x=>`<button class="s qb" data-k="${esc(x[0])}">${esc(x[0])}</button>`).join('');
-$('eb2').innerHTML=ESC.map(x=>`<button class="s qt" data-k="${esc(x[0])}">${esc(x[0])}</button>`).join('');
-document.addEventListener('click',e=>{const q=e.target.closest('.qt');if(q){$('tsel').value=q.dataset.k;tSel()}});
-const FR=[['Cambio de nombre','se comunica para modificar un dato en su nombre'],['Info de vuelo','se comunica para solicitar información de su vuelo'],['Cambio de itinerario','se comunica para solicitar un cambio de itinerario'],['Reembolso','se comunica para solicitar un reembolso'],['Demora / cancelación','se comunica por la demora o cancelación de su vuelo'],['Equipaje','se comunica para consultar información de su equipaje'],['Asistencia especial','se comunica para solicitar asistencia especial']];
-$('frp').innerHTML=FR.map((x,i)=>`<button class="s fr" data-i="${i}">${x[0]}</button>`).join(' ')+' <button class="s gr" id="frx">Cerrar</button>';
-$('frb').onclick=()=>{const p=$('frp');p.style.display=p.style.display=='none'?'block':'none'};
-$('frx').onclick=()=>{$('frp').style.display='none'};
-document.addEventListener('click',e=>{const f=e.target.closest('.fr');if(!f)return;const m=$('mot'),h=$('hold').value.trim(),t='Cliente '+(h?h+' ':'')+FR[+f.dataset.i][1]+' ';m.value=m.value?m.value+'\n'+t:t;m.dispatchEvent(new Event('input',{bubbles:true}));$('frp').style.display='none';m.focus()});
-const SC={hills:['linear-gradient(#5c94fc,#cfe9ff)','radial-gradient(90px 50px at 45px 100%,#43a047 98%,transparent)0 100%/180px 100% repeat-x','repeating-linear-gradient(90deg,#c0662a 0 28px,#8c4311 28px 30px),#b5651d'],
-synth:['linear-gradient(#14062f,#6e1978)','linear-gradient(rgba(255,60,200,.7)1px,transparent 1px)0 0/100% 16px,linear-gradient(90deg,rgba(255,60,200,.7)1px,transparent 1px)0 0/30px 100%','linear-gradient(#00f0ff,#ff3cc8)'],
-space:['linear-gradient(#050816,#1a1040)','radial-gradient(2px 2px at 20px 30px,#fff,transparent),radial-gradient(1.5px 1.5px at 90px 70px,#fff,transparent),radial-gradient(2px 2px at 150px 20px,#fff,transparent)0 0/180px 100% repeat-x','linear-gradient(#7b4bd6,#2a1470)'],
-sky:['linear-gradient(#5db4f8,#eaf7ff)','radial-gradient(40px 16px at 40px 30px,#fff 98%,transparent),radial-gradient(54px 20px at 150px 60px,#fff 98%,transparent)0 0/240px 100% repeat-x','repeating-linear-gradient(90deg,#fff 0 40px,transparent 40px 80px),#555'],
-sea:['linear-gradient(#7fd3ff,#e9fbff)','radial-gradient(50px 20px at 50px 100%,#1976d2 98%,transparent)0 100%/100px 60% repeat-x','radial-gradient(40px 14px at 40px 100%,#0d47a1 98%,transparent)0 100%/80px 100%,#0d47a1'],
-soccer:['linear-gradient(#0b1f3a,#1d3f72)','radial-gradient(5px 5px at 10px 14px,#ffd54f,transparent)0 0/30px 40px,repeating-linear-gradient(90deg,#17325c 0 6px,#264b86 6px 12px)','repeating-linear-gradient(90deg,#2e7d32 0 50px,#388e3c 50px 100px)'],
-hoops:['linear-gradient(#2a1608,#7a3d12)','repeating-linear-gradient(90deg,#3b1f0c 0 20px,#4a2810 20px 40px)','repeating-linear-gradient(90deg,#d9a35b 0 38px,#c58f45 38px 40px)'],
-base:['linear-gradient(#7ec8ff,#e0f4ff)','repeating-linear-gradient(90deg,#2e7d32 0 40px,#256528 40px 42px)','radial-gradient(circle at 50% 0,#a1662f,#7d4c1f)'],
-track:['linear-gradient(#2a0d12,#d4003a 130%)','linear-gradient(90deg,#111 0 40px,transparent 40px 90px)','repeating-linear-gradient(90deg,#fff 0 30px,#333 30px 70px)'],
-city:['linear-gradient(#1b2a5a,#6a82c8)','repeating-linear-gradient(90deg,#10183a 0 28px,#1a2550 28px 46px,#0d1330 46px 80px)','#222'],
-forest:['linear-gradient(#364229,#6b7d45)','radial-gradient(30px 60px at 30px 100%,#2b3a1c 98%,transparent)0 100%/60px 100% repeat-x','#2a2f1c'],
-pastel:['linear-gradient(#ffd9ec,#d9f0ff)','radial-gradient(14px 14px at 20px 30px,#fff 98%,transparent)0 0/80px 60px','linear-gradient(90deg,var(--ac),#fff)'],
-kitchen:['linear-gradient(#fff6e6,#ffe1b8)','repeating-linear-gradient(90deg,transparent 0 40px,rgba(0,0,0,.1)40px 42px)','repeating-linear-gradient(90deg,var(--ac)0 20px,#fff 20px 40px)'],
-glass:['linear-gradient(120deg,#c3d9ff,#f3e5ff,#cfeede)','radial-gradient(circle at 30% 120%,rgba(255,255,255,.8),transparent 50%)','linear-gradient(transparent,rgba(255,255,255,.7))']};
-const FS={xp:'hills',px:'hills','80':'synth',neb:'space',jetn:'space',jet:'sky',wave:'sea',soc:'soccer',bkb:'hoops',bsb:'base',car:'track',car2:'track',hero:'city',tac:'forest',her:'pastel',fest:'pastel',food:'kitchen',film:'city',dune:'sky',w10:'glass',w11:'glass',mac:'glass'};
-function setScene(f){const s=SC[FS[f]];if(!s)return;$('l1').style.background=s[0];$('l2').style.background=s[1];$('l3').style.background=s[2];$('g1').style.background=s[2];$('wk').classList.toggle('walk',f=='px'||f=='xp')}
-$('scn').addEventListener('pointermove',e=>{const r=e.currentTarget.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;[['l1',6],['l2',14],['l3',26]].forEach(([i,k])=>{$(i).style.transform='translate3d('+(-x*k)+'px,'+(-y*k/3)+'px,0)'})});
-function FX(){const s=document.body.style,a=+$('scs').value,g=+$('gds').value,t=+$('txs').value;s.setProperty('--sc',a/100);s.setProperty('--gd',g/100);s.setProperty('--txo',t/100);$('scn').classList.toggle('off',!a);$('gnd').classList.toggle('off',!g);tono()}
-['scs','gds','txs'].forEach(i=>$(i).oninput=FX);
-const KEYS=[['F1','Ayuda general / menú de ayuda','Ayuda contextual del campo o ventana','—'],['F2','Abrir búsqueda / recuperar PNR','Búsqueda avanzada por apellido, correo o teléfono','Búsqueda rápida por PNR'],['F3','Agregar comentario a la reserva','—','—'],['F4','Ver lista de comentarios del PNR','Comentarios de auditoría / notas especiales','Cerrar ventana o pestaña activa del PNR'],['F5','Cargar / actualizar la reserva','Forzar sincronización desde el servidor','Verificar usuario Web / V-Pass / vClub'],['F6','Datos del pasajero y manifiesto','Editar datos del pasajero','Cambiar entre ventanas de pasajeros'],['F7','Disponibilidad de vuelos y rutas','Estado / manifiesto de vuelo por fecha o ruta','Conexiones o itinerarios alternos'],['F8','Guardar y concluir reserva','Ignorar cambios y restaurar la reserva','Cancelar la transacción sin guardar'],['F9','Limpiar pantalla (consulta nueva)','Limpiar formulario parcial (mantiene el PNR)','Restablecer parámetros de búsqueda'],['F10','Cargos y servicios adicionales (SSR)','Menú contextual de servicios','Maximizar / restaurar ventana'],['F11','Módulo de pagos','Desglose de tarifas e impuestos','Pago con voucher o forma secundaria (VO)'],['F12','Historial de auditoría del PNR','Filtrar historial por agente o movimiento','Exportar o imprimir el historial']];
-function rK(q){q=(q||'').toLowerCase();$('kt').innerHTML='<tr><th>Tecla</th><th>Sola</th><th>Shift +</th><th>Ctrl +</th></tr>'+KEYS.filter(r=>r.join(' ').toLowerCase().includes(q)).map(r=>'<tr><td><b>'+r[0]+'</b></td>'+r.slice(1).map(x=>'<td>'+esc(x)+'</td>').join('')+'</tr>').join('')}
-const SIG=`#Equipaje
-BG15 / BG20 / BG25|Equipaje documentado (15, 20 o 25 kg)
-CARR / CO10|Equipaje de mano (10 kg)
-XBAG|Equipaje con sobrepeso
-SPEQ|Equipo deportivo
-PETC|Mascota en cabina
-AVIH|Mascota en carga / rampa
-#Asistencia y necesidades especiales
-WCHR|Silla de ruedas para rampa (puede subir/bajar escalones)
-WCHS|Silla de ruedas para escaleras (no puede subir/bajar escalones)
-WCHC|Silla de ruedas para cabina (totalmente inmovilizado)
-BLND|Discapacidad visual
-DEAF|Discapacidad auditiva
-UMNR|Menor no acompañado
-INF|Infante (menor de 2 años sin asiento)
-MEDA|Caso médico / autorización médica
-#Abordaje y denegación
-PRIO|Abordaje prioritario
-DBIN|Denegación de abordaje involuntaria (sobreventa)
-DBVO|Denegación de abordaje voluntaria (sobreventa)
-#Estatus del PNR y del vuelo
-HK|Confirmado
-NS|No show (no se presentó)
-CK|Checked-in (pase emitido)
-BD|Boarded (a bordo)
-XL / CNCL|Cancelado
-OS|Optimización de asientos / sobreventa
-IROP|Operaciones irregulares (demora o cancelación)
-#Transacciones, reembolsos y vouchers
-ATUA|Código de servicio para voucher por TUA
-RTUA|Motivo para emitir voucher TUA
-VO|Voucher / crédito electrónico
-MCO|Orden de cargo misceláneo
-AHT|Tiempo promedio de manejo
-QA|Aseguramiento de calidad
-#Claves operativas
-PNR|Clave de reservación
-ATO|Mostrador / personal de aeropuerto
-PIR|Reporte de irregularidad de equipaje
-TIMATIC|Sistema IATA de requisitos migratorios
-VANE|Asistente virtual en WhatsApp
-VPASS / VCLUB|Membresías del programa de lealtad`.split('\n');
-function rS(q){q=(q||'').toLowerCase();let h='',g='';SIG.forEach(l=>{if(l[0]=='#'){g='<h4 style="margin:10px 0 4px;color:var(--ac,#1E3A8A)">'+esc(l.slice(1))+'</h4>';return}const[a,b]=l.split('|');if((a+' '+b).toLowerCase().includes(q)){h+=g+'<div class="rr"><span><b>'+esc(a)+'</b></span><span style="text-align:right">'+esc(b)+'</span></div>';g=''}});$('sg').innerHTML=h||'Sin resultados.'}
-rK();rS();
-const THL='Escuadrón Titán|Héroes|0b2a5b|b3202a|eef2f9|ffffff|0f1f3d|b3202a|hero;Guardas Estelares|Héroes|c8742b|3b5a73|f4ead8|fbf5e8|2c3e50|c8742b|hero;Capa Azul|Héroes|0a3d91|d62828|e8f0fb|ffffff|0a2a5e|0a3d91|hero;Trepamuros|Héroes|c1121f|0b3c8c|f3eef0|ffffff|1a1a2e|c1121f|hero;Cuarteto Cósmico|Héroes|1558d6|7fb2ff|eef4ff|ffffff|0d2a5c|1558d6|hero;Caballero Nocturno|Héroes|111111|f2c200|17171c|23232b|eeeeee|f2c200|hero;Titán Verde|Héroes|2e7d32|6a1b9a|eef6ee|ffffff|1b3a1d|2e7d32|hero;Centinela Dorado|Héroes|a4161a|d4a017|f8efe3|fffaf0|3a1a10|a4161a|hero;Relámpago Escarlata|Héroes|d00000|ffba08|fff3e6|ffffff|4a0d0d|d00000|hero;Rey del Mar|Héroes|0f9aa8|f28c28|e6f6f7|ffffff|0b3b40|0f9aa8|hero;Ratoncita Moñito|Heroínas|d62839|ff8fab|fff0f3|ffffff|3b0d18|d62839|her:heart;Felino Rosado|Heroínas|ff5fa2|7b4bb7|ffeaf3|ffffff|4a1b3a|e0409a|her:star;Nenas Dinamita|Heroínas|ff7eb6|5ec8f2|eefaf3|ffffff|1f3a4a|ff5fa2|her:star;Gatita Lazo|Heroínas|e63946|ffb3c1|fff7f8|ffffff|4a1c22|e63946|her:heart;Reina Escarcha|Heroínas|5fc3e4|c8e6f5|eaf6fc|ffffff|123a55|2b9fd1|her:snow;Guerrera Dorada|Heroínas|1c3f94|c8102e|f3f1ea|fffdf5|14214d|c9a227|her:star;Bruja Esmeralda|Heroínas|0b8a5b|f06fa6|ebf7f1|ffffff|0d3b2a|0b8a5b|her:star;Capitana Estelar|Heroínas|1a3a8a|d4a017|eef1fa|ffffff|101c45|c8102e|her:star;Sirenita Coral|Heroínas|ff7f6e|1fb5ad|fff1ec|ffffff|3b2a26|ff6b5a|wave;Hada Lila|Heroínas|9b72cf|e7b8f0|f5eefb|ffffff|3a2656|8a5cc2|her:star;Colina Azul|PC retro|1f6fe0|5cb85c|dfe9f7|f6f9ff|12306b|2e8b2e|xp;Cuadros Azules|PC retro|0067c0|2b88d8|e9eef3|ffffff|1b1b1b|0078d4|w10;Esquinas Suaves|PC retro|5b8def|a9c7ff|f3f3f6|fbfbfd|202124|3b6fe0|w11;Fontanero Rojo|Videojuegos|e52521|049cd8|fff6d6|ffffff|1c1c3a|e52521|px;Operación Táctica|Videojuegos|3b4a2a|1d1d1d|1c1f17|2a2f22|e7e1c6|8a9a5b|tac;Bloques de Mina|Videojuegos|5a8f29|7a5230|e8e0d0|f7f1e3|2d2a24|5a8f29|px;Erizo Veloz|Videojuegos|1a5fd6|ffd60a|e8f1ff|ffffff|0c2461|1a5fd6|px;Retro Consola|Videojuegos|8bac0f|306230|cadc9f|dbe8b4|0f380f|306230|px;Isla Tranquila|Videojuegos|7fd1ae|8ec9e8|f3f9ef|fffdf2|35514a|4aa889|w11:flower;Pixel Arcade|Videojuegos|ff2bd6|00e5ff|0d0d1a|1a1a2e|f5f5ff|ffe600|px;Neón Retro|Clásicos|ff2e97|00e0d0|1a1030|261a45|f6eaff|00e0d0|80;Nebulosa Violeta|Clásicos|5b2a9a|c04fd3|170f2e|241846|efe7ff|c04fd3|neb;Océano Profundo|Clásicos|03396c|0a7abf|e4f1fa|ffffff|052b4a|0a7abf|wave;Desierto Dorado|Clásicos|c68a2e|e8c16a|fbf1de|fffaf0|4a3512|c68a2e|dune;Noche de Cine|Clásicos|6b0f1a|d4af37|121014|1f1a1e|f1e6c8|d4af37|film;Hielo Ártico|Clásicos|8fd3f4|e0f4ff|f1faff|ffffff|17415a|4aa8d8|w11:snow;Dulce Algodón|Clásicos|ffb3d1|b8e1ff|fff5fa|ffffff|5a3a52|ff7fb0|her:heart;Selva Tropical|Clásicos|1b7f3b|f2a900|eaf6ea|ffffff|14381e|1b7f3b|w11:flower;Lava Volcánica|Clásicos|b81d13|ff8c00|1a0e0b|2a1712|ffe6d6|ff6a00|w11:ember;Lavanda y Miel|Clásicos|9b86c9|f0b429|f6f2fb|ffffff|3a2f55|9b86c9|w11:flower;Pan dulce|Mañana|b9772e|d99a4e|fbf3e6|fffaf0|4a3320|b9772e|food;Café|Mañana|4e342e|6d4c41|efe6dd|f8f2ec|3b2a20|5d4037|food;Cielo|Mañana|1565c0|42a5f5|eaf4fb|ffffff|17324d|1976d2|jet;Violeta y lima|Mañana|6a1b9a|a4c639|f6f0fb|ffffff|2a1840|7b1fa2|w11;Menta|Mañana|146c43|34b27b|eaf7f1|ffffff|12372a|1b8a5a|w11:flower;Escudería Roja|Autos|d40000|111111|f6f1ef|ffffff|1a1a1a|d40000|car;Toro Dorado|Autos|ffcc00|111111|151515|232323|f5f5f5|ffcc00|car2;Pista Nocturna|Autos|8e9aa6|c8102e|15171a|22262b|e8ecef|c8102e|car;Ruta 66|Autos|2bb7b0|e8d9b0|f6efdd|fffaf0|1f4a4a|2bb7b0|car2;Cabina Jet|Aviones|1946a0|ff8a00|dff1ff|ffffff|0d2a4a|1946a0|jet;Aviación Clásica|Aviones|5c6b3c|8b5a2b|ece6d3|f7f2e1|35301f|5c6b3c|jet;Jumbo Nocturno|Aviones|0b1d3a|f4a300|0b1426|14233d|e9eefb|f4a300|jetn;Pista de Aterrizaje|Aviones|3a3d40|ffd100|e3e5e7|f5f6f7|1e2124|e6b800|jet;Pizzería|Comida|c62828|2e7d32|fff6e6|fffdf7|3a1a10|c62828|food;Taquería|Comida|ef6c00|7cb342|fff4e0|fffaf0|4a2a0a|e65100|food;Helado de Fresa|Comida|ff8fab|fff0c9|fff3f6|ffffff|5a2a3a|ff5c8a|food;Chocolate Suizo|Comida|4b2e1f|c9a227|f1e6dc|faf3ec|3a2418|6b3f26|food;Sushi Bar|Comida|b71c1c|2e7d32|141414|222222|f2f2f2|c62828|food;Elote y Chile|Comida|f2c200|c62828|fff8dc|fffdf0|4a3a05|d19a00|food;Día de Muertos|Fiestas|ff7a00|6a1b9a|170c20|25143a|ffe9cf|ff7a00|fest:flower;Navidad|Fiestas|b3121b|1f7a3d|f7f2ea|ffffff|2a1a14|b3121b|fest:snow;Halloween|Fiestas|ff6a00|111111|120d0a|231a14|ffe9d2|ff6a00|fest:ember;Fiesta Patria|Fiestas|1b7f3b|c8102e|f6f7f2|ffffff|1a2a1c|1b7f3b|fest:confetti;Cancha Verde|Deportes|1f8a3a|0e5a24|e6f3e8|ffffff|0e3a1a|1f8a3a|soc;Duela Naranja|Deportes|e8711a|7a3e12|f8ebdd|fff9f2|3d2008|e8711a|bkb;Diamante|Deportes|2e7d32|a1662f|e9f3e5|fffdf7|1c3a1c|2e7d32|bsb;Cristal Plata|Cristal|f5f5f7|d9dce2|e9ebef|ffffff|1d1d1f|0a84ff|mac;Cristal Grafito|Cristal|3a3a3c|2c2c2e|1c1c1e|2c2c2e|f5f5f7|0a84ff|mac'.split(';').map(x=>x.split('|'));
-function theme(n){const t=THL.find(x=>x[0]==n);if(!t)return;const[,,h1,h2,pb,cb,tc,ac,sk]=t,b=document.body.style,cl=document.body.classList,dk=lum('#'+pb)<.2;
- [...cl].filter(c=>/^(sk|fx)-/.test(c)).forEach(c=>cl.remove(c));cl.toggle('dark',dk);const[fm,fx]=(sk||'').split(':');if(fm)cl.add('sk-'+fm);setScene(fm);if(fx)cl.add('fx-'+fx);cl.toggle('sky',fm=='jet');
- b.setProperty('--pb','#'+pb);b.setProperty('--b','#'+pb);['--cb','--c','--fb','--f'].forEach(k=>b.setProperty(k,'#'+cb));['--tc','--t','--fc','--ft'].forEach(k=>b.setProperty(k,'#'+tc));b.setProperty('--ac','#'+ac);b.setProperty('--ac2','#'+ac);b.setProperty('--hd','linear-gradient(135deg,#'+h1+',#'+h2+')');
- if(dk)b.setProperty('--bd','rgba(255,255,255,.28)');else b.removeProperty('--bd');try{localStorage.setItem('dcc_th',n)}catch(e){}}
-function noTheme(){rst();const cl=document.body.classList;[...cl].filter(c=>/^(sk|fx)-/.test(c)).forEach(c=>cl.remove(c));cl.remove('dark','sky')}
-const CATS=[...new Set(THL.map(x=>x[1]))];
-function renderTh(c){$('thb').innerHTML=THL.filter(x=>x[1]==c).map(x=>`<button class="s" data-th="${x[0]}">${x[0]}</button>`).join('')}
-$('thm').innerHTML='<select id="thc">'+CATS.map(c=>`<option>${c}</option>`).join('')+'</select><div id="thb" class="ib" style="flex-wrap:wrap;margin-top:6px"></div><div class="ib" style="flex-wrap:wrap;margin-top:6px"><button class="s" id="skb">☁️ Nubes</button><button class="s" id="efb">✨ Efectos ON/OFF</button><button class="s gr" id="wkb">🧰 Modo trabajo</button></div>';
-renderTh(CATS[0]);$('thc').onchange=()=>renderTh($('thc').value);
-$('thm').onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.id=='skb')document.body.classList.toggle('sky');else if(b.id=='efb')document.body.classList.toggle('noefx');else if(b.id=='wkb'){noTheme();document.body.classList.add('noefx')}else if(b.dataset.th)theme(b.dataset.th);else noTheme();tono()};
-try{const n=localStorage.getItem('dcc_th');if(n)theme(n)}catch(e){}
-function S1(){const b=+$('sb').value,f=+$('sf').value,t=+$('st').value,c=Math.min(100,b+4),s=document.body.style,H=l=>'hsl(240,8%,'+l+'%)';
- let tl=t;if(Math.abs(tl-b)<40||Math.abs(tl-c)<40)tl=(b+c)/2>50?8:94;
- const fl=f>55?'#111827':'#f1f5f9';
- ['--pb','--b'].forEach(k=>s.setProperty(k,H(b)));['--cb','--c'].forEach(k=>s.setProperty(k,H(c)));['--fb','--f'].forEach(k=>s.setProperty(k,H(f)));['--tc','--t'].forEach(k=>s.setProperty(k,'hsl(0,0%,'+tl+'%)'));['--fc','--ft'].forEach(k=>s.setProperty(k,fl));s.setProperty('--bd',H(f>50?f-25:f+30))}
-function nueva(){const v=id=>$(id).value.trim(),nm=(v('ape')+' '+v('nom')).trim();
- if(v('pnr')||nm||v('mot')){log.push({t:now(),pnr:v('pnr')||'N/A',h:mName(nm||'Titular'),c:mName(v('call')||nm||'Titular'),e:mMail(v('mail'))||'N/A',p:mNum(v('tel'))||'N/A',m:mText(v('mot'))||'Atención',a:transf||'Llamada concluida'});if(/ventas|sales/i.test(transf))tr++;renderLog();toast('Cliente '+$('c1').textContent+' registrado')}
- limpiar()}
-try{$('ag').value=sessionStorage.getItem('dcc_ag')||'';const s=JSON.parse(sessionStorage.getItem('dcc_log')||'null');if(s){log=s.log;tr=s.tr}}catch(e){}
-renderPx();['pnr','ape','nom','hv','mail','tel','vd'].forEach(i=>$(i).closest('.fg').style.cssText='flex:0 0 auto;min-width:0');qa();agAll();saludo();tOpts();setP(30);{let m=1;try{const v=sessionStorage.getItem("dcc_m");if(v!==null)m=+v}catch(e){}setMode(m)}dirR();spl();renderLog();
+function genNota(){$('out').value="CONTACTO: "+($('ag').value||'Agente')+"\nMOTIVO: Atendido en llamada.\nRESOLUCIÓN: Proceso concluido."}
+function rop(){const b=+$('rb').value||0,p=+$('rp').value||1;$('r4').textContent='$'+(b*0.3).toFixed(2);$('r6').textContent='$'+((b*0.3)/p).toFixed(2)}
+function paxCh(){rop()}
+function spl(){const t=+$('s1').value||0,n=+$('s2').value||1,s=+$('s3').value||1,u=t/n;$('q2').textContent='$'+(u*s).toFixed(2);$('q3').textContent='$'+(t-u*s).toFixed(2)}
+function dirR(q){const D=[['Ventas Español','7004763'],['Protex Español','7004767']];$('dt').innerHTML=D.filter(r=>r[0].toLowerCase().includes((q||'').toLowerCase())).map(r=>`<tr><td>${r[0]}</td><td><b>${r[1]}</b></td></tr>`).join('')}
+dirR();
 
-/* ==========================================
-   RETRO ZONE: MOTOR DE JUEGOS Y AUDIO 8-BITS
-   ========================================== */
-let audioCtx = null;
-let masterGain = null;
-let currentGame = null;
-let gameLoop = null;
-let keys = {};
-let score = 0, highScore = 0;
-let gameRunning = false;
-let musicInterval = null;
-const canvas = $('gameCanvas'), ctx = canvas.getContext('2d');
-const W = 400, H = 400;
+/* ====================================================================== */
+/* 🕹️ MOTOR DE RETRO ZONE & REPARACIÓN COMPLETA DE TETRIS                 */
+/* ====================================================================== */
+let audioCtx = null, masterGain = null, musicInterval = null, isMuted = false, currentVol = 0.3;
+let activeGame = 'tetris', gameAnimFrame = null, tetrisGravityInterval = null;
+const canvas = $('arcadeCanvas'), ctx = canvas.getContext('2d');
 
-// Inicializar Audio
 function initAudio() {
   if (!audioCtx) {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     masterGain = audioCtx.createGain();
-    masterGain.gain.value = 0.3;
+    masterGain.gain.value = isMuted ? 0 : currentVol;
     masterGain.connect(audioCtx.destination);
-    $('audioPanel').style.display = 'flex';
   }
+  if (audioCtx.state === 'suspended') audioCtx.resume();
 }
-document.body.addEventListener('click', () => { if(!audioCtx) initAudio(); }, { once: true });
+function setVolume(v) { currentVol = parseFloat(v); if (masterGain && !isMuted) masterGain.gain.value = currentVol; }
+function toggleMute() { isMuted = !isMuted; $('btnMute').textContent = isMuted ? "🔇 Audio: OFF" : "🔊 Audio: ON"; if (masterGain) masterGain.gain.value = isMuted ? 0 : currentVol; }
 
-function playTone(freq, type, dur, vol=0.1, isBass=false) {
-  if (!audioCtx || masterGain.gain.value === 0) return;
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
-  osc.type = type;
-  osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-  gain.gain.setValueAtTime(vol, audioCtx.currentTime);
-  gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + dur);
-  osc.connect(gain);
-  gain.connect(masterGain);
-  osc.start();
-  osc.stop(audioCtx.currentTime + dur);
-}
-
-function playSFX(type) {
-  if (!audioCtx) return;
-  if (type === 'hit') playTone(600, 'square', 0.1);
-  if (type === 'shoot') playTone(900, 'sawtooth', 0.05);
-  if (type === 'drop') playTone(300, 'square', 0.1);
-  if (type === 'gameover') {
-    playTone(300, 'sawtooth', 0.2);
-    setTimeout(()=>playTone(250, 'sawtooth', 0.2), 200);
-    setTimeout(()=>playTone(200, 'sawtooth', 0.4), 400);
-  }
-  if (type === 'win') {
-    [440, 554, 659, 880].forEach((f,i)=>setTimeout(()=>playTone(f, 'square', 0.2), i*100));
-  }
+function playTone(freq, duration, type='square') {
+  if (isMuted || !audioCtx) return;
+  try {
+    const osc = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+    g.gain.setValueAtTime(masterGain.gain.value, audioCtx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+    osc.connect(g); g.connect(audioCtx.destination);
+    osc.start(); osc.stop(audioCtx.currentTime + duration);
+  } catch(e){}
 }
 
-// Secuencias de Música
-const musicSequences = {
-  pong: [
-    [220, 0.2], [330, 0.2], [220, 0.2], [440, 0.4]
-  ],
-  breakout: [
-    [440, 0.1], [0, 0.1], [440, 0.1], [0, 0.1], [330, 0.2], [0, 0.2]
-  ],
-  invaders: [
-    [150, 0.2], [160, 0.2], [170, 0.2], [180, 0.2]
-  ],
-  tetris: [ // Korobeiniki (Versión Rápida y Moderna)
-    [659.25, 0.2], [493.88, 0.1], [523.25, 0.1], [587.33, 0.2], [523.25, 0.1], [493.88, 0.1], [440.00, 0.2], [440.00, 0.1], [523.25, 0.1], [659.25, 0.2], [587.33, 0.1], [523.25, 0.1], [493.88, 0.4], [523.25, 0.1], [587.33, 0.2], [659.25, 0.2], [523.25, 0.2], [440.00, 0.2], [440.00, 0.2], [0, 0.2],
-    [587.33, 0.2], [698.46, 0.1], [880.00, 0.2], [783.99, 0.1], [698.46, 0.1], [659.25, 0.2], [523.25, 0.1], [659.25, 0.2], [587.33, 0.1], [523.25, 0.1], [493.88, 0.2], [493.88, 0.1], [523.25, 0.1], [587.33, 0.2], [659.25, 0.2], [523.25, 0.2], [440.00, 0.2], [440.00, 0.2]
-  ]
-};
-const bassSequences = {
-  tetris: [
-     [110, 0.4], [0, 0.4], [110, 0.4], [0, 0.4], [165, 0.4], [0, 0.4], [110, 0.4], [0, 0.4],
-     [110, 0.4], [0, 0.4], [110, 0.4], [0, 0.4], [165, 0.4], [0, 0.4], [110, 0.4], [0, 0.4]
-  ]
-}
-
-let musicIndex = 0, bassIndex = 0;
-function startMusic(game) {
-  stopAudio();
-  if (!audioCtx) initAudio();
-  if (masterGain.gain.value === 0) return;
-  
-  const seq = musicSequences[game];
-  if (!seq) return;
-  
-  let delay = 0;
-  function playNext() {
-    if (!currentGame || !gameRunning) return;
-    const [freq, dur] = seq[musicIndex];
-    
-    if (freq > 0) playTone(freq, 'square', dur, 0.05);
-    // Si hay bajo (Tetris), lo tocamos
-    if (bassSequences[game]) {
-      const [bfreq, bdur] = bassSequences[game][bassIndex % bassSequences[game].length];
-      if (bfreq > 0) playTone(bfreq, 'triangle', bdur, 0.08);
-      if (musicIndex % 2 === 0) bassIndex++;
-    }
-
-    musicIndex = (musicIndex + 1) % seq.length;
-    const nextDur = seq[musicIndex][1] * 1000;
-    musicInterval = setTimeout(playNext, dur * 1000 * 0.9);
-  }
-  musicIndex = 0; bassIndex = 0;
-  playNext();
-}
-
-function stopAudio() {
-  if (musicInterval) clearTimeout(musicInterval);
-  musicInterval = null;
-}
-
-function toggleMute() {
-  if (!masterGain) initAudio();
-  if (masterGain.gain.value > 0) {
-    masterGain.gain.value = 0;
-    $('btnMute').textContent = '🔇';
-  } else {
-    masterGain.gain.value = $('volSlider').value / 100;
-    $('btnMute').textContent = '🔊';
-    if (currentGame && gameRunning) startMusic(currentGame);
-  }
-}
-function setVol(v) {
-  if (!masterGain) initAudio();
-  masterGain.gain.value = v / 100;
-  $('btnMute').textContent = v == 0 ? '🔇' : '🔊';
-}
-
-// Controles
-window.addEventListener('keydown', e => {
-  keys[e.key] = true;
-  if(['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(e.key)) e.preventDefault();
-});
-window.addEventListener('keyup', e => keys[e.key] = false);
-function handleTouch(key, state) { keys[key] = state; }
-
-// Motor de Juegos
-function loadGame(gameId) {
-  stopAudio();
-  if (gameLoop) cancelAnimationFrame(gameLoop);
-  currentGame = gameId;
-  gameRunning = false;
-  document.querySelectorAll('.g-tab').forEach(b => b.classList.remove('on'));
-  event.target.classList.add('on');
-  
-  $('gameOverlay').style.display = 'none';
-  $('g-start').style.display = 'block';
-  $('g-start').textContent = '▶ INICIAR';
-  
-  ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H);
-  ctx.fillStyle = '#fff'; ctx.font = '20px Courier New'; ctx.textAlign = 'center';
-  ctx.fillText('Presiona INICIAR', W/2, H/2);
-}
-
-function startGame() {
-  if (!currentGame) return;
+function playSFX(key) {
   initAudio();
-  if (masterGain.gain.value === 0) {
-    $('volSlider').value = 30;
-    masterGain.gain.value = 0.3;
-    $('btnMute').textContent = '🔊';
+  if (key === 'bounce') playTone(440, 0.06, 'triangle');
+  else if (key === 'shoot') playTone(880, 0.05, 'sawtooth');
+  else if (key === 'clear') { playTone(523, 0.08); setTimeout(()=>playTone(659, 0.12), 80); }
+  else if (key === 'gameover') {
+    [349, 329, 293, 220].forEach((f, i) => setTimeout(() => playTone(f, 0.25, 'sawtooth'), i * 200));
+  } else if (key === 'win') {
+    [523, 659, 783, 1046].forEach((f, i) => setTimeout(() => playTone(f, 0.12, 'square'), i * 120));
   }
-  
-  $('g-start').style.display = 'none';
-  $('gameOverlay').style.display = 'none';
-  score = 0; $('g-score').textContent = '0';
-  gameRunning = true;
-  
-  startMusic(currentGame);
-  
-  if (currentGame === 'pong') initPong();
-  else if (currentGame === 'breakout') initBreakout();
-  else if (currentGame === 'tetris') initTetris();
-  else if (currentGame === 'invaders') initInvaders();
 }
 
-function endGame(win) {
-  gameRunning = false;
-  stopAudio();
-  playSFX(win ? 'win' : 'gameover');
-  if (score > highScore) { highScore = score; $('g-high').textContent = highScore; }
-  
-  $('gameOverlay').style.display = 'flex';
-  $('gameOverlay').innerHTML = win ? 
-    `<span style="color:#00ffcc">YOU WIN!</span><span style="font-size:14px;color:#fff">Score: ${score}</span>` : 
-    `<span style="color:#ff0000">GAME OVER</span><span style="font-size:14px;color:#fff">Score: ${score}</span>`;
-    
-  setTimeout(() => {
-    $('g-start').style.display = 'block';
-    $('g-start').textContent = '🔄 REINTENTAR';
-  }, 2000);
-}
-
-// --- JUEGO 1: PONG ---
-let pongData = {};
-function initPong() {
-  pongData = { py: 150, cy: 150, bx: 200, by: 200, bdx: 4, bdy: 4, pScore: 0, cScore: 0 };
-  if (gameLoop) cancelAnimationFrame(gameLoop);
-  gameLoop = requestAnimationFrame(pongLoop);
-}
-function pongLoop() {
-  if (!gameRunning || currentGame !== 'pong') return;
-  const d = pongData;
-  
-  if (keys['ArrowUp'] && d.py > 0) d.py -= 7;
-  if (keys['ArrowDown'] && d.py < 300) d.py += 7;
-  
-  if (d.cy < d.by - 10) d.cy += 5; if (d.cy > d.by + 10) d.cy -= 5;
-  d.cy = Math.max(0, Math.min(300, d.cy));
-  
-  d.bx += d.bdx; d.by += d.bdy;
-  if (d.by < 0 || d.by > 400) d.bdy *= -1;
-  
-  if (d.bx < 20 && d.by > d.py && d.by < d.py + 100) { d.bdx *= -1; playSFX('hit'); }
-  if (d.bx > 380 && d.by > d.cy && d.by < d.cy + 100) { d.bdx *= -1; playSFX('hit'); }
-  
-  if (d.bx < 0) { d.cScore++; d.bx = 200; d.by = 200; playSFX('drop'); }
-  if (d.bx > 400) { d.pScore++; d.bx = 200; d.by = 200; score++; $('g-score').textContent = score; playSFX('hit'); }
-  
-  if (d.pScore >= 5) { endGame(true); return; }
-  if (d.cScore >= 5) { endGame(false); return; }
-  
-  ctx.fillStyle = '#000'; ctx.fillRect(0, 0, 400, 400);
-  ctx.fillStyle = '#fff'; ctx.fillRect(10, d.py, 10, 100); ctx.fillRect(380, d.cy, 10, 100);
-  ctx.beginPath(); ctx.arc(d.bx, d.by, 8, 0, Math.PI*2); ctx.fill();
-  ctx.font = '30px Courier New'; ctx.fillText(d.pScore, 100, 50); ctx.fillText(d.cScore, 300, 50);
-  
-  gameLoop = requestAnimationFrame(pongLoop);
-}
-
-// --- JUEGO 2: BREAKOUT ---
-let brkData = {};
-function initBreakout() {
-  brkData = { px: 160, bx: 200, by: 300, bdx: 4, bdy: -4, bricks: [], lives: 3 };
-  for (let r=0; r<4; r++) for (let c=0; c<8; c++) brkData.bricks.push({ x: c*50, y: r*20 + 50, w: 46, h: 18, active: true });
-  if (gameLoop) cancelAnimationFrame(gameLoop);
-  gameLoop = requestAnimationFrame(breakoutLoop);
-}
-function breakoutLoop() {
-  if (!gameRunning || currentGame !== 'breakout') return;
-  const d = brkData;
-  
-  if (keys['ArrowLeft'] && d.px > 0) d.px -= 7; 
-  if (keys['ArrowRight'] && d.px < 310) d.px += 7;
-  
-  d.bx += d.bdx; d.by += d.bdy;
-  if (d.bx < 5 || d.bx > 395) d.bdx *= -1; 
-  if (d.by < 5) d.bdy *= -1;
-  
-  if (d.by > 380 && d.bx > d.px && d.bx < d.px + 90) { d.bdy = -Math.abs(d.bdy); playSFX('hit'); }
-  
-  if (d.by > 400) {
-    d.lives--;
-    playSFX('drop');
-    if (d.lives <= 0) { endGame(false); return; }
-    d.bx = 200; d.by = 300; d.bdx = 4; d.bdy = -4;
+function stopMusic() { if (musicInterval) { clearInterval(musicInterval); musicInterval = null; } }
+function startMusic(gameKey) {
+  stopMusic(); initAudio();
+  let step = 0;
+  if (gameKey === 'tetris') {
+    const notes = [659,493,523,587,523,493,440,440,523,659,587,523,493,523,587,659,523,440,440,0,587,698,880,784,698,659,523,659,587,523,493,493,523,587,659,523,440,440];
+    musicInterval = setInterval(() => {
+      if (notes[step] > 0) playTone(notes[step], 0.16, 'square');
+      step = (step + 1) % notes.length;
+    }, 220);
+  } else if (gameKey === 'space') {
+    const notes = [110, 123, 130, 98];
+    musicInterval = setInterval(() => { playTone(notes[step], 0.18, 'sawtooth'); step = (step + 1) % notes.length; }, 320);
+  } else if (gameKey === 'pong') {
+    const notes = [261, 329, 392, 329];
+    musicInterval = setInterval(() => { playTone(notes[step], 0.1, 'square'); step = (step + 1) % notes.length; }, 180);
+  } else if (gameKey === 'breakout') {
+    const notes = [330, 392, 440, 392, 523, 440];
+    musicInterval = setInterval(() => { playTone(notes[step], 0.12, 'triangle'); step = (step + 1) % notes.length; }, 200);
   }
-  
-  let activeBricks = 0;
-  d.bricks.forEach(b => {
-    if (b.active && d.bx > b.x && d.bx < b.x+b.w && d.by > b.y && d.by < b.y+b.h) {
-      b.active = false; d.bdy *= -1; score += 10; $('g-score').textContent = score; playSFX('hit');
-    }
-    if (b.active) activeBricks++;
-  });
-  
-  if (activeBricks === 0) { endGame(true); return; }
-  
-  ctx.fillStyle = '#000'; ctx.fillRect(0, 0, 400, 400);
-  ctx.fillStyle = '#00ffcc'; ctx.fillRect(d.px, 390, 90, 10);
-  ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(d.bx, d.by, 6, 0, Math.PI*2); ctx.fill();
-  ctx.fillStyle = '#ff00ff'; d.bricks.forEach(b => { if (b.active) ctx.fillRect(b.x, b.y, b.w, b.h); });
-  ctx.fillStyle = '#fff'; ctx.font = '16px Courier New'; ctx.textAlign = 'left'; ctx.fillText('LIVES: ' + d.lives, 10, 25);
-  
-  gameLoop = requestAnimationFrame(breakoutLoop);
 }
 
-// --- JUEGO 3: TETRIS ---
-let tetData = {};
-const COLS = 10, ROWS = 20, BS = 20;
-const TET_PIECES = {
-  I: [[0,0,0,0],[1,1,1,1],[0,0,0,0],[0,0,0,0]],
-  J: [[1,0,0],[1,1,1],[0,0,0]],
-  L: [[0,0,1],[1,1,1],[0,0,0]],
-  O: [[1,1],[1,1]],
-  S: [[0,1,1],[1,1,0],[0,0,0]],
-  T: [[0,1,0],[1,1,1],[0,0,0]],
-  Z: [[1,1,0],[0,1,1],[0,0,0]]
+/* ---------------- MATRICES CUADRADAS Y MOTOR TETRIS ---------------- */
+const T_ROWS = 20, T_COLS = 10, T_SIZE = 20;
+const T_OFFSET_X = 100, T_OFFSET_Y = 0; // Tablero centrado (200x400) en Canvas (400x400)
+let gridTetris = [], pieceTetris = null;
+let gameState = 'STOP', score = 0, lives = 3;
+let gravitySpeed = 500;
+
+// Definición estricta en matrices cuadradas fijas (I=4x4, T/L/J/S/Z=3x3, O=2x2)
+const TETROMINOS = {
+  I: { m: [[0,0,0,0],[1,1,1,1],[0,0,0,0],[0,0,0,0]], color: '#00f0ff' },
+  J: { m: [[1,0,0],[1,1,1],[0,0,0]], color: '#0000ff' },
+  L: { m: [[0,0,1],[1,1,1],[0,0,0]], color: '#ff7f00' },
+  O: { m: [[1,1],[1,1]], color: '#ffff00' },
+  S: { m: [[0,1,1],[1,1,0],[0,0,0]], color: '#00ff00' },
+  T: { m: [[0,1,0],[1,1,1],[0,0,0]], color: '#aa00ff' },
+  Z: { m: [[1,1,0],[0,1,1],[0,0,0]], color: '#ff0000' }
 };
-function initTetris() {
-  tetData = { board: Array(ROWS).fill().map(() => Array(COLS).fill(0)), piece: null, x: 0, y: 0, lastDrop: 0, dropInt: 800 };
+
+function resetTetris() {
+  gridTetris = Array.from({length: T_ROWS}, () => Array(T_COLS).fill(0));
+  gravitySpeed = 500;
   spawnTetrisPiece();
-  if (gameLoop) cancelAnimationFrame(gameLoop);
-  gameLoop = requestAnimationFrame(tetrisLoop);
 }
+
 function spawnTetrisPiece() {
-  const keys = Object.keys(TET_PIECES);
-  const shape = TET_PIECES[keys[Math.floor(Math.random() * keys.length)]];
-  tetData.piece = shape;
-  tetData.x = Math.floor((COLS - shape[0].length) / 2);
-  tetData.y = 0;
-  if (checkCollision(tetData.board, shape, tetData.x, tetData.y)) {
-    endGame(false);
+  const keys = Object.keys(TETROMINOS);
+  const k = keys[Math.floor(Math.random() * keys.length)];
+  const t = TETROMINOS[k];
+  pieceTetris = {
+    matrix: t.m.map(r => [...r]),
+    color: t.color,
+    r: 0,
+    c: 3 // Posición inicial r=0, c=3
+  };
+
+  // Si colisiona al nacer -> GAME OVER inmediato
+  if (checkCollision(pieceTetris.matrix, pieceTetris.r, pieceTetris.c)) {
+    triggerGameOver();
   }
 }
-function checkCollision(board, piece, px, py) {
-  for (let r = 0; r < piece.length; r++) {
-    for (let c = 0; c < piece[r].length; c++) {
-      if (piece[r][c]) {
-        let x = px + c, y = py + r;
-        if (x < 0 || x >= COLS || y >= ROWS || (y >= 0 && board[y][x])) return true;
+
+function checkCollision(mat, rOff, cOff) {
+  for (let r = 0; r < mat.length; r++) {
+    for (let c = 0; c < mat[r].length; c++) {
+      if (mat[r][c]) {
+        let newR = rOff + r;
+        let newC = cOff + c;
+        if (newC < 0 || newC >= T_COLS || newR >= T_ROWS) return true;
+        if (newR >= 0 && gridTetris[newR][newC]) return true;
       }
     }
   }
   return false;
 }
-function rotatePiece(matrix) {
-  const N = matrix.length;
-  let result = Array(N).fill().map(() => Array(N).fill(0));
-  for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) result[c][N - 1 - r] = matrix[r][c];
-  return result;
+
+// Rotación matricial simétrica (transposición + inversión de columnas)
+function rotateMatrix(mat) {
+  const N = mat.length;
+  let res = Array.from({length: N}, () => Array(N).fill(0));
+  for (let r = 0; r < N; r++) {
+    for (let c = 0; c < N; c++) {
+      res[c][N - 1 - r] = mat[r][c];
+    }
+  }
+  return res;
 }
-let lastMoveTime = 0;
-function tetrisLoop(time) {
-  if (!gameRunning || currentGame !== 'tetris') return;
-  const d = tetData;
+
+// Movimiento discreto por eventos directos
+function moveTetrisDiscreet(dir) {
+  if (gameState !== 'PLAY' || activeGame !== 'tetris' || !pieceTetris) return;
   
-  // Gravedad
-  if (time - d.lastDrop > d.dropInt) {
-    d.lastDrop = time;
-    if (!checkCollision(d.board, d.piece, d.x, d.y + 1)) {
-      d.y++;
-    } else {
-      // Fijar pieza
-      for (let r = 0; r < d.piece.length; r++) for (let c = 0; c < d.piece[r].length; c++) {
-        if (d.piece[r][c] && d.y + r >= 0) d.board[d.y + r][d.x + c] = 1;
+  if (dir === 'left' && !checkCollision(pieceTetris.matrix, pieceTetris.r, pieceTetris.c - 1)) {
+    pieceTetris.c--;
+  } else if (dir === 'right' && !checkCollision(pieceTetris.matrix, pieceTetris.r, pieceTetris.c + 1)) {
+    pieceTetris.c++;
+  } else if (dir === 'rotate') {
+    const rotated = rotateMatrix(pieceTetris.matrix);
+    if (!checkCollision(rotated, pieceTetris.r, pieceTetris.c)) {
+      pieceTetris.matrix = rotated;
+    }
+  } else if (dir === 'down') {
+    stepTetrisGravity();
+  }
+}
+
+function stepTetrisGravity() {
+  if (gameState !== 'PLAY' || !pieceTetris) return;
+  if (!checkCollision(pieceTetris.matrix, pieceTetris.r + 1, pieceTetris.c)) {
+    pieceTetris.r++;
+  } else {
+    lockTetrisPiece();
+  }
+}
+
+function lockTetrisPiece() {
+  for (let r = 0; r < pieceTetris.matrix.length; r++) {
+    for (let c = 0; c < pieceTetris.matrix[r].length; c++) {
+      if (pieceTetris.matrix[r][c]) {
+        let boardR = pieceTetris.r + r;
+        let boardC = pieceTetris.c + c;
+        if (boardR >= 0) gridTetris[boardR][boardC] = pieceTetris.color;
       }
-      playSFX('drop');
-      // Limpiar líneas
-      let linesCleared = 0;
-      for (let r = ROWS - 1; r >= 0; r--) {
-        if (d.board[r].every(val => val === 1)) {
-          d.board.splice(r, 1);
-          d.board.unshift(Array(COLS).fill(0));
-          linesCleared++;
-          r++;
+    }
+  }
+  
+  // Limpieza de filas completas (+100 pts)
+  let lines = 0;
+  for (let r = T_ROWS - 1; r >= 0; r--) {
+    if (gridTetris[r].every(cell => cell !== 0)) {
+      gridTetris.splice(r, 1);
+      gridTetris.unshift(Array(T_COLS).fill(0));
+      lines++;
+      r++;
+    }
+  }
+  if (lines > 0) {
+    score += lines * 100;
+    playSFX('clear');
+  }
+  spawnTetrisPiece();
+}
+
+function startTetrisGravityTimer(ms) {
+  if (tetrisGravityInterval) clearInterval(tetrisGravityInterval);
+  tetrisGravityInterval = setInterval(() => {
+    if (gameState === 'PLAY' && activeGame === 'tetris') stepTetrisGravity();
+  }, ms);
+}
+
+/* ---------------- OTROS JUEGOS RETRO ---------------- */
+let spacePlayer = { x: 180, y: 360, w: 40, h: 15 }, spaceBullets = [], alienBullets = [], aliens = [];
+function resetSpace() {
+  spacePlayer.x = 180; spaceBullets = []; alienBullets = []; aliens = [];
+  for (let r = 0; r < 4; r++) {
+    for (let c = 0; c < 7; c++) {
+      aliens.push({ x: 40 + c * 45, y: 30 + r * 30, w: 30, h: 20, alive: true });
+    }
+  }
+}
+
+let pongPlayer = { y: 165, w: 10, h: 70 }, pongCPU = { y: 165, w: 10, h: 70 }, pongBall = { x: 200, y: 200, vx: 4, vy: 3, size: 8 }, pScoreUser = 0, pScoreCPU = 0;
+function resetPong() { pongPlayer.y = 165; pongCPU.y = 165; pongBall = { x: 200, y: 200, vx: 4, vy: 3, size: 8 }; pScoreUser = 0; pScoreCPU = 0; }
+
+let bPaddle = { x: 160, w: 80, h: 12 }, bBall = { x: 200, y: 300, vx: 3, vy: -4, r: 6 }, bBricks = [];
+function resetBreakout() {
+  bPaddle.x = 160; bBall = { x: 200, y: 300, vx: 3, vy: -4, r: 6 }; lives = 3; bBricks = [];
+  for (let r = 0; r < 5; r++) {
+    for (let c = 0; c < 8; c++) bBricks.push({ x: 15 + c * 46, y: 40 + r * 20, w: 40, h: 14, active: true });
+  }
+}
+
+/* ---------------- CONTROL DE BUCLE Y ESTADOS ---------------- */
+function stopGameLoop() {
+  if (gameAnimFrame) cancelAnimationFrame(gameAnimFrame);
+  if (tetrisGravityInterval) clearInterval(tetrisGravityInterval);
+  gameState = 'STOP';
+}
+
+function switchGame(gameKey, btn) {
+  activeGame = gameKey;
+  document.querySelectorAll('.retro-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  stopGameLoop(); stopMusic();
+  ctx.fillStyle = '#000'; ctx.fillRect(0, 0, 400, 400);
+  ctx.fillStyle = '#00f0ff'; ctx.font = '18px monospace'; ctx.textAlign = 'center';
+  ctx.fillText("Presiona ▶ INICIAR JUEGO", 200, 200);
+}
+
+function startGame() {
+  stopGameLoop(); score = 0; gameState = 'PLAY';
+  startMusic(activeGame);
+
+  if (activeGame === 'tetris') {
+    resetTetris();
+    startTetrisGravityTimer(gravitySpeed);
+  } else if (activeGame === 'space') resetSpace();
+  else if (activeGame === 'pong') resetPong();
+  else if (activeGame === 'breakout') resetBreakout();
+
+  gameLoop();
+}
+
+function triggerGameOver() {
+  gameState = 'GAMEOVER'; stopMusic(); stopGameLoop();
+  playSFX('gameover');
+  renderOverlay('GAME OVER', '#ff0055');
+}
+
+function triggerWin() {
+  gameState = 'WIN'; stopMusic(); stopGameLoop();
+  playSFX('win');
+  renderOverlay('YOU WIN!', '#00ff66');
+}
+
+function renderOverlay(title, color) {
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.88)';
+  ctx.fillRect(0, 0, 400, 400);
+  ctx.fillStyle = color; ctx.font = '900 34px monospace'; ctx.textAlign = 'center';
+  ctx.fillText(title, 200, 160);
+  ctx.fillStyle = '#fff'; ctx.font = '16px monospace';
+  ctx.fillText("Puntaje: " + score, 200, 205);
+  ctx.fillStyle = '#00f0ff'; ctx.font = '13px monospace';
+  ctx.fillText("Presiona INICIAR para volver a jugar", 200, 250);
+}
+
+// Renderizado continuo a 60 FPS
+function gameLoop() {
+  if (gameState !== 'PLAY') return;
+  ctx.fillStyle = '#000'; ctx.fillRect(0, 0, 400, 400);
+
+  if (activeGame === 'tetris') drawTetris();
+  else if (activeGame === 'space') updateDrawSpace();
+  else if (activeGame === 'pong') updateDrawPong();
+  else if (activeGame === 'breakout') updateDrawBreakout();
+
+  gameAnimFrame = requestAnimationFrame(gameLoop);
+}
+
+function drawTetris() {
+  // Marco del tablero (10x20 celdas de 20px -> 200x400)
+  ctx.strokeStyle = '#00f0ff';
+  ctx.strokeRect(T_OFFSET_X - 1, T_OFFSET_Y, T_COLS * T_SIZE + 2, T_ROWS * T_SIZE);
+
+  // Cuadrícula global
+  for (let r = 0; r < T_ROWS; r++) {
+    for (let c = 0; c < T_COLS; c++) {
+      if (gridTetris[r][c]) {
+        ctx.fillStyle = gridTetris[r][c];
+        ctx.fillRect(T_OFFSET_X + c * T_SIZE, T_OFFSET_Y + r * T_SIZE, T_SIZE - 1, T_SIZE - 1);
+      }
+    }
+  }
+  // Pieza activa
+  if (pieceTetris) {
+    ctx.fillStyle = pieceTetris.color;
+    for (let r = 0; r < pieceTetris.matrix.length; r++) {
+      for (let c = 0; c < pieceTetris.matrix[r].length; c++) {
+        if (pieceTetris.matrix[r][c]) {
+          let pr = pieceTetris.r + r;
+          let pc = pieceTetris.c + c;
+          if (pr >= 0) {
+            ctx.fillRect(T_OFFSET_X + pc * T_SIZE, T_OFFSET_Y + pr * T_SIZE, T_SIZE - 1, T_SIZE - 1);
+          }
         }
       }
-      if (linesCleared > 0) {
-        score += linesCleared * 100;
-        $('g-score').textContent = score;
-        playSFX('win');
-      }
-      spawnTetrisPiece();
     }
   }
-  
-  // Controles discretos (para evitar que se mueva 60 veces por segundo)
-  if (time - lastMoveTime > 100) {
-    if (keys['ArrowLeft']) { if (!checkCollision(d.board, d.piece, d.x - 1, d.y)) d.x--; lastMoveTime = time; }
-    if (keys['ArrowRight']) { if (!checkCollision(d.board, d.piece, d.x + 1, d.y)) d.x++; lastMoveTime = time; }
-    if (keys['ArrowDown']) { if (!checkCollision(d.board, d.piece, d.x, d.y + 1)) d.y++; lastMoveTime = time; }
-    if (keys['ArrowUp']) { 
-      const rot = rotatePiece(d.piece);
-      if (!checkCollision(d.board, rot, d.x, d.y)) d.piece = rot;
-      lastMoveTime = time;
-    }
-  }
-  
-  // Dibujar
-  ctx.fillStyle = '#000'; ctx.fillRect(0, 0, 400, 400);
-  const ox = (W - COLS * BS) / 2;
-  
-  for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
-    if (d.board[r][c]) {
-      ctx.fillStyle = '#00ffcc';
-      ctx.fillRect(ox + c * BS, r * BS, BS - 1, BS - 1);
-    }
-  }
-  
-  if (d.piece) {
-    ctx.fillStyle = '#ff00ff';
-    for (let r = 0; r < d.piece.length; r++) for (let c = 0; c < d.piece[r].length; c++) {
-      if (d.piece[r][c] && d.y + r >= 0) {
-        ctx.fillRect(ox + (d.x + c) * BS, (d.y + r) * BS, BS - 1, BS - 1);
-      }
-    }
-  }
-  
-  gameLoop = requestAnimationFrame(tetrisLoop);
+  // Interfaz de puntaje
+  ctx.fillStyle = '#fff'; ctx.font = '14px monospace'; ctx.textAlign = 'left';
+  ctx.fillText("Score: " + score, 15, 30);
 }
 
-// --- JUEGO 4: SPACE INVADERS ---
-let invData = {};
-function initInvaders() {
-  invData = { px: 180, bullets: [], eBullets: [], enemies: [], dir: 1, lastShot: 0, lastEShot: 0, lives: 1 };
-  for (let r=0; r<4; r++) for (let c=0; c<6; c++) invData.enemies.push({ x: c*50 + 50, y: r*40 + 50, active: true });
-  if (gameLoop) cancelAnimationFrame(gameLoop);
-  gameLoop = requestAnimationFrame(invadersLoop);
-}
-function invadersLoop(time) {
-  if (!gameRunning || currentGame !== 'invaders') return;
-  const d = invData;
-  
-  if (keys['ArrowLeft'] && d.px > 0) d.px -= 5; 
-  if (keys['ArrowRight'] && d.px < 360) d.px += 5;
-  
-  if (keys[' '] && time - d.lastShot > 300) {
-    d.bullets.push({ x: d.px + 18, y: 370 });
-    d.lastShot = time;
-    playSFX('shoot');
-  }
-  
-  // Mover balas jugador
-  d.bullets.forEach(b => b.y -= 8); 
-  d.bullets = d.bullets.filter(b => b.y > 0);
-  
-  // Mover enemigos
-  let hitEdge = false;
-  let activeEnemies = 0;
-  d.enemies.forEach(e => {
-    if (e.active) {
-      activeEnemies++;
-      e.x += d.dir * 2;
-      if (e.x > 380 || e.x < 20) hitEdge = true;
-    }
-  });
-  if (hitEdge) d.dir *= -1;
-  
-  // Disparos enemigos
-  if (time - d.lastEShot > 1000 && activeEnemies > 0) {
-    const shooter = d.enemies.filter(e => e.active)[Math.floor(Math.random() * activeEnemies)];
-    if (shooter) d.eBullets.push({ x: shooter.x + 8, y: shooter.y + 20 });
-    d.lastEShot = time;
-  }
-  d.eBullets.forEach(b => b.y += 4);
-  d.eBullets = d.eBullets.filter(b => b.y < 400);
-  
-  // Colisiones
-  d.enemies.forEach(e => {
-    d.bullets.forEach(b => {
-      if (e.active && b.x > e.x && b.x < e.x + 20 && b.y > e.y && b.y < e.y + 20) {
-        e.active = false; b.y = -10; score += 20; $('g-score').textContent = score; playSFX('hit');
+function updateDrawSpace() {
+  if (keysPressed['ArrowLeft'] && spacePlayer.x > 0) spacePlayer.x -= 4;
+  if (keysPressed['ArrowRight'] && spacePlayer.x < 360) spacePlayer.x += 4;
+
+  ctx.fillStyle = '#00ff66';
+  ctx.fillRect(spacePlayer.x, spacePlayer.y, spacePlayer.w, spacePlayer.h);
+
+  for (let i = spaceBullets.length - 1; i >= 0; i--) {
+    let b = spaceBullets[i]; b.y -= 7;
+    ctx.fillStyle = '#ffff00'; ctx.fillRect(b.x, b.y, 4, 8);
+    aliens.forEach(a => {
+      if (a.alive && b.x > a.x && b.x < a.x + a.w && b.y > a.y && b.y < a.y + a.h) {
+        a.alive = false; spaceBullets.splice(i, 1); score += 50; playSFX('bounce');
       }
     });
+    if (b && b.y < 0) spaceBullets.splice(i, 1);
+  }
+
+  let activeAliens = aliens.filter(a => a.alive);
+  if (activeAliens.length === 0) { triggerWin(); return; }
+
+  activeAliens.forEach(a => {
+    ctx.fillStyle = '#ff007f'; ctx.fillRect(a.x, a.y, a.w, a.h);
+    if (Math.random() < 0.002) alienBullets.push({ x: a.x + 15, y: a.y + 20 });
+    if (a.y + a.h >= spacePlayer.y) triggerGameOver();
   });
-  
-  d.eBullets.forEach(b => {
-    if (b.x > d.px && b.x < d.px + 40 && b.y > 370 && b.y < 390) {
-      endGame(false); return;
+
+  for (let i = alienBullets.length - 1; i >= 0; i--) {
+    let ab = alienBullets[i]; ab.y += 4;
+    ctx.fillStyle = '#ff0000'; ctx.fillRect(ab.x, ab.y, 4, 8);
+    if (ab.x > spacePlayer.x && ab.x < spacePlayer.x + spacePlayer.w && ab.y > spacePlayer.y && ab.y < spacePlayer.y + spacePlayer.h) {
+      triggerGameOver(); return;
     }
-  });
-  
-  if (activeEnemies === 0) { endGame(true); return; }
-  
-  // Si los enemigos llegan abajo
-  if (d.enemies.some(e => e.active && e.y > 360)) { endGame(false); return; }
-  
-  // Dibujar
-  ctx.fillStyle = '#000'; ctx.fillRect(0, 0, 400, 400);
-  ctx.fillStyle = '#fff'; ctx.fillRect(d.px, 380, 40, 10);
-  ctx.fillStyle = '#ffff00'; d.bullets.forEach(b => ctx.fillRect(b.x, b.y, 4, 10));
-  ctx.fillStyle = '#ff00ff'; d.eBullets.forEach(b => ctx.fillRect(b.x, b.y, 4, 10));
-  ctx.fillStyle = '#00ffcc'; d.enemies.forEach(e => { if (e.active) ctx.fillRect(e.x, e.y, 20, 20); });
-  
-  gameLoop = requestAnimationFrame(invadersLoop);
+    if (ab.y > 400) alienBullets.splice(i, 1);
+  }
+  ctx.fillStyle = '#fff'; ctx.font = '14px monospace'; ctx.textAlign = 'left';
+  ctx.fillText("Score: " + score, 15, 30);
 }
 
-// Detener juego al cambiar de pestaña
-const originalTab = tab;
-window.tab = function(id, b) {
-  originalTab(id, b);
-  if (id !== 'games') {
-    if (gameLoop) cancelAnimationFrame(gameLoop);
-    gameRunning = false;
-    stopAudio();
+function updateDrawPong() {
+  if (keysPressed['ArrowUp'] && pongPlayer.y > 0) pongPlayer.y -= 5;
+  if (keysPressed['ArrowDown'] && pongPlayer.y < 330) pongPlayer.y += 5;
+
+  if (pongBall.y > pongCPU.y + 35 && pongCPU.y < 330) pongCPU.y += 3.5;
+  else if (pongBall.y < pongCPU.y + 35 && pongCPU.y > 0) pongCPU.y -= 3.5;
+
+  pongBall.x += pongBall.vx; pongBall.y += pongBall.vy;
+  if (pongBall.y <= 0 || pongBall.y >= 392) { pongBall.vy *= -1; playSFX('bounce'); }
+
+  if (pongBall.x <= 20 && pongBall.y > pongPlayer.y && pongBall.y < pongPlayer.y + 70) { pongBall.vx *= -1.05; playSFX('bounce'); }
+  if (pongBall.x >= 370 && pongBall.y > pongCPU.y && pongBall.y < pongCPU.y + 70) { pongBall.vx *= -1.05; playSFX('bounce'); }
+
+  if (pongBall.x < 0) { pScoreCPU++; pongBall = { x: 200, y: 200, vx: 4, vy: 3, size: 8 }; }
+  if (pongBall.x > 400) { pScoreUser++; score += 100; pongBall = { x: 200, y: 200, vx: -4, vy: 3, size: 8 }; }
+
+  if (pScoreUser >= 5) triggerWin();
+  if (pScoreCPU >= 5) triggerGameOver();
+
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(10, pongPlayer.y, pongPlayer.w, pongPlayer.h);
+  ctx.fillRect(380, pongCPU.y, pongCPU.w, pongCPU.h);
+  ctx.fillRect(pongBall.x, pongBall.y, pongBall.size, pongBall.size);
+  ctx.font = '20px monospace'; ctx.textAlign = 'center';
+  ctx.fillText(`${pScoreUser} - ${pScoreCPU}`, 200, 30);
+}
+
+function updateDrawBreakout() {
+  if (keysPressed['ArrowLeft'] && bPaddle.x > 0) bPaddle.x -= 6;
+  if (keysPressed['ArrowRight'] && bPaddle.x < 320) bPaddle.x += 6;
+
+  bBall.x += bBall.vx; bBall.y += bBall.vy;
+  if (bBall.x <= 0 || bBall.x >= 394) { bBall.vx *= -1; playSFX('bounce'); }
+  if (bBall.y <= 0) { bBall.vy *= -1; playSFX('bounce'); }
+
+  if (bBall.y >= 360 && bBall.x > bPaddle.x && bBall.x < bPaddle.x + bPaddle.w) { bBall.vy = -Math.abs(bBall.vy); playSFX('bounce'); }
+
+  if (bBall.y >= 400) {
+    lives--;
+    if (lives <= 0) triggerGameOver();
+    else bBall = { x: 200, y: 300, vx: 3, vy: -4, r: 6 };
+  }
+
+  let activeBricks = 0;
+  bBricks.forEach(b => {
+    if (b.active) {
+      activeBricks++;
+      if (bBall.x > b.x && bBall.x < b.x + b.w && bBall.y > b.y && bBall.y < b.y + b.h) {
+        b.active = false; bBall.vy *= -1; score += 20; playSFX('bounce');
+      }
+      ctx.fillStyle = '#00f0ff'; ctx.fillRect(b.x, b.y, b.w, b.h);
+    }
+  });
+
+  if (activeBricks === 0) triggerWin();
+
+  ctx.fillStyle = '#ff007f'; ctx.fillRect(bPaddle.x, 370, bPaddle.w, bPaddle.h);
+  ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(bBall.x, bBall.y, bBall.r, 0, Math.PI*2); ctx.fill();
+  ctx.font = '14px monospace'; ctx.textAlign = 'left';
+  ctx.fillText(`Score: ${score}  Vidas: ${lives}`, 15, 25);
+}
+
+/* ---------------- MANEJO DE EVENTOS TÁCTILES Y TECLADO ---------------- */
+const keysPressed = {};
+
+window.addEventListener('keydown', e => {
+  if (["ArrowUp","ArrowDown","ArrowLeft","ArrowRight","Space"].includes(e.code)) {
+    if ($('t-retro').classList.contains('on')) e.preventDefault();
+  }
+  keysPressed[e.code] = true;
+
+  if (activeGame === 'tetris' && gameState === 'PLAY') {
+    if (e.code === 'ArrowLeft') moveTetrisDiscreet('left');
+    if (e.code === 'ArrowRight') moveTetrisDiscreet('right');
+    if (e.code === 'ArrowUp') moveTetrisDiscreet('rotate');
+    if (e.code === 'ArrowDown') {
+      moveTetrisDiscreet('down');
+      startTetrisGravityTimer(80); // Soft drop acelerado
+    }
+  }
+
+  if (activeGame === 'space' && e.code === 'Space' && gameState === 'PLAY') {
+    spaceBullets.push({ x: spacePlayer.x + 18, y: spacePlayer.y });
+    playSFX('shoot');
+  }
+});
+
+window.addEventListener('keyup', e => {
+  keysPressed[e.code] = false;
+  if (activeGame === 'tetris' && e.code === 'ArrowDown') {
+    startTetrisGravityTimer(gravitySpeed); // Restaurar velocidad regular
+  }
+});
+
+function triggerInput(code, ev) {
+  if (ev) ev.preventDefault();
+  if (gameState !== 'PLAY') return;
+
+  if (activeGame === 'tetris') {
+    if (code === 'ArrowLeft') moveTetrisDiscreet('left');
+    if (code === 'ArrowRight') moveTetrisDiscreet('right');
+    if (code === 'ArrowUp') moveTetrisDiscreet('rotate');
+    if (code === 'ArrowDown') {
+      moveTetrisDiscreet('down');
+      startTetrisGravityTimer(80);
+    }
+  } else if (activeGame === 'space') {
+    if (code === 'ArrowLeft') spacePlayer.x = Math.max(0, spacePlayer.x - 15);
+    if (code === 'ArrowRight') spacePlayer.x = Math.min(360, spacePlayer.x + 15);
+    if (code === 'Space') {
+      spaceBullets.push({ x: spacePlayer.x + 18, y: spacePlayer.y });
+      playSFX('shoot');
+    }
+  } else if (activeGame === 'pong' || activeGame === 'breakout') {
+    keysPressed[code] = true;
   }
 }
+
+function releaseInput(code) {
+  keysPressed[code] = false;
+  if (activeGame === 'tetris' && code === 'ArrowDown') {
+    startTetrisGravityTimer(gravitySpeed);
+  }
+}
+
+// Interacción directa por Tap / Arrastre en el Canvas
+let isDraggingCanvas = false;
+canvas.addEventListener('pointerdown', e => {
+  if (gameState !== 'PLAY') return;
+  const rect = canvas.getBoundingClientRect();
+  const clickX = e.clientX - rect.left;
+  isDraggingCanvas = true;
+
+  if (activeGame === 'tetris') {
+    if (clickX < 150) moveTetrisDiscreet('left');
+    else if (clickX > 250) moveTetrisDiscreet('right');
+    else moveTetrisDiscreet('rotate');
+  } else if (activeGame === 'space') {
+    spaceBullets.push({ x: spacePlayer.x + 18, y: spacePlayer.y });
+    playSFX('shoot');
+  }
+});
+
+canvas.addEventListener('pointermove', e => {
+  if (!isDraggingCanvas || gameState !== 'PLAY') return;
+  const rect = canvas.getBoundingClientRect();
+  const relX = (e.clientX - rect.left) * (400 / rect.width);
+  if (activeGame === 'space') spacePlayer.x = Math.max(0, Math.min(360, relX - 20));
+  if (activeGame === 'breakout') bPaddle.x = Math.max(0, Math.min(320, relX - 40));
+});
+
+window.addEventListener('pointerup', () => { isDraggingCanvas = false; });
+
+switchGame('tetris', null);
 </script></body></html>
