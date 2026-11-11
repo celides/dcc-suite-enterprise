@@ -103,7 +103,7 @@ body.fx-star::after{content:"✦    ✦    ✦    ✦          ✦       ✦    
 body.fx-snow::after{content:"❄       ❄                 ❄                 ❄       ❄          ❄                 ❄             ❄                 ❄    ❄                 ❄    ❄             ❄          ❄                 ❄       ❄       ❄             ❄                 ❄                 ❄             ❄             ❄       ❄       ❄       ❄                 ❄             ❄    ❄    ❄       ❄                 ❄    ❄          ❄    ❄          ❄             ❄                 ❄             ❄             ❄             ❄                 ❄             ❄       ❄          ❄    ❄    ❄       "}
 body.fx-flower::after{content:"✿       ✿          ✿    ✿             ✿             ✿       ✿    ✿    ✿    ✿             ✿                 ✿          ✿    ✿       ✿                 ✿                 ✿          ✿          ✿       ✿    ✿          ✿       ✿    ✿          ✿          ✿       ✿       ✿          ✿          ✿          ✿    ✿                 ✿          ✿             ✿                 ✿       ✿       ✿       ✿             ✿          ✿    ✿                 ✿          ✿    ✿          ✿                 "}
 body.fx-ember::after{content:"•                 •          •          •                 •    •             •       •    •       •    •          •             •       •             •                 •    •                 •       •    •       •             •          •       •             •       •    •       •                 •                 •             •       •       •    •    •       •       •       •       •          •          •       •                 •       •       •       •             "}
-body.fx-confetti::after{content:"■                 ■    ■             ■          ■    ■    ■       ■                 ■             ■          ■          ■    ■          ■             ■       ■             ■                 ■                 ■    ■       ■                 ■                 ■          ■                 ■    ■             ■          ■    ■          ■             ■          ■             ■    ■       ■          ■    ■    ■                 ■       ■          ■             ■       ■                 ■                 ■                 ■    "}
+body.fx-confetti::after{content:"■                 ■    ■             ■          ■    ■    ■       ■                 ■             ■          ■          ■    ■          ■             ■       ■             ■                 ■                 ■    ■       ■                 ■                 ■          ■          ■    ■             ■          ■    ■          ■             ■          ■             ■    ■       ■          ■    ■    ■                 ■       ■          ■             ■       ■                 ■                 ■                 ■    "}
 @media (prefers-reduced-motion:reduce){body[class*=sk-]::before,body[class*=fx-]::after{animation:none}}
 #scn{display:none;position:relative;height:120px;border-radius:12px;overflow:hidden;margin:0 0 8px;opacity:var(--sc,1)}#gnd{display:none;height:64px;border-radius:12px;overflow:hidden;margin-top:8px;opacity:var(--gd,1);position:relative}
 body[class*=sk-] #scn,body[class*=sk-] #gnd{display:block}#scn.off,#gnd.off{display:none!important}
@@ -133,6 +133,90 @@ body.sk-mac .b,body.sk-mac .s{border-radius:8px}body.sk-mac:not(.dark) .hd{color
 body[class*=sk-] .card,body[class*=sk-] .hd,body[class*=sk-] .b,body[class*=sk-] .s{box-shadow:none!important}
 body.sk-px .card,body.sk-px .hd,body.sk-px .b,body.sk-px .s{box-shadow:4px 4px 0 rgba(0,0,0,.35)!important}body.sk-80 .card,body.sk-80 .hd{box-shadow:0 0 14px rgba(0,240,255,.6)!important}body.sk-neb .card{box-shadow:0 0 20px color-mix(in srgb,var(--ac)55%,transparent)!important}
 body.sky{background:linear-gradient(#6ebefa,#ecf8ff)fixed!important}
+
+/* ==========================================================================
+   ESTILOS RETRO ZONE
+   ========================================================================== */
+.retro-arcade-card {
+  background: #050508 !important;
+  border: 2px solid #00f0ff !important;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.4), inset 0 0 10px rgba(255, 0, 85, 0.2) !important;
+  color: #00f0ff !important;
+  font-family: 'Courier New', Courier, monospace !important;
+}
+.retro-arcade-card .ct {
+  color: #ff0055 !important;
+  border-bottom: 2px solid #00f0ff !important;
+  text-shadow: 0 0 8px #ff0055;
+  font-family: 'Courier New', Courier, monospace !important;
+}
+.retro-nav-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.retro-btn {
+  background: #000 !important;
+  border: 1px solid #00f0ff !important;
+  color: #00f0ff !important;
+  padding: 6px 14px !important;
+  font-family: 'Courier New', Courier, monospace !important;
+  font-weight: bold !important;
+  cursor: pointer;
+  border-radius: 4px;
+  box-shadow: 0 0 5px rgba(0, 240, 255, 0.3);
+  transition: all 0.2s ease;
+}
+.retro-btn:hover, .retro-btn.active {
+  background: #00f0ff !important;
+  color: #000 !important;
+  box-shadow: 0 0 12px #00f0ff;
+}
+.retro-game-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+#retroCanvas {
+  background: #000;
+  border: 3px solid #ff0055;
+  box-shadow: 0 0 15px rgba(255, 0, 85, 0.6);
+  border-radius: 4px;
+}
+.retro-controls-bar {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  font-family: 'Courier New', Courier, monospace;
+}
+.retro-score {
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffe600;
+  text-shadow: 0 0 6px #ffe600;
+}
+#retroAudioWidget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #000;
+  border: 2px solid #00f0ff;
+  border-radius: 20px;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.5);
+  z-index: 9999;
+  color: #00f0ff;
+  font-family: 'Courier New', Courier, monospace;
+}
+#retroAudioWidget input[type=range] {
+  width: 70px;
+  accent-color: #ff0055;
+}
 </style></head><body>
 <div class="bar"><span id="mP" class="md" onclick="setMode(0)">✈️ Piloto</span><span id="mC" class="md" onclick="setMode(1)">🧑‍✈️ Copiloto</span><button class="s" onclick="setLang()">🌐 ES/EN</button><button class="s" onclick="dark()">🌙 Oscuro</button><button class="s" onclick="ajustes()">🎚️ Ajustes</button><button class="s" onclick="sz(-10)">A−</button><button class="s" onclick="sz(10)">A+</button></div>
 <div class="hd"><b style="font-size:16px;display:flex;align-items:center;gap:6px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2.5" y="13" width="4" height="6" rx="1.5"/><rect x="17.5" y="13" width="4" height="6" rx="1.5"/><path d="M19.5 19c0 2-2 3-5 3h-2"/></svg>DCC Toolbox v5.7<svg class="emb ec" viewBox="0 0 24 24"><path d="M3 2h18v11l-9 9-9-9z" fill="#111" stroke="#ffcc00" stroke-width="1.6"/><path d="M6 7l6-3 6 3v3l-6-3-6 3z" fill="#ffcc00"/></svg><svg class="emb ec2" viewBox="0 0 24 24"><path d="M3 3l9 4 9-4-2 10-7 9-7-9z" fill="#111" stroke="#ffcc00" stroke-width="1.5"/><path d="M8 9l4 3 4-3-1 4-3 3-3-3z" fill="#ffcc00"/></svg><svg class="emb ej" viewBox="0 0 24 24"><path d="M2 12l8-2 4-8 2 1-2 7 7 1 1 2-8 1-2 7-2-1 1-6-8-1z" fill="#fff"/></svg></b>
@@ -193,6 +277,36 @@ body.sky{background:linear-gradient(#6ebefa,#ecf8ff)fixed!important}
 <p style="line-height:1.6">Si tienes protocolos que puedas compartir, con la autorización correspondiente, mándalos al <a href="https://wa.me/524464044521" target="_blank">📱 446 404 4521</a> para evaluarlos y agregarlos.</p></div></div>
 <div id="t-key" class="tc"><div class="card"><div class="ct">⌨️ Teclas de SkySpeed</div><div class="note warn">Referencia general: confírmala en SkySpeed o con tu coach antes de depender de ella.</div><input placeholder="Buscar tecla o función..." oninput="rK(this.value)" style="margin-bottom:8px"><div style="overflow-x:auto"><table id="kt"></table></div></div></div>
 <div id="t-sig" class="tc"><div class="card"><div class="ct">🔤 Siglas y códigos</div><div class="note warn">Referencia general: confirma los códigos con tu coach antes de usarlos en un caso.</div><input placeholder="Buscar sigla o significado..." oninput="rS(this.value)" style="margin-bottom:8px"><div id="sg"></div></div></div>
+
+<!-- PESTAÑA RETRO ZONE -->
+<div id="t-retro" class="tc">
+  <div class="card retro-arcade-card">
+    <div class="ct">🕹️ RETRO ZONE - ARCADE</div>
+    <div class="retro-nav-bar">
+      <button class="retro-btn active" id="btn-pong" onclick="selectRetroGame('pong')">Atari: Pong</button>
+      <button class="retro-btn" id="btn-breakout" onclick="selectRetroGame('breakout')">Atari: Breakout</button>
+      <button class="retro-btn" id="btn-tetris" onclick="selectRetroGame('tetris')">Arcade: Tetris</button>
+      <button class="retro-btn" id="btn-invaders" onclick="selectRetroGame('invaders')">Arcade: Space Invaders</button>
+    </div>
+    <div class="retro-game-area">
+      <canvas id="retroCanvas" width="400" height="400"></canvas>
+      <div class="retro-controls-bar">
+        <button class="retro-btn" onclick="startRetroGame()">▶ INICIAR</button>
+        <span class="retro-score" id="retroScore">SCORE: 0</span>
+      </div>
+      <div style="font-size: 11px; color: #00f0ff; text-align: center;" id="retroInstructions">
+        Controles: Flechas ↑ ↓
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTROL FLOTANTE DE AUDIO DE RETRO ZONE -->
+<div id="retroAudioWidget" style="display:none;">
+  <button id="retroMuteBtn" class="retro-btn" style="padding:2px 6px !important; font-size:12px;" onclick="toggleRetroMute()">🔊</button>
+  <input type="range" id="retroVolSlider" min="0" max="100" value="30" oninput="setRetroVolume(this.value)">
+</div>
+
 <div id="gnd"><div class="ly a3" id="g1"></div></div>
 <div class="ft"><div class="fb">Diseño Web</div>
 <div><b>DCC Toolbox v5.7</b> · Digital Customer Care · Desarrollado por <b>Juan Carlos Pérez Martínez</b> · Soporte técnico y mejoras: <a href="https://wa.me/524464044521" target="_blank">📱 446 404 4521</a></div>
@@ -220,9 +334,25 @@ const mMail=s=>(s||'').replace(/([\w.+-])[\w.+-]*@([\w-])[\w.-]*(\.[a-z]{2,})/gi
 const mNum=s=>(s||'').replace(/\d{7,}/g,m=>'****'+m.slice(-4));
 const mText=s=>mNum(mMail(s));
 /* Pestañas */
-const TABS=[['msra','📞 Llamada y OCR'],['rop','📊 Calculadora'],['dir','📱 Directorio'],['spl','✂️ Split'],['esc','🚨 Escalamientos'],['bit','📓 Bitácora'],['pro','💡 Protocolos'],['key','⌨️ Teclas'],['sig','🔤 Siglas']];
+const TABS=[['msra','📞 Llamada y OCR'],['rop','📊 Calculadora'],['dir','📱 Directorio'],['spl','✂️ Split'],['esc','🚨 Escalamientos'],['bit','📓 Bitácora'],['pro','💡 Protocolos'],['key','⌨️ Teclas'],['sig','🔤 Siglas'],['retro','🕹️ Retro Zone']];
 $('tabs').innerHTML=TABS.map((t,i)=>`<button class="tb${i?'':' on'}" onclick="tab('${t[0]}',this)">${t[1]}</button>`).join('');
-function tab(id,b){document.querySelectorAll('.tb,.tc').forEach(x=>x.classList.remove('on'));b.classList.add('on');$('t-'+id).classList.add('on');if(id=='esc')escGen()}
+function tab(id,b){
+  document.querySelectorAll('.tb,.tc').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+  $('t-'+id).classList.add('on');
+  if(id=='esc')escGen();
+  
+  // Pausar y ocultar juegos al salir de Retro Zone
+  if(id==='retro'){
+    $('retroAudioWidget').style.display = 'flex';
+    initAudioContext();
+    startTetrisMusic();
+  } else {
+    $('retroAudioWidget').style.display = 'none';
+    stopRetroGame();
+    stopTetrisMusic();
+  }
+}
 /* Formulario de llamada */
 const AGM={pnr:6,ape:10,nom:10,mail:18,tel:13,hv:10,vd:12,call:16};
 const HELP={pnr:'Clave de reservación de 6 letras. Pídesela al cliente para validar sus datos.',ape:'Los dos apellidos del titular, como están en la reservación.',nom:'Los nombres del titular. Cada campo tiene su botón para copiarlo en SkySpeed.',mail:'Correo de contacto de la reservación (FDS). Confírmalo con el cliente.',tel:'Teléfono de contacto de la reservación (FDS).',mot:'Lo que el cliente dice que pasó, en pocas palabras.',call:'Quién habla contigo si no es el titular (familiar, agencia…).',pax:'Apellidos y nombres de cada pasajero, como en la reservación. Usa + para agregar otro.',sta:'Estado del vuelo en SkySpeed (Shift+F7 para el historial).',act:'Qué hiciste: transferencia, cambio, voucher… Usa los botones rápidos.',res:'Política o solución que aplicaste.'};
@@ -490,7 +620,481 @@ function S1(){const b=+$('sb').value,f=+$('sf').value,t=+$('st').value,c=Math.mi
 function nueva(){const v=id=>$(id).value.trim(),nm=(v('ape')+' '+v('nom')).trim();
  if(v('pnr')||nm||v('mot')){log.push({t:now(),pnr:v('pnr')||'N/A',h:mName(nm||'Titular'),c:mName(v('call')||nm||'Titular'),e:mMail(v('mail'))||'N/A',p:mNum(v('tel'))||'N/A',m:mText(v('mot'))||'Atención',a:transf||'Llamada concluida'});if(/ventas|sales/i.test(transf))tr++;renderLog();toast('Cliente '+$('c1').textContent+' registrado')}
  limpiar()}
+
+/* ==========================================================================
+   MOTOR RETRO ZONE (AUDIO WEB API + JUEGOS CANVAS 2D)
+   ========================================================================== */
+
+// --- 1. MOTOR DE AUDIO 8 BITS (SINTETIZADOR) ---
+let audioCtx = null;
+let masterGain = null;
+let isMuted = false;
+let masterVolume = 0.3; // 30% por defecto
+let tetrisTimer = null;
+let currentNoteIndex = 0;
+
+function initAudioContext() {
+  if (!audioCtx) {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    audioCtx = new AudioContextClass();
+    masterGain = audioCtx.createGain();
+    masterGain.gain.value = isMuted ? 0 : masterVolume;
+    masterGain.connect(audioCtx.destination);
+  }
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+}
+
+function setRetroVolume(val) {
+  masterVolume = val / 100;
+  if (masterGain && !isMuted) {
+    masterGain.gain.setValueAtTime(masterVolume, audioCtx.currentTime);
+  }
+}
+
+function toggleRetroMute() {
+  isMuted = !isMuted;
+  $('retroMuteBtn').textContent = isMuted ? '🔇' : '🔊';
+  if (masterGain) {
+    masterGain.gain.setValueAtTime(isMuted ? 0 : masterVolume, audioCtx.currentTime);
+  }
+}
+
+// Reproductor de tonos cortos de 8 bits (Square wave)
+function play8BitTone(freq, duration, type = 'square') {
+  if (!audioCtx || isMuted) return;
+  try {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = type;
+    osc.frequency.value = freq;
+    
+    gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+    
+    osc.connect(gain);
+    gain.connect(masterGain);
+    
+    osc.start();
+    osc.stop(audioCtx.currentTime + duration);
+  } catch (e) {}
+}
+
+// Efectos de sonido (SFX)
+function playSFX(type) {
+  if (type === 'bounce') {
+    play8BitTone(440, 0.08); // Pong / Breakout rebote
+  } else if (type === 'shoot') {
+    play8BitTone(880, 0.05); // Space Invaders disparo
+  } else if (type === 'drop') {
+    play8BitTone(220, 0.1);  // Tetris caída
+  }
+}
+
+// Melodía de Tetris (Korobeiniki)
+const tetrisMelody = [
+  {f: 659.25, d: 400}, {f: 493.88, d: 200}, {f: 523.25, d: 200}, {f: 587.33, d: 400},
+  {f: 523.25, d: 200}, {f: 493.88, d: 200}, {f: 440.00, d: 400}, {f: 440.00, d: 200},
+  {f: 523.25, d: 200}, {f: 659.25, d: 400}, {f: 587.33, d: 200}, {f: 523.25, d: 200},
+  {f: 493.88, d: 600}, {f: 523.25, d: 200}, {f: 587.33, d: 400}, {f: 659.25, d: 400},
+  {f: 523.25, d: 400}, {f: 440.00, d: 400}, {f: 440.00, d: 600}
+];
+
+function startTetrisMusic() {
+  if (tetrisTimer) return;
+  currentNoteIndex = 0;
+  playNextTetrisNote();
+}
+
+function playNextTetrisNote() {
+  if (!$('t-retro').classList.contains('on')) return;
+  const note = tetrisMelody[currentNoteIndex];
+  play8BitTone(note.f, note.d / 1000, 'square');
+  
+  currentNoteIndex = (currentNoteIndex + 1) % tetrisMelody.length;
+  tetrisTimer = setTimeout(playNextTetrisNote, note.d);
+}
+
+function stopTetrisMusic() {
+  if (tetrisTimer) {
+    clearTimeout(tetrisTimer);
+    tetrisTimer = null;
+  }
+}
+
+// --- 2. MOTOR DE JUEGOS EN CANVAS (400x400) ---
+let currentGame = 'pong';
+let gameLoopId = null;
+let canvas, ctx;
+let keys = {};
+let retroScore = 0;
+
+// Estado Global de Juegos
+let gameActive = false;
+
+// Datos específicos de cada juego
+let pongState = {};
+let breakoutState = {};
+let tetrisState = {};
+let invadersState = {};
+
+window.addEventListener('keydown', e => {
+  if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' '].includes(e.key) && $('t-retro').classList.contains('on')) {
+    e.preventDefault();
+  }
+  keys[e.key] = true;
+});
+window.addEventListener('keyup', e => { keys[e.key] = false; });
+
+function selectRetroGame(game) {
+  stopRetroGame();
+  currentGame = game;
+  document.querySelectorAll('.retro-nav-bar .retro-btn').forEach(b => b.classList.remove('active'));
+  $('btn-' + game).classList.add('active');
+  
+  const inst = $('retroInstructions');
+  if (game === 'pong') inst.textContent = 'Controles: Flechas ↑ ↓';
+  else if (game === 'breakout') inst.textContent = 'Controles: Flechas ← →';
+  else if (game === 'tetris') inst.textContent = 'Controles: Flechas ← → Mover | ↑ Rotar | ↓ Bajar';
+  else if (game === 'invaders') inst.textContent = 'Controles: Flechas ← → Mover | Espacio: Disparar';
+
+  initGameCanvas();
+}
+
+function initGameCanvas() {
+  canvas = $('retroCanvas');
+  ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#000';
+  ctx.fillRect(0, 0, 400, 400);
+  ctx.fillStyle = '#00f0ff';
+  ctx.font = '20px "Courier New"';
+  ctx.textAlign = 'center';
+  ctx.fillText('PRESIONA INICIAR', 200, 200);
+  updateScore(0);
+}
+
+function updateScore(s) {
+  retroScore = s;
+  $('retroScore').textContent = 'SCORE: ' + retroScore;
+}
+
+function startRetroGame() {
+  stopRetroGame();
+  initAudioContext();
+  gameActive = true;
+  updateScore(0);
+
+  if (currentGame === 'pong') initPong();
+  else if (currentGame === 'breakout') initBreakout();
+  else if (currentGame === 'tetris') initTetris();
+  else if (currentGame === 'invaders') initInvaders();
+
+  gameLoopId = requestAnimationFrame(gameLoop);
+}
+
+function stopRetroGame() {
+  gameActive = false;
+  if (gameLoopId) {
+    cancelAnimationFrame(gameLoopId);
+    gameLoopId = null;
+  }
+}
+
+function gameLoop() {
+  if (!gameActive) return;
+  
+  ctx.fillStyle = '#000';
+  ctx.fillRect(0, 0, 400, 400);
+
+  if (currentGame === 'pong') updateDrawPong();
+  else if (currentGame === 'breakout') updateDrawBreakout();
+  else if (currentGame === 'tetris') updateDrawTetris();
+  else if (currentGame === 'invaders') updateDrawInvaders();
+
+  gameLoopId = requestAnimationFrame(gameLoop);
+}
+
+// --- JUEGO 1: PONG ---
+function initPong() {
+  pongState = {
+    py: 160, cy: 160, ph: 70, pw: 10,
+    bx: 200, by: 200, bsize: 8,
+    vx: 3, vy: 3
+  };
+}
+
+function updateDrawPong() {
+  let p = pongState;
+  if (keys['ArrowUp'] && p.py > 0) p.py -= 5;
+  if (keys['ArrowDown'] && p.py < 400 - p.ph) p.py += 5;
+
+  // CPU IA
+  if (p.by > p.cy + p.ph / 2 && p.cy < 400 - p.ph) p.cy += 3.5;
+  if (p.by < p.cy + p.ph / 2 && p.cy > 0) p.cy -= 3.5;
+
+  // Pelota
+  p.bx += p.vx;
+  p.by += p.vy;
+
+  if (p.by <= 0 || p.by >= 400) { p.vy *= -1; playSFX('bounce'); }
+
+  // Colisión Jugador
+  if (p.bx <= 20 && p.by >= p.py && p.by <= p.py + p.ph) {
+    p.vx *= -1.05;
+    playSFX('bounce');
+    updateScore(retroScore + 10);
+  }
+  // Colisión CPU
+  if (p.bx >= 380 - p.pw && p.by >= p.cy && p.by <= p.cy + p.ph) {
+    p.vx *= -1;
+    playSFX('bounce');
+  }
+
+  // Punto o Fina
+  if (p.bx < 0 || p.bx > 400) {
+    p.bx = 200; p.by = 200; p.vx = 3;
+  }
+
+  // Render
+  ctx.fillStyle = '#00f0ff';
+  ctx.fillRect(10, p.py, p.pw, p.ph);
+  ctx.fillStyle = '#ff0055';
+  ctx.fillRect(380, p.cy, p.pw, p.ph);
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(p.bx, p.by, p.bsize, p.bsize);
+}
+
+// --- JUEGO 2: BREAKOUT ---
+function initBreakout() {
+  breakoutState = {
+    px: 160, pw: 80, ph: 10,
+    bx: 200, by: 300, vx: 3, vy: -3, bsize: 8,
+    bricks: []
+  };
+  for (let r = 0; r < 4; r++) {
+    for (let c = 0; c < 6; c++) {
+      breakoutState.bricks.push({ x: c * 65 + 10, y: r * 20 + 30, w: 55, h: 12, active: true });
+    }
+  }
+}
+
+function updateDrawBreakout() {
+  let b = breakoutState;
+  if (keys['ArrowLeft'] && b.px > 0) b.px -= 6;
+  if (keys['ArrowRight'] && b.px < 400 - b.pw) b.px += 6;
+
+  b.bx += b.vx;
+  b.by += b.vy;
+
+  if (b.bx <= 0 || b.bx >= 392) { b.vx *= -1; playSFX('bounce'); }
+  if (b.by <= 0) { b.vy *= -1; playSFX('bounce'); }
+
+  // Colisión Paleta
+  if (b.by >= 370 && b.bx >= b.px && b.bx <= b.px + b.pw) {
+    b.vy *= -1;
+    playSFX('bounce');
+  }
+
+  // Colisión Bloques
+  b.bricks.forEach(br => {
+    if (br.active && b.bx >= br.x && b.bx <= br.x + br.w && b.by >= br.y && b.by <= br.y + br.h) {
+      br.active = false;
+      b.vy *= -1;
+      playSFX('bounce');
+      updateScore(retroScore + 20);
+    }
+  });
+
+  if (b.by > 400) { initBreakout(); }
+
+  // Render
+  ctx.fillStyle = '#00f0ff';
+  ctx.fillRect(b.px, 375, b.pw, b.ph);
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(b.bx, b.by, b.bsize, b.bsize);
+
+  b.bricks.forEach(br => {
+    if (br.active) {
+      ctx.fillStyle = '#ff0055';
+      ctx.fillRect(br.x, br.y, br.w, br.h);
+    }
+  });
+}
+
+// --- JUEGO 3: TETRIS ---
+function initTetris() {
+  tetrisState = {
+    grid: Array(20).fill(null).map(() => Array(10).fill(0)),
+    piece: newPiece(),
+    dropCounter: 0
+  };
+}
+
+function newPiece() {
+  const pieces = [
+    [[1,1,1,1]], // I
+    [[1,1],[1,1]], // O
+    [[0,1,0],[1,1,1]], // T
+    [[1,0,0],[1,1,1]], // L
+    [[0,0,1],[1,1,1]]  // J
+  ];
+  const p = pieces[Math.floor(Math.random() * pieces.length)];
+  return { shape: p, x: 3, y: 0 };
+}
+
+function updateDrawTetris() {
+  let t = tetrisState;
+  t.dropCounter++;
+
+  if (t.dropCounter % 25 === 0) {
+    t.piece.y++;
+    if (checkTetrisCollision()) {
+      t.piece.y--;
+      mergeTetrisPiece();
+      playSFX('drop');
+      t.piece = newPiece();
+      if (checkTetrisCollision()) initTetris(); // Perdió
+    }
+  }
+
+  // Teclas (Single pulse simulated)
+  if (keys['ArrowLeft']) { t.piece.x--; if(checkTetrisCollision()) t.piece.x++; keys['ArrowLeft'] = false; }
+  if (keys['ArrowRight']) { t.piece.x++; if(checkTetrisCollision()) t.piece.x--; keys['ArrowRight'] = false; }
+  if (keys['ArrowDown']) { t.piece.y++; if(checkTetrisCollision()) t.piece.y--; keys['ArrowDown'] = false; }
+  if (keys['ArrowUp']) { rotateTetris(); keys['ArrowUp'] = false; }
+
+  // Render Grid
+  const sz = 20;
+  ctx.strokeStyle = '#222';
+  for (let r = 0; r < 20; r++) {
+    for (let c = 0; c < 10; c++) {
+      if (t.grid[r][c]) {
+        ctx.fillStyle = '#00f0ff';
+        ctx.fillRect(c * sz + 100, r * sz, sz - 1, sz - 1);
+      }
+      ctx.strokeRect(c * sz + 100, r * sz, sz, sz);
+    }
+  }
+
+  // Render Piece
+  ctx.fillStyle = '#ff0055';
+  t.piece.shape.forEach((row, r) => {
+    row.forEach((v, c) => {
+      if (v) ctx.fillRect((t.piece.x + c) * sz + 100, (t.piece.y + r) * sz, sz - 1, sz - 1);
+    });
+  });
+}
+
+function checkTetrisCollision() {
+  let t = tetrisState;
+  for (let r = 0; r < t.piece.shape.length; r++) {
+    for (let c = 0; c < t.piece.shape[r].length; c++) {
+      if (t.piece.shape[r][c]) {
+        let newX = t.piece.x + c;
+        let newY = t.piece.y + r;
+        if (newX < 0 || newX >= 10 || newY >= 20 || (newY >= 0 && t.grid[newY][newX])) return true;
+      }
+    }
+  }
+  return false;
+}
+
+function mergeTetrisPiece() {
+  let t = tetrisState;
+  t.piece.shape.forEach((row, r) => {
+    row.forEach((v, c) => {
+      if (v) t.grid[t.piece.y + r][t.piece.x + c] = 1;
+    });
+  });
+
+  // Limpiar Filas
+  for (let r = 19; r >= 0; r--) {
+    if (t.grid[r].every(v => v === 1)) {
+      t.grid.splice(r, 1);
+      t.grid.unshift(Array(10).fill(0));
+      updateScore(retroScore + 100);
+    }
+  }
+}
+
+function rotateTetris() {
+  let t = tetrisState;
+  const s = t.piece.shape;
+  const rotated = s[0].map((_, i) => s.map(row => row[i]).reverse());
+  const oldS = t.piece.shape;
+  t.piece.shape = rotated;
+  if (checkTetrisCollision()) t.piece.shape = oldS;
+}
+
+// --- JUEGO 4: SPACE INVADERS ---
+function initInvaders() {
+  invadersState = {
+    px: 180, bullets: [], aliens: [], dir: 1
+  };
+  for (let r = 0; r < 3; r++) {
+    for (let c = 0; c < 7; c++) {
+      invadersState.aliens.push({ x: c * 45 + 40, y: r * 30 + 30, active: true });
+    }
+  }
+}
+
+function updateDrawInvaders() {
+  let inv = invadersState;
+
+  if (keys['ArrowLeft'] && inv.px > 0) inv.px -= 4;
+  if (keys['ArrowRight'] && inv.px < 370) inv.px += 4;
+  if (keys[' ']) {
+    inv.bullets.push({ x: inv.px + 13, y: 360 });
+    playSFX('shoot');
+    keys[' '] = false;
+  }
+
+  // Mover Balas
+  inv.bullets.forEach(b => b.y -= 7);
+  inv.bullets = inv.bullets.filter(b => b.y > 0);
+
+  // Mover Aliens
+  let edge = false;
+  inv.aliens.forEach(a => {
+    if (a.active) {
+      a.x += inv.dir * 1.5;
+      if (a.x <= 10 || a.x >= 360) edge = true;
+    }
+  });
+
+  if (edge) {
+    inv.dir *= -1;
+    inv.aliens.forEach(a => a.y += 10);
+  }
+
+  // Impactos
+  inv.bullets.forEach(b => {
+    inv.aliens.forEach(a => {
+      if (a.active && b.x >= a.x && b.x <= a.x + 30 && b.y >= a.y && b.y <= a.y + 20) {
+        a.active = false;
+        b.y = -10;
+        updateScore(retroScore + 50);
+      }
+    });
+  });
+
+  // Render Jugador
+  ctx.fillStyle = '#00f0ff';
+  ctx.fillRect(inv.px, 370, 30, 15);
+
+  // Render Balas
+  ctx.fillStyle = '#fff';
+  inv.bullets.forEach(b => ctx.fillRect(b.x, b.y, 4, 8));
+
+  // Render Aliens
+  ctx.fillStyle = '#ff0055';
+  inv.aliens.forEach(a => {
+    if (a.active) ctx.fillRect(a.x, a.y, 30, 20);
+  });
+}
+
 /* Inicio */
 try{$('ag').value=sessionStorage.getItem('dcc_ag')||'';const s=JSON.parse(sessionStorage.getItem('dcc_log')||'null');if(s){log=s.log;tr=s.tr}}catch(e){}
-renderPx();['pnr','ape','nom','hv','mail','tel','vd'].forEach(i=>$(i).closest('.fg').style.cssText='flex:0 0 auto;min-width:0');qa();agAll();saludo();tOpts();setP(30);{let m=1;try{const v=sessionStorage.getItem("dcc_m");if(v!==null)m=+v}catch(e){}setMode(m)}dirR();spl();renderLog();
+renderPx();['pnr','ape','nom','hv','mail','tel','vd'].forEach(i=>$(i).closest('.fg').style.cssText='flex:0 0 auto;min-width:0');qa();agAll();saludo();tOpts();setP(30);{let m=1;try{const v=sessionStorage.getItem("dcc_m");if(v!==null)m=+v}catch(e){}setMode(m)}dirR();spl();renderLog();initGameCanvas();
 </script></body></html>
