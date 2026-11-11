@@ -38,7 +38,7 @@ th,td{padding:7px;text-align:left;border-bottom:1px solid #e2e8f0}th{background:
 .pre.on{background:#1E3A8A;color:#fff}
 .note{background:#f0f9ff;border-left:4px solid #0284c7;color:#075985;border-radius:8px;padding:10px;font-size:11.5px;margin-bottom:10px}
 .warn{background:#fffbe3;border-left-color:#eab308;color:#854d0e}
-#toast{display:none;position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;padding:8px 16px;border-radius:20px;font-size:12px;z-index:999}
+#toast{display:none;position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;padding:8px 16px;border-radius:20px;font-size:12px;z-index:9}
 .ft{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:12px;font-size:11px;color:#475569;line-height:1.5}
 body.dark{--b:#1E1E24;--c:#26262e;--f:#33333d;--t:#e5e7eb;--ft:#e5e7eb;--bd:#5a5a6a;background:var(--b);color:var(--t)}
 body.dark .card,body.dark .ft,body.dark .tb,body.dark .cap,body.dark .cnt div,body.dark .drop,body.dark th,body.dark .pre{background:var(--c);color:var(--t);border-color:var(--bd)}
@@ -102,7 +102,7 @@ body.fx-heart::after{content:"♥       ♥                 ♥    ♥          
 body.fx-star::after{content:"✦    ✦    ✦    ✦          ✦       ✦          ✦          ✦                 ✦       ✦                 ✦    ✦                 ✦       ✦             ✦             ✦                 ✦          ✦                 ✦             ✦                 ✦          ✦    ✦    ✦          ✦             ✦          ✦             ✦             ✦                 ✦       ✦                 ✦       ✦       ✦       ✦    ✦       ✦          ✦       ✦       ✦                 ✦                 ✦          ✦                 ✦                 ✦       ✦             "}
 body.fx-snow::after{content:"❄       ❄                 ❄                 ❄       ❄          ❄                 ❄             ❄                 ❄    ❄                 ❄    ❄             ❄          ❄                 ❄       ❄       ❄             ❄                 ❄                 ❄             ❄             ❄       ❄       ❄       ❄                 ❄             ❄    ❄    ❄       ❄                 ❄    ❄          ❄    ❄          ❄             ❄                 ❄             ❄             ❄             ❄                 ❄             ❄       ❄          ❄    ❄    ❄       "}
 body.fx-flower::after{content:"✿       ✿          ✿    ✿             ✿             ✿       ✿    ✿    ✿    ✿             ✿                 ✿          ✿    ✿       ✿                 ✿                 ✿          ✿          ✿       ✿    ✿          ✿       ✿    ✿          ✿          ✿       ✿       ✿          ✿          ✿          ✿    ✿                 ✿          ✿             ✿                 ✿       ✿       ✿       ✿             ✿          ✿    ✿                 ✿          ✿    ✿          ✿                 "}
-body.fx-ember::after{content:"•                 •          •          •                 •    •             •       •    •       •    •          •             •       •             •                 •    •                 •       •    •       •             •          •       •             •       •    •       •                 •                 •             •       •       •        •       •       •       •          •          •       •                 •       •       •       •             "}
+body.fx-ember::after{content:"•                 •          •          •                 •    •             •       •    •       •    •          •             •       •             •                 •    •                 •       •    •       •             •          •       •             •       •    •       •                 •                 •             •       •       •    •    •       •       •       •       •          •          •       •                 •       •       •       •             "}
 body.fx-confetti::after{content:"■                 ■    ■             ■          ■    ■    ■       ■                 ■             ■          ■          ■    ■          ■             ■       ■             ■                 ■                 ■    ■       ■                 ■                 ■          ■                 ■    ■             ■          ■    ■          ■             ■          ■             ■    ■       ■          ■    ■    ■                 ■       ■          ■             ■       ■                 ■                 ■                 ■    "}
 @media (prefers-reduced-motion:reduce){body[class*=sk-]::before,body[class*=fx-]::after{animation:none}}
 #scn{display:none;position:relative;height:120px;border-radius:12px;overflow:hidden;margin:0 0 8px;opacity:var(--sc,1)}#gnd{display:none;height:64px;border-radius:12px;overflow:hidden;margin-top:8px;opacity:var(--gd,1);position:relative}
@@ -134,19 +134,24 @@ body[class*=sk-] .card,body[class*=sk-] .hd,body[class*=sk-] .b,body[class*=sk-]
 body.sk-px .card,body.sk-px .hd,body.sk-px .b,body.sk-px .s{box-shadow:4px 4px 0 rgba(0,0,0,.35)!important}body.sk-80 .card,body.sk-80 .hd{box-shadow:0 0 14px rgba(0,240,255,.6)!important}body.sk-neb .card{box-shadow:0 0 20px color-mix(in srgb,var(--ac)55%,transparent)!important}
 body.sky{background:linear-gradient(#6ebefa,#ecf8ff)fixed!important}
 
-/* ESTILOS RETRO ZONE & CONTROLES TOUCH */
-.arcade-container{background:#0d0d1a;border:3px solid #00f0ff;border-radius:12px;padding:15px;color:#00f0ff;box-shadow:0 0 20px rgba(0,240,255,.3);font-family:monospace;display:flex;flex-direction:column;align-items:center;position:relative}
-.arcade-menu{display:flex;gap:10px;margin-bottom:12px;width:100%;justify-content:center;flex-wrap:wrap}
-.arcade-btn{background:#1a103c;border:2px solid #ff007f;color:#fff;padding:8px 16px;font-family:monospace;font-weight:700;cursor:pointer;border-radius:6px;box-shadow:0 0 8px rgba(255,0,127,.5);transition:all .2s;font-size:12px}
-.arcade-btn:hover,.arcade-btn.active{background:#ff007f;color:#fff;box-shadow:0 0 15px #ff007f}
-.arcade-header{display:flex;justify-content:space-between;width:100%;max-width:400px;margin-bottom:8px;font-size:14px;color:#ffe600;text-shadow:0 0 5px #ffe600}
-#arcadeCanvas{background:#000;border:2px solid #ff007f;box-shadow:0 0 15px rgba(255,0,127,.4);border-radius:4px;max-width:100%;height:auto;display:block;touch-action:none}
-.arcade-audio{display:flex;align-items:center;gap:8px;margin-top:10px;background:#1a103c;padding:6px 12px;border-radius:20px;border:1px solid #00f0ff;font-size:11px}
-.touch-controls{display:grid;grid-template-columns:repeat(3,52px);grid-template-rows:repeat(2,52px);gap:6px;margin-top:14px;user-select:none;-webkit-user-select:none}
-.t-btn{background:#1f1938;border:2px solid #00f0ff;color:#00f0ff;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;touch-action:manipulation;cursor:pointer;box-shadow:0 0 8px rgba(0,240,255,.3)}
-.t-btn:active{background:#00f0ff;color:#000}
-.t-btn.act{background:#ff007f;border-color:#ff007f;color:#fff;box-shadow:0 0 10px #ff007f}
-.t-btn.act:active{background:#fff;color:#ff007f}
+/* ESTILOS ESPECÍFICOS PARA LA RETRO ZONE */
+.retro-container{background:#050814;color:#00f0ff;border-radius:12px;padding:16px;border:2px solid #ff007f;box-shadow:0 0 20px rgba(255,0,127,0.3);font-family:monospace;text-align:center}
+.retro-nav{display:flex;justify-content:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.retro-btn{background:#11162b;color:#00f0ff;border:1px solid #00f0ff;padding:6px 14px;border-radius:6px;font-weight:700;cursor:pointer;font-family:monospace}
+.retro-btn.active,.retro-btn:hover{background:#ff007f;color:#fff;border-color:#ff007f;box-shadow:0 0 10px #ff007f}
+.game-viewport{position:relative;display:inline-block;max-width:100%;margin:0 auto}
+#arcadeCanvas{background:#000;border:2px solid #00f0ff;border-radius:6px;max-width:100%;height:auto;display:block;margin:0 auto;box-shadow:0 0 15px rgba(0,240,255,0.4)}
+.arcade-controls{display:flex;justify-content:space-between;align-items:center;margin-top:12px;background:#0d1326;padding:10px;border-radius:8px;border:1px solid #1f294d;flex-wrap:wrap;gap:10px}
+.dpad{display:grid;grid-template-columns:repeat(3,42px);grid-template-rows:repeat(3,42px);gap:4px;margin:0 auto}
+.dbtn{background:#1b2447;color:#fff;border:1px solid #00f0ff;border-radius:6px;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;user-select:none;cursor:pointer}
+.dbtn:active{background:#ff007f;transform:scale(0.95)}
+.dbtn-up{grid-column:2;grid-row:1}
+.dbtn-left{grid-column:1;grid-row:2}
+.dbtn-right{grid-column:3;grid-row:2}
+.dbtn-down{grid-column:2;grid-row:3}
+.action-btn{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#ff0055,#b3003b);border:2px solid #fff;color:#fff;font-size:20px;font-weight:900;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 10px #ff0055;user-select:none;margin:0 auto}
+.action-btn:active{transform:scale(0.9)}
+.audio-ctrl{display:flex;align-items:center;gap:8px;font-size:12px;color:#00f0ff}
 </style></head><body>
 <div class="bar"><span id="mP" class="md" onclick="setMode(0)">✈️ Piloto</span><span id="mC" class="md" onclick="setMode(1)">🧑‍✈️ Copiloto</span><button class="s" onclick="setLang()">🌐 ES/EN</button><button class="s" onclick="dark()">🌙 Oscuro</button><button class="s" onclick="ajustes()">🎚️ Ajustes</button><button class="s" onclick="sz(-10)">A−</button><button class="s" onclick="sz(10)">A+</button></div>
 <div class="hd"><b style="font-size:16px;display:flex;align-items:center;gap:6px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2.5" y="13" width="4" height="6" rx="1.5"/><rect x="17.5" y="13" width="4" height="6" rx="1.5"/><path d="M19.5 19c0 2-2 3-5 3h-2"/></svg>DCC Toolbox v5.7<svg class="emb ec" viewBox="0 0 24 24"><path d="M3 2h18v11l-9 9-9-9z" fill="#111" stroke="#ffcc00" stroke-width="1.6"/><path d="M6 7l6-3 6 3v3l-6-3-6 3z" fill="#ffcc00"/></svg><svg class="emb ec2" viewBox="0 0 24 24"><path d="M3 3l9 4 9-4-2 10-7 9-7-9z" fill="#111" stroke="#ffcc00" stroke-width="1.5"/><path d="M8 9l4 3 4-3-1 4-3 3-3-3z" fill="#ffcc00"/></svg><svg class="emb ej" viewBox="0 0 24 24"><path d="M2 12l8-2 4-8 2 1-2 7 7 1 1 2-8 1-2 7-2-1 1-6-8-1z" fill="#fff"/></svg></b>
@@ -211,31 +216,40 @@ body.sky{background:linear-gradient(#6ebefa,#ecf8ff)fixed!important}
 <div id="t-sig" class="tc"><div class="card"><div class="ct">🔤 Siglas y códigos</div><div class="note warn">Referencia general: confirma los códigos con tu coach antes de usarlos en un caso.</div><input placeholder="Buscar sigla o significado..." oninput="rS(this.value)" style="margin-bottom:8px"><div id="sg"></div></div></div>
 
 <!-- PESTAÑA RETRO ZONE -->
-<div id="t-retro" class="tc"><div class="card" style="padding:10px"><div class="arcade-container">
- <div class="arcade-menu">
-  <button class="arcade-btn active" onclick="switchGame('pong',this)">🏓 Pong</button>
-  <button class="arcade-btn" onclick="switchGame('breakout',this)">🧱 Breakout</button>
-  <button class="arcade-btn" onclick="switchGame('tetris',this)">🧩 Tetris</button>
-  <button class="arcade-btn" onclick="switchGame('invaders',this)">👾 Space Invaders</button>
- </div>
- <div class="arcade-header">
-  <span id="gameTitle">🏓 PONG</span>
-  <span id="gameScore">SCORE: 0</span>
-  <button class="arcade-btn" style="padding:3px 8px;font-size:10px" onclick="initCurrentGame()">▶ INICIAR</button>
- </div>
- <canvas id="arcadeCanvas" width="400" height="400"></canvas>
- <div class="touch-controls">
-  <div></div><div class="t-btn" id="btnUp">↑</div><div></div>
-  <div class="t-btn" id="btnLeft">←</div><div class="t-btn" id="btnDown">↓</div><div class="t-btn" id="btnRight">→</div>
-  <div style="grid-column:span 3;display:flex;justify-content:center;margin-top:4px">
-   <div class="t-btn act" id="btnAction" style="width:120px;height:44px;font-size:14px">🔴 BOTÓN</div>
+<div id="t-retro" class="tc">
+  <div class="card retro-container">
+    <div class="ct" style="color:#00f0ff;border-color:#ff007f">🕹️ RETRO ZONE - ARCADE CENTER</div>
+    <div class="retro-nav">
+      <button class="retro-btn active" onclick="switchGame('tetris',this)">🧩 Tetris Clásico</button>
+      <button class="retro-btn" onclick="switchGame('space',this)">👾 Space Invaders</button>
+      <button class="retro-btn" onclick="switchGame('pong',this)">🏓 Pong</button>
+      <button class="retro-btn" onclick="switchGame('breakout',this)">🧱 Breakout</button>
+    </div>
+    
+    <div class="game-viewport">
+      <canvas id="arcadeCanvas" width="400" height="400"></canvas>
+    </div>
+
+    <div class="arcade-controls">
+      <button class="b g" style="font-size:14px" onclick="startGame()">▶ INICIAR JUEGO</button>
+      
+      <!-- Controles D-Pad para Celular -->
+      <div class="dpad">
+        <button class="dbtn dbtn-up" onpointerdown="triggerInput('ArrowUp')">▲</button>
+        <button class="dbtn dbtn-left" onpointerdown="triggerInput('ArrowLeft')">◄</button>
+        <button class="dbtn dbtn-right" onpointerdown="triggerInput('ArrowRight')">►</button>
+        <button class="dbtn dbtn-down" onpointerdown="triggerInput('ArrowDown')">▼</button>
+      </div>
+
+      <div class="action-btn" onpointerdown="triggerInput('Space')">🔴</div>
+
+      <div class="audio-ctrl">
+        <button class="s" id="btnMute" onclick="toggleMute()">🔊 Audio: ON</button>
+        <input type="range" id="volSlider" min="0" max="1" step="0.05" value="0.3" oninput="setVolume(this.value)" style="width:70px">
+      </div>
+    </div>
   </div>
- </div>
- <div class="arcade-audio">
-  <button class="s" id="retroMuteBtn" onclick="toggleRetroMute()" style="padding:2px 8px">🔊 Audio</button>
-  <input type="range" id="retroVol" min="0" max="1" step="0.05" value="0.3" oninput="setRetroVolume(this.value)" style="width:90px">
- </div>
-</div></div></div>
+</div>
 
 <div id="gnd"><div class="ly a3" id="g1"></div></div>
 <div class="ft"><div class="fb">Diseño Web</div>
@@ -258,20 +272,22 @@ function cp(txt,label,secret){
  const ok=()=>{toast('Copiado: '+label+' ✔');if(secret){clearTimeout(clr);clr=setTimeout(()=>{try{navigator.clipboard.writeText(' ')}catch(e){}},30000)}};
  if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(txt).then(ok).catch(()=>fb(txt,ok));else fb(txt,ok)}
 function fb(t,ok){const a=document.createElement('textarea');a.value=t;a.style.cssText='position:fixed;left:-9999px';document.body.appendChild(a);a.select();let r=false;try{r=document.execCommand('copy')}catch(e){}a.remove();r?ok():toast('No se pudo copiar')}
+
 /* Enmascarado */
 const mName=s=>(s||'').split(/\s+/).filter(Boolean).map(w=>w[0]+'***').join(' ');
 const mMail=s=>(s||'').replace(/([\w.+-])[\w.+-]*@([\w-])[\w.-]*(\.[a-z]{2,})/gi,'$1***@$2***$3');
 const mNum=s=>(s||'').replace(/\d{7,}/g,m=>'****'+m.slice(-4));
 const mText=s=>mNum(mMail(s));
 
-/* Pestañas (incluye Retro Zone) */
+/* Pestañas */
 const TABS=[['msra','📞 Llamada y OCR'],['rop','📊 Calculadora'],['dir','📱 Directorio'],['spl','✂️ Split'],['esc','🚨 Escalamientos'],['bit','📓 Bitácora'],['pro','💡 Protocolos'],['key','⌨️ Teclas'],['sig','🔤 Siglas'],['retro','🕹️ Retro Zone']];
 $('tabs').innerHTML=TABS.map((t,i)=>`<button class="tb${i?'':' on'}" onclick="tab('${t[0]}',this)">${t[1]}</button>`).join('');
 function tab(id,b){
- document.querySelectorAll('.tb,.tc').forEach(x=>x.classList.remove('on'));
- b.classList.add('on');$('t-'+id).classList.add('on');
- if(id==='esc')escGen();
- if(id!=='retro'){ stopGameMusic(); stopGameLoop(); } else { playMelodyForGame(cg); }
+  document.querySelectorAll('.tb,.tc').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+  $('t-'+id).classList.add('on');
+  if(id==='esc')escGen();
+  if(id!=='retro'){ stopMusic(); stopGameLoop(); }
 }
 
 /* Formulario de llamada */
@@ -281,11 +297,12 @@ const fld=(id,l,ph,c,ta)=>`<div class="fg"><label>${l}</label>${HELP[id]?`<div c
 $('form').innerHTML='<input type="hidden" id="hold"><div class="row">'+fld('pnr','PNR','RGUCRW',1)+'<div class="fg" style="flex:0 0 auto;min-width:0"><label>&nbsp;</label><button class="b gr" onclick="nueva()">🔄 Nueva llamada</button></div></div><div class="row">'+fld('ape','🧾 Apellidos','Apellidos',1)+fld('nom','🧾 Nombres','Nombres',1)+fld('hv','🎟️ Voucher','Voucher',1)+'</div><div class="row">'+fld('mail','📧 Correo (FDS)','correo@dominio.com',1)+fld('tel','📱 Teléfono (FDS)','52…',1)+'</div><div class="row">'+fld('mot','📝 Comentario / motivo','¿Qué ocurrió?',1,1)+'</div><div class="row"><div class="fg"><button class="s" id="frb" style="align-self:flex-start">💬 Frases rápidas</button><div id="frp" style="display:none;margin-top:6px"></div></div></div><div class="row">'+fld('call','📞 Quien llama','Nombre o familiar',1)+'<div class="fg"><label>Rellenar con</label><div class="ib"><button class="s" onclick="callAs(0)">= Titular</button><button class="s" onclick="callAs(1)">= Pasajero</button></div></div></div><div class="row">'+pxBox()+'</div><div class="row">'+fld('vd','📅 Fecha de los vouchers','20 noviembre',1)+'</div><div id="qa"></div>';
 $('pnr').oninput=function(){this.value=this.value.toUpperCase()};
 document.addEventListener('input',e=>{const t=e.target;if(t.classList&&t.classList.contains('ag'))agw(t);if(t.dataset&&t.dataset.v!==undefined)vch[+t.dataset.v]=t.value;if(t.dataset&&t.dataset.px!==undefined){pxs[+t.dataset.px][t.dataset.f]=t.value;pxs.auto=false;pxSync()}if(t.id==='ape'||t.id==='nom')$('hold').value=($('nom').value+' '+$('ape').value).trim();
- if(t.tagName==='TEXTAREA'&&!t.readOnly){t.style.height='auto';t.style.height=t.scrollHeight+'px'}
+ if(t.tagName=='TEXTAREA'&&!t.readOnly){t.style.height='auto';t.style.height=t.scrollHeight+'px'}
  if(t.dataset&&t.dataset.i!==undefined){caps[+t.dataset.i].text=t.value;renderDat();autofill()}});
 document.addEventListener('click',e=>{const c=e.target.closest('.chip');if(c)cp(c.dataset.v,'Dato')});
 function saveAg(){try{sessionStorage.setItem('dcc_ag',$('ag').value)}catch(e){}}
-function saludo(){const n=$('ag').value||(lang==='en'?'[your name]':'[tu nombre]');$('sal').textContent=lang==='en'?'"Hello! Welcome to Volaris, this is '+n+' speaking. May I have your name and how can I help you today? Please share your booking reference (PNR) so I can verify your details..."':'"¡Hola! Bienvenido a Volaris, te atiende '+n+'. ¿Con quién tengo el gusto y en qué te puedo apoyar el día de hoy? Me compartes tu clave de reservación (PNR) para validar tus datos, por favor..."'}
+function saludo(){const n=$('ag').value||(lang=='en'?'[your name]':'[tu nombre]');$('sal').textContent=lang=='en'?'"Hello! Welcome to Volaris, this is '+n+' speaking. May I have your name and how can I help you today? Please share your booking reference (PNR) so I can verify your details..."':'"¡Hola! Bienvenido a Volaris, te atiende '+n+'. ¿Con quién tengo el gusto y en qué te puedo apoyar el día de hoy? Me compartes tu clave de reservación (PNR) para validar tus datos, por favor..."'}
+
 /* Nota + bitácora */
 function genNota(){
  const v=id=>$(id).value.trim(),nm=(v('ape')+' '+v('nom')).trim(),d=v('vd'),L=[];
@@ -307,6 +324,7 @@ function csv(){if(!log.length)return toast('Sin registros');
  const r=['Hora,PNR,Titular,Contacto,Email,Telefono,Motivo,Accion'].concat(log.map(x=>[x.t,x.pnr,x.h,x.c,x.e,x.p,x.m,x.a].map(q).join(',')));
  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+r.join('\n')],{type:'text/csv;charset=utf-8'}));a.download='Bitacora_'+new Date().toISOString().slice(0,10)+'.csv';document.body.appendChild(a);a.click();a.remove()}
 function limpiar(){['pnr','mail','tel','hold','ape','nom','hv','vd','call','pax','mot','out','qout'].forEach(i=>{$(i).value='';$(i).style.height=''});caps.forEach(c=>URL.revokeObjectURL(c.url));caps=[];queue=[];lastPax='';transf='';pxs=[{a:'',n:''}];renderPx();renderCaps();$('ost').textContent='Win+Shift+S para capturar; luego Ctrl+V aquí.'}
+
 /* OCR multicaptura */
 async function getW(){if(!worker){worker=await Tesseract.createWorker('spa+eng');try{await worker.setParameters({tessedit_pageseg_mode:'11'})}catch(e){}}return worker}
 function prep(blob){return new Promise((res,rej)=>{const img=new Image();img.onerror=rej;img.onload=()=>{
@@ -324,7 +342,7 @@ async function run(){if(busy)return;busy=true;
   try{const w=await getW(),r=await w.recognize(await prep(c.blob));c.text=r.data.text;c.st='✅'}
   catch(e){c.st='❌';$('ost').textContent='❌ No se pudo leer. Revisa que cdn.jsdelivr.net esté permitido o escribe los datos a mano.'}
   renderCaps();autofill()}
- busy=false;if(!caps.some(c=>c.st==='❌'))$('ost').textContent='✅ Listo: '+caps.length+' captura(s). Corrige el texto si algo salió mal.'}
+ busy=false;if(!caps.some(c=>c.st=='❌'))$('ost').textContent='✅ Listo: '+caps.length+' captura(s). Corrige el texto si algo salió mal.'}
 function delCap(i){URL.revokeObjectURL(caps[i].url);caps.splice(i,1);renderCaps()}
 function renderCaps(){
  $('caps').innerHTML=caps.map((c,i)=>`<div class="cap"><img src="${c.url}"><div style="flex:1"><div style="font-size:10px;font-weight:700">Captura ${i+1} ${c.st}</div><textarea data-i="${i}" placeholder="Texto leído (editable)">${esc(c.text)}</textarea></div><div><button class="s" onclick="cp(caps[${i}].text,'Texto')">📋</button><br><button class="s" style="margin-top:4px" onclick="this.closest('.cap').querySelector('textarea').select()">Sel. todo</button><br><button class="s gr" style="margin-top:4px" onclick="delCap(${i})">✖</button></div></div>`).join('');document.querySelectorAll('.cap textarea').forEach(a=>{a.style.height='auto';a.style.height=a.scrollHeight+'px'});renderDat()}
@@ -348,6 +366,7 @@ document.addEventListener('paste',e=>{const it=[...((e.clipboardData||{}).items|
 document.addEventListener('dragover',e=>e.preventDefault());
 document.addEventListener('drop',e=>{e.preventDefault();[...e.dataTransfer.files].filter(f=>f.type.startsWith('image/')).forEach(addCap)});
 $('fi').onchange=e=>{[...e.target.files].forEach(addCap);e.target.value=''};
+
 /* Escalamientos */
 const DEF={};let TPL=DEF;try{TPL=Object.assign({},DEF,JSON.parse(localStorage.getItem('dcc_tpl')||'{}'))}catch(e){}
 function tOpts(sel){$('tsel').innerHTML=Object.keys(TPL).map(k=>`<option>${esc(k)}</option>`).join('');if(sel)$('tsel').value=sel;tSel()}
@@ -357,6 +376,7 @@ function fill(t){const v=id=>$(id).value.trim(),px=v('pax').split('\n').filter(B
 function quick(k){const q=$('qout');q.value=fill(TPL[k]||'');q.style.height='auto';q.style.height=q.scrollHeight+'px';const e=$('etip');e.style.display=TIPS[k]?'block':'none';e.textContent=TIPS[k]?'🔹 '+TIPS[k]:''}
 function escGen(){$('eout').value=fill($('ttxt').value);$('ttxt').style.height='auto';$('ttxt').style.height=$('ttxt').scrollHeight+'px'}
 function escLog(){log.push({t:now(),pnr:$('pnr').value.trim()||'N/A',h:'—',c:'—',e:'—',p:'—',m:'Escalamiento',a:$('tsel').value});renderLog();toast('Registrado sin datos personales')}
+
 /* ROP */
 const PR=[[10,'10% Demora','Demora de 2 a 4 h (CCCPMX/CCCPUS).'],[25,'25% OS','Sobreventa con MOVE en MX/CAM/SAM. Tope $6,000 MXN / $600 USD por PAX.'],[30,'30% IROP','Cancelación o demora ≥ 4 h.'],[100,'100% Crisis ATO','Cierres de ATO o emergencias no imputables.'],[125,'125% OS voluntaria','Voucher voluntario por sobreventa.'],[130,'130% USA/DOT','ADOTMX/ADOTUS, vigencia 5 años.'],[200,'200% DOT 1-4h','Sobreventa DOT con retraso de 1 a 4 h (máx $1,075 USD).'],[400,'400% DOT >4h','Sobreventa DOT con retraso > 4 h (máx $2,150 USD).']];
 $('pres').innerHTML=PR.map(p=>`<button class="pre" data-p="${p[0]}" onclick="setP(${p[0]})">${p[1]}</button>`).join('');
@@ -367,29 +387,29 @@ function dvStep(n){dvTouched=true;$('dv').value=Math.max(1,(+$('dv').value||1)+n
 const CAPS={25:{MXN:6000,USD:600},200:{USD:1075},400:{USD:2150}};
 function rop(){const n=+$('rp').value||1,b=+$('rb').value||0,d=Math.max(1,+$('dv').value||1),tv=b*pct/100,ind=b/n,per=tv/d,f=x=>'$'+x.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+' '+cur;
  rv={ind:ind.toFixed(2),tot:tv.toFixed(2),per:per.toFixed(2),sum:(b+tv).toFixed(2)};
- $('r1').textContent=pct===130?(cur==='USD'?'ADOTUS':'ADOTMX')+' (5 años)':(cur==='USD'?'CCCPUS':'CCCPMX')+' (180 días)';
+ $('r1').textContent=pct===130?(cur=='USD'?'ADOTUS':'ADOTMX')+' (5 años)':(cur=='USD'?'CCCPUS':'CCCPMX')+' (180 días)';
  $('r2').textContent=f(ind);$('r3').textContent=pct+'%';$('r4').textContent=f(tv);$('r6').textContent=f(per);$('r7').textContent=f(b+tv);
  const cap=(CAPS[pct]||{})[cur],w=$('cap');
  if(cap&&per>cap){w.style.display='block';w.textContent='⚠️ Ojo: el voucher por pasajero ('+f(per)+') pasa el tope de $'+cap.toLocaleString('en-US')+' '+cur+'. Confirma la política antes de ofrecerlo.'}else w.style.display='none';agAll()}
-/* Directorio */
+
+/* Directorio & Split */
 const DIR=[['⭐ Ventas Español','7004763'],['Protex Español (IROP)','7004767'],['Grupos Español','7004756'],['Asistencia Supervisor Ventas','7004757'],['Asistencia Supervisor Protex','7004764'],['Ventas Inglés','7004777'],['Protex Inglés','7004781'],['Invex Volaris (Monedero)','01 55 4000 6566'],['WhatsApp Oficial Volaris','+52 55 6114 5083']];
 function dirR(q){q=(q||'').toLowerCase();$('dt').innerHTML=dirList().filter(r=>(r[0]+r[1]).toLowerCase().includes(q)).map(r=>`<tr${(lang==='en'?/Ventas Inglés/:/Ventas Español/).test(r[0])?' class="hl"':''}><td>${esc(r[0])}</td><td><b>${esc(r[1])}</b></td><td><button class="s" onclick="cp('${r[1]}','Extensión')">📋</button></td></tr>`).join('')}
-/* Split */
 function spl(){const t=+$('s1').value||0,n=+$('s2').value||1,s=+$('s3').value||1,u=t/n,f=x=>'$'+x.toFixed(2)+' MXN';$('q1').textContent=f(u);$('q2').textContent=f(u*s);$('q3').textContent=f(t-u*s);$('q4').textContent=Math.max(0,n-s)}
+
+/* Apariencia / Ajustes */
 function dark(){const d=document.body.classList.toggle('dark');rst();$('sb').value=d?13:97;$('sf').value=d?20:100;$('st').value=d?90:15}
 function tono(){const t=$('pnl');t.style.display='block';clearTimeout(tono.t);tono.t=setTimeout(()=>t.style.display='none',12000)}
 function ajustes(){const t=$('pnl');if(t.style.display==='block'){t.style.display='none';return}tono()}
-function setFld(v){const b=document.body.style;b.setProperty('--f','hsl(240,8%,'+v+'%)');b.setProperty('--ft',v>55?'#111827':'var(--t)')}
-function setTxt(v){document.body.style.setProperty('--t','hsl(0,0%,'+v+'%)')}
 function setSize(v){document.body.style.zoom=v/100;$('szv').textContent=v+'%'}
 function sz(d){const r=$('szr'),v=Math.min(180,Math.max(90,+r.value+d));r.value=v;setSize(v)}
-function setTone(v){const b=document.body.style;b.setProperty('--b','hsl(240,9%,'+v+'%)');b.setProperty('--c','hsl(240,8%,'+(+v+4)+'%)');b.setProperty('--bd','hsl(240,8%,'+Math.min(85,+v+32)+'%)')}
 function clrC(a,b){$(a).value=$(b).value='';toast('Credenciales borradas')}
 document.addEventListener('click',e=>{const q=e.target.closest('.qb');if(q)quick(q.dataset.k)});
 $('qcp').onclick=()=>cp($('qout').value,'Escalamiento');
 function stp(id,d){const e=$(id);e.value=Math.max(+e.min||0,(+e.value||0)+d);e.dispatchEvent(new Event('input',{bubbles:true}))}
 document.addEventListener('click',e=>{const a=e.target.closest('.ta');if(a){cp(a.dataset.n,'Extensión');transf=a.dataset.t}});
 function setMode(m){document.body.classList.toggle('cop',!!m);$('mP').classList.toggle('on',!m);$('mC').classList.toggle('on',!!m);try{sessionStorage.setItem('dcc_m',m)}catch(e){}}
+
 let pxs=[{a:'',n:''}];
 function pxBox(){return `<div class="fg"><label>👥 Pasajeros</label><div class="help">${HELP.pax}</div><div id="pxr"></div><div class="ib"><button class="s" onclick="addPx()">+ Adherir pasajero</button><button class="s" onclick="cp(pxs.filter(p=>p.a||p.n).map(p=>p.a+' '+p.n+(p.v?' - '+p.v:'')).join('\\n'),'Pasajeros')">📋 Copiar todos</button></div><textarea id="pax" style="display:none"></textarea></div>`}
 function pxSync(){$('pax').value=pxs.filter(p=>p.a||p.n).map(p=>(p.a+'/'+p.n).toUpperCase()).join('\n')}
@@ -397,19 +417,15 @@ function renderPx(){$('pxr').innerHTML=pxs.map((p,i)=>`<div class="ib" style="ma
 function addPx(){pxs.push({a:'',n:''});renderPx()}
 function delPx(i){const p=pxs[i];if((p.a||p.n||p.v)&&!p.cf){p.cf=1;renderPx();setTimeout(()=>{if(pxs[i]===p){p.cf=0;renderPx()}},3000);return}pxs.splice(i,1);if(!pxs.length)pxs=[{a:'',n:''}];renderPx()}
 function callAs(k){$('call').value=k?((pxs[0].n+' '+pxs[0].a).trim()):$('hold').value}
-document.addEventListener('dblclick',e=>{const t=e.target;if(t.classList&&t.classList.contains('ag'))agw(t);if(t.dataset&&t.dataset.v!==undefined)vch[+t.dataset.v]=t.value;if((t.tagName==='INPUT'&&/^(text|email)$/.test(t.type)||t.tagName==='TEXTAREA')&&t.value&&!t.closest('.cap')&&!t.dataset.px)cp(t.value,'Texto')});
+
 let lang='es',vch=[''];
 function agw(t){t.style.width=(Math.max(+t.dataset.m||10,t.value.length)+6)+'ch'}
 function agAll(){document.querySelectorAll('input.ag').forEach(agw)}
 function dirList(){return lang==='en'?DIR.slice().sort((a,b)=>/Inglés/.test(b[0])-/Inglés/.test(a[0])):DIR}
-function qa(){const E=[['Ventas Inglés','7004777'],['Protex Inglés','7004781']],S=[['Ventas Español','7004763'],['Protex Español','7004767'],['Sup. Protex','7004764']],L=lang==='en'?E.concat(S):S;
+function qa(){const E=[['Ventas Inglés','7004777'],['Protex Inglés','7004781']],S=[['Ventas Español','7004763'],['Protex Español','7004767'],['Sup. Protex','7004764']],L=lang=='en'?E.concat(S):S;
  $('qa').innerHTML='<div class="fg" style="margin:6px 0 22px"><label>⚡ Transferir (copia solo el número)</label><div class="ib" style="flex-wrap:wrap">'+L.map((x,i)=>`<button class="s ta${i?'':' aura'}" data-n="${x[1]}" data-t="${x[0]}">${x[0]} ${x[1]}</button>`).join('')+'</div></div>'}
-function openV(){renderV();$('vm').style.display='block'}
-function renderV(){$('vl').innerHTML=vch.map((v,i)=>`<div class="ib" style="margin-bottom:4px"><input class="ag" data-m="12" data-v="${i}" value="${esc(v)}" placeholder="Número de voucher"><button class="s" onclick="cp(vch[${i}],'Voucher')">📋</button><button class="s gr" onclick="delV(${i})">✖</button></div>`).join('');agAll()}
-function addV(){vch.push('');renderV()}
-function delV(i){vch.splice(i,1);if(!vch.length)vch=[''];renderV()}
 function togV(i){pxs[i].sv=1;renderPx()}
-/* Colores */
+
 function lum(h){const c=[1,3,5].map(i=>{const v=parseInt(h.substr(i,2),16)/255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*c[0]+.7152*c[1]+.0722*c[2]}
 function ratio(a,b){const x=lum(a),y=lum(b);return(Math.max(x,y)+.05)/(Math.min(x,y)+.05)}
 function setCol(){const a=$('pc1').value,p=$('pc3').value;let t=$('pc2').value;
@@ -418,30 +434,14 @@ function setCol(){const a=$('pc1').value,p=$('pc3').value;let t=$('pc2').value;
 function rst(){['--cb','--fb','--c','--f','--pb','--b','--tc','--fc','--t','--ft','--bd','--ac','--ac2','--hd'].forEach(k=>document.body.style.removeProperty(k));$('pc1').value='#ffffff';$('pc2').value='#1e293b';$('pc3').value='#f8f9fa';try{localStorage.removeItem('dcc_th')}catch(e){}}
 
 /* Idioma ES/EN */
-const EN=[['Llamada y OCR','Call & OCR'],['Calculadora','Calculator'],['Directorio','Directory'],['Escalamientos','Escalations'],['Bitácora','Log'],['Protocolos','Protocols'],['Apellidos','Last name'],['Nombres','First name'],['Correo (FDS)','Email (FDS)'],['Teléfono (FDS)','Phone (FDS)'],['Correo','Email'],['Motivo','Reason'],['Quien llama','Caller'],['Pasajeros','Passengers'],['Status del vuelo','Flight status'],['Acción / extensión','Action / extension'],['Acciones rápidas (copian la extensión)','Quick actions (copy the extension)'],['Rellenar con','Fill with'],['= Titular','= Holder'],['= Pasajero','= Passenger'],['+ Adherir pasajero','+ Add passenger'],['Copiar todos','Copy all'],['Copiar todo el texto','Copy all text'],['Sel. todo','Select all'],['Añadir voucher','Add voucher'],['+ Otro voucher','+ Another voucher'],['Cerrar','Close'],['Número de voucher','Voucher number'],['Generar nota M-S-R-A y registrar','Generate note & log'],['Nueva llamada','New call'],['Copiar nota','Copy note'],['Copiar escalamiento','Copy escalation'],['Comentario para SkySpeed (datos reales, no se guardan)','SkySpeed note (real data, not saved)'],['Llamadas hoy','Calls today'],['Transferencias a ventas','Sales transfers'],['Clientes atendidos hoy','Customers served today'],['Titular / Contacto','Holder / Contact'],['Hora','Time'],['Acción','Action'],['Guardar en sesión','Save to session'],['Imprimir','Print'],['Borrar','Delete'],['Sin registros.','No records.'],['Monto total del boleto','Total ticket amount'],['Moneda','Currency'],['Código de voucher','Voucher code'],['Costo por pasajero (monto ÷ pasajeros)','Cost per passenger (amount ÷ passengers)'],['Voucher total','Total voucher'],['del monto','of the amount'],['Dividir este voucher entre:','Split this voucher by:'],['Voucher por pasajero','Voucher per passenger'],['Costo de boleto + voucher','Ticket cost + voucher'],['Porcentaje','Percentage'],['Buscar departamento o extensión...','Search department or extension...'],['Oscuro','Dark'],['Ajustes','Settings'],['Piloto','Pilot'],['Copiloto','Copilot'],['Tamaño de letra','Font size'],['Cuadros de escritura','Writing boxes'],['Fondo (tono)','Background (tone)'],['Color de fondo','Background color'],['Color de tarjetas y cuadros (el blanco)','Card and box color (the white)'],['Color del texto','Text color'],['Restablecer colores','Reset colors'],['Pega capturas de SkySpeed con Ctrl+V (todas las que quieras), arrástralas o','Paste SkySpeed screenshots with Ctrl+V (as many as you want), drag them or'],['elige archivos','choose files'],['Datos detectados','Detected data'],['(clic en uno para copiarlo)','(click one to copy it)'],['Correos','Emails'],['Teléfonos','Phones'],['Posibles PNR','Possible PNRs'],['Códigos / vouchers','Codes / vouchers'],['Texto leído (editable)','Text read (editable)'],['Ventas Español','Sales Spanish'],['Ventas Inglés','Sales English'],['Protex Español','Protex Spanish'],['Protex Inglés','Protex English'],['Grupos Español','Groups Spanish'],['Asistencia Supervisor Ventas','Sales Supervisor Assistance'],['Asistencia Supervisor Protex','Protex Supervisor Assistance'],['Sup. Protex','Protex Sup.'],['Invex Volaris (Monedero)','Invex Volaris (Wallet)'],['WhatsApp Oficial Volaris','Volaris Official WhatsApp'],['Soporte técnico y mejoras','Technical support and improvements'],['Desarrollado por','Developed by'],['Tu nombre completo (firma tus notas)','Your full name (signs your notes)'],['Usuario','User'],['Contraseña','Password'],['Agente:','Agent:'],['Copiar saludo','Copy greeting'],['Frases rápidas','Quick phrases'],['Fecha de los vouchers','Voucher date'],['Transferir (copia solo el número)','Transfer (copies the number only)'],['Comentario / motivo','Comment / reason'],['Comentario para SkySpeed (datos reales, no se guardan)','SkySpeed comment (real data, not saved)'],['Temas','Themes'],['Predeterminado','Default']].sort((a,b)=>b[0].length-a[0].length);
+const EN=[['Llamada y OCR','Call & OCR'],['Calculadora','Calculator'],['Directorio','Directory'],['Escalamientos','Escalations'],['Bitácora','Log'],['Protocolos','Protocols'],['Apellidos','Last name'],['Nombres','First name'],['Correo (FDS)','Email (FDS)'],['Teléfono (FDS)','Phone (FDS)'],['Motivo','Reason'],['Quien llama','Caller'],['Pasajeros','Passengers'],['Nuestra asistencia','Our support']].sort((a,b)=>b[0].length-a[0].length);
 function trS(t){let r=t;for(const[e,n]of EN)r=r.split(e).join(n);return r}
-function trN(n){if(n.nodeType===3){if(n._o===undefined)n._o=n.nodeValue;const v=lang==='en'?trS(n._o):n._o;if(n.nodeValue!==v)n.nodeValue=v}else if(n.nodeType===1){if(n.hasAttribute('placeholder')){if(n._p===undefined)n._p=n.getAttribute('placeholder');n.setAttribute('placeholder',lang==='en'?trS(n._p):n._p)}if(n.tagName!=='SCRIPT'&&n.tagName!=='STYLE')n.childNodes.forEach(trN)}}
-function setLang(){lang=lang==='es'?'en':'es';document.body.classList.toggle('en',lang==='en');trN(document.body);saludo();qa();dirR();agAll()}
-new MutationObserver(m=>{if(lang==='en')m.forEach(r=>r.addedNodes.forEach(trN))}).observe(document.body,{childList:true,subtree:true});
-let transf='';
-const TIPS={};
-const ESC=[['Check Out','PNR|Motivo|Ruta del retiro|Indicar si es para un cte (su nombre) o para TODOS',''],
-['Beneficios Invex','PNR|Tipo de Invex|Check in: SI cuenta o NO con el check in','INV0 es autogestión; no aplica con reservas pagadas con VO ni vuelos con código compartido. Dile al cliente que lo verá reflejado en el transcurso del día.'],
-['Call Back','Nombre del cliente|Correo electrónico de la membresía|Tipo de membresía|Números de teléfono (hasta 2)|Enlace de la conversación','Solo para VPASS o PASE ANUAL por cambio de método de pago. Dile al cliente que nos comunicamos en 24 a 72 horas.'],
-['Comprobante de reembolso','Nombre del cliente|PNR|Ticket|Método de pago|Moneda utilizada|Fecha de aplicación del reembolso','Dile al cliente que nos comunicamos en 24 a 72 horas.'],
-['Ticket de reembolso pendiente','PNR|Correo electrónico|Nombre completo|Ticket de Salesforce|Fecha en la que se inició el reembolso','Aplica cuando superó 7 a 21 días hábiles. Dile al cliente que se le dará prioridad.'],
-['Caso Profeco','PNR|Correo electrónico|Nombre completo|Motivo|Enlace conversación|Ticket de caso','Si no hay ticket, genera uno para seguimiento.'],
-['Pago duplicado','PNR|Correo electrónico|Nombre completo|Monto',''],
-['Black List / Hotcard','Opción (indicar cuál de las 2)|PNR','Dile al cliente que intente pagar en el transcurso del día; si el problema sigue, que se comunique de nuevo.'],
-['IROP','PNR|Núm. de vuelo original (anterior)|Fecha / Ruta / Horario|Persona titular que viaja|Motivo|Vuelo solicitado (Fecha / Ruta / Horario)','Dile al cliente que nos comunicamos en 24 a 72 horas.'],
-['Asignación de asientos','PNR|Ruta|Nombre persona 1 - asiento|Nombre persona 2 - asiento','Los asientos con costo deben estar adquiridos y retirados por Sistema o ATO.'],
-['Validación pago a terceros','PNR|Imagen VISIBLE del comprobante','Verifica que el número de referencia coincida con SkySpeed. Espera de 72 horas mínimo.'],
-['Validar seguidores / Casos alerta','Motivo (VALIDAR SEGUIDORES / VALIDAR POSIBLE CASO ALERTA)|Red Social|Número de mensajería|Usuario|Link|Captura del último mensaje',''],
-['Solicitud de Loyalty','Motivo y tipo de membresía (COBRO DE VPASS / CANCELACION VCLUB / NO PUEDE INGRESAR A SU CUENTA)|Correo de la membresía|Nombre del titular de la membresía|Fecha de Nacimiento|Evidencia del cte (capturas)|¿1ra vez que se comunica?','Valida en SKY (CTRL-F5) que el correo sea correcto en WEB USER ID y tenga membresía.'],
-['Posible error de agente','PNR|Correo electrónico|Nombre completo|Motivo|Enlace conversación|Número de teléfono (hasta 2)','Se manda por privado a SUP/RUNNER en turno. Dile al cliente que nos comunicamos con él.'],
-['Equipaje: demora / switch / pérdida','PNR|PIR|Bagtag (núm. etiqueta)|Nombre del cliente|Info de contacto del cte','Valida info en WT. Si el reporte se acaba de levantar, dile al cliente que se comunique en 4 días.'],
-['Equipaje: daño / saqueo','PNR|PIR|Bagtag (núm. etiqueta)|Fotos del daño / artículos saqueados','Brinda alternativas de la caja de XQ.'],
-['Objeto perdido / olvidado','Artículo perdido|Fecha de vuelo / Ruta / Núm. vuelo|PIR|Asiento|Foto del artículo','']];
+function trN(n){if(n.nodeType===3){if(n._o===undefined)n._o=n.nodeValue;const v=lang=='en'?trS(n._o):n._o;if(n.nodeValue!==v)n.nodeValue=v}else if(n.nodeType===1){if(n.hasAttribute('placeholder')){if(n._p===undefined)n._p=n.getAttribute('placeholder');n.setAttribute('placeholder',lang=='en'?trS(n._p):n._p)}if(n.tagName!='SCRIPT'&&n.tagName!='STYLE')n.childNodes.forEach(trN)}}
+function setLang(){lang=lang=='es'?'en':'es';document.body.classList.toggle('en',lang=='en');trN(document.body);saludo();qa();dirR();agAll()}
+new MutationObserver(m=>{if(lang=='en')m.forEach(r=>r.addedNodes.forEach(trN))}).observe(document.body,{childList:true,subtree:true});
+
+let transf='';const TIPS={};
+const ESC=[['Check Out','PNR|Motivo|Ruta del retiro|Indicar si es para un cte (su nombre) o para TODOS',''],['Beneficios Invex','PNR|Tipo de Invex|Check in: SI cuenta o NO con el check in','INV0 es autogestión; no aplica con reservas pagadas con VO ni vuelos con código compartido. Dile al cliente que lo verá reflejado en el transcurso del día.']];
 const PHS=[[/^PNR/,'{PNR}'],[/^Correo/,'{MAIL}'],[/^(Nombre completo|Nombre del cliente|Nombre del titular|Persona titular)/,'{TIT}'],[/^(Número de teléfono|Números de teléfono|Info de contacto)/,'{TEL}'],[/^Motivo$/,'{MOT}']];
 ESC.forEach(([t,f,tip])=>{DEF[t]=t.toUpperCase()+'\n'+f.split('|').map(l=>{const m=PHS.find(x=>x[0].test(l));return l+': '+(m?m[1]:'')}).join('\n');TIPS[t]=tip});
 try{TPL=Object.assign({},DEF,JSON.parse(localStorage.getItem('dcc_tpl')||'{}'))}catch(e){TPL=DEF}
@@ -449,93 +449,25 @@ $('eb').innerHTML=ESC.map(x=>`<button class="s qb" data-k="${esc(x[0])}">${esc(x
 $('eb2').innerHTML=ESC.map(x=>`<button class="s qt" data-k="${esc(x[0])}">${esc(x[0])}</button>`).join('');
 document.addEventListener('click',e=>{const q=e.target.closest('.qt');if(q){$('tsel').value=q.dataset.k;tSel()}});
 
-/* Frases rápidas */
-const FR=[['Cambio de nombre','se comunica para modificar un dato en su nombre'],['Info de vuelo','se comunica para solicitar información de su vuelo'],['Cambio de itinerario','se comunica para solicitar un cambio de itinerario'],['Reembolso','se comunica para solicitar un reembolso'],['Demora / cancelación','se comunica por la demora o cancelación de su vuelo'],['Equipaje','se comunica para consultar información de su equipaje'],['Asistencia especial','se comunica para solicitar asistencia especial']];
+const FR=[['Cambio de nombre','se comunica para modificar un dato en su nombre'],['Info de vuelo','se comunica para solicitar información de su vuelo']];
 $('frp').innerHTML=FR.map((x,i)=>`<button class="s fr" data-i="${i}">${x[0]}</button>`).join(' ')+' <button class="s gr" id="frx">Cerrar</button>';
-$('frb').onclick=()=>{const p=$('frp');p.style.display=p.style.display==='none'?'block':'none'};
+$('frb').onclick=()=>{const p=$('frp');p.style.display=p.style.display=='none'?'block':'none'};
 $('frx').onclick=()=>{$('frp').style.display='none'};
 document.addEventListener('click',e=>{const f=e.target.closest('.fr');if(!f)return;const m=$('mot'),h=$('hold').value.trim(),t='Cliente '+(h?h+' ':'')+FR[+f.dataset.i][1]+' ';m.value=m.value?m.value+'\n'+t:t;m.dispatchEvent(new Event('input',{bubbles:true}));$('frp').style.display='none';m.focus()});
 
-/* Temas */
-const SC={hills:['linear-gradient(#5c94fc,#cfe9ff)','radial-gradient(90px 50px at 45px 100%,#43a047 98%,transparent)0 100%/180px 100% repeat-x','repeating-linear-gradient(90deg,#c0662a 0 28px,#8c4311 28px 30px),#b5651d'],
-synth:['linear-gradient(#14062f,#6e1978)','linear-gradient(rgba(255,60,200,.7)1px,transparent 1px)0 0/100% 16px,linear-gradient(90deg,rgba(255,60,200,.7)1px,transparent 1px)0 0/30px 100%','linear-gradient(#00f0ff,#ff3cc8)'],
-space:['linear-gradient(#050816,#1a1040)','radial-gradient(2px 2px at 20px 30px,#fff,transparent),radial-gradient(1.5px 1.5px at 90px 70px,#fff,transparent),radial-gradient(2px 2px at 150px 20px,#fff,transparent)0 0/180px 100% repeat-x','linear-gradient(#7b4bd6,#2a1470)'],
-sky:['linear-gradient(#5db4f8,#eaf7ff)','radial-gradient(40px 16px at 40px 30px,#fff 98%,transparent),radial-gradient(54px 20px at 150px 60px,#fff 98%,transparent)0 0/240px 100% repeat-x','repeating-linear-gradient(90deg,#fff 0 40px,transparent 40px 80px),#555'],
-sea:['linear-gradient(#7fd3ff,#e9fbff)','radial-gradient(50px 20px at 50px 100%,#1976d2 98%,transparent)0 100%/100px 60% repeat-x','radial-gradient(40px 14px at 40px 100%,#0d47a1 98%,transparent)0 100%/80px 100%,#0d47a1'],
-soccer:['linear-gradient(#0b1f3a,#1d3f72)','radial-gradient(5px 5px at 10px 14px,#ffd54f,transparent)0 0/30px 40px,repeating-linear-gradient(90deg,#17325c 0 6px,#264b86 6px 12px)','repeating-linear-gradient(90deg,#2e7d32 0 50px,#388e3c 50px 100px)'],
-hoops:['linear-gradient(#2a1608,#7a3d12)','repeating-linear-gradient(90deg,#3b1f0c 0 20px,#4a2810 20px 40px)','repeating-linear-gradient(90deg,#d9a35b 0 38px,#c58f45 38px 40px)'],
-base:['linear-gradient(#7ec8ff,#e0f4ff)','repeating-linear-gradient(90deg,#2e7d32 0 40px,#256528 40px 42px)','radial-gradient(circle at 50% 0,#a1662f,#7d4c1f)'],
-track:['linear-gradient(#2a0d12,#d4003a 130%)','linear-gradient(90deg,#111 0 40px,transparent 40px 90px)','repeating-linear-gradient(90deg,#fff 0 30px,#333 30px 70px)'],
-city:['linear-gradient(#1b2a5a,#6a82c8)','repeating-linear-gradient(90deg,#10183a 0 28px,#1a2550 28px 46px,#0d1330 46px 80px)','#222'],
-forest:['linear-gradient(#364229,#6b7d45)','radial-gradient(30px 60px at 30px 100%,#2b3a1c 98%,transparent)0 100%/60px 100% repeat-x','#2a2f1c'],
-pastel:['linear-gradient(#ffd9ec,#d9f0ff)','radial-gradient(14px 14px at 20px 30px,#fff 98%,transparent)0 0/80px 60px','linear-gradient(90deg,var(--ac),#fff)'],
-kitchen:['linear-gradient(#fff6e6,#ffe1b8)','repeating-linear-gradient(90deg,transparent 0 40px,rgba(0,0,0,.1)40px 42px)','repeating-linear-gradient(90deg,var(--ac)0 20px,#fff 20px 40px)'],
-glass:['linear-gradient(120deg,#c3d9ff,#f3e5ff,#cfeede)','radial-gradient(circle at 30% 120%,rgba(255,255,255,.8),transparent 50%)','linear-gradient(transparent,rgba(255,255,255,.7))']};
-const FS={xp:'hills',px:'hills','80':'synth',neb:'space',jetn:'space',jet:'sky',wave:'sea',soc:'soccer',bkb:'hoops',bsb:'base',car:'track',car2:'track',hero:'city',tac:'forest',her:'pastel',fest:'pastel',food:'kitchen',film:'city',dune:'sky',w10:'glass',w11:'glass',mac:'glass'};
-function setScene(f){const s=SC[FS[f]];if(!s)return;$('l1').style.background=s[0];$('l2').style.background=s[1];$('l3').style.background=s[2];$('g1').style.background=s[2];$('wk').classList.toggle('walk',f==='px'||f==='xp')}
-$('scn').addEventListener('pointermove',e=>{const r=e.currentTarget.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;[['l1',6],['l2',14],['l3',26]].forEach(([i,k])=>{$(i).style.transform='translate3d('+(-x*k)+'px,'+(-y*k/3)+'px,0)'})});
-function FX(){const s=document.body.style,a=+$('scs').value,g=+$('gds').value,t=+$('txs').value;s.setProperty('--sc',a/100);s.setProperty('--gd',g/100);s.setProperty('--txo',t/100);$('scn').classList.toggle('off',!a);$('gnd').classList.toggle('off',!g);tono()}
-['scs','gds','txs'].forEach(i=>$(i).oninput=FX);
-
-const KEYS=[['F1','Ayuda general / menú de ayuda','Ayuda contextual del campo o ventana','—'],['F2','Abrir búsqueda / recuperar PNR','Búsqueda avanzada por apellido, correo o teléfono','Búsqueda rápida por PNR'],['F3','Agregar comentario a la reserva','—','—'],['F4','Ver lista de comentarios del PNR','Comentarios de auditoría / notas especiales','Cerrar ventana o pestaña activa del PNR'],['F5','Cargar / actualizar la reserva','Forzar sincronización desde el servidor','Verificar usuario Web / V-Pass / vClub'],['F6','Datos del pasajero y manifiesto','Editar datos del pasajero','Cambiar entre ventanas de pasajeros'],['F7','Disponibilidad de vuelos y rutas','Estado / manifiesto de vuelo por fecha o ruta','Conexiones o itinerarios alternos'],['F8','Guardar y concluir reserva','Ignorar cambios y restaurar la reserva','Cancelar la transacción sin guardar'],['F9','Limpiar pantalla (consulta nueva)','Limpiar formulario parcial (mantiene el PNR)','Restablecer parámetros de búsqueda'],['F10','Cargos y servicios adicionales (SSR)','Menú contextual de servicios','Maximizar / restaurar ventana'],['F11','Módulo de pagos','Desglose de tarifas e impuestos','Pago con voucher o forma secundaria (VO)'],['F12','Historial de auditoría del PNR','Filtrar historial por agente o movimiento','Exportar o imprimir el historial']];
-function rK(q){q=(q||'').toLowerCase();$('kt').innerHTML='<tr><th>Tecla</th><th>Sola</th><th>Shift +</th><th>Ctrl +</th></tr>'+KEYS.filter(r=>r.join(' ').toLowerCase().includes(q)).map(r=>'<tr><td><b>'+r[0]+'</b></td>'+r.slice(1).map(x=>'<td>'+esc(x)+'</td>').join('')+'</tr>').join('')}
-
-const SIG=`#Equipaje
-BG15 / BG20 / BG25|Equipaje documentado (15, 20 o 25 kg)
-CARR / CO10|Equipaje de mano (10 kg)
-XBAG|Equipaje con sobrepeso
-SPEQ|Equipo deportivo
-PETC|Mascota en cabina
-AVIH|Mascota en carga / rampa
-#Asistencia y necesidades especiales
-WCHR|Silla de ruedas para rampa (puede subir/bajar escalones)
-WCHS|Silla de ruedas para escaleras (no puede subir/bajar escalones)
-WCHC|Silla de ruedas para cabina (totalmente inmovilizado)
-BLND|Discapacidad visual
-DEAF|Discapacidad auditiva
-UMNR|Menor no acompañado
-INF|Infante (menor de 2 años sin asiento)
-MEDA|Caso médico / autorización médica
-#Abordaje y denegación
-PRIO|Abordaje prioritario
-DBIN|Denegación de abordaje involuntaria (sobreventa)
-DBVO|Denegación de abordaje voluntaria (sobreventa)
-#Estatus del PNR y del vuelo
-HK|Confirmado
-NS|No show (no se presentó)
-CK|Checked-in (pase emitido)
-BD|Boarded (a bordo)
-XL / CNCL|Cancelado
-OS|Optimización de asientos / sobreventa
-IROP|Operaciones irregulares (demora o cancelación)
-#Transacciones, reembolsos y vouchers
-ATUA|Código de servicio para voucher por TUA
-RTUA|Motivo para emitir voucher TUA
-VO|Voucher / crédito electrónico
-MCO|Orden de cargo misceláneo
-AHT|Tiempo promedio de manejo
-QA|Aseguramiento de calidad
-#Claves operativas
-PNR|Clave de reservación
-ATO|Mostrador / personal de aeropuerto
-PIR|Reporte de irregularidad de equipaje
-TIMATIC|Sistema IATA de requisitos migratorios
-VANE|Asistente virtual en WhatsApp
-VPASS / VCLUB|Membresías del programa de lealtad`.split('\n');
-function rS(q){q=(q||'').toLowerCase();let h='',g='';SIG.forEach(l=>{if(l[0]==='#'){g='<h4 style="margin:10px 0 4px;color:var(--ac,#1E3A8A)">'+esc(l.slice(1))+'</h4>';return}const[a,b]=l.split('|');if((a+' '+b).toLowerCase().includes(q)){h+=g+'<div class="rr"><span><b>'+esc(a)+'</b></span><span style="text-align:right">'+esc(b)+'</span></div>';g=''}});$('sg').innerHTML=h||'Sin resultados.'}
-rK();rS();
-
-const THL='Escuadrón Titán|Héroes|0b2a5b|b3202a|eef2f9|ffffff|0f1f3d|b3202a|hero;Guardas Estelares|Héroes|c8742b|3b5a73|f4ead8|fbf5e8|2c3e50|c8742b|hero;Capa Azul|Héroes|0a3d91|d62828|e8f0fb|ffffff|0a2a5e|0a3d91|hero;Trepamuros|Héroes|c1121f|0b3c8c|f3eef0|ffffff|1a1a2e|c1121f|hero;Cuarteto Cósmico|Héroes|1558d6|7fb2ff|eef4ff|ffffff|0d2a5c|1558d6|hero;Caballero Nocturno|Héroes|111111|f2c200|17171c|23232b|eeeeee|f2c200|hero;Titán Verde|Héroes|2e7d32|6a1b9a|eef6ee|ffffff|1b3a1d|2e7d32|hero;Centinela Dorado|Héroes|a4161a|d4a017|f8efe3|fffaf0|3a1a10|a4161a|hero;Relámpago Escarlata|Héroes|d00000|ffba08|fff3e6|ffffff|4a0d0d|d00000|hero;Rey del Mar|Héroes|0f9aa8|f28c28|e6f6f7|ffffff|0b3b40|0f9aa8|hero;Ratoncita Moñito|Heroínas|d62839|ff8fab|fff0f3|ffffff|3b0d18|d62839|her:heart;Felino Rosado|Heroínas|ff5fa2|7b4bb7|ffeaf3|ffffff|4a1b3a|e0409a|her:star;Nenas Dinamita|Heroínas|ff7eb6|5ec8f2|eefaf3|ffffff|1f3a4a|ff5fa2|her:star;Gatita Lazo|Heroínas|e63946|ffb3c1|fff7f8|ffffff|4a1c22|e63946|her:heart;Reina Escarcha|Heroínas|5fc3e4|c8e6f5|eaf6fc|ffffff|123a55|2b9fd1|her:snow;Guerrera Dorada|Heroínas|1c3f94|c8102e|f3f1ea|fffdf5|14214d|c9a227|her:star;Bruja Esmeralda|Heroínas|0b8a5b|f06fa6|ebf7f1|ffffff|0d3b2a|0b8a5b|her:star;Capitana Estelar|Heroínas|1a3a8a|d4a017|eef1fa|ffffff|101c45|c8102e|her:star;Sirenita Coral|Heroínas|ff7f6e|1fb5ad|fff1ec|ffffff|3b2a26|ff6b5a|wave;Hada Lila|Heroínas|9b72cf|e7b8f0|f5eefb|ffffff|3a2656|8a5cc2|her:star;Colina Azul|PC retro|1f6fe0|5cb85c|dfe9f7|f6f9ff|12306b|2e8b2e|xp;Cuadros Azules|PC retro|0067c0|2b88d8|e9eef3|ffffff|1b1b1b|0078d4|w10;Esquinas Suaves|PC retro|5b8def|a9c7ff|f3f3f6|fbfbfd|202124|3b6fe0|w11;Fontanero Rojo|Videojuegos|e52521|049cd8|fff6d6|ffffff|1c1c3a|e52521|px;Operación Táctica|Videojuegos|3b4a2a|1d1d1d|1c1f17|2a2f22|e7e1c6|8a9a5b|tac;Bloques de Mina|Videojuegos|5a8f29|7a5230|e8e0d0|f7f1e3|2d2a24|5a8f29|px;Erizo Veloz|Videojuegos|1a5fd6|ffd60a|e8f1ff|ffffff|0c2461|1a5fd6|px;Retro Consola|Videojuegos|8bac0f|306230|cadc9f|dbe8b4|0f380f|306230|px;Isla Tranquila|Videojuegos|7fd1ae|8ec9e8|f3f9ef|fffdf2|35514a|4aa889|w11:flower;Pixel Arcade|Videojuegos|ff2bd6|00e5ff|0d0d1a|1a1a2e|f5f5ff|ffe600|px;Neón Retro|Clásicos|ff2e97|00e0d0|1a1030|261a45|f6eaff|00e0d0|80;Nebulosa Violeta|Clásicos|5b2a9a|c04fd3|170f2e|241846|efe7ff|c04fd3|neb;Océano Profundo|Clásicos|03396c|0a7abf|e4f1fa|ffffff|052b4a|0a7abf|wave;Desierto Dorado|Clásicos|c68a2e|e8c16a|fbf1de|fffaf0|4a3512|c68a2e|dune;Noche de Cine|Clásicos|6b0f1a|d4af37|121014|1f1a1e|f1e6c8|d4af37|film;Hielo Ártico|Clásicos|8fd3f4|e0f4ff|f1faff|ffffff|17415a|4aa8d8|w11:snow;Dulce Algodón|Clásicos|ffb3d1|b8e1ff|fff5fa|ffffff|5a3a52|ff7fb0|her:heart;Selva Tropical|Clásicos|1b7f3b|f2a900|eaf6ea|ffffff|14381e|1b7f3b|w11:flower;Lava Volcánica|Clásicos|b81d13|ff8c00|1a0e0b|2a1712|ffe6d6|ff6a00|w11:ember;Lavanda y Miel|Clásicos|9b86c9|f0b429|f6f2fb|ffffff|3a2f55|9b86c9|w11:flower;Pan dulce|Mañana|b9772e|d99a4e|fbf3e6|fffaf0|4a3320|b9772e|food;Café|Mañana|4e342e|6d4c41|efe6dd|f8f2ec|3b2a20|5d4037|food;Cielo|Mañana|1565c0|42a5f5|eaf4fb|ffffff|17324d|1976d2|jet;Violeta y lima|Mañana|6a1b9a|a4c639|f6f0fb|ffffff|2a1840|7b1fa2|w11;Menta|Mañana|146c43|34b27b|eaf7f1|ffffff|12372a|1b8a5a|w11:flower;Escudería Roja|Autos|d40000|111111|f6f1ef|ffffff|1a1a1a|d40000|car;Toro Dorado|Autos|ffcc00|111111|151515|232323|f5f5f5|ffcc00|car2;Pista Nocturna|Autos|8e9aa6|c8102e|15171a|22262b|e8ecef|c8102e|car;Ruta 66|Autos|2bb7b0|e8d9b0|f6efdd|fffaf0|1f4a4a|2bb7b0|car2;Cabina Jet|Aviones|1946a0|ff8a00|dff1ff|ffffff|0d2a4a|1946a0|jet;Aviación Clásica|Aviones|5c6b3c|8b5a2b|ece6d3|f7f2e1|35301f|5c6b3c|jet;Jumbo Nocturno|Aviones|0b1d3a|f4a300|0b1426|14233d|e9eefb|f4a300|jetn;Pista de Aterrizaje|Aviones|3a3d40|ffd100|e3e5e7|f5f6f7|1e2124|e6b800|jet;Pizzería|Comida|c62828|2e7d32|fff6e6|fffdf7|3a1a10|c62828|food;Taquería|Comida|ef6c00|7cb342|fff4e0|fffaf0|4a2a0a|e65100|food;Helado de Fresa|Comida|ff8fab|fff0c9|fff3f6|ffffff|5a2a3a|ff5c8a|food;Chocolate Suizo|Comida|4b2e1f|c9a227|f1e6dc|faf3ec|3a2418|6b3f26|food;Sushi Bar|Comida|b71c1c|2e7d32|141414|222222|f2f2f2|c62828|food;Elote y Chile|Comida|f2c200|c62828|fff8dc|fffdf0|4a3a05|d19a00|food;Día de Muertos|Fiestas|ff7a00|6a1b9a|170c20|25143a|ffe9cf|ff7a00|fest:flower;Navidad|Fiestas|b3121b|1f7a3d|f7f2ea|ffffff|2a1a14|b3121b|fest:snow;Halloween|Fiestas|ff6a00|111111|120d0a|231a14|ffe9d2|ff6a00|fest:ember;Fiesta Patria|Fiestas|1b7f3b|c8102e|f6f7f2|ffffff|1a2a1c|1b7f3b|fest:confetti;Cancha Verde|Deportes|1f8a3a|0e5a24|e6f3e8|ffffff|0e3a1a|1f8a3a|soc;Duela Naranja|Deportes|e8711a|7a3e12|f8ebdd|fff9f2|3d2008|e8711a|bkb;Diamante|Deportes|2e7d32|a1662f|e9f3e5|fffdf7|1c3a1c|2e7d32|bsb;Cristal Plata|Cristal|f5f5f7|d9dce2|e9ebef|ffffff|1d1d1f|0a84ff|mac;Cristal Grafito|Cristal|3a3a3c|2c2c2e|1c1c1e|2c2c2e|f5f5f7|0a84ff|mac'.split(';').map(x=>x.split('|'));
+const THL='Escuadrón Titán|Héroes|0b2a5b|b3202a|eef2f9|ffffff|0f1f3d|b3202a|hero;Cuarteto Cósmico|Héroes|1558d6|7fb2ff|eef4ff|ffffff|0d2a5c|1558d6|hero;Colina Azul|PC retro|1f6fe0|5cb85c|dfe9f7|f6f9ff|12306b|2e8b2e|xp;Pixel Arcade|Videojuegos|ff2bd6|00e5ff|0d0d1a|1a1a2e|f5f5ff|ffe600|px;Neón Retro|Clásicos|ff2e97|00e0d0|1a1030|261a45|f6eaff|00e0d0|80'.split(';').map(x=>x.split('|'));
+const FS={xp:'hills',px:'hills','80':'synth',hero:'city'};
+function setScene(f){const s=['linear-gradient(#14062f,#6e1978)','linear-gradient(rgba(255,60,200,.7)1px,transparent 1px)0 0/100% 16px','linear-gradient(#00f0ff,#ff3cc8)'];if(!s)return;$('l1').style.background=s[0];$('l2').style.background=s[1];$('l3').style.background=s[2];$('g1').style.background=s[2]}
 function theme(n){const t=THL.find(x=>x[0]==n);if(!t)return;const[,,h1,h2,pb,cb,tc,ac,sk]=t,b=document.body.style,cl=document.body.classList,dk=lum('#'+pb)<.2;
- [...cl].filter(c=>/^(sk|fx)-/.test(c)).forEach(c=>cl.remove(c));cl.toggle('dark',dk);const[fm,fx]=(sk||'').split(':');if(fm)cl.add('sk-'+fm);setScene(fm);if(fx)cl.add('fx-'+fx);cl.toggle('sky',fm==='jet');
+ [...cl].filter(c=>/^(sk|fx)-/.test(c)).forEach(c=>cl.remove(c));cl.toggle('dark',dk);const[fm,fx]=(sk||'').split(':');if(fm)cl.add('sk-'+fm);setScene(fm);
  b.setProperty('--pb','#'+pb);b.setProperty('--b','#'+pb);['--cb','--c','--fb','--f'].forEach(k=>b.setProperty(k,'#'+cb));['--tc','--t','--fc','--ft'].forEach(k=>b.setProperty(k,'#'+tc));b.setProperty('--ac','#'+ac);b.setProperty('--ac2','#'+ac);b.setProperty('--hd','linear-gradient(135deg,#'+h1+',#'+h2+')');
  if(dk)b.setProperty('--bd','rgba(255,255,255,.28)');else b.removeProperty('--bd');try{localStorage.setItem('dcc_th',n)}catch(e){}}
 function noTheme(){rst();const cl=document.body.classList;[...cl].filter(c=>/^(sk|fx)-/.test(c)).forEach(c=>cl.remove(c));cl.remove('dark','sky')}
 const CATS=[...new Set(THL.map(x=>x[1]))];
 function renderTh(c){$('thb').innerHTML=THL.filter(x=>x[1]==c).map(x=>`<button class="s" data-th="${x[0]}">${x[0]}</button>`).join('')}
-$('thm').innerHTML='<select id="thc">'+CATS.map(c=>`<option>${c}</option>`).join('')+'</select><div id="thb" class="ib" style="flex-wrap:wrap;margin-top:6px"></div><div class="ib" style="flex-wrap:wrap;margin-top:6px"><button class="s" id="skb">☁️ Nubes</button><button class="s" id="efb">✨ Efectos ON/OFF</button><button class="s gr" id="wkb">🧰 Modo trabajo</button></div>';
+$('thm').innerHTML='<select id="thc">'+CATS.map(c=>`<option>${c}</option>`).join('')+'</select><div id="thb" class="ib" style="flex-wrap:wrap;margin-top:6px"></div><div class="ib" style="flex-wrap:wrap;margin-top:6px"><button class="s gr" id="wkb">🧰 Modo trabajo</button></div>';
 renderTh(CATS[0]);$('thc').onchange=()=>renderTh($('thc').value);
-$('thm').onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.id==='skb')document.body.classList.toggle('sky');else if(b.id==='efb')document.body.classList.toggle('noefx');else if(b.id==='wkb'){noTheme();document.body.classList.add('noefx')}else if(b.dataset.th)theme(b.dataset.th);else noTheme();tono()};
+$('thm').onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.id=='wkb'){noTheme();}else if(b.dataset.th)theme(b.dataset.th);else noTheme();tono()};
 try{const n=localStorage.getItem('dcc_th');if(n)theme(n)}catch(e){}
 function S1(){const b=+$('sb').value,f=+$('sf').value,t=+$('st').value,c=Math.min(100,b+4),s=document.body.style,H=l=>'hsl(240,8%,'+l+'%)';
  let tl=t;if(Math.abs(tl-b)<40||Math.abs(tl-c)<40)tl=(b+c)/2>50?8:94;
@@ -545,553 +477,579 @@ function nueva(){const v=id=>$(id).value.trim(),nm=(v('ape')+' '+v('nom')).trim(
  if(v('pnr')||nm||v('mot')){log.push({t:now(),pnr:v('pnr')||'N/A',h:mName(nm||'Titular'),c:mName(v('call')||nm||'Titular'),e:mMail(v('mail'))||'N/A',p:mNum(v('tel'))||'N/A',m:mText(v('mot'))||'Atención',a:transf||'Llamada concluida'});if(/ventas|sales/i.test(transf))tr++;renderLog();toast('Cliente '+$('c1').textContent+' registrado')}
  limpiar()}
 
-/* MOTOR DE JUEGOS RETRO ZONE & AUDIO WEB API */
-let retroAudioCtx = null, retroGainNode = null, retroMuted = false, retroVolValue = 0.3;
-let musicTimer = null, cg = 'pong', gameLoopId = null, gameScore = 0, isGameOver = false, isWin = false;
-const cvs = $('arcadeCanvas'), ctx = cvs ? cvs.getContext('2d') : null;
+/* ---------------------------------------------------------------------- */
+/* 🎮 MOTOR DE AUDIO Y JUEGOS RETRO ZONE                                 */
+/* ---------------------------------------------------------------------- */
+let audioCtx = null, masterGain = null, musicInterval = null, isMuted = false, currentVol = 0.3;
+let activeGame = 'tetris', gameAnimFrame = null, tetrisGravityTimer = null;
+const canvas = $('arcadeCanvas'), ctx = canvas.getContext('2d');
 
-// Inicialización de Web Audio API
-function initRetroAudio(){
- if(!retroAudioCtx){
-  const AC = window.AudioContext || window.webkitAudioContext;
-  if(AC){
-   retroAudioCtx = new AC();
-   retroGainNode = retroAudioCtx.createGain();
-   retroGainNode.gain.setValueAtTime(retroMuted ? 0 : retroVolValue, retroAudioCtx.currentTime);
-   retroGainNode.connect(retroAudioCtx.destination);
+function initAudio() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    masterGain = audioCtx.createGain();
+    masterGain.gain.value = isMuted ? 0 : currentVol;
+    masterGain.connect(audioCtx.destination);
   }
- }
- if(retroAudioCtx && retroAudioCtx.state === 'suspended'){
-  retroAudioCtx.resume();
- }
+  if (audioCtx.state === 'suspended') audioCtx.resume();
 }
 
-function setRetroVolume(v){
- retroVolValue = parseFloat(v);
- if(retroGainNode && !retroMuted){
-  retroGainNode.gain.setValueAtTime(retroVolValue, retroAudioCtx.currentTime);
- }
+function setVolume(v) {
+  currentVol = parseFloat(v);
+  if (masterGain && !isMuted) masterGain.gain.value = currentVol;
 }
 
-function toggleRetroMute(){
- retroMuted = !retroMuted;
- $('retroMuteBtn').textContent = retroMuted ? '🔇 Mute' : '🔊 Audio';
- if(retroGainNode){
-  retroGainNode.gain.setValueAtTime(retroMuted ? 0 : retroVolValue, retroAudioCtx.currentTime);
- }
+function toggleMute() {
+  isMuted = !isMuted;
+  $('btnMute').textContent = isMuted ? "🔇 Audio: OFF" : "🔊 Audio: ON";
+  if (masterGain) masterGain.gain.value = isMuted ? 0 : currentVol;
 }
 
-function playTone(freq, type, duration, delay=0){
- if(!retroAudioCtx || retroMuted) return;
- setTimeout(()=>{
-  try{
-   const osc = retroAudioCtx.createOscillator();
-   const g = retroAudioCtx.createGain();
-   osc.type = type || 'square';
-   osc.frequency.setValueAtTime(freq, retroAudioCtx.currentTime);
-   g.gain.setValueAtTime(retroVolValue * 0.4, retroAudioCtx.currentTime);
-   g.gain.exponentialRampToValueAtTime(0.001, retroAudioCtx.currentTime + duration);
-   osc.connect(g);
-   g.connect(retroGainNode);
-   osc.start();
-   osc.stop(retroAudioCtx.currentTime + duration);
-  }catch(e){}
- }, delay * 1000);
+function playTone(freq, duration, type='square') {
+  if (isMuted || !audioCtx) return;
+  try {
+    const osc = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+    g.gain.setValueAtTime(masterGain.gain.value, audioCtx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+    osc.connect(g);
+    g.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + duration);
+  } catch(e){}
 }
 
-// Melodías Chiptune 8 bits por juego
-const MELODIES = {
- pong: [
-  {f:261,d:0.15},{f:329,d:0.15},{f:392,d:0.15},{f:523,d:0.3},
-  {f:392,d:0.15},{f:523,d:0.4},{f:440,d:0.2},{f:349,d:0.2}
- ],
- breakout: [
-  {f:330,d:0.12},{f:392,d:0.12},{f:493,d:0.12},{f:587,d:0.24},
-  {f:493,d:0.12},{f:392,d:0.12},{f:440,d:0.24},{f:330,d:0.24}
- ],
- tetris: [ // Korobeiniki
-  {f:659,d:0.25},{f:493,d:0.12},{f:523,d:0.12},{f:587,d:0.25},{f:523,d:0.12},{f:493,d:0.12},
-  {f:440,d:0.25},{f:440,d:0.12},{f:523,d:0.12},{f:659,d:0.25},{f:587,d:0.12},{f:523,d:0.12},
-  {f:493,d:0.37},{f:523,d:0.12},{f:587,d:0.25},{f:659,d:0.25},{f:523,d:0.25},{f:440,d:0.25}
- ],
- invaders: [
-  {f:164,d:0.15},{f:155,d:0.15},{f:146,d:0.15},{f:138,d:0.3},
-  {f:220,d:0.15},{f:207,d:0.15},{f:196,d:0.15},{f:185,d:0.3}
- ]
+function playSFX(key) {
+  initAudio();
+  if (key === 'bounce') playTone(440, 0.08, 'triangle');
+  else if (key === 'shoot') playTone(880, 0.06, 'sawtooth');
+  else if (key === 'clear') { playTone(523, 0.1); setTimeout(()=>playTone(659,0.15), 100); }
+  else if (key === 'gameover') {
+    // SFX trágico descendente de 4 notas 8-bits
+    [392, 349, 329, 261].forEach((f, i) => setTimeout(() => playTone(f, 0.25, 'sawtooth'), i * 220));
+  } else if (key === 'win') {
+    // Fanfarria ascendente de victoria
+    [523, 659, 783, 1046].forEach((f, i) => setTimeout(() => playTone(f, 0.15, 'square'), i * 150));
+  }
+}
+
+function stopMusic() {
+  if (musicInterval) { clearInterval(musicInterval); musicInterval = null; }
+}
+
+function startMusic(gameKey) {
+  stopMusic();
+  initAudio();
+  let step = 0;
+  
+  if (gameKey === 'tetris') {
+    // Korobeiniki (Melodía Rusa Clásica)
+    const notes = [659,493,523,587,523,493,440,440,523,659,587,523,493,523,587,659,523,440,440,0,587,698,880,784,698,659,523,659,587,523,493,493,523,587,659,523,440,440];
+    musicInterval = setInterval(() => {
+      if (notes[step] > 0) playTone(notes[step], 0.18, 'square');
+      step = (step + 1) % notes.length;
+    }, 240);
+  } else if (gameKey === 'space') {
+    const notes = [110, 123, 130, 98];
+    musicInterval = setInterval(() => {
+      playTone(notes[step], 0.2, 'sawtooth');
+      step = (step + 1) % notes.length;
+    }, 350);
+  } else if (gameKey === 'pong') {
+    const notes = [261, 329, 392, 329];
+    musicInterval = setInterval(() => {
+      playTone(notes[step], 0.12, 'square');
+      step = (step + 1) % notes.length;
+    }, 200);
+  } else if (gameKey === 'breakout') {
+    const notes = [330, 392, 440, 392, 523, 440];
+    musicInterval = setInterval(() => {
+      playTone(notes[step], 0.14, 'triangle');
+      step = (step + 1) % notes.length;
+    }, 220);
+  }
+}
+
+/* ------------------- LÓGICA DE JUEGOS EN CANVAS ------------------- */
+let gameState = 'STOP'; // 'PLAY', 'GAMEOVER', 'WIN'
+let score = 0, lives = 3;
+
+// TETRIS (Motor Cuadrado Matriz 10x20)
+const T_ROWS = 20, T_COLS = 10, T_SIZE = 18;
+const OFFSET_X = Math.floor((400 - T_COLS * T_SIZE) / 2); // Centrado en canvas (110px)
+const OFFSET_Y = Math.floor((400 - T_ROWS * T_SIZE) / 2); // Centrado en canvas (20px)
+let gridTetris = [], pieceTetris = null;
+
+// Piezas definidas estrictamente en matrices cuadradas estándar (4x4, 3x3, 2x2)
+const TETROMINOS = {
+  I: { m: [[0,0,0,0],[1,1,1,1],[0,0,0,0],[0,0,0,0]], color: '#00f0ff' },
+  J: { m: [[1,0,0],[1,1,1],[0,0,0]], color: '#0000ff' },
+  L: { m: [[0,0,1],[1,1,1],[0,0,0]], color: '#ff7f00' },
+  O: { m: [[1,1],[1,1]], color: '#ffff00' },
+  S: { m: [[0,1,1],[1,1,0],[0,0,0]], color: '#00ff00' },
+  T: { m: [[0,1,0],[1,1,1],[0,0,0]], color: '#aa00ff' },
+  Z: { m: [[1,1,0],[0,1,1],[0,0,0]], color: '#ff0000' }
 };
 
-function playMelodyForGame(gameKey){
- stopGameMusic();
- initRetroAudio();
- const notes = MELODIES[gameKey];
- if(!notes) return;
- let step = 0;
- function nextNote(){
-  if(isGameOver || isWin) return;
-  const n = notes[step];
-  playTone(n.f, 'square', n.d);
-  step = (step + 1) % notes.length;
-  musicTimer = setTimeout(nextNote, (n.d + 0.08) * 1000);
- }
- nextNote();
+function resetTetris() {
+  gridTetris = Array.from({length: T_ROWS}, () => Array(T_COLS).fill(0));
+  spawnTetrisPiece();
 }
 
-function stopGameMusic(){
- if(musicTimer) clearTimeout(musicTimer);
- musicTimer = null;
-}
-
-function playSFX(type){
- initRetroAudio();
- if(type === 'hit') playTone(440, 'square', 0.05);
- else if(type === 'score') playTone(880, 'triangle', 0.1);
- else if(type === 'shoot') playTone(600, 'sawtooth', 0.08);
- else if(type === 'explode') playTone(120, 'square', 0.2);
- else if(type === 'gameover'){
-  playTone(300, 'sawtooth', 0.2, 0);
-  playTone(250, 'sawtooth', 0.2, 0.2);
-  playTone(200, 'sawtooth', 0.4, 0.4);
- }else if(type === 'win'){
-  playTone(440, 'triangle', 0.1, 0);
-  playTone(554, 'triangle', 0.1, 0.1);
-  playTone(659, 'triangle', 0.1, 0.2);
-  playTone(880, 'triangle', 0.3, 0.3);
- }
-}
-
-function stopGameLoop(){
- if(gameLoopId) cancelAnimationFrame(gameLoopId);
- gameLoopId = null;
-}
-
-// SELECCIÓN Y GESTIÓN DE JUEGOS
-function switchGame(key, btn){
- document.querySelectorAll('.arcade-btn').forEach(b=>b.classList.remove('active'));
- if(btn) btn.classList.add('active');
- cg = key;
- initCurrentGame();
-}
-
-function initCurrentGame(){
- stopGameLoop();
- isGameOver = false; isWin = false; gameScore = 0;
- updateScoreUI();
- initRetroAudio();
- playMelodyForGame(cg);
- if(cg === 'pong') initPong();
- else if(cg === 'breakout') initBreakout();
- else if(cg === 'tetris') initTetris();
- else if(cg === 'invaders') initInvaders();
-}
-
-function updateScoreUI(){
- if($('gameScore')) $('gameScore').textContent = 'SCORE: ' + gameScore;
-}
-
-function drawOverlay(title, color){
- ctx.fillStyle = 'rgba(0,0,0,0.75)';
- ctx.fillRect(0, 0, cvs.width, cvs.height);
- ctx.fillStyle = color || '#ff0055';
- ctx.font = 'bold 32px monospace';
- ctx.textAlign = 'center';
- ctx.shadowColor = color || '#ff0055';
- ctx.shadowBlur = 10;
- ctx.fillText(title, cvs.width / 2, cvs.height / 2 - 20);
- ctx.fillStyle = '#fff';
- ctx.font = '14px monospace';
- ctx.shadowBlur = 0;
- ctx.fillText('Puntaje: ' + gameScore, cvs.width / 2, cvs.height / 2 + 15);
- ctx.fillText('Presiona INICIAR para jugar', cvs.width / 2, cvs.height / 2 + 45);
-}
-
-function triggerGameOver(){
- isGameOver = true;
- stopGameMusic();
- stopGameLoop();
- playSFX('gameover');
- drawOverlay('GAME OVER', '#ff0055');
-}
-
-function triggerWin(){
- isWin = true;
- stopGameMusic();
- stopGameLoop();
- playSFX('win');
- drawOverlay('YOU WIN!', '#00ff66');
-}
-
-// ----------------------------------------------------
-// 1. PONG
-// ----------------------------------------------------
-let p1Y=160, p2Y=160, bX=200, bY=200, bVX=3, bVY=3, p1Score=0, p2Score=0;
-function initPong(){
- $('gameTitle').textContent = '🏓 PONG';
- p1Y=160; p2Y=160; bX=200; bY=200; bVX=4; bVY=3; p1Score=0; p2Score=0;
- loopPong();
-}
-function loopPong(){
- if(isGameOver || isWin) return;
- // Mover CPU
- if(bY > p2Y + 30) p2Y += 2.5; else if(bY < p2Y + 10) p2Y -= 2.5;
- // Controles Jugador
- if(keysHold['ArrowUp'] && p1Y > 0) p1Y -= 5;
- if(keysHold['ArrowDown'] && p1Y < 320) p1Y += 5;
- // Bola
- bX += bVX; bY += bVY;
- if(bY <= 0 || bY >= 390) { bVY = -bVY; playSFX('hit'); }
- // Rebotes paletas
- if(bX <= 20 && bY >= p1Y && bY <= p1Y + 80){ bVX = -bVX * 1.05; bX = 20; playSFX('hit'); }
- if(bX >= 370 && bY >= p2Y && bY <= p2Y + 80){ bVX = -bVX * 1.05; bX = 370; playSFX('hit'); }
- // Puntos
- if(bX < 0){
-  p2Score++; playSFX('explode');
-  if(p2Score >= 5) return triggerGameOver();
-  bX=200; bY=200; bVX=4;
- }
- if(bX > 400){
-  p1Score++; gameScore += 100; updateScoreUI(); playSFX('score');
-  if(p1Score >= 5) return triggerWin();
-  bX=200; bY=200; bVX=-4;
- }
- // Render
- ctx.fillStyle = '#000'; ctx.fillRect(0,0,400,400);
- ctx.fillStyle = '#00f0ff';
- ctx.fillRect(10, p1Y, 10, 80);
- ctx.fillStyle = '#ff007f';
- ctx.fillRect(380, p2Y, 10, 80);
- ctx.fillStyle = '#ffe600';
- ctx.fillRect(bX, bY, 8, 8);
- // Línea media y marcadores
- ctx.strokeStyle = '#333'; ctx.setLineDash([5,5]);
- ctx.beginPath(); ctx.moveTo(200,0); ctx.lineTo(200,400); ctx.stroke(); ctx.setLineDash([]);
- ctx.font = '20px monospace'; ctx.fillStyle = '#00f0ff'; ctx.fillText(p1Score, 150, 30);
- ctx.fillStyle = '#ff007f'; ctx.fillText(p2Score, 240, 30);
- gameLoopId = requestAnimationFrame(loopPong);
-}
-
-// ----------------------------------------------------
-// 2. BREAKOUT
-// ----------------------------------------------------
-let bkX=160, bkBX=200, bkBY=300, bkVX=3, bkVY=-3, bkBricks=[], bkLives=3;
-function initBreakout(){
- $('gameTitle').textContent = '🧱 BREAKOUT';
- bkX=160; bkBX=200; bkBY=300; bkVX=3; bkVY=-3; bkLives=3;
- bkBricks = [];
- for(let r=0; r<4; r++){
-  for(let c=0; c<7; c++){
-   bkBricks.push({x: c*54 + 12, y: r*22 + 40, v: 1});
+function spawnTetrisPiece() {
+  const keys = Object.keys(TETROMINOS);
+  const k = keys[Math.floor(Math.random() * keys.length)];
+  const t = TETROMINOS[k];
+  pieceTetris = {
+    matrix: t.m.map(r => [...r]),
+    color: t.color,
+    r: 0,
+    c: Math.floor((T_COLS - t.m[0].length) / 2)
+  };
+  // Si colisiona al nacer -> GAME OVER
+  if (checkCollision(pieceTetris.matrix, pieceTetris.r, pieceTetris.c)) {
+    triggerGameOver();
   }
- }
- loopBreakout();
-}
-function loopBreakout(){
- if(isGameOver || isWin) return;
- if(keysHold['ArrowLeft'] && bkX > 0) bkX -= 6;
- if(keysHold['ArrowRight'] && bkX < 320) bkX += 6;
- bkBX += bkVX; bkBY += bkVY;
- if(bkBX <= 0 || bkBX >= 392) { bkVX = -bkVX; playSFX('hit'); }
- if(bkBY <= 0) { bkVY = -bkVY; playSFX('hit'); }
- // Colisión paleta
- if(bkBY >= 360 && bkBY <= 370 && bkBX >= bkX && bkBX <= bkX + 80){
-  bkVY = -Math.abs(bkVY); playSFX('hit');
- }
- // Caída de bola (Vidas)
- if(bkBY >= 400){
-  bkLives--; playSFX('explode');
-  if(bkLives <= 0) return triggerGameOver();
-  bkBX=200; bkBY=300; bkVX=3; bkVY=-3;
- }
- // Bloques
- let remaining = 0;
- bkBricks.forEach(b => {
-  if(b.v){
-   remaining++;
-   if(bkBX >= b.x && bkBX <= b.x + 50 && bkBY >= b.y && bkBY <= b.y + 18){
-    b.v = 0; bkVY = -bkVY; gameScore += 50; updateScoreUI(); playSFX('score');
-   }
-  }
- });
- if(remaining === 0) return triggerWin();
-
- ctx.fillStyle = '#000'; ctx.fillRect(0,0,400,400);
- ctx.fillStyle = '#00f0ff'; ctx.fillRect(bkX, 365, 80, 10);
- ctx.fillStyle = '#ffe600'; ctx.fillRect(bkBX, bkBY, 8, 8);
- const colors = ['#ff007f','#00f0ff','#ffe600','#00ff66'];
- bkBricks.forEach((b,i) => {
-  if(b.v){
-   ctx.fillStyle = colors[Math.floor(i/7) % 4];
-   ctx.fillRect(b.x, b.y, 50, 18);
-  }
- });
- ctx.fillStyle = '#fff'; ctx.font = '12px monospace'; ctx.fillText('VIDAS: ' + bkLives, 10, 20);
- gameLoopId = requestAnimationFrame(loopBreakout);
 }
 
-// ----------------------------------------------------
-// 3. TETRIS
-// ----------------------------------------------------
-const T_ROWS=20, T_COLS=10, T_SIZE=20;
-let tGrid=[], tPiece=null, tTimer=0;
-const SHAPES = [
- [[1,1,1,1]], // I
- [[1,1],[1,1]], // O
- [[0,1,0],[1,1,1]], // T
- [[1,0,0],[1,1,1]], // L
- [[0,0,1],[1,1,1]], // J
- [[0,1,1],[1,0,0]], // S
- [[1,1,0],[0,1,1]]  // Z
-];
-const T_COLORS = ['#00f0ff','#ffe600','#a000ff','#ff7f00','#0000ff','#00ff00','#ff0000'];
-
-function initTetris(){
- $('gameTitle').textContent = '🧩 TETRIS';
- tGrid = Array(T_ROWS).fill(0).map(()=>Array(T_COLS).fill(0));
- spawnTetrisPiece();
- tTimer = 0;
- loopTetris();
-}
-function spawnTetrisPiece(){
- const idx = Math.floor(Math.random()*SHAPES.length);
- tPiece = { shape: SHAPES[idx], color: T_COLORS[idx], r: 0, c: 3 };
- if(checkTetrisCollision(tPiece.r, tPiece.c, tPiece.shape)){
-  triggerGameOver();
- }
-}
-function checkTetrisCollision(pr, pc, shape){
- for(let r=0; r<shape.length; r++){
-  for(let c=0; c<shape[r].length; c++){
-   if(shape[r][c]){
-    let nr = pr + r, nc = pc + c;
-    if(nr >= T_ROWS || nc < 0 || nc >= T_COLS || (nr >= 0 && tGrid[nr][nc])) return true;
-   }
-  }
- }
- return false;
-}
-function lockTetrisPiece(){
- for(let r=0; r<tPiece.shape.length; r++){
-  for(let c=0; c<tPiece.shape[r].length; c++){
-   if(tPiece.shape[r][c]){
-    if(tPiece.r + r < 0) return triggerGameOver();
-    tGrid[tPiece.r + r][tPiece.c + c] = tPiece.color;
-   }
-  }
- }
- playSFX('hit');
- // Limpiar líneas
- for(let r=T_ROWS-1; r>=0; r--){
-  if(tGrid[r].every(cell => cell !== 0)){
-   tGrid.splice(r, 1);
-   tGrid.unshift(Array(T_COLS).fill(0));
-   gameScore += 100; updateScoreUI(); playSFX('score');
-   r++;
-  }
- }
- spawnTetrisPiece();
-}
-function rotateTetris(){
- const s = tPiece.shape;
- const rotated = s[0].map((_, i) => s.map(row => row[i]).reverse());
- if(!checkTetrisCollision(tPiece.r, tPiece.c, rotated)){
-  tPiece.shape = rotated;
- }
-}
-function loopTetris(){
- if(isGameOver || isWin) return;
- tTimer++;
- if(tTimer % 25 === 0){
-  if(!checkTetrisCollision(tPiece.r + 1, tPiece.c, tPiece.shape)){
-   tPiece.r++;
-  } else {
-   lockTetrisPiece();
-  }
- }
- // Render
- ctx.fillStyle = '#000'; ctx.fillRect(0,0,400,400);
- // Dibujar Tablero (Centrado)
- const offX = 100;
- for(let r=0; r<T_ROWS; r++){
-  for(let c=0; c<T_COLS; c++){
-   if(tGrid[r][c]){
-    ctx.fillStyle = tGrid[r][c];
-    ctx.fillRect(offX + c*T_SIZE, r*T_SIZE, T_SIZE-1, T_SIZE-1);
-   }
-  }
- }
- // Dibujar Pieza Actual
- if(tPiece){
-  ctx.fillStyle = tPiece.color;
-  for(let r=0; r<tPiece.shape.length; r++){
-   for(let c=0; c<tPiece.shape[r].length; c++){
-    if(tPiece.shape[r][c]){
-     ctx.fillRect(offX + (tPiece.c+c)*T_SIZE, (tPiece.r+r)*T_SIZE, T_SIZE-1, T_SIZE-1);
+function checkCollision(mat, rOff, cOff) {
+  for (let r = 0; r < mat.length; r++) {
+    for (let c = 0; c < mat[r].length; c++) {
+      if (mat[r][c]) {
+        let newR = rOff + r;
+        let newC = cOff + c;
+        if (newC < 0 || newC >= T_COLS || newR >= T_ROWS) return true;
+        if (newR >= 0 && gridTetris[newR][newC]) return true;
+      }
     }
-   }
   }
- }
- gameLoopId = requestAnimationFrame(loopTetris);
+  return false;
 }
 
-// ----------------------------------------------------
-// 4. SPACE INVADERS
-// ----------------------------------------------------
-let invX=180, invBullets=[], invAliens=[], invAlienBullets=[], invDir=1, invTimer=0;
-function initInvaders(){
- $('gameTitle').textContent = '👾 SPACE INVADERS';
- invX=180; invBullets=[]; invAlienBullets=[]; invDir=1; invTimer=0;
- invAliens=[];
- for(let r=0; r<3; r++){
-  for(let c=0; c<6; c++){
-   invAliens.push({x: c*45 + 50, y: r*30 + 30, v: 1});
+function rotateMatrix(mat) {
+  const N = mat.length;
+  let res = Array.from({length: N}, () => Array(N).fill(0));
+  for (let r = 0; r < N; r++) {
+    for (let c = 0; c < N; c++) {
+      res[c][N - 1 - r] = mat[r][c];
+    }
   }
- }
- loopInvaders();
+  return res;
 }
-function loopInvaders(){
- if(isGameOver || isWin) return;
- if(keysHold['ArrowLeft'] && invX > 0) invX -= 4;
- if(keysHold['ArrowRight'] && invX < 360) invX += 4;
 
- // Mover balas jugador
- invBullets.forEach((b,i) => {
-  b.y -= 6;
-  if(b.y < 0) invBullets.splice(i,1);
- });
+function moveTetris(dir) {
+  if (gameState !== 'PLAY' || activeGame !== 'tetris') return;
+  if (dir === 'left' && !checkCollision(pieceTetris.matrix, pieceTetris.r, pieceTetris.c - 1)) {
+    pieceTetris.c--;
+  } else if (dir === 'right' && !checkCollision(pieceTetris.matrix, pieceTetris.r, pieceTetris.c + 1)) {
+    pieceTetris.c++;
+  } else if (dir === 'rotate') {
+    const rotated = rotateMatrix(pieceTetris.matrix);
+    if (!checkCollision(rotated, pieceTetris.r, pieceTetris.c)) {
+      pieceTetris.matrix = rotated;
+    }
+  } else if (dir === 'down') {
+    dropTetrisPiece();
+  }
+}
 
- // Mover aliens
- invTimer++;
- if(invTimer % 30 === 0){
-  let edge = false;
-  invAliens.forEach(a => {
-   if(a.v){
-    if((invDir === 1 && a.x >= 350) || (invDir === -1 && a.x <= 10)) edge = true;
-   }
+function dropTetrisPiece() {
+  if (!checkCollision(pieceTetris.matrix, pieceTetris.r + 1, pieceTetris.c)) {
+    pieceTetris.r++;
+  } else {
+    // Lock piece
+    lockTetrisPiece();
+  }
+}
+
+function lockTetrisPiece() {
+  for (let r = 0; r < pieceTetris.matrix.length; r++) {
+    for (let c = 0; c < pieceTetris.matrix[r].length; c++) {
+      if (pieceTetris.matrix[r][c]) {
+        let boardR = pieceTetris.r + r;
+        let boardC = pieceTetris.c + c;
+        if (boardR >= 0) gridTetris[boardR][boardC] = pieceTetris.color;
+      }
+    }
+  }
+  // Clear full lines
+  let lines = 0;
+  for (let r = T_ROWS - 1; r >= 0; r--) {
+    if (gridTetris[r].every(cell => cell !== 0)) {
+      gridTetris.splice(r, 1);
+      gridTetris.unshift(Array(T_COLS).fill(0));
+      lines++;
+      r++;
+    }
+  }
+  if (lines > 0) {
+    score += lines * 100;
+    playSFX('clear');
+  }
+  spawnTetrisPiece();
+}
+
+// SPACE INVADERS
+let spacePlayer = { x: 180, y: 360, w: 40, h: 15 };
+let spaceBullets = [], alienBullets = [], aliens = [];
+function resetSpace() {
+  spacePlayer.x = 180; spaceBullets = []; alienBullets = []; aliens = [];
+  for (let r = 0; r < 4; r++) {
+    for (let c = 0; c < 7; c++) {
+      aliens.push({ x: 40 + c * 45, y: 30 + r * 30, w: 30, h: 20, alive: true });
+    }
+  }
+}
+
+// PONG
+let pongPlayer = { y: 160, w: 10, h: 70 }, pongCPU = { y: 160, w: 10, h: 70 };
+let pongBall = { x: 200, y: 200, vx: 4, vy: 3, size: 8 };
+let pScoreUser = 0, pScoreCPU = 0;
+function resetPong() {
+  pongPlayer.y = 160; pongCPU.y = 160;
+  pongBall = { x: 200, y: 200, vx: (Math.random()>0.5?4:-4), vy: 3, size: 8 };
+  pScoreUser = 0; pScoreCPU = 0;
+}
+
+// BREAKOUT
+let bPaddle = { x: 160, w: 80, h: 12 };
+let bBall = { x: 200, y: 300, vx: 3, vy: -4, r: 6 };
+let bBricks = [];
+function resetBreakout() {
+  bPaddle.x = 160; bBall = { x: 200, y: 300, vx: 3, vy: -4, r: 6 }; lives = 3; bBricks = [];
+  for (let r = 0; r < 5; r++) {
+    for (let c = 0; c < 8; c++) {
+      bBricks.push({ x: 15 + c * 46, y: 40 + r * 20, w: 40, h: 14, active: true });
+    }
+  }
+}
+
+/* ------------------- CONTROLADORES DE RENDER Y LOOP ------------------- */
+function stopGameLoop() {
+  if (gameAnimFrame) cancelAnimationFrame(gameAnimFrame);
+  if (tetrisGravityTimer) clearInterval(tetrisGravityTimer);
+  gameState = 'STOP';
+}
+
+function switchGame(gameKey, btn) {
+  activeGame = gameKey;
+  document.querySelectorAll('.retro-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  stopGameLoop();
+  ctx.fillStyle = '#000';
+  ctx.fillRect(0, 0, 400, 400);
+  ctx.fillStyle = '#00f0ff';
+  ctx.font = '20px monospace';
+  ctx.textAlign = 'center';
+  ctx.fillText("Presiona ▶ INICIAR", 200, 200);
+}
+
+function startGame() {
+  stopGameLoop();
+  score = 0;
+  gameState = 'PLAY';
+  startMusic(activeGame);
+
+  if (activeGame === 'tetris') {
+    resetTetris();
+    tetrisGravityTimer = setInterval(() => {
+      if (gameState === 'PLAY') dropTetrisPiece();
+    }, 500);
+  } else if (activeGame === 'space') resetSpace();
+  else if (activeGame === 'pong') resetPong();
+  else if (activeGame === 'breakout') resetBreakout();
+
+  gameLoop();
+}
+
+function triggerGameOver() {
+  gameState = 'GAMEOVER';
+  stopMusic();
+  stopGameLoop();
+  playSFX('gameover');
+  renderOverlay('GAME OVER', '#ff0055');
+}
+
+function triggerWin() {
+  gameState = 'WIN';
+  stopMusic();
+  stopGameLoop();
+  playSFX('win');
+  renderOverlay('YOU WIN!', '#00ff66');
+}
+
+function renderOverlay(title, color) {
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.85)';
+  ctx.fillRect(0, 0, 400, 400);
+  ctx.fillStyle = color;
+  ctx.font = '900 36px monospace';
+  ctx.textAlign = 'center';
+  ctx.fillText(title, 200, 170);
+  ctx.fillStyle = '#fff';
+  ctx.font = '16px monospace';
+  ctx.fillText("Puntaje Final: " + score, 200, 210);
+  ctx.fillStyle = '#00f0ff';
+  ctx.font = '14px monospace';
+  ctx.fillText("Presiona ▶ INICIAR para jugar", 200, 260);
+}
+
+// BUCLE PRINCIPAL (60 FPS)
+function gameLoop() {
+  if (gameState !== 'PLAY') return;
+  ctx.fillStyle = '#000';
+  ctx.fillRect(0, 0, 400, 400);
+
+  if (activeGame === 'tetris') drawTetris();
+  else if (activeGame === 'space') updateDrawSpace();
+  else if (activeGame === 'pong') updateDrawPong();
+  else if (activeGame === 'breakout') updateDrawBreakout();
+
+  gameAnimFrame = requestAnimationFrame(gameLoop);
+}
+
+/* DIBUJO Y LÓGICA ESPECÍFICA DE CADA JUEGO */
+function drawTetris() {
+  // Marco del tablero
+  ctx.strokeStyle = '#00f0ff';
+  ctx.strokeRect(OFFSET_X - 2, OFFSET_Y - 2, T_COLS * T_SIZE + 4, T_ROWS * T_SIZE + 4);
+
+  // Tablero fijo
+  for (let r = 0; r < T_ROWS; r++) {
+    for (let c = 0; c < T_COLS; c++) {
+      if (gridTetris[r][c]) {
+        ctx.fillStyle = gridTetris[r][c];
+        ctx.fillRect(OFFSET_X + c * T_SIZE, OFFSET_Y + r * T_SIZE, T_SIZE - 1, T_SIZE - 1);
+      }
+    }
+  }
+  // Pieza en caída
+  if (pieceTetris) {
+    ctx.fillStyle = pieceTetris.color;
+    for (let r = 0; r < pieceTetris.matrix.length; r++) {
+      for (let c = 0; c < pieceTetris.matrix[r].length; c++) {
+        if (pieceTetris.matrix[r][c]) {
+          let pr = pieceTetris.r + r;
+          let pc = pieceTetris.c + c;
+          if (pr >= 0) {
+            ctx.fillRect(OFFSET_X + pc * T_SIZE, OFFSET_Y + pr * T_SIZE, T_SIZE - 1, T_SIZE - 1);
+          }
+        }
+      }
+    }
+  }
+  // Puntaje
+  ctx.fillStyle = '#fff';
+  ctx.font = '14px monospace';
+  ctx.textAlign = 'left';
+  ctx.fillText("Score: " + score, 15, 30);
+}
+
+function updateDrawSpace() {
+  // Move Player
+  if (keysPressed['ArrowLeft'] && spacePlayer.x > 0) spacePlayer.x -= 4;
+  if (keysPressed['ArrowRight'] && spacePlayer.x < 360) spacePlayer.x += 4;
+
+  // Draw Player
+  ctx.fillStyle = '#00ff66';
+  ctx.fillRect(spacePlayer.x, spacePlayer.y, spacePlayer.w, spacePlayer.h);
+
+  // Bullets Player
+  for (let i = spaceBullets.length - 1; i >= 0; i--) {
+    let b = spaceBullets[i];
+    b.y -= 7;
+    ctx.fillStyle = '#ffff00';
+    ctx.fillRect(b.x, b.y, 4, 8);
+    // Collision with aliens
+    aliens.forEach(a => {
+      if (a.alive && b.x > a.x && b.x < a.x + a.w && b.y > a.y && b.y < a.y + a.h) {
+        a.alive = false;
+        spaceBullets.splice(i, 1);
+        score += 50;
+        playSFX('bounce');
+      }
+    });
+    if (b && b.y < 0) spaceBullets.splice(i, 1);
+  }
+
+  // Aliens logic
+  let activeAliens = aliens.filter(a => a.alive);
+  if (activeAliens.length === 0) { triggerWin(); return; }
+
+  activeAliens.forEach(a => {
+    ctx.fillStyle = '#ff007f';
+    ctx.fillRect(a.x, a.y, a.w, a.h);
+    if (Math.random() < 0.002) alienBullets.push({ x: a.x + 15, y: a.y + 20 });
+    if (a.y + a.h >= spacePlayer.y) triggerGameOver();
   });
-  if(edge){
-   invDir = -invDir;
-   invAliens.forEach(a => { if(a.v) a.y += 12; });
-  } else {
-   invAliens.forEach(a => { if(a.v) a.x += invDir * 10; });
-  }
-  // Disparo alienígena aleatorio
-  const activeAliens = invAliens.filter(a => a.v);
-  if(activeAliens.length > 0 && Math.random() < 0.4){
-   const shooter = activeAliens[Math.floor(Math.random() * activeAliens.length)];
-   invAlienBullets.push({x: shooter.x + 12, y: shooter.y + 15});
-  }
- }
 
- // Mover balas alienígenas
- invAlienBullets.forEach((ab, i) => {
-  ab.y += 4;
-  // Impacto en jugador
-  if(ab.y >= 360 && ab.y <= 380 && ab.x >= invX && ab.x <= invX + 32){
-   playSFX('explode');
-   return triggerGameOver();
-  }
-  if(ab.y > 400) invAlienBullets.splice(i, 1);
- });
-
- // Colisiones balas -> aliens
- let remaining = 0;
- invAliens.forEach(a => {
-  if(a.v){
-   remaining++;
-   if(a.y >= 350) triggerGameOver(); // Invadieron el fondo
-   invBullets.forEach((b,bi) => {
-    if(b.x >= a.x && b.x <= a.x + 30 && b.y >= a.y && b.y <= a.y + 20){
-     a.v = 0; invBullets.splice(bi,1); gameScore += 30; updateScoreUI(); playSFX('score');
+  // Alien Bullets
+  for (let i = alienBullets.length - 1; i >= 0; i--) {
+    let ab = alienBullets[i];
+    ab.y += 4;
+    ctx.fillStyle = '#ff0000';
+    ctx.fillRect(ab.x, ab.y, 4, 8);
+    // Impact on Player
+    if (ab.x > spacePlayer.x && ab.x < spacePlayer.x + spacePlayer.w && ab.y > spacePlayer.y && ab.y < spacePlayer.y + spacePlayer.h) {
+      triggerGameOver(); return;
     }
-   });
+    if (ab.y > 400) alienBullets.splice(i, 1);
   }
- });
 
- if(remaining === 0) return triggerWin();
-
- // Render
- ctx.fillStyle = '#000'; ctx.fillRect(0,0,400,400);
- // Nave Jugador
- ctx.fillStyle = '#00ff66';
- ctx.fillRect(invX, 365, 32, 12);
- ctx.fillRect(invX + 12, 357, 8, 8);
- // Balas jugador
- ctx.fillStyle = '#ffe600';
- invBullets.forEach(b => ctx.fillRect(b.x, b.y, 3, 8));
- // Balas alienígenas
- ctx.fillStyle = '#ff0055';
- invAlienBullets.forEach(ab => ctx.fillRect(ab.x, ab.y, 4, 8));
- // Aliens
- ctx.fillStyle = '#ff007f';
- invAliens.forEach(a => {
-  if(a.v){
-   ctx.fillRect(a.x, a.y, 28, 18);
-   ctx.fillStyle = '#000'; ctx.fillRect(a.x + 5, a.y + 5, 4, 4); ctx.fillRect(a.x + 19, a.y + 5, 4, 4);
-   ctx.fillStyle = '#ff007f';
-  }
- });
-
- gameLoopId = requestAnimationFrame(loopInvaders);
+  ctx.fillStyle = '#fff';
+  ctx.font = '14px monospace';
+  ctx.textAlign = 'left';
+  ctx.fillText("Score: " + score, 15, 30);
 }
 
-// GESTIÓN DE ENTRADAS (TECLADO Y PANTALLA TÁCTIL)
-const keysHold = {};
+function updateDrawPong() {
+  if (keysPressed['ArrowUp'] && pongPlayer.y > 0) pongPlayer.y -= 5;
+  if (keysPressed['ArrowDown'] && pongPlayer.y < 330) pongPlayer.y += 5;
+
+  // CPU AI
+  if (pongBall.y > pongCPU.y + 35 && pongCPU.y < 330) pongCPU.y += 3.5;
+  else if (pongBall.y < pongCPU.y + 35 && pongCPU.y > 0) pongCPU.y -= 3.5;
+
+  // Move Ball
+  pongBall.x += pongBall.vx;
+  pongBall.y += pongBall.vy;
+
+  if (pongBall.y <= 0 || pongBall.y >= 392) { pongBall.vy *= -1; playSFX('bounce'); }
+
+  // Paddle collisions
+  if (pongBall.x <= 20 && pongBall.y > pongPlayer.y && pongBall.y < pongPlayer.y + 70) {
+    pongBall.vx *= -1.05; playSFX('bounce');
+  }
+  if (pongBall.x >= 370 && pongBall.y > pongCPU.y && pongBall.y < pongCPU.y + 70) {
+    pongBall.vx *= -1.05; playSFX('bounce');
+  }
+
+  // Scoring
+  if (pongBall.x < 0) { pScoreCPU++; resetBallPong(); }
+  if (pongBall.x > 400) { pScoreUser++; score += 100; resetBallPong(); }
+
+  if (pScoreUser >= 5) triggerWin();
+  if (pScoreCPU >= 5) triggerGameOver();
+
+  // Render
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(10, pongPlayer.y, pongPlayer.w, pongPlayer.h);
+  ctx.fillRect(380, pongCPU.y, pongCPU.w, pongCPU.h);
+  ctx.fillRect(pongBall.x, pongBall.y, pongBall.size, pongBall.size);
+
+  ctx.font = '20px monospace';
+  ctx.textAlign = 'center';
+  ctx.fillText(`${pScoreUser} - ${pScoreCPU}`, 200, 30);
+}
+
+function resetBallPong() {
+  pongBall = { x: 200, y: 200, vx: (Math.random()>0.5?4:-4), vy: 3, size: 8 };
+}
+
+function updateDrawBreakout() {
+  if (keysPressed['ArrowLeft'] && bPaddle.x > 0) bPaddle.x -= 6;
+  if (keysPressed['ArrowRight'] && bPaddle.x < 320) bPaddle.x += 6;
+
+  bBall.x += bBall.vx;
+  bBall.y += bBall.vy;
+
+  if (bBall.x <= 0 || bBall.x >= 394) { bBall.vx *= -1; playSFX('bounce'); }
+  if (bBall.y <= 0) { bBall.vy *= -1; playSFX('bounce'); }
+
+  // Paddle impact
+  if (bBall.y >= 360 && bBall.x > bPaddle.x && bBall.x < bPaddle.x + bPaddle.w) {
+    bBall.vy = -Math.abs(bBall.vy); playSFX('bounce');
+  }
+
+  // Bottom loss
+  if (bBall.y >= 400) {
+    lives--;
+    if (lives <= 0) triggerGameOver();
+    else bBall = { x: 200, y: 300, vx: 3, vy: -4, r: 6 };
+  }
+
+  // Bricks collision
+  let activeBricks = 0;
+  bBricks.forEach(b => {
+    if (b.active) {
+      activeBricks++;
+      if (bBall.x > b.x && bBall.x < b.x + b.w && bBall.y > b.y && bBall.y < b.y + b.h) {
+        b.active = false; bBall.vy *= -1; score += 20; playSFX('bounce');
+      }
+      ctx.fillStyle = '#00f0ff';
+      ctx.fillRect(b.x, b.y, b.w, b.h);
+    }
+  });
+
+  if (activeBricks === 0) triggerWin();
+
+  // Render
+  ctx.fillStyle = '#ff007f';
+  ctx.fillRect(bPaddle.x, 370, bPaddle.w, bPaddle.h);
+  ctx.fillStyle = '#fff';
+  ctx.beginPath(); ctx.arc(bBall.x, bBall.y, bBall.r, 0, Math.PI*2); ctx.fill();
+
+  ctx.font = '14px monospace';
+  ctx.textAlign = 'left';
+  ctx.fillText(`Score: ${score}  Vidas: ${lives}`, 15, 25);
+}
+
+/* EVENTOS DE TECLADO Y CONTROLES TÁCTILES DISCRETOS */
+const keysPressed = {};
+
 window.addEventListener('keydown', e => {
- if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' '].includes(e.key)){
-  if(document.querySelector('.tc.on#t-retro')) e.preventDefault();
- }
- keysHold[e.key] = true;
- if(e.key === ' ' && cg === 'invaders' && !isGameOver) {
-  invBullets.push({x: invX + 14, y: 355}); playSFX('shoot');
- }
- if(e.key === 'ArrowUp' && cg === 'tetris' && !isGameOver) rotateTetris();
+  if (["ArrowUp","ArrowDown","ArrowLeft","ArrowRight","Space"].includes(e.code)) {
+    if ($('t-retro').classList.contains('on')) e.preventDefault();
+  }
+  keysPressed[e.code] = true;
+  
+  // Tetris usa eventos discretos en keydown directo
+  if (activeGame === 'tetris' && gameState === 'PLAY') {
+    if (e.code === 'ArrowLeft') moveTetris('left');
+    if (e.code === 'ArrowRight') moveTetris('right');
+    if (e.code === 'ArrowUp') moveTetris('rotate');
+    if (e.code === 'ArrowDown') moveTetris('down');
+  }
+  if (activeGame === 'space' && e.code === 'Space' && gameState === 'PLAY') {
+    spaceBullets.push({ x: spacePlayer.x + 18, y: spacePlayer.y });
+    playSFX('shoot');
+  }
 });
-window.addEventListener('keyup', e => { keysHold[e.key] = false; });
 
-// Mapeo de Controles Táctiles en Pantalla
-function setupTouchControls(){
- const bindBtn = (id, keyName) => {
-  const el = $(id);
-  if(!el) return;
-  el.addEventListener('touchstart', e => { e.preventDefault(); keysHold[keyName] = true; handleTouchAction(keyName); });
-  el.addEventListener('touchend', e => { e.preventDefault(); keysHold[keyName] = false; });
-  el.addEventListener('mousedown', e => { keysHold[keyName] = true; handleTouchAction(keyName); });
-  el.addEventListener('mouseup', e => { keysHold[keyName] = false; });
- };
- bindBtn('btnUp', 'ArrowUp');
- bindBtn('btnDown', 'ArrowDown');
- bindBtn('btnLeft', 'ArrowLeft');
- bindBtn('btnRight', 'ArrowRight');
- bindBtn('btnAction', ' ');
+window.addEventListener('keyup', e => {
+  keysPressed[e.code] = false;
+});
 
- // Interacción táctil directa sobre el Canvas
- if(cvs){
-  let touchStartX = 0;
-  cvs.addEventListener('touchstart', e => {
-   touchStartX = e.touches[0].clientX;
-   if(cg === 'invaders' && !isGameOver){ invBullets.push({x: invX + 14, y: 355}); playSFX('shoot'); }
-   if(cg === 'tetris' && !isGameOver) rotateTetris();
-  }, {passive:true});
-
-  cvs.addEventListener('touchmove', e => {
-   const diffX = e.touches[0].clientX - touchStartX;
-   if(Math.abs(diffX) > 10){
-    if(diffX > 0){ keysHold['ArrowRight'] = true; keysHold['ArrowLeft'] = false; }
-    else { keysHold['ArrowLeft'] = true; keysHold['ArrowRight'] = false; }
-   }
-  }, {passive:true});
-
-  cvs.addEventListener('touchend', () => {
-   keysHold['ArrowLeft'] = false; keysHold['ArrowRight'] = false;
-  });
- }
+// Entrada discreta para botones en pantalla (Touch)
+function triggerInput(code) {
+  if (gameState !== 'PLAY') return;
+  if (activeGame === 'tetris') {
+    if (code === 'ArrowLeft') moveTetris('left');
+    if (code === 'ArrowRight') moveTetris('right');
+    if (code === 'ArrowUp') moveTetris('rotate');
+    if (code === 'ArrowDown') moveTetris('down');
+  } else if (activeGame === 'space') {
+    if (code === 'ArrowLeft') spacePlayer.x = Math.max(0, spacePlayer.x - 15);
+    if (code === 'ArrowRight') spacePlayer.x = Math.min(360, spacePlayer.x + 15);
+    if (code === 'Space') {
+      spaceBullets.push({ x: spacePlayer.x + 18, y: spacePlayer.y });
+      playSFX('shoot');
+    }
+  } else if (activeGame === 'pong' || activeGame === 'breakout') {
+    if (code === 'ArrowLeft') keysPressed['ArrowLeft'] = true;
+    if (code === 'ArrowRight') keysPressed['ArrowRight'] = true;
+    if (code === 'ArrowUp') keysPressed['ArrowUp'] = true;
+    if (code === 'ArrowDown') keysPressed['ArrowDown'] = true;
+    setTimeout(() => {
+      keysPressed['ArrowLeft'] = false; keysPressed['ArrowRight'] = false;
+      keysPressed['ArrowUp'] = false; keysPressed['ArrowDown'] = false;
+    }, 150);
+  }
 }
 
-function handleTouchAction(keyName){
- if(keyName === ' ' && cg === 'invaders' && !isGameOver){ invBullets.push({x: invX + 14, y: 355}); playSFX('shoot'); }
- if(keyName === 'ArrowUp' && cg === 'tetris' && !isGameOver) rotateTetris();
-}
-
-/* Inicio */
+/* INICIALIZACIÓN GENERAL */
 try{$('ag').value=sessionStorage.getItem('dcc_ag')||'';const s=JSON.parse(sessionStorage.getItem('dcc_log')||'null');if(s){log=s.log;tr=s.tr}}catch(e){}
-renderPx();['pnr','ape','nom','hv','mail','tel','vd'].forEach(i=>$(i).closest('.fg').style.cssText='flex:0 0 auto;min-width:0');qa();agAll();saludo();tOpts();setP(30);{let m=1;try{const v=sessionStorage.getItem("dcc_m");if(v!==null)m=+v}catch(e){}setMode(m)}dirR();spl();renderLog();setupTouchControls();
+renderPx();['pnr','ape','nom','hv','mail','tel','vd'].forEach(i=>$(i).closest('.fg').style.cssText='flex:0 0 auto;min-width:0');qa();agAll();saludo();tOpts();setP(30);{let m=1;try{const v=sessionStorage.getItem("dcc_m");if(v!==null)m=+v}catch(e){}setMode(m)}dirR();spl();renderLog();
+switchGame('tetris', null);
 </script></body></html>
