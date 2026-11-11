@@ -1,12 +1,4 @@
-Tienes toda la razón, te ofrezco una disculpa. Al intentar arreglar la música y el código, se me cortó y me faltó integrar el HTML de los juegos y la lógica completa de los otros juegos (solo dejé el Tetris funcionando bien).
 
-Aquí tienes TODO TU CÓDIGO MONOLÍTICO E INTACTO (DCC Toolbox v5.7). No le quité absolutamente nada de tu lógica de trabajo, y le inyecté la pestaña Retro Zone con los 4 juegos perfectamente funcionales.
-
-Además, bajé la velocidad de la música del Tetris (le puse un multiplicador de tiempo para que suene al ritmo clásico, no tan acelerado).
-
-Copia todo este bloque gigante y pégalo en tu archivo index.html. Con esto funcionará todo al 100%:
-
-```html
 <!DOCTYPE html>
 <html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DCC Toolbox v5.7</title>
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
@@ -145,23 +137,23 @@ body.sky{background:linear-gradient(#6ebefa,#ecf8ff)fixed!important}
 
 /* ESTILOS RETRO ZONE */
 #t-games { background: #0a0a0c; color: #fff; border-radius: 10px; padding: 15px; font-family: 'Courier New', Courier, monospace; border: 1px solid #333; text-align: center; }
-.game-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed #ff00ff; padding-bottom: 10px; margin-bottom: 15px; }
+.game-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed #ff00ff; padding-bottom: 10px; margin-bottom: 15px; flex-wrap: wrap; gap: 10px; }
 .game-title { color: #00ffcc; text-shadow: 0 0 10px #00ffcc; font-size: 20px; }
 .game-tabs { display: flex; gap: 10px; margin-bottom: 15px; justify-content: center; flex-wrap: wrap; }
 .g-tab { background: #222; border: 2px solid #555; color: #aaa; padding: 6px 12px; cursor: pointer; border-radius: 4px; font-weight: bold; }
 .g-tab.on { border-color: #00ffcc; color: #00ffcc; box-shadow: 0 0 10px #00ffcc; }
 .game-area { display: flex; flex-direction: column; align-items: center; gap: 10px; }
 #gameCanvas { background: #000; border: 4px solid #333; border-radius: 8px; box-shadow: 0 0 20px rgba(0,255,204,0.2); max-width: 100%; height: auto; touch-action: none; }
-.game-info { background: #1a1a1a; border: 2px solid #444; padding: 10px; border-radius: 8px; min-width: 250px; color: #fff; display: flex; justify-content: space-between; align-items: center; }
+.game-info { background: #1a1a1a; border: 2px solid #444; padding: 10px; border-radius: 8px; min-width: 250px; color: #fff; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
 #g-score { font-size: 16px; color: #00ffcc; }
 .game-btn { background: #ff00ff; color: #fff; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; text-transform: uppercase; }
 .game-btn:hover { background: #ff44ff; box-shadow: 0 0 10px #ff00ff; }
 .mobile-controls { display: none; gap: 10px; margin-top: 10px; justify-content: center; align-items: center; flex-wrap: wrap; }
-.btn-dpad { background: #333; color: #fff; border: 2px solid #555; border-radius: 8px; font-size: 20px; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; user-select: none; -webkit-user-select: none; cursor: pointer; }
+.mobile-controls.active { display: flex; }
+.btn-dpad { background: #333; color: #fff; border: 2px solid #555; border-radius: 8px; font-size: 20px; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; user-select: none; -webkit-user-select: none; cursor: pointer; }
 .btn-dpad:active { background: #555; }
-.btn-action { background: #ff00ff; color: #fff; border: 2px solid #ff44ff; border-radius: 50%; font-size: 12px; width: 70px; height: 70px; font-weight: bold; }
+.btn-action { background: #ff00ff; color: #fff; border: 2px solid #ff44ff; border-radius: 50%; font-size: 14px; width: 80px; height: 80px; font-weight: bold; cursor: pointer; user-select: none;}
 .overlay-msg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; font-size: 24px; font-weight: bold; text-shadow: 0 0 10px red; border-radius: 4px; }
-@media(max-width:600px){.mobile-controls{display:flex}.game-info{flex-direction:column;gap:10px}}
 /* Audio Control Flotante */
 .audio-ctrl{position:fixed;bottom:10px;right:10px;background:#222;border:2px solid #ff00ff;border-radius:8px;padding:8px;display:flex;align-items:center;gap:8px;z-index:1000;color:#fff;font-family:sans-serif}
 .audio-ctrl input[type=range]{width:80px;accent-color:#00ffcc}
@@ -231,7 +223,7 @@ body.sky{background:linear-gradient(#6ebefa,#ecf8ff)fixed!important}
 <div id="t-games" class="tc">
   <div class="game-header">
     <div class="game-title">🕹️ RETRO ZONE</div>
-    <div style="color:#00ffcc;font-size:12px;">Presiona ESC para pausar/salir</div>
+    <button class="g-tab" id="ctrl-toggle" onclick="toggleControls()">💻 Modo PC</button>
   </div>
   <div class="game-tabs">
     <button class="g-tab on" onclick="loadGame('pong')">PONG</button>
@@ -249,14 +241,29 @@ body.sky{background:linear-gradient(#6ebefa,#ecf8ff)fixed!important}
       <div><span style="color:#888">HIGH</span> <span id="g-high">0</span></div>
       <button class="game-btn" id="g-start" onclick="startGame()">▶ INICIAR</button>
     </div>
-    <div class="mobile-controls">
-      <div class="btn-dpad" ontouchstart="handleTouch('ArrowLeft', true)" ontouchend="handleTouch('ArrowLeft', false)">←</div>
+    
+    <!-- Controles Android / Touch / Mouse -->
+    <div class="mobile-controls" id="mobile-controls">
+      <div class="btn-dpad" 
+           ontouchstart="handleTouch('ArrowLeft', true)" ontouchend="handleTouch('ArrowLeft', false)" 
+           onmousedown="handleTouch('ArrowLeft', true)" onmouseup="handleTouch('ArrowLeft', false)" onmouseleave="handleTouch('ArrowLeft', false)">←</div>
+      
       <div style="display:flex;flex-direction:column;gap:5px">
-        <div class="btn-dpad" ontouchstart="handleTouch('ArrowUp', true)" ontouchend="handleTouch('ArrowUp', false)">↑</div>
-        <div class="btn-dpad" ontouchstart="handleTouch('ArrowDown', true)" ontouchend="handleTouch('ArrowDown', false)">↓</div>
+        <div class="btn-dpad" 
+             ontouchstart="handleTouch('ArrowUp', true)" ontouchend="handleTouch('ArrowUp', false)" 
+             onmousedown="handleTouch('ArrowUp', true)" onmouseup="handleTouch('ArrowUp', false)" onmouseleave="handleTouch('ArrowUp', false)">↑</div>
+        <div class="btn-dpad" 
+             ontouchstart="handleTouch('ArrowDown', true)" ontouchend="handleTouch('ArrowDown', false)" 
+             onmousedown="handleTouch('ArrowDown', true)" onmouseup="handleTouch('ArrowDown', false)" onmouseleave="handleTouch('ArrowDown', false)">↓</div>
       </div>
-      <div class="btn-dpad" ontouchstart="handleTouch('ArrowRight', true)" ontouchend="handleTouch('ArrowRight', false)">→</div>
-      <button class="btn-action" ontouchstart="handleTouch(' ', true)" ontouchend="handleTouch(' ', false)">🔴</button>
+
+      <div class="btn-dpad" 
+           ontouchstart="handleTouch('ArrowRight', true)" ontouchend="handleTouch('ArrowRight', false)" 
+           onmousedown="handleTouch('ArrowRight', true)" onmouseup="handleTouch('ArrowRight', false)" onmouseleave="handleTouch('ArrowRight', false)">→</div>
+      
+      <button class="btn-action" 
+              ontouchstart="handleTouch(' ', true)" ontouchend="handleTouch(' ', false)" 
+              onmousedown="handleTouch(' ', true)" onmouseup="handleTouch(' ', false)" onmouseleave="handleTouch(' ', false)">🔴</button>
     </div>
   </div>
 </div>
@@ -561,6 +568,7 @@ let keys = {};
 let score = 0, highScore = 0;
 let gameRunning = false;
 let musicInterval = null;
+let isAndroidMode = false;
 const canvas = $('gameCanvas'), ctx = canvas.getContext('2d');
 const W = 400, H = 400;
 
@@ -651,7 +659,7 @@ function startMusic(game) {
 
     musicIndex = (musicIndex + 1) % seq.length;
     const nextDur = seq[musicIndex][1] * 1000;
-    musicInterval = setTimeout(playNext, dur * 1000 * 0.95); // 0.95 para dar un pequeño respiro
+    musicInterval = setTimeout(playNext, dur * 1000 * 0.95);
   }
   musicIndex = 0; bassIndex = 0;
   playNext();
@@ -686,6 +694,25 @@ window.addEventListener('keydown', e => {
 });
 window.addEventListener('keyup', e => keys[e.key] = false);
 function handleTouch(key, state) { keys[key] = state; }
+
+function toggleControls() {
+  isAndroidMode = !isAndroidMode;
+  const btn = $('ctrl-toggle');
+  const ctrls = $('mobile-controls');
+  if (isAndroidMode) {
+    btn.textContent = '📱 Modo Android';
+    btn.style.borderColor = '#ff00ff';
+    btn.style.color = '#ff00ff';
+    btn.style.boxShadow = '0 0 10px #ff00ff';
+    ctrls.classList.add('active');
+  } else {
+    btn.textContent = '💻 Modo PC';
+    btn.style.borderColor = '#555';
+    btn.style.color = '#aaa';
+    btn.style.boxShadow = 'none';
+    ctrls.classList.remove('active');
+  }
+}
 
 // Motor de Juegos
 function loadGame(gameId) {
